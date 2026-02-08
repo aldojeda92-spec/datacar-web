@@ -1,0 +1,200 @@
+---
+// src/pages/index.astro
+---
+
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>DATACAR | Tu compra inteligente</title>
+		<meta name="description" content="Consultoría automotriz premium. Compramos tu vehículo ideal al mejor precio real usando datos.">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-white font-sans text-secondary antialiased">
+
+		<nav class="fixed w-full bg-primary/95 backdrop-blur-md z-50 border-b border-gray-800 transition-all duration-300">
+			<div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+				
+				<a href="#" class="flex items-center gap-3 group">
+					<div class="w-10 h-10 bg-white rounded-sm flex items-center justify-center border border-gray-200 group-hover:border-accent transition">
+						<span class="font-heading font-black text-primary text-xl">D</span>
+					</div>
+					<div class="hidden md:block">
+						<span class="font-heading font-bold text-xl text-white tracking-wide block leading-none group-hover:text-accent transition">DATACAR</span>
+						<span class="font-sans text-[10px] text-gray-400 uppercase tracking-[0.2em] group-hover:text-white transition">Tu compra inteligente</span>
+					</div>
+				</a>
+
+				<a href="#contacto" class="bg-accent hover:bg-sky-400 text-white px-6 py-2.5 rounded font-medium transition-all shadow-lg shadow-cyan-500/20 text-sm tracking-wide transform hover:-translate-y-0.5">
+					AGENDAR DIAGNÓSTICO
+				</a>
+			</div>
+		</nav>
+
+		<header class="relative bg-primary pt-44 pb-32 px-6 min-h-[85vh] flex items-center overflow-hidden">
+			
+			<div class="absolute inset-0 z-0">
+				<img 
+					src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop" 
+					alt="Vehículo Premium Dark" 
+					class="w-full h-full object-cover opacity-30"
+				/>
+				<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/40"></div>
+				<div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
+			</div>
+			
+			<div class="max-w-5xl mx-auto text-center relative z-10">
+				<div class="inline-block border border-accent/30 rounded-full px-4 py-1 mb-6 bg-primary/80 backdrop-blur-sm">
+					<span class="text-accent font-bold tracking-widest uppercase text-[10px]">Consultoría Automotriz Premium</span>
+				</div>
+				<h1 class="font-heading font-black text-4xl md:text-6xl lg:text-7xl text-white mb-8 leading-[1.1] drop-shadow-2xl">
+					La forma inteligente de <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">comprar tu vehículo.</span>
+				</h1>
+				<p class="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+					No pierdas tiempo ni dinero en concesionarias. Actuamos como tu <strong>Agente del Comprador</strong>: analizamos datos, negociamos por ti y te entregamos las llaves.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+					<a href="#contacto" class="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded font-bold text-lg hover:bg-sky-400 transition transform hover:scale-105 shadow-xl shadow-cyan-500/30 text-center border border-transparent">
+						Iniciar Búsqueda
+					</a>
+					<a href="#proceso" class="w-full sm:w-auto border border-white/20 bg-white/5 backdrop-blur-sm text-white px-8 py-4 rounded font-medium hover:bg-white/10 transition text-center">
+						Cómo Funciona
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<section class="py-24 px-6 bg-white">
+			<div class="max-w-5xl mx-auto">
+				<div class="text-center mb-16">
+					<h2 class="font-heading font-black text-3xl md:text-4xl text-primary mb-4">El modelo tradicional está roto</h2>
+					<p class="text-gray-500 max-w-xl mx-auto">Comprar un auto suele ser una experiencia estresante y opaca. Nosotros cambiamos las reglas del juego.</p>
+				</div>
+
+				<div class="grid md:grid-cols-3 gap-8">
+					<div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition group hover:-translate-y-1">
+						<div class="w-12 h-12 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition">✕</div>
+						<h3 class="font-bold text-primary text-xl mb-3">Conflicto de Interés</h3>
+						<p class="text-sm text-gray-600 leading-relaxed">El vendedor trabaja para la agencia, no para ti. Su objetivo es maximizar su comisión, no tu ahorro.</p>
+					</div>
+					<div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition group hover:-translate-y-1">
+						<div class="w-12 h-12 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition">✕</div>
+						<h3 class="font-bold text-primary text-xl mb-3">Opacidad de Datos</h3>
+						<p class="text-sm text-gray-600 leading-relaxed">Precios inflados, stock fantasma y letras chicas. Nunca sabes si estás pagando el precio justo real.</p>
+					</div>
+					<div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition group hover:-translate-y-1">
+						<div class="w-12 h-12 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition">✕</div>
+						<h3 class="font-bold text-primary text-xl mb-3">Pérdida de Tiempo</h3>
+						<p class="text-sm text-gray-600 leading-relaxed">Visitas interminables a concesionarias, trámites burocráticos y negociaciones agotadoras.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="proceso" class="py-24 px-6 bg-secondary text-white relative overflow-hidden">
+			<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
+				
+				<div class="order-2 md:order-1">
+					<span class="text-accent font-bold tracking-widest uppercase text-xs mb-2 block">Nuestra Filosofía</span>
+					<h2 class="font-heading font-black text-3xl md:text-5xl mb-6 leading-tight">
+						Datos sobre emociones. <br/> <span class="text-gray-400">Resultados garantizados.</span>
+					</h2>
+					<p class="text-gray-300 mb-8 text-lg font-light">
+						En DATACAR no vendemos autos. Compramos autos POR TI. Alineamos nuestros intereses 100% contigo para conseguir condiciones que un particular no puede obtener.
+					</p>
+					
+					<div class="space-y-8 border-l border-gray-700 pl-8">
+						<div class="relative">
+							<span class="absolute -left-[37px] top-1 w-4 h-4 bg-accent rounded-full border-4 border-secondary"></span>
+							<h4 class="font-bold text-white text-lg">1. Consulta Inicial</h4>
+							<p class="text-sm text-gray-400 mt-1">Definimos tu necesidad, presupuesto y vehículo ideal.</p>
+						</div>
+						<div class="relative">
+							<span class="absolute -left-[37px] top-1 w-4 h-4 bg-accent rounded-full border-4 border-secondary"></span>
+							<h4 class="font-bold text-white text-lg">2. Inteligencia de Mercado</h4>
+							<p class="text-sm text-gray-400 mt-1">Filtramos cientos de opciones y negociamos las 3 mejores.</p>
+						</div>
+						<div class="relative">
+							<span class="absolute -left-[37px] top-1 w-4 h-4 bg-accent rounded-full border-4 border-secondary"></span>
+							<h4 class="font-bold text-white text-lg">3. Entrega Llave en Mano</h4>
+							<p class="text-sm text-gray-400 mt-1">Inspección mecánica, trámites y entrega en tu puerta.</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="order-1 md:order-2 relative h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-gray-700 group">
+					<img 
+						src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=2000&auto=format&fit=crop" 
+						alt="Trato cerrado corporativo" 
+						class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 opacity-90"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent"></div>
+					
+					<div class="absolute bottom-6 left-6 bg-primary/95 backdrop-blur px-5 py-3 rounded border-l-4 border-accent shadow-lg">
+						<p class="text-xs font-bold text-white uppercase tracking-widest mb-1">Experiencia DATACAR</p>
+						<p class="text-sm text-gray-300">Cero estrés. Cero sorpresas.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contacto" class="py-24 px-6 bg-white relative">
+			<div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col md:flex-row">
+				
+				<div class="md:w-2/5 bg-primary p-12 flex flex-col justify-between relative overflow-hidden">
+					<div class="relative z-10">
+						<h3 class="font-heading font-black text-3xl text-white mb-2">Agenda tu Diagnóstico</h3>
+						<p class="text-accent font-bold text-sm mb-6 tracking-wide">GRATUITO Y SIN COMPROMISO</p>
+						<p class="text-gray-300 text-sm leading-relaxed border-t border-gray-700 pt-6">
+							Déjanos tus datos y un consultor senior te contactará en menos de 24hs para analizar tu caso.
+						</p>
+					</div>
+					<div class="absolute bottom-0 right-0 w-40 h-40 bg-accent/20 rounded-full blur-3xl -mb-10 -mr-10"></div>
+				</div>
+
+				<div class="md:w-3/5 p-12">
+					<form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST" class="space-y-6">
+						<div>
+							<label class="block text-xs font-bold text-primary uppercase mb-2">Nombre Completo</label>
+							<input type="text" name="name" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition font-medium" placeholder="Tu nombre" required>
+						</div>
+						<div>
+							<label class="block text-xs font-bold text-primary uppercase mb-2">Contacto (Tel/Email)</label>
+							<input type="text" name="contact" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition font-medium" placeholder="+595 ..." required>
+						</div>
+						<div>
+							<label class="block text-xs font-bold text-primary uppercase mb-2">Interés</label>
+							<select name="interest" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-lg focus:outline-none focus:border-accent transition text-gray-600 font-medium">
+								<option>Compra de Vehículo 0km</option>
+								<option>Búsqueda de Seminuevo</option>
+								<option>Gestión de Flota</option>
+							</select>
+						</div>
+						
+						<button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-[#0A1F33]/90 transition shadow-lg transform hover:scale-[1.02] mt-2">
+							SOLICITAR CONSULTA
+						</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<footer class="bg-primary border-t border-gray-800 py-12 text-center text-gray-400">
+			<div class="mb-4 flex justify-center items-center gap-2">
+				<div class="w-6 h-6 bg-white rounded-sm flex items-center justify-center text-primary font-black text-xs">D</div>
+				<span class="font-heading font-black text-xl text-white tracking-tighter">DATACAR</span>
+			</div>
+			<p class="text-xs mb-8">Paseo de la Castellana 123, Madrid (Oficina Central)</p>
+			<div class="flex justify-center gap-8 text-xs font-bold tracking-wide text-gray-500">
+				<a href="#" class="hover:text-accent transition">TÉRMINOS</a>
+				<a href="#" class="hover:text-accent transition">PRIVACIDAD</a>
+				<a href="#" class="hover:text-accent transition">COOKIES</a>
+			</div>
+			<p class="text-[10px] mt-8 text-gray-600">© 2024 Datacar S.L. Todos los derechos reservados.</p>
+		</footer>
+
+	</body>
+</html>
