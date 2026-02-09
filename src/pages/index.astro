@@ -1,151 +1,145 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-// Aquí puedes importar componentes si los tienes separados en el futuro.
-// Por ahora, todo está integrado para que sea copiar y pegar.
+// No necesitamos importar nada externo
 ---
 
-<Layout title="Datacar | Tu próximo 0km sin estrés">
-	
-	<section class="relative bg-slate-900 text-white overflow-hidden">
-		<div class="absolute inset-0 z-0">
-			<img 
-				src="/hero-familia.jpg" 
-				alt="Familia recibiendo su nuevo 0km con un asesor Datacar" 
-				class="w-full h-full object-cover opacity-30"
-			/>
-			</div>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Datacar | Tu próximo 0km sin estrés</title>
+        </head>
+	<body class="bg-gray-50 text-slate-900 font-sans">
+		
+		<section class="relative bg-slate-900 text-white overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img 
+                    src="/hero-familia.jpg" 
+                    alt="Familia recibiendo su nuevo 0km" 
+                    class="w-full h-full object-cover opacity-30"
+                    onerror="this.style.display='none'" 
+                />
+                <div class="absolute inset-0 bg-slate-900 opacity-80"></div>
+            </div>
 
-		<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col items-center text-center">
-			<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-				Tu próximo 0km, <br class="hidden md:block" />
-				<span class="text-blue-500">al mejor precio y sin estrés.</span>
-			</h1>
-			<p class="text-xl md:text-2xl text-gray-300 max-w-3xl mb-10">
-				Dejá de recorrer concesionarias. Nosotros buscamos, comparamos y negociamos por vos todas las marcas del mercado. Te conseguimos el mejor trato, y lo mejor: <span class="font-bold text-white">nuestro servicio es 100% gratuito para vos.</span>
-			</p>
-			
-			<div class="flex flex-col sm:flex-row gap-4">
-				<a href="#contacto" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 shadow-lg hover:shadow-blue-500/50">
-					Agendar asesoramiento gratuito
-				</a>
-				<a href="#como-funciona" class="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-slate-900 transition duration-300">
-					Ver cómo funciona
-				</a>
-			</div>
-		</div>
-	</section>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col items-center text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                    Tu próximo 0km, <br class="hidden md:block" />
+                    <span class="text-blue-400">al mejor precio y sin estrés.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mb-10">
+                    Dejá de recorrer concesionarias. Nosotros buscamos, comparamos y negociamos por vos todas las marcas del mercado. Te conseguimos el mejor trato, y lo mejor: <span class="font-bold text-white">nuestro servicio es 100% gratuito para vos.</span>
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contacto" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 shadow-lg border border-blue-500">
+                        Agendar asesoramiento gratuito
+                    </a>
+                    <a href="#como-funciona" class="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-slate-900 transition duration-300">
+                        Ver cómo funciona
+                    </a>
+                </div>
+            </div>
+        </section>
 
-	<section class="py-20 bg-gray-50">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="text-center mb-16">
-				<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">El modelo tradicional está roto</h2>
-				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-					¿Cansado de visitar 5 concesionarias y recibir 10 llamadas de vendedores? Nosotros hacemos el trabajo sucio por vos.
-				</p>
-			</div>
+        <section id="como-funciona" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">El modelo tradicional está roto</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ¿Cansado de visitar 5 concesionarias y recibir 10 llamadas de vendedores? Nosotros hacemos el trabajo sucio por vos.
+                    </p>
+                </div>
 
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-				<div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-					<div class="h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center text-gray-400">
-						<span class="text-sm">[Imagen: Vendedor vs. Interés del Cliente]</span>
-					</div>
-					<h3 class="text-2xl font-bold text-slate-900 mb-3">Conflicto de Interés</h3>
-					<p class="text-gray-600">
-						El vendedor trabaja para la concesionaria, <strong>nosotros trabajamos para vos</strong>. Ellos quieren vender su stock; nosotros buscamos lo que realmente necesitás, sin importar la marca.
-					</p>
-				</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Conflicto de Interés</h3>
+                        <p class="text-gray-600">
+                            El vendedor trabaja para la concesionaria, <strong>nosotros trabajamos para vos</strong>. Ellos quieren vender su stock; nosotros buscamos lo que realmente necesitás.
+                        </p>
+                    </div>
 
-				<div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-					<div class="h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center text-gray-400">
-						<span class="text-sm">[Imagen: Lupa sobre letra chica]</span>
-					</div>
-					<h3 class="text-2xl font-bold text-slate-900 mb-3">Costos Ocultos</h3>
-					<p class="text-gray-600">
-						Sin letras chicas. Las "promociones" suelen esconder gastos de transferencia y mantenimiento inflado. Te desglosamos el <strong>costo real</strong> de tener el auto, no solo la cuota.
-					</p>
-				</div>
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Costos Ocultos</h3>
+                        <p class="text-gray-600">
+                            Sin letras chicas. Las "promociones" suelen esconder gastos de transferencia y mantenimiento. Te desglosamos el <strong>costo real</strong>.
+                        </p>
+                    </div>
 
-				<div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-					<div class="h-48 bg-gray-200 rounded-xl mb-6 flex items-center justify-center text-gray-400">
-						<span class="text-sm">[Imagen: Tiempo / Laberinto resuelto]</span>
-					</div>
-					<h3 class="text-2xl font-bold text-slate-900 mb-3">Tu tiempo vale oro</h3>
-					<p class="text-gray-600">
-						Olvidate de repetir lo mismo a 10 vendedores. <strong>Centralizá todo</strong> con un solo asesor de Datacar que gestiona todo el mercado, colores y precios por vos.
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Tu tiempo vale oro</h3>
+                        <p class="text-gray-600">
+                            Olvidate de repetir lo mismo a 10 vendedores. <strong>Centralizá todo</strong> con un solo asesor de Datacar que gestiona todo el mercado por vos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-	<section class="py-20 bg-white">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-			<div class="w-full md:w-1/2">
-				<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-					Consultoría experta para comprar tu próximo 0km
-				</h2>
-				<p class="text-lg text-gray-600 mb-6">
-					Somos tu único punto de contacto en el caos automotriz. Analizamos tu perfil, presupuesto y necesidades para presentarte las mejores opciones de <strong>todas las marcas</strong>.
-				</p>
-				<ul class="space-y-4">
-					<li class="flex items-start">
-						<svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-						<span class="text-gray-700"><strong>Asesoría 100% Gratuita:</strong> Nuestros honorarios los cubren los aliados, no vos.</span>
-					</li>
-					<li class="flex items-start">
-						<svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-						<span class="text-gray-700"><strong>Negociación Experta:</strong> Conseguimos descuentos y beneficios que un particular difícilmente logra.</span>
-					</li>
-					<li class="flex items-start">
-						<svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-						<span class="text-gray-700"><strong>Independencia Total:</strong> No nos casamos con ninguna marca. Nos casamos con tu satisfacción.</span>
-					</li>
-				</ul>
-				<div class="mt-8">
-					<a href="#contacto" class="text-blue-600 font-bold hover:underline text-lg">
-						Quiero mi asesoría gratuita &rarr;
-					</a>
-				</div>
-			</div>
-			<div class="w-full md:w-1/2">
-				<div class="bg-gray-200 rounded-2xl h-96 w-full flex items-center justify-center text-gray-400">
-					<span class="text-lg">[Imagen: Asesor Datacar con Cliente feliz]</span>
-				</div>
-			</div>
-		</div>
-	</section>
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                        Consultoría experta para comprar tu próximo 0km
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Somos tu único punto de contacto en el caos automotriz. Analizamos tu perfil, presupuesto y necesidades para presentarte las mejores opciones de <strong>todas las marcas</strong>.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <span class="text-green-500 font-bold mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Asesoría 100% Gratuita</strong> (pagada por aliados)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 font-bold mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Negociación Experta</strong> y descuentos exclusivos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 font-bold mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Independencia Total</strong> de marcas</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2 bg-gray-100 h-64 rounded-xl flex items-center justify-center text-gray-400">
+                    [Espacio para foto Asesor + Cliente]
+                </div>
+            </div>
+        </section>
 
-	<section id="contacto" class="py-20 bg-slate-900 text-white">
-		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-			<h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para hacer una compra inteligente?</h2>
-			<p class="text-xl text-gray-300 mb-10">
-				Dejanos tus datos y un asesor se pondrá en contacto con vos para empezar la búsqueda de tu próximo auto.
-			</p>
-			
-			<div class="bg-white rounded-2xl p-8 max-w-lg mx-auto text-slate-900 shadow-2xl">
-				<form action="https://formspree.io/f/xdalkadz" method="POST" class="space-y-4">
-					<div>
-						<label for="nombre" class="block text-left text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
-						<input type="text" name="name" id="nombre" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Ej: Juan Pérez">
-					</div>
-					
-					<div>
-						<label for="telefono" class="block text-left text-sm font-medium text-gray-700 mb-1">WhatsApp</label>
-						<input type="tel" name="phone" id="telefono" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Ej: 0981 123 456">
-					</div>
+        <section id="contacto" class="py-20 bg-slate-900 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para hacer una compra inteligente?</h2>
+                <p class="text-xl text-gray-300 mb-10">
+                    Dejanos tus datos y un asesor se pondrá en contacto con vos hoy mismo.
+                </p>
+                
+                <div class="bg-white rounded-2xl p-8 max-w-lg mx-auto text-slate-900 shadow-2xl">
+                    <form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST" class="space-y-4">
+                        <div class="text-left">
+                            <label class="block text-sm font-bold mb-2">Nombre</label>
+                            <input type="text" name="name" required class="w-full p-3 border rounded bg-gray-50" placeholder="Ej: Juan Pérez">
+                        </div>
+                        <div class="text-left">
+                            <label class="block text-sm font-bold mb-2">WhatsApp</label>
+                            <input type="tel" name="phone" required class="w-full p-3 border rounded bg-gray-50" placeholder="0981...">
+                        </div>
+                        <div class="text-left">
+                            <label class="block text-sm font-bold mb-2">¿Qué buscás?</label>
+                            <textarea name="message" rows="3" class="w-full p-3 border rounded bg-gray-50" placeholder="Busco una SUV, presupuesto aprox..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Solicitar Asesoría
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-					<div>
-						<label for="mensaje" class="block text-left text-sm font-medium text-gray-700 mb-1">¿Qué tipo de auto buscás?</label>
-						<textarea name="message" id="mensaje" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Ej: Busco una SUV para la familia, presupuesto aprox..."></textarea>
-					</div>
+        <footer class="bg-slate-950 text-gray-400 py-8 text-center">
+            <p>Datacar Paraguay - Asunción</p>
+            <p class="text-sm mt-2">© 2024 Todos los derechos reservados.</p>
+        </footer>
 
-					<button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-						Solicitar Asesoría Gratuita
-					</button>
-				</form>
-			</div>
-		</div>
-	</section>
-
-	</Layout>
+	</body>
+</html>
