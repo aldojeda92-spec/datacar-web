@@ -1,5 +1,5 @@
 ---
-// index.astro - Versión con Encabezado DATACAR
+// index.astro - Versión FINAL CORPORATIVA (Sin Emojis, Link Correcto)
 ---
 
 <html lang="es">
@@ -8,88 +8,105 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Datacar | Tu próximo 0km sin estrés</title>
+		<title>Datacar | Tu compra inteligente</title>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+        <style>
+            h1, h2, h3, .brand-font { font-family: 'Archivo', sans-serif; }
+            body, p, a, input, textarea { font-family: 'Inter', sans-serif; }
+        </style>
 	</head>
-	<body class="bg-gray-50 text-slate-900 font-sans antialiased">
+	<body class="bg-gray-50 text-[#3A3A3C] antialiased">
 		
 		<nav class="absolute top-0 w-full z-50 py-6 px-4">
 			<div class="max-w-7xl mx-auto flex justify-between items-center">
-				<a href="/" class="text-3xl font-extrabold text-white tracking-wider hover:text-blue-400 transition">
+				<a href="/" class="text-2xl md:text-3xl font-black text-white tracking-wide hover:text-[#00BFFF] transition brand-font">
 					DATACAR
 				</a>
 				
 				<div class="hidden md:flex space-x-8">
-					<a href="#como-funciona" class="text-white font-medium hover:text-blue-400 transition">Cómo funciona</a>
-					<a href="#contacto" class="text-white font-medium hover:text-blue-400 transition">Contacto</a>
+					<a href="#como-funciona" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">CÓMO FUNCIONA</a>
+					<a href="#contacto" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">CONTACTO</a>
 				</div>
                 
-                <a href="#contacto" class="md:hidden text-white font-bold border border-white px-4 py-2 rounded-full text-sm">
+                <a href="#contacto" class="md:hidden text-white font-bold border border-white px-5 py-2 rounded-full text-xs tracking-widest uppercase">
                     Agendar
                 </a>
 			</div>
 		</nav>
 
-		<section class="relative bg-slate-900 text-white overflow-hidden min-h-screen flex items-center">
+		<section class="relative bg-[#0A1F33] text-white overflow-hidden min-h-screen flex items-center">
             <div class="absolute inset-0 z-0">
                 <img 
                     src="/hero-familia.jpg" 
-                    alt="Familia recibiendo su nuevo 0km" 
+                    alt="Cliente satisfecho con su nuevo vehículo" 
                     class="w-full h-full object-cover opacity-20"
                     onerror="this.style.display='none'" 
                 />
-                <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/50 to-slate-900"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/95 via-[#0A1F33]/70 to-[#0A1F33]"></div>
             </div>
 
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-10">
-                <span class="text-blue-400 font-bold tracking-widest uppercase text-sm mb-4">Consultoría Automotriz</span>
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-12">
+                <span class="text-[#00BFFF] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 border border-[#00BFFF] px-4 py-1 rounded-full bg-[#00BFFF]/10">
+                    Consultoría Automotriz Premium
+                </span>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight">
                     Tu próximo 0km, <br />
-                    <span class="text-blue-500">al mejor precio y sin estrés.</span>
+                    <span class="text-[#00BFFF]">al mejor precio y sin estrés.</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mb-10 leading-relaxed">
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mb-10 leading-relaxed font-light">
                     Dejá de recorrer concesionarias. Nosotros buscamos, comparamos y negociamos por vos. Te conseguimos el mejor trato de <strong>cualquier marca</strong>.
-                    <br/><span class="text-white font-semibold mt-2 block">Servicio 100% gratuito para vos.</span>
+                    <br/><span class="text-white font-medium mt-3 block">Servicio 100% gratuito para vos.</span>
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <a href="#contacto" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-lg shadow-blue-900/50 text-center">
+                    <a href="#contacto" class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-lg shadow-[#00BFFF]/20 text-center">
                         Agendar asesoramiento gratuito
                     </a>
                 </div>
-                <p class="mt-6 text-sm text-gray-400">Sin compromiso • Respuesta en menos de 24hs</p>
+                <p class="mt-8 text-xs text-gray-400 uppercase tracking-wider">Sin compromiso • Respuesta en menos de 24hs</p>
             </div>
         </section>
 
         <section id="como-funciona" class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">El modelo tradicional está roto</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        ¿Cansado de visitar 5 concesionarias, escuchar promesas vacías y recibir 10 llamadas de vendedores?
+                <div class="text-center mb-20">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#0A1F33] mb-6">El modelo tradicional está roto</h2>
+                    <p class="text-lg text-[#3A3A3C] max-w-2xl mx-auto font-light">
+                        ¿Cansado de visitar concesionarias, escuchar promesas vacías y recibir llamadas insistentes de vendedores?
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="text-4xl mb-4">🤥</div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Conflicto de Interés</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            El vendedor trabaja para la concesionaria, <strong>nosotros trabajamos para vos</strong>. Ellos quieren vender su stock hoy; nosotros buscamos lo que realmente necesitás a largo plazo.
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 hover:shadow-xl transition duration-300 group">
+                        <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300">
+                            <svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0A1F33] mb-4">Conflicto de Interés</h3>
+                        <p class="text-[#3A3A3C] text-sm leading-relaxed">
+                            El vendedor trabaja para la concesionaria, <strong>nosotros trabajamos para vos</strong>. Ellos priorizan su stock; nosotros priorizamos tu necesidad real a largo plazo.
                         </p>
                     </div>
 
-                    <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="text-4xl mb-4">🔎</div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Costos Ocultos</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            Sin letras chicas. Las "promociones" suelen esconder gastos de transferencia y mantenimiento. Te desglosamos el <strong>costo real</strong> antes de que firmes nada.
+                    <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 hover:shadow-xl transition duration-300 group">
+                        <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300">
+                            <svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0A1F33] mb-4">Costos Ocultos</h3>
+                        <p class="text-[#3A3A3C] text-sm leading-relaxed">
+                            Sin letras chicas. Las "promociones" suelen esconder gastos de transferencia y mantenimiento. Te desglosamos el <strong>costo real</strong> antes de firmar nada.
                         </p>
                     </div>
 
-                    <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="text-4xl mb-4">⏳</div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Tu tiempo vale oro</h3>
-                        <p class="text-gray-600 leading-relaxed">
+                    <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 hover:shadow-xl transition duration-300 group">
+                        <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300">
+                            <svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0A1F33] mb-4">Tu tiempo vale oro</h3>
+                        <p class="text-[#3A3A3C] text-sm leading-relaxed">
                             Olvidate de repetir lo mismo a 10 vendedores distintos. <strong>Centralizá todo</strong> con un solo asesor de Datacar que gestiona todo el mercado por vos.
                         </p>
                     </div>
@@ -97,82 +114,90 @@
             </div>
         </section>
 
-        <section class="py-24 bg-slate-50">
+        <section class="py-24 bg-[#F5F7FA]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
                 <div class="w-full md:w-1/2">
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#0A1F33] mb-6 leading-tight">
                         Consultoría experta para tu compra
                     </h2>
-                    <p class="text-lg text-gray-600 mb-8">
+                    <p class="text-lg text-[#3A3A3C] mb-8 font-light">
                         Somos tu único punto de contacto en el caos automotriz. Analizamos tu perfil, presupuesto y necesidades para presentarte las mejores opciones de <strong>todas las marcas</strong>.
                     </p>
                     <ul class="space-y-6">
                         <li class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mt-1 mr-4">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#00BFFF] flex items-center justify-center mt-1 mr-4">
+                                <svg class="w-3 h-3 text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <span class="text-gray-700 text-lg"><strong>Asesoría 100% Gratuita:</strong> (Pagada por aliados)</span>
+                            <span class="text-[#3A3A3C]"><strong>Asesoría 100% Gratuita:</strong> (Pagada por aliados)</span>
                         </li>
                         <li class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mt-1 mr-4">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#00BFFF] flex items-center justify-center mt-1 mr-4">
+                                <svg class="w-3 h-3 text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <span class="text-gray-700 text-lg"><strong>Negociación Experta:</strong> Descuentos exclusivos</span>
+                            <span class="text-[#3A3A3C]"><strong>Negociación Experta:</strong> Descuentos exclusivos</span>
                         </li>
                         <li class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mt-1 mr-4">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#00BFFF] flex items-center justify-center mt-1 mr-4">
+                                <svg class="w-3 h-3 text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <span class="text-gray-700 text-lg"><strong>Independencia Total:</strong> Sin compromiso con marcas</span>
+                            <span class="text-[#3A3A3C]"><strong>Independencia Total:</strong> Sin compromiso con marcas</span>
                         </li>
                     </ul>
                 </div>
                 <div class="w-full md:w-1/2">
-                    <div class="aspect-square bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
-                        <p class="text-center px-4">
+                    <div class="aspect-[4/3] bg-white rounded-2xl flex items-center justify-center text-gray-400 border border-gray-200 shadow-lg relative overflow-hidden">
+                        <p class="text-center px-4 font-medium z-10">
                             [FOTO AQUI]<br>
                             Asesor Datacar entregando llaves<br>
                             (Subir a public/ y vincular)
                         </p>
+                        <div class="absolute inset-0 bg-gray-50 opacity-50 pattern-grid-lg"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contacto" class="py-24 bg-slate-900 text-white">
+        <section id="contacto" class="py-24 bg-[#0A1F33] text-white">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-6">¿Listo para hacer una compra inteligente?</h2>
-                <p class="text-xl text-gray-300 mb-12">
+                <p class="text-xl text-gray-300 mb-12 font-light">
                     Dejanos tus datos. Un asesor se pondrá en contacto con vos hoy mismo.
                 </p>
                 
-                <div class="bg-white rounded-3xl p-8 md:p-12 max-w-xl mx-auto text-slate-900 shadow-2xl">
-                    <form action="https://formspree.io/f/mqkrzyxw" method="POST" class="space-y-6">
+                <div class="bg-white rounded-3xl p-8 md:p-12 max-w-xl mx-auto text-[#0A1F33] shadow-2xl">
+                    <form action="https://formspree.io/f/xdalkadz" method="POST" class="space-y-6">
                         <div class="text-left">
-                            <label class="block text-sm font-bold mb-2 text-gray-700">Nombre Completo</label>
-                            <input type="text" name="name" required class="w-full p-4 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Ej: Juan Pérez">
+                            <label class="block text-xs font-bold mb-2 text-[#0A1F33] uppercase tracking-wider">Nombre Completo</label>
+                            <input type="text" name="name" required class="w-full p-4 border border-gray-300 rounded-xl bg-white focus:ring-2 focus:ring-[#00BFFF] focus:border-[#00BFFF] outline-none transition" placeholder="Ej: Juan Pérez">
                         </div>
                         <div class="text-left">
-                            <label class="block text-sm font-bold mb-2 text-gray-700">WhatsApp</label>
-                            <input type="tel" name="phone" required class="w-full p-4 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="0981...">
+                            <label class="block text-xs font-bold mb-2 text-[#0A1F33] uppercase tracking-wider">WhatsApp</label>
+                            <input type="tel" name="phone" required class="w-full p-4 border border-gray-300 rounded-xl bg-white focus:ring-2 focus:ring-[#00BFFF] focus:border-[#00BFFF] outline-none transition" placeholder="0981...">
                         </div>
                         <div class="text-left">
-                            <label class="block text-sm font-bold mb-2 text-gray-700">¿Qué estás buscando?</label>
-                            <textarea name="message" rows="3" class="w-full p-4 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Ej: Busco una SUV familiar, presupuesto $20.000..."></textarea>
+                            <label class="block text-xs font-bold mb-2 text-[#0A1F33] uppercase tracking-wider">¿Qué estás buscando?</label>
+                            <textarea name="message" rows="3" class="w-full p-4 border border-gray-300 rounded-xl bg-white focus:ring-2 focus:ring-[#00BFFF] focus:border-[#00BFFF] outline-none transition" placeholder="Ej: Busco una SUV familiar..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition duration-300 text-lg shadow-lg">
+                        <button type="submit" class="w-full bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-bold py-4 px-6 rounded-xl transition duration-300 text-lg shadow-lg">
                             Solicitar Asesoría Gratuita
                         </button>
                     </form>
-                    <p class="text-xs text-gray-400 mt-4 text-center">Tus datos están seguros. No compartimos spam.</p>
+                    <p class="text-xs text-gray-400 mt-6 text-center">Tus datos están protegidos. Política de Privacidad DATACAR.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="bg-slate-950 text-gray-500 py-12 text-center border-t border-slate-900">
-            <p class="text-xl text-white font-bold mb-4">DATACAR</p>
-            <p>Asunción, Paraguay</p>
-            <p class="text-sm mt-4">© 2024 Todos los derechos reservados.</p>
+        <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
+            <p class="text-2xl text-white font-black tracking-wider mb-2 brand-font">DATACAR</p>
+            <p class="font-light text-sm mb-6">Tu compra inteligente</p>
+            
+            <div class="flex justify-center space-x-6 mb-8 text-sm">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">LinkedIn</a>
+                <a href="#" class="hover:text-white transition">WhatsApp</a>
+            </div>
+
+            <p class="text-xs opacity-40">© 2024 Datacar Paraguay. Todos los derechos reservados.</p>
         </footer>
 
 	</body>
