@@ -1,5 +1,5 @@
 ---
-// index.astro - Versión FINAL con Logo y Colores Corregidos
+// index.astro - Versión CORREGIDA (Hero más claro)
 ---
 
 <html lang="es">
@@ -17,29 +17,30 @@
         <style>
             h1, h2, h3, .brand-font { font-family: 'Archivo', sans-serif; }
             body, p, a, input, textarea { font-family: 'Inter', sans-serif; }
+            html { scroll-behavior: smooth; }
         </style>
 	</head>
 	<body class="bg-gray-50 text-[#3A3A3C] antialiased">
 		
 		<nav class="absolute top-0 w-full z-50 py-6 px-4">
 			<div class="max-w-7xl mx-auto flex justify-between items-center">
-				<a href="/">
+				<a href="/" class="block">
                     <img 
                         src="/logo-white.png" 
-                        alt="Datacar Logo" 
-                        class="h-8 md:h-10 w-auto" 
+                        alt="Datacar" 
+                        class="h-10 md:h-12 w-auto" 
                     />
-                    </a>
+                </a>
 				
 				<div class="hidden md:flex space-x-8 items-center">
 					<a href="#como-funciona" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">CÓMO FUNCIONA</a>
 					<a href="#contacto" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">CONTACTO</a>
-                    <a href="#contacto" class="border border-white text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-[#0A1F33] transition">
+                    <a href="#contacto" class="border-2 border-white text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-[#0A1F33] transition tracking-widest">
                         AGENDAR
                     </a>
 				</div>
                 
-                <a href="#contacto" class="md:hidden text-white font-bold border border-white px-4 py-2 rounded-full text-xs">
+                <a href="#contacto" class="md:hidden text-white font-bold border-2 border-white px-4 py-2 rounded-full text-xs tracking-widest">
                     MENU
                 </a>
 			</div>
@@ -50,29 +51,29 @@
                 <img 
                     src="/hero-image.jpg" 
                     alt="Cliente satisfecho Datacar" 
-                    class="w-full h-full object-cover opacity-30"
+                    class="w-full h-full object-cover opacity-60"
                     onerror="this.style.display='none'" 
                 />
-                <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/90 via-[#0A1F33]/70 to-[#0A1F33]"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/80 via-transparent to-[#0A1F33]/90"></div>
             </div>
 
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-12">
-                <span class="text-white/80 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 border border-white/20 px-4 py-1 rounded-full bg-white/5">
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-16">
+                <span class="text-white/90 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 border border-white/30 px-4 py-1 rounded-full bg-[#0A1F33]/30 backdrop-blur-sm">
                     Consultoría Automotriz Premium
                 </span>
                 
-                <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight">
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight drop-shadow-lg">
                     Tu próximo 0km, <br />
                     al mejor precio y sin estrés.
                 </h1>
                 
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mb-10 leading-relaxed font-light">
+                <p class="text-lg md:text-xl text-white/90 max-w-3xl mb-10 leading-relaxed font-light drop-shadow-md">
                     Dejá de recorrer concesionarias. Nosotros buscamos, comparamos y negociamos por vos. Te conseguimos el mejor trato de <strong>cualquier marca</strong>.
-                    <br/><span class="text-white font-medium mt-3 block">Servicio 100% gratuito para vos.</span>
+                    <br/><span class="text-[#00BFFF] font-bold mt-3 block">Servicio 100% gratuito para vos.</span>
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <a href="#contacto" class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-[0_0_25px_rgba(0,191,255,0.3)] text-center">
+                    <a href="#contacto" class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-[0_0_30px_rgba(0,191,255,0.4)] text-center">
                         Agendar asesoramiento gratuito
                     </a>
                 </div>
@@ -124,7 +125,7 @@
 
         <section class="py-24 bg-[#F5F7FA]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
-                <div class="w-full md:w-1/2">
+                <div class="w-full md:w-1/2 order-2 md:order-1">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#0A1F33] mb-6 leading-tight">
                         Consultoría experta para tu compra
                     </h2>
@@ -147,21 +148,23 @@
                     </ul>
                 </div>
                 
-                <div class="w-full md:w-1/2">
-                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative">
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative border border-gray-200">
                         <img 
                             src="/asesoria.jpg" 
                             alt="Asesor Datacar trabajando" 
                             class="w-full h-full object-cover"
-                            onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#ccc'"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('bg-gray-200');"
                         />
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contacto" class="py-24 bg-[#0A1F33] text-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section id="contacto" class="py-24 bg-[#0A1F33] text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5 bg-[url('/logo-white.png')] bg-repeat space-x-4 space-y-4 transform -rotate-12 scale-150 pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 class="text-3xl md:text-5xl font-bold mb-6">¿Listo para comprar inteligente?</h2>
                 <p class="text-xl text-gray-300 mb-12 font-light">
                     Dejanos tus datos. Un asesor te contactará hoy mismo.
@@ -190,7 +193,7 @@
         </section>
 
         <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
-            <img src="/logo-white.png" alt="Datacar" class="h-8 mx-auto mb-6 opacity-50 hover:opacity-100 transition" />
+            <img src="/logo-white.png" alt="Datacar" class="h-10 mx-auto mb-6 opacity-70 hover:opacity-100 transition" />
             
             <p class="font-light text-sm mb-6">Tu compra inteligente</p>
             <p class="text-xs opacity-40">© 2024 Datacar Paraguay.</p>
