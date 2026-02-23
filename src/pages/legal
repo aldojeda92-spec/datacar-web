@@ -1,0 +1,101 @@
+---
+// src/pages/legal.astro
+// PÁGINA DE AVISO LEGAL Y PRIVACIDAD - DATACAR
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Aviso Legal | Datacar</title>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+        
+        <style>
+            h1, h2, h3, .brand-font { font-family: 'Archivo', sans-serif; }
+            body, p, ul, li { font-family: 'Inter', sans-serif; }
+        </style>
+	</head>
+	<body class="bg-gray-50 text-[#3A3A3C] antialiased flex flex-col min-h-screen">
+		
+		<nav class="bg-[#0A1F33] py-5 px-4 shadow-md">
+			<div class="max-w-4xl mx-auto flex justify-between items-center">
+				<a href="/" class="flex items-center gap-2 group">
+                    <svg class="w-5 h-5 text-[#00BFFF] group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+					<span class="text-white font-bold tracking-wide text-sm">Volver a Datacar</span>
+				</a>
+			</div>
+		</nav>
+
+        <main class="flex-grow py-16 px-4">
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                
+                <div class="bg-[#F5F7FA] px-8 py-10 border-b border-gray-200">
+                    <h1 class="text-3xl md:text-4xl font-black text-[#0A1F33] mb-2">Aviso Legal y Privacidad</h1>
+                    <p class="text-gray-500 text-sm">Última actualización: {new Date().getFullYear()}</p>
+                </div>
+
+                <div class="p-8 md:p-12 space-y-8">
+                    
+                    <div class="text-lg text-gray-700 leading-relaxed font-light border-l-4 border-[#00BFFF] pl-6 italic">
+                        "En DATACAR, tratamos tus datos con la misma precisión con la que analizamos el mercado automotriz. Al completar nuestros formularios, aceptas que DATACAR utilice la información proporcionada exclusivamente para contactarte y brindarte asesoramiento sobre la compra de tu próximo vehículo."
+                    </div>
+
+                    <hr class="border-gray-100">
+
+                    <div class="grid gap-6">
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-[#00BFFF]/30 transition">
+                            <h3 class="text-[#0A1F33] font-bold text-lg mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                Responsable
+                            </h3>
+                            <p class="text-gray-600">DATACAR - Consultoría Automotriz Premium.</p>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-[#00BFFF]/30 transition">
+                            <h3 class="text-[#0A1F33] font-bold text-lg mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                Finalidad
+                            </h3>
+                            <p class="text-gray-600">Gestión de prospectos, envío de reportes de inteligencia de mercado y contacto comercial personalizado.</p>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-[#00BFFF]/30 transition">
+                            <h3 class="text-[#0A1F33] font-bold text-lg mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Legitimación
+                            </h3>
+                            <p class="text-gray-600">Consentimiento explícito del interesado al enviar el formulario.</p>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-[#00BFFF]/30 transition">
+                            <h3 class="text-[#0A1F33] font-bold text-lg mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                Confidencialidad
+                            </h3>
+                            <p class="text-gray-600">
+                                Tus datos no serán cedidos a concesionarias ni a terceros sin tu autorización expresa. El propósito de nuestro servicio es actuar como tu agente exclusivo, manteniendo la independencia de los vendedores.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="bg-[#0A1F33] p-6 text-center">
+                    <a href="/" class="text-white font-bold hover:text-[#00BFFF] transition inline-flex items-center gap-2">
+                        Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-[#05111D] text-gray-600 py-8 text-center text-sm border-t border-gray-800">
+            <p>© 2024 Datacar Paraguay.</p>
+        </footer>
+
+	</body>
+</html>
