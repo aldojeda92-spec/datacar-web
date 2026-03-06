@@ -1,1 +1,107 @@
+---
+// src/pages/servicios.astro
+// PÁGINA DE SERVICIOS - ENFOCADA EN DOLORES Y SOLUCIONES
+---
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Servicios | Datacar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; color: #3A3A3C; margin: 0; }
+        h1, h2, h3, .brand-font { font-family: 'Archivo', sans-serif; }
+        .svg-icon { width: 40px !important; height: 40px !important; color: #00BFFF; margin-bottom: 15px; }
+        .nav-icon { width: 20px !important; height: 20px !important; }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
 
+    <nav class="bg-[#0A1F33] py-5 px-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-black text-white tracking-wide brand-font hover:text-[#00BFFF] transition">
+                DATACAR
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm font-bold tracking-wide">
+                <a href="/servicios" class="text-[#00BFFF]">SERVICIOS</a>
+                <a href="/nosotros" class="text-white hover:text-[#00BFFF] transition">NOSOTROS</a>
+                <a href="/#contacto" class="text-white hover:text-[#00BFFF] transition">CONTACTO</a>
+            </div>
+            <a href="/" class="md:hidden flex items-center gap-2 text-white font-bold text-sm">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Volver
+            </a>
+        </div>
+    </nav>
+
+    <section class="bg-[#0A1F33] text-white py-20 text-center px-4">
+        <h1 class="text-4xl md:text-5xl font-black mb-6">Soluciones a tu medida</h1>
+        <p class="text-lg text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+            Cambiar de auto no debería ser un dolor de cabeza. Nosotros hacemos el trabajo sucio, filtramos el ruido del mercado y protegemos tu dinero para que vos solo te preocupes por disfrutar.
+        </p>
+    </section>
+
+    <section class="py-20 px-4 flex-grow">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group hover:border-[#00BFFF]/50 transition">
+                <div class="absolute top-0 right-0 bg-[#00BFFF] text-[#0A1F33] text-xs font-black px-4 py-1 rounded-bl-lg uppercase tracking-wider">
+                    100% Gratuito
+                </div>
+                <svg class="svg-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                <h3 class="text-xl font-bold text-[#0A1F33] mb-3">Asesoría 0km Premium</h3>
+                <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                    ¿Abrumado por tener que visitar 5 agencias distintas? [cite: 95] Nosotros te presentamos en un reporte estandarizado las mejores opciones del mercado[cite: 88].
+                </p>
+                <ul class="text-sm text-gray-500 space-y-2 border-t border-gray-100 pt-4">
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Análisis neutral de marcas</li>
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Comparativa de precios y prestaciones</li>
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> <strong class="text-[#0A1F33]">Sin costo para vos</strong></li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group hover:border-[#00BFFF]/50 transition">
+                <div class="absolute top-0 right-0 bg-[#0A1F33] text-white text-xs font-bold px-4 py-1 rounded-bl-lg tracking-wider">
+                    Comisión: 2.5%
+                </div>
+                <svg class="svg-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h3 class="text-xl font-bold text-[#0A1F33] mb-3">Liquidación de tu Usado</h3>
+                <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                    Vender en Marketplace es peligroso y estresante, y las concesionarias te pagan miserias por tu vehículo. Nosotros nos encargamos de todo el proceso.
+                </p>
+                <ul class="text-sm text-gray-500 space-y-2 border-t border-gray-100 pt-4">
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Fotos profesionales de tu vehículo [cite: 107]</li>
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Filtro de interesados y gestión de visitas [cite: 107]</li>
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Venta segura sin que atiendas un solo llamado </li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group hover:border-[#00BFFF]/50 transition">
+                <svg class="svg-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <h3 class="text-xl font-bold text-[#0A1F33] mb-3">Negociación y Cierre</h3>
+                <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                    No lidies con papeleos ni pelees precios[cite: 95]. Nosotros actuamos como tu representante comercial ante la concesionaria para conseguirte beneficios exclusivos.
+                </p>
+                <ul class="text-sm text-gray-500 space-y-2 border-t border-gray-100 pt-4">
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Negociación agresiva (polarizado, alfombras, etc.) </li>
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Revisión de letra chica en contratos </li>
+                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Te acompañamos hasta entregarte las llaves [cite: 116]</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="mt-16 text-center">
+            <a href="/#contacto" class="inline-block bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-lg shadow-[#00BFFF]/20">
+                Agendar una consulta inicial
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-[#05111D] text-gray-500 py-10 text-center border-t border-[#1A3A5C]">
+        <p class="text-sm">© 2024 Datacar Paraguay. Tu compra inteligente.</p>
+    </footer>
+</body>
+</html>
