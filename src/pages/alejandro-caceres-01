@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier DATACAR - Alejandro Cáceres</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@300;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .bg-page-1 {
+            /* IMAGEN GENÉRICA DE ALTA RESOLUCIÓN DESDE INTERNET */
+            background-image: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 40%, rgba(15, 23, 42, 0.1) 100%), url('https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center;
+        }
+        .bg-page-2 { background-color: #f8fafc; }
+        .bg-page-3-dark {
+            /* IMAGEN GENÉRICA DE ALTA RESOLUCIÓN DESDE INTERNET */
+            background-image: linear-gradient(to top, rgba(58, 58, 60, 0.95), rgba(58, 58, 60, 0.95)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center;
+        }
+        .bg-page-4 {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            position: relative;
+        }
+        .network-pattern {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px; opacity: 0.3; pointer-events: none;
+        }
+        .slide { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-blue-900 selection:text-white">
+
+    <section class="slide bg-page-1 text-white relative px-8 py-16 md:px-20">
+        <div class="max-w-3xl z-10">
+            <div class="mb-6 tracking-tighter" style="font-family: 'Montserrat', sans-serif;">
+                <span class="text-4xl md:text-5xl font-extrabold text-white">DATA</span><span class="text-4xl md:text-5xl font-light text-white">CAR</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">DOSSIER DE INVERSIÓN<br>AUTOMOTRIZ</h1>
+            
+            <div class="bg-blue-900/40 border-l-4 border-blue-500 p-4 mb-10 backdrop-blur-sm w-max rounded-r">
+                <p class="text-sm text-gray-300">Preparado para:</p>
+                <p class="font-semibold text-lg">Alejandro Cáceres</p>
+                <p class="text-sm text-gray-300 mt-2">Fecha: 13 de Marzo de 2026</p>
+                <p class="text-sm text-gray-300">Perfil: Considera Toyota, Hyundai, Kia, Suzuki. Excluye Chinas. | Presupuesto: $22,500 USD</p>
+                <p class="text-sm font-bold text-yellow-400 mt-1">Prioridad Principal: Espacio (No negociable)</p>
+            </div>
+
+            <div class="bg-white text-slate-900 p-8 rounded-xl shadow-2xl max-w-2xl transform transition hover:scale-[1.01]">
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="target" class="text-red-500 w-8 h-8"></i>
+                    <h3 class="text-2xl font-bold uppercase tracking-wide">El Veredicto DATACAR</h3>
+                </div>
+                <p class="text-lg text-gray-600 mb-2">Recomendación Definitiva:</p>
+                <p class="text-3xl font-black text-blue-900 mb-6">Nissan Kait <span class="text-xl font-semibold text-green-600">(Advance 1.6 Flex AT)</span></p>
+                
+                <h4 class="font-bold text-gray-800 mb-4 border-b pb-2">¿Por qué sus datos ganaron?</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle" class="text-blue-600 mt-1 w-5 h-5 flex-shrink-0"></i>
+                        <span><strong>Espacio Líder en su Rango de Precio:</strong> Con 432 litros de baúl y asientos rebatibles, cumple perfectamente su requisito no negociable de espacio en un segmento competitivo.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle" class="text-blue-600 mt-1 w-5 h-5 flex-shrink-0"></i>
+                        <span><strong>Optimización del Presupuesto:</strong> A $20,990 USD, queda cómodamente por debajo de su límite de $22,500 USD, optimizando su inversión económica.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle" class="text-blue-600 mt-1 w-5 h-5 flex-shrink-0"></i>
+                        <span><strong>Alternativa Japonesa Confiable:</strong> Aunque no mencionó la marca inicialmente, comparte el origen y prestigio con Toyota y Suzuki, entregando además un paquete completo con 6 airbags de serie.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide bg-page-2 relative px-8 py-16 md:px-20 border-l-8 border-blue-900">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-2">EL BARRIDO DE MERCADO</h2>
+            <p class="text-lg text-gray-500 mb-8">Analizamos múltiples modelos en el segmento. Así filtramos las opciones.</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden relative group">
+                    <img src="https://i.ibb.co/xKcpK7JL/coolray.jpg" alt="Geely Coolray GF" class="w-full h-32 object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div class="p-3">
+                        <p class="font-bold text-slate-800 text-sm">Geely Coolray GF</p>
+                        <div class="mt-2 inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-bold w-full text-center">
+                            Excluido: Origen Chino
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden relative group">
+                    <img src="https://i.ibb.co/nNJj7Zgq/creta.jpg" alt="Hyundai New Creta Comfort" class="w-full h-32 object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div class="p-3">
+                        <p class="font-bold text-slate-800 text-sm">Hyundai New Creta Comfort</p>
+                        <div class="mt-2 inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-bold w-full text-center">
+                            Fuera de Presupuesto ($22,990)
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden relative group">
+                    <img src="https://i.ibb.co/fY0S5vGz/carens.avif" alt="Kia Carens EX Full" class="w-full h-32 object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div class="p-3">
+                        <p class="font-bold text-slate-800 text-sm">Kia Carens EX Full</p>
+                        <div class="mt-2 inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-bold w-full text-center">
+                            Fuera de Presupuesto ($23,990)
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden relative group">
+                    <img src="https://i.ibb.co/Mx0Hm1YK/pulse.jpg" alt="Fiat Pulse Impetus" class="w-full h-32 object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div class="p-3">
+                        <p class="font-bold text-slate-800 text-sm">Fiat Pulse Impetus</p>
+                        <div class="mt-2 inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-bold w-full text-center">
+                            Capacidad Baúl Limitada (370L)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12 border-b border-gray-200 pb-10">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2"><i data-lucide="award" class="text-blue-600"></i> EL PODIUM: LOS QUE LLEGARON A LA FINAL</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                    
+                    <div class="bg-blue-50 rounded-xl border-2 border-yellow-400 overflow-hidden shadow-md transform transition hover:scale-105">
+                        <div class="h-32 bg-gray-200 relative">
+                            <img src="https://i.ibb.co/39gDf3Sp/kait.jpg" alt="Nissan Kait" class="w-full h-full object-cover">
+                            <div class="absolute top-2 right-2 bg-yellow-400 text-slate-900 text-xs font-bold px-2 py-1 rounded shadow">🏆 GANADOR</div>
+                        </div>
+                        <div class="p-4">
+                            <p class="font-bold text-lg text-blue-900">Nissan Kait</p>
+                            <p class="mt-2 text-sm text-gray-700 font-semibold"><i data-lucide="check-circle" class="inline w-4 h-4 text-green-600 mb-1"></i> Equilibrio insuperable: 432L de baúl, 6 airbags de serie y precio de $20,990 USD.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+                        <div class="h-32 bg-gray-200">
+                            <img src="https://i.ibb.co/hRFkN9yH/sonet.jpg" alt="Kia Sonet EX Full" class="w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 transition duration-500">
+                        </div>
+                        <div class="p-4">
+                            <p class="font-bold text-lg text-slate-700">Kia Sonet EX Full</p>
+                            <p class="mt-2 text-sm text-gray-500"><i data-lucide="x-circle" class="inline w-4 h-4 text-red-500 mb-1"></i> Menor capacidad volumétrica de baúl (392L) frente al ganador.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+                        <div class="h-32 bg-gray-200">
+                            <img src="https://i.ibb.co/C3gcvq2j/grandvitara.webp" alt="Suzuki Grand Vitara GL" class="w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 transition duration-500">
+                        </div>
+                        <div class="p-4">
+                            <p class="font-bold text-lg text-slate-700">Suzuki Grand Vitara GL</p>
+                            <p class="mt-2 text-sm text-gray-500"><i data-lucide="x-circle" class="inline w-4 h-4 text-red-500 mb-1"></i> Baúl muy limitado (373L) penalizando su requerimiento de espacio.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><i data-lucide="layers" class="text-blue-600"></i> MATRIZ: SEGURIDAD, ESPACIO Y TECNOLOGÍA</h3>
+            <div class="overflow-x-auto bg-white rounded-xl shadow-md border border-gray-100">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-800 text-white">
+                            <th class="p-5 font-semibold">Atributo Clave</th>
+                            <th class="p-5 font-bold bg-blue-900 text-center text-lg border-b-4 border-yellow-400">🏆 Nissan Kait</th>
+                            <th class="p-5 font-semibold text-center text-gray-300">Kia Sonet EX</th>
+                            <th class="p-5 font-semibold text-center text-gray-300">Suzuki Grand Vitara</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-5 font-semibold text-gray-700 flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-gray-400"></i> Seguridad Activa/Pasiva</td>
+                            <td class="p-5 text-center font-bold text-blue-900 bg-blue-50/30">Excelente (6 Airbags + ADAS)</td>
+                            <td class="p-5 text-center text-gray-600">Buena (6 Airbags)</td>
+                            <td class="p-5 text-center text-gray-600">Buena (6 Airbags + ESC)</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-5 font-semibold text-gray-700 flex items-center gap-2"><i data-lucide="maximize" class="w-4 h-4 text-gray-400"></i> Espacio (Baúl y Habitabilidad)</td>
+                            <td class="p-5 text-center font-bold text-blue-900 bg-blue-50/30">432 L (Asientos 60/40)</td>
+                            <td class="p-5 text-center text-gray-600">392 L</td>
+                            <td class="p-5 text-center text-gray-600">373 L</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-5 font-semibold text-gray-700 flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-gray-400"></i> Tecnología y Confort</td>
+                            <td class="p-5 text-center font-bold text-blue-900 bg-blue-50/30">Pantalla 9" Inalámbrica</td>
+                            <td class="p-5 text-center text-gray-600">Pantalla 8" Inalámbrica</td>
+                            <td class="p-5 text-center text-gray-600">Pantalla 7" Apple/Android</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-8 bg-blue-900 text-white p-6 rounded-xl shadow-md border-l-4 border-yellow-400 flex gap-4 items-start">
+                <i data-lucide="lightbulb" class="w-8 h-8 text-yellow-400 flex-shrink-0"></i>
+                <div>
+                    <h4 class="font-bold text-lg mb-1">Conclusión DATACAR:</h4>
+                    <p class="text-gray-200">El Nissan Kait superó a las opciones coreanas y japonesas consideradas al ofrecer un baúl superior a 400L, un paquete de seguridad inteligente completo y todo por $1,500 USD por debajo de su presupuesto máximo.</p>
+                </div>
+            </div>
+
+            <div class="mt-10 bg-slate-50 border border-slate-200 rounded-xl shadow-lg p-6 md:p-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-slate-800"></div>
+                
+                <div class="mb-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-4">
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 tracking-widest uppercase mb-1">Plan B Patrocinado: Si prioriza ESPACIO ABSOLUTO</p>
+                        <h4 class="text-2xl font-black text-slate-800 flex items-center gap-2">Fiat Fastback Audace 1.0T <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Sponsor</span></h4>
+                    </div>
+                    <div class="bg-white px-4 py-2 rounded shadow-sm text-center border border-gray-100">
+                        <p class="text-xs text-gray-500 uppercase">Precio Referencia</p>
+                        <p class="text-xl font-bold text-slate-800">$21,990 USD</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex-1 w-full">
+                        <p class="text-sm text-gray-700 mb-3">Si el espacio volumétrico es verdaderamente su prioridad número uno y está dispuesto a salir de su selección inicial de marcas, el Fiat Fastback ofrece una capacidad imbatible en el segmento SUV Coupé, manteniéndose por debajo de los $22,500 de presupuesto.</p>
+                        
+                        <div class="bg-white rounded-lg border border-gray-200 p-4 mb-4">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Frente a frente: CAPACIDAD DE BAÚL</h5>
+                            <div class="flex justify-between items-center border-b border-gray-100 pb-2 mb-2">
+                                <span class="text-sm text-gray-600">Nissan Kait (Ganador)</span>
+                                <span class="text-sm font-semibold text-gray-500">432 Litros</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-bold text-slate-800">Fiat Fastback (Plan B)</span>
+                                <span class="text-sm font-bold text-green-600 flex items-center gap-1"><i data-lucide="check" class="w-4 h-4"></i> 600 Litros</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 text-center min-w-[260px] w-full md:w-auto">
+                        <p class="text-sm font-semibold text-gray-300 mb-3">Beneficio Exclusivo:</p>
+                        <p class="text-xs text-yellow-400 font-bold mb-4">- Asistencia Financiera Personalizada</p>
+                        <a href="https://wa.me/595991244469?text=Hola%20DATACAR%2C%20estuve%20viendo%20el%20Dossier%20y%20me%20interesa%20explorar%20la%20Opci%C3%B3n%20B%3A%20Fiat%20Fastback%20Audace%201.0T%20por%20%2421%2C990%20USD." target="_blank" class="inline-flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition shadow-md">
+                            <i data-lucide="external-link" class="w-5 h-5"></i> Explorar Plan B
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="min-h-screen flex flex-col md:flex-row">
+        <div class="bg-white flex-1 p-10 md:p-20 flex flex-col justify-center">
+            <h3 class="text-blue-900 font-bold tracking-widest uppercase mb-2">Radiografía del Ganador</h3>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8">Nissan Kait Advance</h2>
+            
+            <ul class="space-y-6">
+                <li class="flex gap-4">
+                    <div class="bg-blue-100 p-3 rounded-lg h-fit text-blue-700"><i data-lucide="layers" class="w-6 h-6"></i></div>
+                    <div>
+                        <p class="font-bold text-lg text-slate-800">Capacidad y Confort</p>
+                        <p class="text-gray-600">Espacioso baúl de 432L con asientos traseros rebatibles 60/40 y tecnología Zero Gravity para reducir fatiga en viajes.</p>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <div class="bg-blue-100 p-3 rounded-lg h-fit text-blue-700"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                    <div>
+                        <p class="font-bold text-lg text-slate-800">Seguridad Inteligente (ADAS)</p>
+                        <p class="text-gray-600">Integra Alerta de Colisión Frontal, Frenado Inteligente, Alerta de Punto Ciego y Monitor de Visión Periférica 360°.</p>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <div class="bg-blue-100 p-3 rounded-lg h-fit text-blue-700"><i data-lucide="cpu" class="w-6 h-6"></i></div>
+                    <div>
+                        <p class="font-bold text-lg text-slate-800">Eficiencia y Conectividad</p>
+                        <p class="text-gray-600">Transmisión XTRONIC CVT, consumo mixto competitivo de 11.5 km/l, pantalla táctil 9" y cargador inalámbrico.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="mt-10 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                <div class="flex items-center gap-2 text-red-600 font-bold mb-2">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                    <h4>Punto Ciego DATACAR</h4>
+                </div>
+                <p class="text-sm text-gray-600">No es explícitamente de las marcas iniciales requeridas (Toyota, Hyundai, Kia, Suzuki), pero comparte el aval y confiabilidad de ingeniería japonesa, venciendo a los competidores por espacio y relación costo/beneficio en su rango.</p>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 flex-1 relative hidden md:block" style="background-image: url('https://i.ibb.co/q3NmxtFq/nissan-kait-branco-hero-m.webp'); background-position: center; background-size: cover;">
+            <div class="absolute inset-0 bg-blue-900/30 mix-blend-multiply"></div>
+            <div class="absolute bottom-10 right-10 bg-white/95 backdrop-blur-sm px-6 py-3 rounded-xl shadow-2xl border border-white/20">
+                <p class="text-sm font-bold text-slate-800 tracking-wide uppercase">Nissan Kait</p>
+                <p class="text-xs text-gray-500 mt-1">El SUV Japonés que maximiza su inversión.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide bg-page-4 text-white text-center px-8 md:px-20 relative overflow-hidden py-12 md:py-16">
+        <div class="network-pattern"></div>
+        <div class="max-w-5xl mx-auto relative z-10 flex flex-col justify-center h-full pt-4">
+
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">PASAMOS A LA ACCIÓN</h2>
+            <p class="text-xl text-blue-200 mb-10 max-w-3xl mx-auto">Su tiempo es dinero. Si el Veredicto DATACAR está aprobado, nosotros nos encargamos de la burocracia.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-12 max-w-4xl mx-auto">
+                <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm border border-white/10">
+                    <div class="text-2xl font-black text-blue-400 mb-1">01</div>
+                    <p class="text-gray-200 text-sm">Usted nos da el "OK" por WhatsApp.</p>
+                </div>
+                <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm border border-white/10">
+                    <div class="text-2xl font-black text-blue-400 mb-1">02</div>
+                    <p class="text-gray-200 text-sm">Gestionamos el crédito para su 0km.</p>
+                </div>
+                <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm border border-white/10">
+                    <div class="text-2xl font-black text-blue-400 mb-1">03</div>
+                    <p class="text-gray-200 text-sm">Bloqueamos el chasis exacto en la concesionaria.</p>
+                </div>
+                <div class="bg-white/10 p-5 rounded-xl backdrop-blur-sm border border-white/10">
+                    <div class="text-2xl font-black text-blue-400 mb-1">04</div>
+                    <p class="text-gray-200 text-sm font-bold text-white">Usted solo se presenta a firmar, retira el vehículo y disfruta.</p>
+                </div>
+            </div>
+
+            <a href="https://wa.me/595991244469?text=Hola%20DATACAR%2C%20apruebo%20el%20Dossier.%20Avanzemos%20con%20el%20Nissan%20Kait%20Advance." target="_blank" class="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-400 text-white text-xl font-bold py-4 px-10 rounded-full shadow-[0_0_30px_rgba(34,197,94,0.4)] transition transform hover:scale-105 w-full md:w-auto mx-auto">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                APROBAR DOSSIER
+            </a>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
