@@ -4,7 +4,6 @@
 
 <html lang="es">
 	<head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18003746499"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,7 +12,6 @@
 
   gtag('config', 'AW-18003746499');
 </script>
-<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -29,15 +27,12 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2199237414155406&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
-<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-52KCG6F3');</script>
-<!-- End Google Tag Manager -->
-		<meta charset="utf-8" />
+<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
@@ -45,22 +40,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
         <style>
-            h1, h2, h3, .brand-font { font-family: 'Archivo', sans-serif; }
+            h1, h2, h3, .brand-font { font-family: 'Montserrat', sans-serif; }
             body, p, a, input, textarea { font-family: 'Inter', sans-serif; }
             html { scroll-behavior: smooth; }
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
 	</head>
 	<body class="bg-gray-50 text-[#3A3A3C] antialiased">
-		<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52KCG6F3"
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52KCG6F3"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-		<nav class="absolute top-0 w-full z-50 py-6 px-4">
+<nav class="absolute top-0 w-full z-50 py-6 px-4">
 			<div class="max-w-7xl mx-auto flex justify-between items-center">
   <a href="/" class="flex items-center group" style="font-family: 'Montserrat', sans-serif;">
     <span class="text-2xl md:text-3xl font-[900] text-white leading-none">
@@ -74,6 +65,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<div class="hidden md:flex space-x-8 items-center">
 					<a href="/servicios" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">SERVICIOS</a>
 					<a href="/nosotros" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">NOSOTROS</a>
+                    <a href="/catalogo" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">CATÁLOGO</a>
                     <a href="#contacto" class="border-2 border-white text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-[#0A1F33] transition tracking-widest">
                         AGENDAR
                     </a>
@@ -96,7 +88,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     Consultoría Automotriz
                 </span>
                 
-                <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight drop-shadow-lg">
+                <h1 class="text-4xl md:text-6xl font-[900] tracking-tight mb-6 leading-tight drop-shadow-lg" style="font-family: 'Montserrat', sans-serif;">
                     Tu próximo 0km, <br />
                     al mejor precio y sin estrés.
                 </h1>
@@ -106,10 +98,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <br/><span class="text-[#00BFFF] font-bold mt-3 block">Servicio 100% gratuito para vos.</span>
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center flex-wrap">
                     <a href="#contacto" class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-[0_0_30px_rgba(0,191,255,0.4)] text-center">
                         Agendar asesoramiento
                     </a>
+                    
+                    <a href="/catalogo" class="border-2 border-[#00BFFF] text-[#00BFFF] hover:bg-[#00BFFF] hover:text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,191,255,0.2)]">
+                        Ver Catálogo
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                    
                     <a href="/servicios" class="bg-white/10 hover:bg-white/20 border border-white/30 backdrop-blur-sm text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 text-center">
                         Ver Servicios
                     </a>
@@ -120,7 +118,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <section id="como-funciona" class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-20">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#0A1F33] mb-6">El modelo tradicional está roto</h2>
+                    <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-6" style="font-family: 'Montserrat', sans-serif;">El modelo tradicional está roto</h2>
                     <p class="text-lg text-[#3A3A3C] max-w-2xl mx-auto font-light">
                         ¿Cansado de visitar concesionarias, escuchar promesas vacías y recibir llamadas insistentes?
                     </p>
@@ -131,7 +129,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300">
                             <svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-[#0A1F33] mb-4">Conflicto de Interés</h3>
+                        <h3 class="text-xl font-[900] text-[#0A1F33] mb-4" style="font-family: 'Montserrat', sans-serif;">Conflicto de Interés</h3>
                         <p class="text-[#3A3A3C] text-sm leading-relaxed">
                             El vendedor trabaja para la concesionaria, <strong>nosotros trabajamos para vos</strong>. Ellos priorizan su stock; nosotros tu necesidad.
                         </p>
@@ -141,7 +139,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300">
                             <svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-[#0A1F33] mb-4">Costos Ocultos</h3>
+                        <h3 class="text-xl font-[900] text-[#0A1F33] mb-4" style="font-family: 'Montserrat', sans-serif;">Costos Ocultos</h3>
                         <p class="text-[#3A3A3C] text-sm leading-relaxed">
                             Te desglosamos el <strong>costo real</strong> (transferencia, seguro, mantenimiento) antes de que firmes nada. Sin sorpresas.
                         </p>
@@ -151,7 +149,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300">
                             <svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-[#0A1F33] mb-4">Tu tiempo vale oro</h3>
+                        <h3 class="text-xl font-[900] text-[#0A1F33] mb-4" style="font-family: 'Montserrat', sans-serif;">Tu tiempo vale oro</h3>
                         <p class="text-[#3A3A3C] text-sm leading-relaxed">
                             Olvidate de repetir lo mismo a 10 vendedores. <strong>Centralizá todo</strong> con un solo asesor de Datacar.
                         </p>
@@ -163,7 +161,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <section class="py-24 bg-[#F5F7FA]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
                 <div class="w-full md:w-1/2 order-2 md:order-1">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#0A1F33] mb-6 leading-tight">
+                    <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-6 leading-tight" style="font-family: 'Montserrat', sans-serif;">
                         Consultoría experta para tu compra
                     </h2>
                     <p class="text-lg text-[#3A3A3C] mb-8 font-light">
@@ -202,7 +200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="absolute inset-0 opacity-5 bg-[url('/logo-white.png')] bg-repeat space-x-4 space-y-4 transform -rotate-12 scale-150 pointer-events-none"></div>
 
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">¿Listo para comprar inteligente?</h2>
+                <h2 class="text-3xl md:text-5xl font-[900] mb-6" style="font-family: 'Montserrat', sans-serif;">¿Listo para comprar inteligente?</h2>
                 <p class="text-xl text-gray-300 mb-12 font-light">
                     Completá este breve formulario para conocer tus necesidades exactas.
                 </p>
