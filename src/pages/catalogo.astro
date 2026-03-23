@@ -1,6 +1,6 @@
 ---
 // src/pages/catalogo.astro
-// CATÁLOGO CONECTADO A GOOGLE SHEETS EN TIEMPO REAL
+// CATÁLOGO CONECTADO A GOOGLE SHEETS EN TIEMPO REAL (AHORA CON FILTRO DE TRANSMISIÓN)
 ---
 
 <html lang="es">
@@ -26,7 +26,7 @@
             </a>
             <div class="hidden md:flex space-x-8 items-center" style="font-family: 'Inter', sans-serif;">
                 <a href="/servicios" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">SERVICIOS</a>
-           <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20vender%20mi%20auto%20y%20me%20gustar%C3%ADa%20conocer%20el%20proceso." target="_blank" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">VENDER MI AUTO</a>
+                <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20vender%20mi%20auto%20y%20me%20gustar%C3%ADa%20conocer%20el%20proceso." target="_blank" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">VENDER MI AUTO</a>
                 <a href="/catalogo" class="text-[#00BFFF] font-medium transition text-sm tracking-wide border-b-2 border-[#00BFFF] pb-1">CATÁLOGO</a>
             </div>
             <a href="/" class="md:hidden text-white text-sm font-bold border border-white px-4 py-1 rounded-full">Volver</a>
@@ -43,15 +43,24 @@
     <section class="bg-white border-b border-gray-200 py-4 px-4 sticky top-0 z-40 shadow-sm">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-4 justify-between items-center" style="font-family: 'Inter', sans-serif;">
             
-            <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+            <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto flex-wrap">
                 <div class="flex items-center gap-2">
                     <label for="filtro-tipo" class="text-sm font-bold text-[#0A1F33]">Categoría:</label>
                     <select id="filtro-tipo" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-[#00BFFF] focus:border-[#00BFFF] block p-2.5 outline-none">
-                        <option value="todos">Todos los vehículos</option>
+                        <option value="todos">Todos</option>
                         <option value="suv">SUV</option>
                         <option value="pickup">Pick-ups</option>
                         <option value="sedan">Sedán</option>
                         <option value="hatchback">Hatchback</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <label for="filtro-transmision" class="text-sm font-bold text-[#0A1F33]">Transmisión:</label>
+                    <select id="filtro-transmision" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-[#00BFFF] focus:border-[#00BFFF] block p-2.5 outline-none">
+                        <option value="todos">Todas</option>
+                        <option value="automatica">Automática</option>
+                        <option value="manual">Manual</option>
                     </select>
                 </div>
 
@@ -86,7 +95,7 @@
 
             <div id="mensaje-vacio" class="hidden text-center py-20">
                 <p class="text-xl text-gray-500 font-light" style="font-family: 'Inter', sans-serif;">No encontramos unidades que coincidan con esos filtros.</p>
-                <button onclick="document.getElementById('filtro-tipo').value='todos'; document.getElementById('filtro-precio').value='todos'; document.getElementById('filtro-tipo').dispatchEvent(new Event('change'));" class="mt-4 text-[#00BFFF] font-bold hover:underline">Limpiar filtros</button>
+                <button onclick="document.getElementById('filtro-tipo').value='todos'; document.getElementById('filtro-transmision').value='todos'; document.getElementById('filtro-precio').value='todos'; document.getElementById('filtro-tipo').dispatchEvent(new Event('change'));" class="mt-4 text-[#00BFFF] font-bold hover:underline">Limpiar filtros</button>
             </div>
 
         </div>
@@ -102,7 +111,6 @@
     </footer>
 
     <script is:inline>
-        // ENLACE DIRECTO A TU GOOGLE SHEETS
         const URL_GOOGLE_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyfwObQ6J1jGycoeHlr_edfLLvz85rfKMKNJ3MmxShzDN2orGeUgwoDTOwJPzh9k5z3lINmxXjX_hG/pub?output=csv";
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -110,17 +118,16 @@
             const loader = document.getElementById('loader');
             const filtroTipo = document.getElementById('filtro-tipo');
             const filtroPrecio = document.getElementById('filtro-precio');
+            const filtroTransmision = document.getElementById('filtro-transmision');
             const contador = document.getElementById('contador-resultados');
             const mensajeVacio = document.getElementById('mensaje-vacio');
             let vehiculosData = [];
 
-            // 1. Ir a leer el Excel
             if (URL_GOOGLE_SHEETS && URL_GOOGLE_SHEETS.includes("docs.google.com")) {
                 Papa.parse(URL_GOOGLE_SHEETS, {
                     download: true,
                     header: true,
                     complete: function(results) {
-                        // Filtramos filas vacías por si acaso (requiere que la columna 'codigo' y 'marca' tengan datos)
                         vehiculosData = results.data.filter(auto => auto.codigo && auto.marca);
                         loader.style.display = 'none';
                         dibujarTarjetas();
@@ -133,18 +140,18 @@
                 loader.innerHTML = "<p class='text-red-500 font-bold'>Falta configurar el enlace de Google Sheets en el código.</p>";
             }
 
-            // 2. Función para dibujar las tarjetas
             function dibujarTarjetas() {
-                grid.innerHTML = ''; // Limpiar grilla
+                grid.innerHTML = ''; 
                 const tipoVal = filtroTipo.value;
                 const precioVal = filtroPrecio.value;
+                const transVal = filtroTransmision.value;
                 let visibles = 0;
 
                 vehiculosData.forEach(auto => {
                     const autoPrecio = parseInt(auto.precioValor);
                     
                     // Lógica Tipo
-                    const coincideTipo = (tipoVal === 'todos' || auto.tipo.toLowerCase() === tipoVal.toLowerCase());
+                    const coincideTipo = (tipoVal === 'todos' || (auto.tipo && auto.tipo.toLowerCase() === tipoVal.toLowerCase()));
                     
                     // Lógica Precio
                     let coincidePrecio = true;
@@ -152,18 +159,32 @@
                     if (precioVal === '30-a-50') coincidePrecio = (autoPrecio > 30000 && autoPrecio <= 50000);
                     if (precioVal === 'mas-50') coincidePrecio = autoPrecio > 50000;
 
-                    if (coincideTipo && coincidePrecio) {
+                    // Lógica Transmisión (Soporta "Auto", "Automática", "manual", etc.)
+                    let coincideTransmision = true;
+                    if (transVal !== 'todos' && auto.transmision) {
+                        const transTexto = auto.transmision.toLowerCase();
+                        if (transVal === 'automatica') {
+                            coincideTransmision = transTexto.includes('auto');
+                        } else if (transVal === 'manual') {
+                            coincideTransmision = transTexto.includes('man');
+                        }
+                    } else if (transVal !== 'todos' && !auto.transmision) {
+                        // Si se filtra pero el auto no tiene el dato cargado en excel
+                        coincideTransmision = false; 
+                    }
+
+                    if (coincideTipo && coincidePrecio && coincideTransmision) {
                         visibles++;
                         
-                        // Etiqueta HTML opcional
                         let htmlEtiqueta = '';
                         if(auto.etiqueta && auto.etiqueta.trim() !== "") {
-                            // Por defecto usamos azul, a menos que especifiques otro colorEtiqueta en el excel
                             const colorE = auto.colorEtiqueta || "bg-[#00BFFF] text-[#0A1F33]";
                             htmlEtiqueta = `<div class="absolute top-4 left-4 z-10 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${colorE}">${auto.etiqueta}</div>`;
                         }
 
-                        // Crear la tarjeta en HTML
+                        // Dato de transmisión a mostrar
+                        const transmisionMostrar = auto.transmision ? auto.transmision : 'N/D';
+
                         const cardHTML = `
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-shadow duration-300">
                                 <div class="relative h-56 overflow-hidden bg-gray-200">
@@ -181,7 +202,7 @@
                                     
                                     <h2 class="text-xl font-[900] text-[#0A1F33] mb-4 line-clamp-1" style="font-family: 'Montserrat', sans-serif;">${auto.modelo}</h2>
                                     
-                                    <div class="flex items-center justify-between text-sm text-gray-600 mb-6 pb-6 border-b border-gray-100" style="font-family: 'Inter', sans-serif;">
+                                    <div class="flex items-center justify-between text-xs sm:text-sm text-gray-600 mb-6 pb-6 border-b border-gray-100" style="font-family: 'Inter', sans-serif;">
                                         <div class="flex items-center gap-1">
                                             <svg class="w-4 h-4 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                             ${auto.ano}
@@ -189,6 +210,10 @@
                                         <div class="flex items-center gap-1">
                                             <svg class="w-4 h-4 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                             ${auto.kilometraje}
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <svg class="w-4 h-4 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                                            <span class="truncate max-w-[80px]">${transmisionMostrar}</span>
                                         </div>
                                     </div>
                                     
@@ -205,7 +230,6 @@
                     }
                 });
 
-                // Actualizar UI
                 contador.textContent = `Mostrando ${visibles} unidad${visibles !== 1 ? 'es' : ''}`;
                 
                 if (visibles === 0) {
@@ -215,9 +239,9 @@
                 }
             }
 
-            // Escuchar cambios en los selectores
             filtroTipo.addEventListener('change', dibujarTarjetas);
             filtroPrecio.addEventListener('change', dibujarTarjetas);
+            filtroTransmision.addEventListener('change', dibujarTarjetas);
         });
     </script>
 </body>
