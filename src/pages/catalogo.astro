@@ -1,6 +1,6 @@
 ---
 // src/pages/catalogo.astro
-// CATÁLOGO CONECTADO A GOOGLE SHEETS EN TIEMPO REAL (AHORA CON FILTRO DE TRANSMISIÓN)
+// CATÁLOGO CONECTADO A GOOGLE SHEETS (+ MÁS INFO Y COMPARTIR)
 ---
 
 <html lang="es">
@@ -136,8 +136,6 @@
                         loader.innerHTML = "<p class='text-red-500 font-bold'>Hubo un error al conectar con el inventario.</p>";
                     }
                 });
-            } else {
-                loader.innerHTML = "<p class='text-red-500 font-bold'>Falta configurar el enlace de Google Sheets en el código.</p>";
             }
 
             function dibujarTarjetas() {
@@ -150,26 +148,19 @@
                 vehiculosData.forEach(auto => {
                     const autoPrecio = parseInt(auto.precioValor);
                     
-                    // Lógica Tipo
                     const coincideTipo = (tipoVal === 'todos' || (auto.tipo && auto.tipo.toLowerCase() === tipoVal.toLowerCase()));
                     
-                    // Lógica Precio
                     let coincidePrecio = true;
                     if (precioVal === 'hasta-30') coincidePrecio = autoPrecio <= 30000;
                     if (precioVal === '30-a-50') coincidePrecio = (autoPrecio > 30000 && autoPrecio <= 50000);
                     if (precioVal === 'mas-50') coincidePrecio = autoPrecio > 50000;
 
-                    // Lógica Transmisión (Soporta "Auto", "Automática", "manual", etc.)
                     let coincideTransmision = true;
                     if (transVal !== 'todos' && auto.transmision) {
                         const transTexto = auto.transmision.toLowerCase();
-                        if (transVal === 'automatica') {
-                            coincideTransmision = transTexto.includes('auto');
-                        } else if (transVal === 'manual') {
-                            coincideTransmision = transTexto.includes('man');
-                        }
+                        if (transVal === 'automatica') coincideTransmision = transTexto.includes('auto');
+                        else if (transVal === 'manual') coincideTransmision = transTexto.includes('man');
                     } else if (transVal !== 'todos' && !auto.transmision) {
-                        // Si se filtra pero el auto no tiene el dato cargado en excel
                         coincideTransmision = false; 
                     }
 
@@ -182,8 +173,25 @@
                             htmlEtiqueta = `<div class="absolute top-4 left-4 z-10 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${colorE}">${auto.etiqueta}</div>`;
                         }
 
-                        // Dato de transmisión a mostrar
                         const transmisionMostrar = auto.transmision ? auto.transmision : 'N/D';
+
+                        // MÓDULO: Bloque de Más Info (Solo se renderiza si hay texto en la columna "descripcion")
+                        let htmlMasInfo = '';
+                        if (auto.descripcion && auto.descripcion.trim() !== '') {
+                            htmlMasInfo = `
+                                <div class="mt-4 pt-4 border-t border-gray-100">
+                                    <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.innerText = this.innerText === '+ Más info' ? '- Menos info' : '+ Más info';" class="text-[#00BFFF] text-xs font-bold uppercase hover:underline transition-all outline-none">
+                                        + Más info
+                                    </button>
+                                    <div class="hidden mt-3 text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100 whitespace-pre-line leading-relaxed" style="font-family: 'Inter', sans-serif;">
+                                        ${auto.descripcion}
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        // MÓDULO: Texto pre-armado para el botón Compartir
+                        const textoCompartir = encodeURIComponent(`¡Mirá esta unidad en Datacar!\n\n🚘 ${auto.marca} ${auto.modelo} (${auto.ano})\n⚙️ Transmisión: ${transmisionMostrar}\n📍 REF: ${auto.codigo}\n💵 ${auto.precio}\n\nConocé más en: https://www.datacarpy.com/catalogo`);
 
                         const cardHTML = `
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-shadow duration-300">
@@ -202,7 +210,7 @@
                                     
                                     <h2 class="text-xl font-[900] text-[#0A1F33] mb-4 line-clamp-1" style="font-family: 'Montserrat', sans-serif;">${auto.modelo}</h2>
                                     
-                                    <div class="flex items-center justify-between text-xs sm:text-sm text-gray-600 mb-6 pb-6 border-b border-gray-100" style="font-family: 'Inter', sans-serif;">
+                                    <div class="flex items-center justify-between text-xs sm:text-sm text-gray-600 pb-2" style="font-family: 'Inter', sans-serif;">
                                         <div class="flex items-center gap-1">
                                             <svg class="w-4 h-4 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                             ${auto.ano}
@@ -216,12 +224,20 @@
                                             <span class="truncate max-w-[80px]">${transmisionMostrar}</span>
                                         </div>
                                     </div>
+
+                                    ${htmlMasInfo}
                                     
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-2xl font-[900] text-[#0A1F33]" style="font-family: 'Montserrat', sans-serif;">${auto.precio}</span>
-                                        <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20estoy%20interesado%20en%20el%20veh%C3%ADculo%20[REF:%20${auto.codigo}]%20-%20${auto.marca}%20${auto.modelo}" target="_blank" class="bg-[#00BFFF] hover:bg-[#0099CC] text-[#0A1F33] font-bold py-2 px-4 rounded-lg transition-colors text-sm">
-                                            Me interesa
-                                        </a>
+                                    <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+                                        <span class="text-xl md:text-2xl font-[900] text-[#0A1F33]" style="font-family: 'Montserrat', sans-serif;">${auto.precio}</span>
+                                        
+                                        <div class="flex items-center gap-2">
+                                            <a href="https://wa.me/?text=${textoCompartir}" target="_blank" class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-lg transition-colors flex items-center justify-center" title="Compartir por WhatsApp">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                                            </a>
+                                            <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20estoy%20interesado%20en%20el%20veh%C3%ADculo%20[REF:%20${auto.codigo}]%20-%20${auto.marca}%20${auto.modelo}" target="_blank" class="bg-[#00BFFF] hover:bg-[#0099CC] text-[#0A1F33] font-bold py-2 px-4 rounded-lg transition-colors text-sm">
+                                                Me interesa
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
