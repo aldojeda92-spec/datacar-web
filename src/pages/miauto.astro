@@ -4,28 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DATACAR | Gestión de Inversiones Automotrices</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Reset y Filosofía de Transparencia */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Ocultamos el scroll general de la página para que solo el chat haga scroll */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
-            color: #3A3A3C; /* Data Charcoal */
+            background-color: #F8F9FA;
+            color: #3A3A3C;
             display: flex;
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
+            overflow: hidden; 
         }
 
-        /* Header Corporativo - Authority Blue */
         header {
             background-color: #0A1F33; 
             padding: 1.5rem;
@@ -34,51 +28,41 @@
             align-items: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             z-index: 10;
+            flex-shrink: 0; /* Evita que el header se achique */
         }
 
-        /* Logotipo (Wordmark Dual) - Montserrat 900 vs 300 */
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            user-select: none;
-        }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 2rem; text-transform: uppercase; letter-spacing: -0.5px; user-select: none; }
+        .logo-data { font-weight: 900; color: #FFFFFF; }
+        .logo-car { font-weight: 300; color: #C0C0C0; letter-spacing: 1px; }
 
-        .logo-data {
-            font-weight: 900; 
-            color: #FFFFFF; /* White */
-        }
-
-        .logo-car {
-            font-weight: 300; 
-            color: #C0C0C0; /* Silver Light */
-            letter-spacing: 1px; /* Tracking +1px según manual */
-        }
-
-        /* Contenedor Principal */
         main {
-            flex: 1;
+            flex: 1; /* Ocupa el espacio restante */
             display: flex;
-            background-color: #F8F9FA;
             padding: 20px;
             justify-content: center;
+            align-items: center; /* Centra verticalmente */
+            min-height: 0; /* Crucial para que el flexbox respete el límite */
         }
 
-        /* Contenedor del Chat (Enfoque B2B / Premium) */
+        /* Contenedor estricto que no crece más allá de la pantalla */
         #chat-wrapper {
             width: 100%;
             max-width: 1000px;
+            height: 100%; /* Usa el 100% del espacio disponible en 'main' */
+            max-height: 800px; /* Límite máximo para pantallas gigantes */
             background: #FFFFFF;
             border-radius: 8px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            overflow: hidden;
             border: 1px solid #E1E4E8;
+            overflow: hidden; /* Corta todo lo que intente salirse */
+            display: flex;
+            flex-direction: column;
         }
 
         #chat-container {
             width: 100%;
             height: 100%;
+            flex: 1;
         }
 
         footer {
@@ -88,11 +72,12 @@
             font-size: 0.75rem;
             color: #3A3A3C;
             border-top: 1px solid #EEEEEE;
+            flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
-            main { padding: 0; }
-            #chat-wrapper { border-radius: 0; border: none; }
+            main { padding: 0; align-items: stretch; }
+            #chat-wrapper { border-radius: 0; border: none; max-height: none; }
             .logo { font-size: 1.5rem; }
         }
     </style>
@@ -100,9 +85,7 @@
 <body>
 
     <header>
-        <div class="logo">
-            <span class="logo-data">DATA</span><span class="logo-car">CAR</span>
-        </div>
+        <div class="logo"><span class="logo-data">DATA</span><span class="logo-car">CAR</span></div>
     </header>
 
     <main>
@@ -111,9 +94,7 @@
         </div>
     </main>
 
-    <footer>
-        DATACAR Paraguay © 2026 | Transparencia y Ejecución Premium
-    </footer>
+    <footer>DATACAR Paraguay © 2026 | Transparencia y Ejecución Premium</footer>
 
     <script type="text/javascript">
       (function(d, t) {
@@ -124,13 +105,11 @@
               url: 'https://general-runtime.voiceflow.com',
               versionID: 'production',
               theme: {
-                primaryColor: '#00BFFF', // Digital Cyan (Color de Acento oficial)
-                fontFamily: 'Inter',      // Tipografía secundaria operativa
-                showPoweredBy: false      // Limpieza visual premium
+                primaryColor: '#00BFFF',
+                fontFamily: 'Inter',
+                showPoweredBy: false
               },
-              voice: {
-                url: "https://runtime-api.voiceflow.com"
-              },
+              voice: { url: "https://runtime-api.voiceflow.com" },
               render: {
                 mode: 'embedded',
                 target: document.getElementById('chat-container')
@@ -142,6 +121,5 @@
           s.parentNode.insertBefore(v, s);
       })(document, 'script');
     </script>
-
 </body>
 </html>
