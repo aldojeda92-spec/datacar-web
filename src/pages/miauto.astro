@@ -1,132 +1,20 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DATACAR | Gestión de Inversiones Automotrices</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Aplicación de Filosofía de Marca: Limpieza y Transparencia */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif; /* Fuente operativa de batalla [cite: 55] */
-            background-color: #FFFFFF;
-            color: #3A3A3C; /* Data Charcoal para textos largos [cite: 37, 38] */
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Header Corporativo - Authority Blue [cite: 35] */
-        header {
-            background-color: #0A1F33; 
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
-
-        /* Logotipo (Wordmark Dual) según Manual [cite: 5, 8] */
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            user-select: none;
-        }
-
-        .logo-data {
-            font-weight: 900; /* Black [cite: 13] */
-            color: #FFFFFF; /* White sobre fondo Authority Blue [cite: 40] */
-        }
-
-        .logo-car {
-            font-weight: 300; /* Light [cite: 16] */
-            color: #C0C0C0; /* Silver Light para contraste premium [cite: 41] */
-            margin-left: -2px; /* Unión sin espacios según manual [cite: 8] */
-        }
-
-        /* Contenedor de Ejecución Premium */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: #f8f9fa;
-        }
-
-        /* Área del Asesor Inteligente */
-        #chat-wrapper {
-            flex: 1;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #chat-container {
-            width: 100%;
-            height: 100%; /* Modo Full Screen para evitar fricción */
-            max-width: 1200px; /* Limite de lectura B2B */
-            background: #FFFFFF;
-        }
-
-        /* Estilo para indicadores o CTAs externos si fueran necesarios [cite: 44] */
-        .cta-highlight {
-            color: #00BFFF; /* Digital Cyan exclusivo para acciones  */
-        }
-
-        @media (max-width: 768px) {
-            .logo { font-size: 1.4rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">
-            <span class="logo-data">DATA</span><span class="logo-car">CAR</span>
-        </div>
-    </header>
-
-    <main>
-        <div id="chat-wrapper">
-            <div id="chat-container"></div>
-        </div>
-    </main>
-
-    <script type="text/javascript">
-      (function(d, t) {
-          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-          v.onload = function() {
-            window.voiceflow.chat.load({
-              verify: { projectID: '69c68fa6a1f89e8a5486cfd5' },
-              url: 'https://general-runtime.voiceflow.com',
-              versionID: 'production',
-              theme: {
-                primaryColor: '#00BFFF', // Digital Cyan para botones de acción [cite: 43]
-                fontFamily: 'Inter',      // Fuente de interfaz [cite: 55]
-                showPoweredBy: false      // Estética Premium / B2B [cite: 18]
-              },
-              render: {
-                mode: 'embedded',
-                target: document.getElementById('chat-container')
-              }
-            });
+<script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '69c68fa6a1f89e8a5486cfd5' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          },
+          render: {
+            mode: 'embedded',
+            target: document.getElementById(...)
           }
-          v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
-          v.type = "text/javascript"; 
-          s.parentNode.insertBefore(v, s);
-      })(document, 'script');
-    </script>
-
-</body>
-</html>
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
