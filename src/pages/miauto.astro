@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATACAR | Encontrá tu Auto Ideal</title>
+    <style>
+        /* Reset de estilos básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header con branding de DATACAR */
+        header {
+            background-color: #0d1b2a; /* Azul profundo automotriz */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #e63946; /* Acento rojo/naranja de acción */
+        }
+
+        /* Contenedor Principal */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .intro-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #0d1b2a;
+        }
+
+        /* El contenedor donde se renderiza el CHAT */
+        #chat-container {
+            width: 100%;
+            max-width: 900px;
+            height: 70vh; /* Ocupa el 70% de la altura de la pantalla */
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e1e4e8;
+        }
+
+        footer {
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        /* Adaptación para móviles */
+        @media (max-width: 600px) {
+            #chat-container {
+                height: 80vh;
+                border-radius: 0;
+            }
+            main {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">DATA<span>CAR</span></div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">Asesor Inteligente</div>
+    </header>
+
+    <main>
+        <div class="intro-text">
+            <h1>Encontrá tu próximo 0km</h1>
+            <p>Contame qué buscás y cuánto querés invertir.</p>
+        </div>
+
+        <div id="chat-container"></div>
+    </main>
+
+    <footer>
+        &copy; 2026 DATACAR Paraguay - www.datacarpy.com
+    </footer>
+
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: '69c68fa6a1f89e8a5486cfd5' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production',
+              voice: {
+                url: "https://runtime-api.voiceflow.com"
+              },
+              render: {
+                mode: 'embedded',
+                target: document.getElementById('chat-container') // Vinculado a nuestro DIV
+              }
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+          v.type = "text/javascript"; 
+          s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+
+</body>
+</html>
