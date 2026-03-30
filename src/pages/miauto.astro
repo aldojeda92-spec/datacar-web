@@ -1,116 +1,70 @@
-<!DOCTYPE html>
+---
+// src/pages/miauto.astro
+// PÁGINA DEL ASISTENTE DE IA (VOICEFLOW)
+---
+
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DATACAR | Gestión de Inversiones Automotrices</title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Mi Auto | Asistente IA de Datacar EAS</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;900&display=swap" rel="stylesheet">
-    
-    <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-        
-        body {
-            font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-            background-color: #F8F9FA;
-            color: #3A3A3C;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden; 
-            /* Optimizadores para que la fuente se vea ultra nítida */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        header {
-            background-color: #0A1F33; 
-            padding: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            z-index: 10;
-            flex-shrink: 0; 
-        }
-
-        .logo { 
-            font-size: 2rem; 
-            text-transform: uppercase; 
-            letter-spacing: -0.5px; 
-            user-select: none; 
-        }
-        
-        .logo-data { font-weight: 900; color: #FFFFFF; }
-        .logo-car { font-weight: 300; color: #C0C0C0; letter-spacing: 1px; }
-
-        main {
-            flex: 1; 
-            display: flex;
-            padding: 20px;
-            justify-content: center;
-            align-items: center; 
-            min-height: 0; 
-        }
-
-        #chat-wrapper {
-            width: 100%;
-            max-width: 1000px;
-            height: 100%; 
-            max-height: 800px; 
-            background: #FFFFFF;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            border: 1px solid #E1E4E8;
-            overflow: hidden; 
-            display: flex;
-            flex-direction: column;
-        }
-
-        #chat-container {
-            width: 100%;
-            height: 100%;
-            flex: 1;
-        }
-
-        footer {
-            background: #FFFFFF;
-            text-align: center;
-            padding: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #6C757D;
-            border-top: 1px solid #EEEEEE;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 768px) {
-            main { padding: 0; align-items: stretch; }
-            #chat-wrapper { border-radius: 0; border: none; max-height: none; }
-            .logo { font-size: 1.5rem; }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-[#3A3A3C] antialiased flex flex-col min-h-screen">
 
-    <header>
-        <div class="logo"><span class="logo-data">DATA</span><span class="logo-car">CAR</span></div>
-    </header>
-
-    <main>
-        <div id="chat-wrapper">
-            <div id="chat-container"></div>
+    <nav class="bg-[#0A1F33] py-5 px-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="flex items-center group" style="font-family: 'Montserrat', sans-serif;">
+                <span class="text-2xl md:text-3xl font-[900] text-white leading-none">DATA</span>
+                <span class="text-2xl md:text-3xl font-[300] text-[#C0C0C0] leading-none tracking-[1px]">CAR</span>
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm font-bold tracking-wide" style="font-family: 'Inter', sans-serif;">
+                <a href="/servicios" class="text-white hover:text-[#00BFFF] transition">SERVICIOS</a>
+                <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20vender%20mi%20auto%20y%20me%20gustar%C3%ADa%20conocer%20el%20proceso." target="_blank" class="text-white hover:text-[#00BFFF] transition">VENDER MI AUTO</a>
+                <a href="/catalogo" class="text-white hover:text-[#00BFFF] transition">CATÁLOGO</a>
+                <a href="/nosotros" class="text-white hover:text-[#00BFFF] transition">NOSOTROS</a>
+            </div>
+            <a href="/" class="md:hidden flex items-center gap-2 text-white font-bold text-sm border border-white px-4 py-1 rounded-full">
+                Volver
+            </a>
         </div>
-    </main>
+    </nav>
 
-    <footer>DATACAR Paraguay © 2026 | Transparencia y Ejecución Premium</footer>
+    <section class="bg-[#0A1F33] text-white py-16 text-center px-4">
+        <h1 class="text-3xl md:text-4xl font-[900] mb-4" style="font-family: 'Montserrat', sans-serif;">Asistente Virtual 24/7</h1>
+        <p class="text-base text-[#C0C0C0] max-w-2xl mx-auto font-light leading-relaxed" style="font-family: 'Inter', sans-serif;">
+            Resolvé tus dudas, cotizá tu usado o empezá la búsqueda de tu próximo 0km en tiempo real con nuestra IA experta.
+        </p>
+    </section>
 
-    <script type="text/javascript">
+    <section class="py-12 px-4 flex-grow bg-gray-50 flex justify-center">
+        <div class="w-full max-w-4xl">
+            <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden" style="height: 600px; width: 100%;">
+                
+                <div id="voiceflow-chat-container" style="width: 100%; height: 100%;"></div>
+
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-4" style="font-family: 'Inter', sans-serif;">
+                La inteligencia artificial puede cometer errores. Ante cualquier duda comercial, <a href="https://wa.me/595991244469" target="_blank" class="text-[#00BFFF] hover:underline">contactanos por WhatsApp</a>.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
+        <div class="flex items-center justify-center mb-6" style="font-family: 'Montserrat', sans-serif;">
+            <span class="text-2xl font-[900] text-white leading-none opacity-70">DATA</span>
+            <span class="text-2xl font-[300] text-[#C0C0C0] leading-none tracking-[1px] opacity-70">CAR</span>
+        </div>
+        <p class="font-light text-sm mb-6" style="font-family: 'Inter', sans-serif;">Gestión de inversiones automotrices</p>
+        <p class="text-xs opacity-40" style="font-family: 'Inter', sans-serif;">© 2026 DATACAR EAS.</p>
+    </footer>
+
+    <script type="text/javascript" is:inline>
       (function(d, t) {
           var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
           v.onload = function() {
@@ -118,16 +72,13 @@
               verify: { projectID: '69c68fa6a1f89e8a5486cfd5' },
               url: 'https://general-runtime.voiceflow.com',
               versionID: 'production',
-              theme: {
-                primaryColor: '#00BFFF',
-                /* Cambiamos a Montserrat y agregamos system fallback para asegurar nitidez */
-                fontFamily: "'Montserrat', system-ui, sans-serif",
-                showPoweredBy: false
+              voice: {
+                url: "https://runtime-api.voiceflow.com"
               },
-              voice: { url: "https://runtime-api.voiceflow.com" },
               render: {
                 mode: 'embedded',
-                target: document.getElementById('chat-container')
+                // ACÁ REEMPLACÉ LOS (...) POR EL ID DEL DIV CREADO ARRIBA
+                target: document.getElementById('voiceflow-chat-container')
               }
             });
           }
@@ -136,5 +87,6 @@
           s.parentNode.insertBefore(v, s);
       })(document, 'script');
     </script>
+
 </body>
 </html>
