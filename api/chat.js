@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         const { message } = req.body;
         
         // 1. Limpiamos la llave de espacios invisibles con .trim()
-        const apiKey = "PEGA_ACA_TU_LLAVE_NUEVA_DE_GOOGLE".trim();
+        const apiKey = "AIzaSyAD0vE_hyPgXjDFnL2zdGMnljoBNvmDWLA".trim();
         
         // 2. Imprimimos un aviso en Vercel para saber que se actualizó el código
         console.log("Conectando a Gemini con llave limpia...");
