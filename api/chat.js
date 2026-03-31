@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         const { message } = req.body;
         
         // 1. CARGÁ TU LLAVE ACÁ (Manteniendo las comillas)
-        const apiKey = "AIzaSyAD0vE_hyPgXjDFnL2zdGMnljoBNvmDWLA".trim();
+        const apiKey = "AIzaSyBnp938UgpTbF6uA-zu2zbGw4m7RN9Ubuo".trim();
         
         console.log("Conectando a Gemini 1.5 Flash...");
 
