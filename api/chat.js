@@ -19,8 +19,8 @@ export default async function handler(req, res) {
     try {
         const { message } = req.body;
         
-        // Llamamos a Gemini usando la llave que pondremos en Vercel
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        // ¡LA PRUEBA DEL ÁCIDO! Llave inyectada directamente:
+        const genAI = new GoogleGenerativeAI("AIzaSyAOpuHO7SIvne_XM9aJzFpFiXsOFZw6hCE");
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         // El Prompt Maestro de DATACAR
@@ -41,5 +41,3 @@ export default async function handler(req, res) {
         res.status(500).json({ error: "El sistema está experimentando una demora. Por favor, intentá de nuevo." });
     }
 }
-
-
