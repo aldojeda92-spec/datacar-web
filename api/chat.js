@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         // 1. TU LLAVE ACÁ
         const apiKey = "AIzaSyDDq2-433ObsJ9rL9BrLi5Pb10n8tA3Ckk".trim();
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
+        const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
         // 📚 BASE DE DATOS (Abreviada para estabilidad, podés ampliarla luego)
         const inventarioAutos = `
