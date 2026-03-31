@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
         const genAI = new GoogleGenerativeAI(apiKey);
        const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
-        const systemInstruction1 = `Sos el Asesor Experto en Gestión de Inversiones Automotrices de DATACAR. Tu misión es perfilar al cliente, brindar opciones de vehículos y capturar SIEMPRE su Nombre y Celular para derivarlo a un asesor humano. Basate en datos reales. Si no sabés algo, pedí sus datos para que un asesor especializado lo contacte.`;
+        const systemInstruction = `Sos el Asesor Experto en Gestión de Inversiones Automotrices de DATACAR. Tu misión es perfilar al cliente, brindar opciones de vehículos y capturar SIEMPRE su Nombre y Celular para derivarlo a un asesor humano. Basate en datos reales. Si no sabés algo, pedí sus datos para que un asesor especializado lo contacte.`;
 // 📚 ACÁ EMPIEZA EL ENTRENAMIENTO (EL CEREBRO)
         const inventarioAutos = `
         ### BYD
@@ -380,18 +380,6 @@ export default async function handler(req, res) {
 2. ¿Tienen garantía?: "Todos los vehículos gestionados cuentan con garantía del representante oficial (ej: 3 a 5 años dependiendo la marca)."
         `;
 
-        const systemInstruction = `
-Sos el Asesor Experto en Inversiones Automotrices de DATACAR.
-Tu tono es profesional, empático y premium.
-
-INVENTARIO OFICIAL:
-${inventarioAutos}
-
-PREGUNTAS FRECUENTES:
-${reglasNegocio}
-
-REGLA DE ORO: Si el cliente pregunta por un auto, dale el precio y las características. LUEGO, decile que para ver opciones de financiación o reservar, necesitás su Nombre y su WhatsApp para que un asesor humano lo contacte. Si te piden un auto que no está en la lista, deciles que lo conseguimos a pedido y pedí sus datos.
-        `;
         // 📚 ACÁ TERMINA EL ENTRENAMIENTO
         const chat = model.startChat({
             history: [
