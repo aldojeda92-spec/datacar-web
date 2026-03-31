@@ -8,11 +8,11 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "dependencies": {
+"dependencies": {
     "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "tailwindcss": "^3.4.17",
-    "@google/generative-ai": "^0.2.1"
+    "@google/generative-ai": "latest"
   }
 }
