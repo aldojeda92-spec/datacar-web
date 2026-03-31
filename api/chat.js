@@ -1,8 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-
 export default async function handler(req, res) {
-    // Escudos de seguridad y permisos para tu web
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*'); 
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -20,11 +18,15 @@ export default async function handler(req, res) {
     try {
         const { message } = req.body;
         
-        // ¡LA PRUEBA DEL ÁCIDO! Llave inyectada directamente:
-        const genAI = new GoogleGenerativeAI("AIzaSyAD0vE_hyPgXjDFnL2zdGMnljoBNvmDWLA");
+        // 1. Limpiamos la llave de espacios invisibles con .trim()
+        const apiKey = "PEGA_ACA_TU_LLAVE_NUEVA_DE_GOOGLE".trim();
+        
+        // 2. Imprimimos un aviso en Vercel para saber que se actualizó el código
+        console.log("Conectando a Gemini con llave limpia...");
+
+        const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        // El Prompt Maestro de DATACAR
         const systemInstruction = `Sos el Asesor Experto en Gestión de Inversiones Automotrices de DATACAR. Tu misión es perfilar al cliente, brindar opciones de vehículos y capturar SIEMPRE su Nombre y Celular para derivarlo a un asesor humano. Basate en datos reales. Si no sabés algo, pedí sus datos para que un asesor especializado lo contacte.`;
 
         const chat = model.startChat({
