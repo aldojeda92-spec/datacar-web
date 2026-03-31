@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
+
 export default async function handler(req, res) {
     // Escudos de seguridad y permisos para tu web
     res.setHeader('Access-Control-Allow-Credentials', true);
