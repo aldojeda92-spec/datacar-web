@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         const { message } = req.body;
         
         // ¡LA PRUEBA DEL ÁCIDO! Llave inyectada directamente:
-        const genAI = new GoogleGenerativeAI("AIzaSyAOpuHO7SIvne_XM9aJzFpFiXsOFZw6hCE");
+        const genAI = new GoogleGenerativeAI("AIzaSyAD0vE_hyPgXjDFnL2zdGMnljoBNvmDWLA");
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         // El Prompt Maestro de DATACAR
