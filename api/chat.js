@@ -26,8 +26,7 @@ export default async function handler(req, res) {
         console.log("Conectando a Gemini con llave limpia...");
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
         const systemInstruction = `Sos el Asesor Experto en Gestión de Inversiones Automotrices de DATACAR. Tu misión es perfilar al cliente, brindar opciones de vehículos y capturar SIEMPRE su Nombre y Celular para derivarlo a un asesor humano. Basate en datos reales. Si no sabés algo, pedí sus datos para que un asesor especializado lo contacte.`;
 
         const chat = model.startChat({
