@@ -6,215 +6,66 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
-
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Solo se aceptan peticiones POST' });
-    }
+    if (req.method === 'OPTIONS') { res.status(200).end(); return; }
+    if (req.method !== 'POST') { return res.status(405).json({ error: 'Solo se aceptan peticiones POST' }); }
 
     try {
         const { message } = req.body;
-        
-        // 1. CARGÁ TU LLAVE ACÁ (Manteniendo las comillas)
+        // 1. TU LLAVE ACÁ
         const apiKey = "AIzaSyBnp938UgpTbF6uA-zu2zbGw4m7RN9Ubuo".trim();
-        
-        console.log("Conectando a Gemini 1.5 Flash...");
-
         const genAI = new GoogleGenerativeAI(apiKey);
-        
-        // 2. MODELO CORREGIDO
-        const model = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
-        // 3. INVENTARIO COMPLETO
+        // 📚 BASE DE DATOS (Abreviada para estabilidad, podés ampliarla luego)
         const inventarioAutos = `
-### BYD
-- Sealion 7 2026 | SUV | USD 49900 | Motor: 390 kW / 690 Nm | AT | AWD
-- Shark 2025 | Pickup | USD 44900 | AT
-- Shark 2026 | Pickup | USD 50900 | AT
-- Song Plus 2025 | SUV | USD 33900 | Motor: 1.5T | E-CVT | Delantera
-- Song Plus 2026 | SUV | USD 37900 | Motor: 1.5T | E-CVT | Delantera
-- Song Pro DM-i GL (2025) | SUV | USD 26900 | Motor: 1.5L / 78 kW / 135 Nm | DHT30 | Delantera
-- Song Pro DM-i GL (2026) | SUV | USD 30900 | Motor: 1.5L / 78 kW / 135 Nm | DHT30 | Delantera
-- Song Pro DM-i GS (2026) | SUV | USD 32900 | Motor: 1.5L / 78 kW / 135 Nm | DHT30 | Delantera
-- Tang EV 2025 | SUV | USD 59900 | Motor: 380 kW / 700 Nm | AT | AWD
-- Yuan Plus 2025 | SUV | USD 34900 | Motor: 150 kW / 310 Nm | AT | Delantera
-
-### CHEVROLET
-- Captiva Premier (2026) | SUV | USD 28990 | Motor: EV / 201 HP / 310 Nm | AT única vel. | 4x2
-- Montana LTZ (2026) | Pickup | USD 21990 | Motor: 1.2T / 132 HP / 190 Nm | AT 6 marchas | 4x2
-- Montana Premier (2026) | Pickup | USD 25500 | Motor: 1.2T / 132 HP / 190 Nm | AT 6 marchas | 4x2
-- Montana RS (2026) | Pickup | USD 25990 | Motor: 1.2T / 132 HP / 190 Nm | AT 6 marchas | 4x2
-- Onix LTZ (2025) | Hatchback | USD 16500 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 | 4x2
-- Onix RS (2025) | Hatchback | USD 16990 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 | 4x2
-- Onix Premier (2025) | Hatchback | USD 18500 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 | 4x2
-- Onix LT (2026) | Hatchback | USD 11990 | Motor: 1.0L / 80 HP / 100 Nm | MT 6 marchas | 4x2
-- Onix LT (2026) | Hatchback | USD 13990 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 marchas | 4x2
-- Onix RS (2026) | Hatchback | USD 16990 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 marchas | 4x2
-- Onix Plus Premier (2025) | Sedan | USD 21990 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 | 4x2
-- Onix Plus LTZ (2026) | Sedan | USD 19990 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 marchas | 4x2
-- Onix Plus Premier (2026) | Sedan | USD 21990 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 marchas | 4x2
-- S10 High Country (2025) | Pickup | USD 49990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | AT 8 marchas | 4x4
-- S10 Worktruck (2026) | Pickup | USD 33990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | MT 6 marchas | 4x4
-- S10 Worktruck (2026) | Pickup | USD 34990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | MT 6 marchas | 4x4
-- S10 Worktruck (2026) | Pickup | USD 38990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | AT 8 marchas | 4x4
-- S10 Z71 (2026) | Pickup | USD 43990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | AT 8 marchas | 4x4
-- S10 LTZ (2026) | Pickup | USD 47990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | AT 8 marchas | 4x4
-- S10 High Country (2026) | Pickup | USD 50990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | AT 8 marchas | 4x4
-- Silverado Z71 (2025) | Pickup | USD 78990 | Motor: 3.0TD / 305 HP / 671 Nm | AT 10 marchas | 4WD
-- Spark Activ EV (2026) | Hatchback | USD 19990 | Motor: EV / 102 HP / 180 Nm | AT única vel. | 4x2
-- Tracker RS (2025) | SUV | USD 24990 | Motor: 1.2T / 139 HP / 220 Nm | AT 6 marchas | 4x2
-- Tracker Premier (2025) | SUV | USD 25500 | Motor: 1.2T / 139 HP / 220 Nm | AT 6 marchas | 4x2
-- Tracker Lite (2026) | SUV | USD 18500 | Motor: 1.0T / 115 HP / 160 Nm | AT 6 marchas | 4x2
-- Tracker LTZ (2026) | SUV | USD 21500 | Motor: 1.2T / 139 HP / 220 Nm | AT 6 marchas | 4x2
-- Tracker RS (2026) | SUV | USD 24990 | Motor: 1.2T / 139 HP / 220 Nm | AT 6 marchas | 4x2
-- Tracker Premier (2026) | SUV | USD 25500 | Motor: 1.2T / 139 HP / 220 Nm | AT 6 marchas | 4x2
-- Trailblazer High Country (2026) | SUV | USD 45990 | Motor: 2.8 Turbodiésel / 204 HP / 510 Nm | AT 8 marchas | 4x4
-
-### GEELY
-- Azkarra Luxury | SUV | USD 23990 | Motor: 1.5cc / 177 HP / 265 Nm | Automático DCT 7 | 4x4
-- Cityray Comfort (2026) | SUV | USD 23490 | Motor: 1.5T / 172 HP / 290 Nm | AT 7DCT | 4x2
-- Cityray Luxury (2026) | SUV | USD 27490 | Motor: 1.5T / 172 HP / 290 Nm | AT 7DCT | 4x2
-- Coolray FL DCT AT GK (2027) | SUV | USD 20990 | Motor: 1.5cc / 171 HP / 290 Nm | Automático DCT 7 | Delantera
-- Coolray Lite Automático (2026) | SUV | USD 17990 | Motor: 1.5 / 125 HP / 152 Nm | CVT | 4x2
-
-### HONDA
-- CR-V EX | SUV | USD 47000 | AT | 2WD
-- CR-V EX Con Cuero y Llanta | SUV | USD 48500 | AT | 2WD
-- CR-V EHEV | SUV | USD 56900 | Motor: 2.0L + Eléctrico | Automático | 4WD
-- HR-V EX | SUV | USD 28500 | Motor: 1.5 i-VTEC | CVT | 2WD
-- HR-V TOURING | SUV | USD 35900 | Motor: 1.5 Turbo | CVT | 2WD
-- PILOT ELITE | SUV | USD 84900 | Motor: V6 3.5 | AT | 4WD
-
-### HYUNDAI
-- GRAND I10 HATCHBACK (2025) | Hatchback | USD 10990 | Motor: 1.0 MPI | MT | 4x2
-- HB20 HATCHBACK (2026) | Hatchback | USD 12990 | Motor: 1.0cc | MT | 4x2
-- KONA GLS (2026) | SUV | USD 29990 | Motor: 1.6 GDI | Automático | 4x2
-- PALISADE CALLIGRAPHY 8 Pas (2026) | SUV | USD 67990 | Motor: 2.5 T-GDI HEV | Automático | 4x4
-- SANTA FE 7PAS (2025) | SUV | USD 57990 | Motor: 1.6 T-GDI HEV | Automático | 4x4
-- TUCSON GL (2026) | SUV | USD 29990 | Motor: 2.0 Naftero | Automático | 4x2
-
-### ISUZU
-- D-MAX LUJO SPORT (2025) | Pickup | USD 49990 | Motor: 3.0cc | AT 6a | 4x4
-- D-MAX STD PLUS (2026) | Pickup | USD 33990 | Motor: 1.9cc | MT 6a | 4x4
-- MU-X LUJO PESS (2026) | SUV | USD 59990 | Motor: 3.0cc | AT 6a | 4x4
-
-### JEEP
-- Commander Overland (2025) | SUV | USD 41990 | Motor: 1.3T | AT 6 | 4x2
-- Compass Sport (2026) | SUV | USD 28500 | Motor: 1.3T | AT 6 | 4x2
-- Renegade Altitude (2026) | SUV | USD 21990 | Motor: 1.3T | AT 6 | 4x2
-- Wrangler Rubicon 4P (2026) | SUV | USD 86990 | Motor: 2.0L Turbo | Automático 8AT | 4x4
-
-### JETOUR
-- DASHING GL | SUV | USD 20490 | Motor: 1.5T | Automático DCT
-- T2 LUX | SUV | USD 35990 | Motor: 2.0T | AT 7DCT | XWD
-
-### KGM SSANGYONG
-- KORANDO LIMITED (2025) | SUV | USD 28500 | Motor: 1.497cc | AT 6 marchas | 4x2
-- MUSSO GRAND LIMITED (2025) | Pickup | USD 47990 | Motor: 2.157cc | AT 6 marchas | 4x4
-- TORRES DELUXE (2025) | SUV | USD 27990 | Motor: 1.497cc | AT 6 marchas | 4x2
-
-### KIA
-- Carnival EX Ejecutivo | SUV/MPV | USD 60990 | Motor: 1.6T | AT 6 | 4x2
-- Ev5 WIND | SUV | USD 50990 | Automático | 4x2
-- K3-sedan LX | Sedan | USD 17990 | Motor: 1.4 | MT 6 vel. | 4x2
-- K3-sedan GT-Line | Sedan | USD 26990 | Motor: 1.4 | AT 6 vel. | 4x2
-- Picanto LX | Hatchback | USD 10500 | Motor: 1.0 | MT 5 vel. | 4x2
-- Seltos EX Full | SUV | USD 27500 | Motor: 1.5 | AT 6 vel. | 4x2
-- Sonet EX Limited | SUV | USD 23990 | Motor: 1.5 | AT 6 vel. | 4x2
-- Tasman X-PRO | Pickup | USD 59990 | Motor: 2.5 | AT 8 | 4x4
-
-### NISSAN
-- Frontier LE-PRO4X D/C (2026) | Pickup | USD 45990 | Motor: 2.5 L | AT 7 vel. | 4x4
-- Kicks Exclusive (2025) | SUV | USD 23990 | Motor: 1.6 | Automático | 4x2
-- Patrol Exclusive (2025) | SUV | USD 109000 | Motor: 5.6L V8 | AT 7 vel. | 4x4
-
-### RAM
-- 1500 Rebel Crew Cab (2026) | Pickup | USD 89990 | Motor: 3.0TT G | AT 8 | 4x4
-- Rampage Laramie (2026) | Pickup | USD 40990 | Motor: 2.2 D | AT 9 | 4x4
-
-### VOLKSWAGEN
-- Amarok DC Extreme | Pick-up | USD 58900 | Motor: 3.0L V6 TDI | AT8 | 4MOTION
-- Nivus HL | SUV Coupé | USD 24500 | Motor: 1.0 200 TSI | AT6 | Delantera (4x2)
-- Nueva Tiguan R-Line | SUV | USD 45900 | Motor: 1.4 250 TSI | DSG6 | Delantera (4x2)
-- Nuevo Taos MX HL | SUV | USD 32900 | Motor: 1.4 250 TSI | AT6 | Delantera (4x2)
-- Polo Track TL | Hatchback | USD 14900 | Motor: 1.0 MPI | MT5 | Delantera (4x2)
-- Saveiro DC Extreme | Pick-up | USD 20500 | Motor: 1.6 MPI | MT5 | Delantera (4x2)
-- T-Cross HL + Techo | SUV | USD 26900 | Motor: 1.4 250 TSI | AT6 | Delantera (4x2)
-- Teramont Premium 3H | SUV | USD 73900 | Motor: 2.0 TSI | AT8 | 4MOTION
-`;
-
-        const reglasNegocio = `
-1. ¿Cobran comisión?: "Nuestra asesoría inicial es sin costo. Al concretar la inversión cobramos un honorario estándar del mercado."
-2. ¿Tienen garantía?: "Todos los vehículos gestionados cuentan con garantía del representante oficial (ej: 3 a 5 años dependiendo la marca)."
+### BYD: Song Pro (USD 26.900), Shark (USD 44.900), Song Plus (USD 33.900), Tang EV (USD 59.900).
+### CHEVROLET: S10 (USD 33.990 - 50.990), Onix (USD 11.990 - 21.990), Silverado (USD 78.990).
+### HYUNDAI: Tucson (USD 29.990 - 43.990), Santa Fe (USD 45.990 - 57.990), HB20 (USD 11.500 - 15.490).
+### KIA: K3 (USD 17.990 - 26.990), Sportage (USD 27.990), Tasman (USD 39.990 - 59.990).
+### VOLKSWAGEN: Amarok (USD 46.900 - 58.900), Taos (USD 29.900 - 32.900), Nivus (USD 22.500 - 27.500).
         `;
 
-        // 4. EL CEREBRO DE LA IA (¡Ahora declarado una sola vez!)
-  const systemInstruction = `
-Sos un Asesor Estratégico e Imparcial en Inversiones Automotrices de DATACAR.
-Tu rol NO es ser un catálogo andante, sino un CONSULTOR PREMIUM que protege la inversión del cliente, ayudándolo a tomar una decisión inteligente, segura y rentable.
+        // 🧠 PERSONALIDAD DE ASESOR ESTRATÉGICO
+        const systemInstruction = `
+Sos un Asesor Estratégico de Inversiones Automotrices en DATACAR. 
+Tu misión es proteger la inversión del cliente con una mirada crítica e imparcial.
 
-INVENTARIO OFICIAL:
-${inventarioAutos}
+INVENTARIO: ${inventarioAutos}
 
-PREGUNTAS FRECUENTES:
-${reglasNegocio}
+REGLAS DE COMPORTAMIENTO:
+1. MENTALIDAD DE CONSULTOR: Si el cliente elige un auto, mencioná un punto técnico (motor, origen) pero cuestioná aristas como: Valor de reventa, costo de repuestos según origen, o calidad del servicio postventa del representante.
+2. INDAGACIÓN: Si no sabe qué comprar, hacé UNA sola pregunta clave para entender su necesidad (ej: ¿Uso urbano o viajes al interior?).
+3. FORMATO: Escribí párrafos muy cortos. Usá viñetas. No seas un "bot-folleto".
+4. EL CIERRE (CTA): Una vez orientado el cliente, decí siempre: "Nuestra consultoría es gratuita para ayudarte en el proceso de compra, pero para profundizar necesitamos hablar con un humano. ¿Me dejarías tu nombre y WhatsApp?".
+5. LEAD: Si te da sus datos, agrega al final: [LEAD: Nombre, Numero].
+        `;
 
-TUS REGLAS DE ORO (ESTRICTAS):
-1. ANÁLISIS CRÍTICO (TU DIFERENCIAL): Cuando el cliente mencione un modelo que le gusta, dale los datos técnicos básicos, pero INMEDIATAMENTE planteale aristas que podría no estar considerando.
-   - Ejemplos de objeciones que debes hacerle pensar: "¿Tuviste en cuenta el valor de reventa de esa marca?", "Al ser de origen chino, ¿evaluaste el costo y disponibilidad de los repuestos?", "Ese motor es potente, pero ¿analizaste el servicio postventa del representante local?". 
-2. INDAGACIÓN PASO A PASO: Si el cliente no sabe qué comprar, NO le tires opciones al azar. Hacé UNA SOLA PREGUNTA a la vez para perfilarlo (Ej: "¿Lo vas a usar más para ciudad o viajes largos?", o "¿Buscás maximizar el confort familiar o la economía diaria?").
-3. MÁXIMO 2 OPCIONES: Nunca listes más de 2 vehículos juntos. Si hay muchas opciones, recomendá las 2 mejores fundamentando tu elección basándote en su perfil.
-4. FORMATO VISUAL: Hablá en párrafos muy cortos (1 o 2 líneas máximo). Usá viñetas y algún emoji sobrio (🚙, 📊, 💡). Prohibido armar bloques de texto largos.
-5. EL CIERRE (CTA OBLIGATORIO): Una vez que el cliente tenga un panorama más claro o quiera avanzar, explicale que nuestra consultoría es gratuita, pero requiere atención personalizada. Cerrá SIEMPRE tu mensaje con esta frase exacta: 
-   "¿Te ayudamos con el proceso de compra? Para brindarte nuestra consultoría gratuita ya debemos hablar con un humano. ¿Me dejarías tu Nombre y número de WhatsApp para que te contactemos?"
-6. MANDO SECRETO PARA LEADS: Apenas el cliente te escriba su nombre y su número, agradecele la confianza y AL FINAL de tu respuesta, agregá EXACTAMENTE este formato: [LEAD: NombreDelCliente, NumeroDelCliente].
-`;
-        
         const chat = model.startChat({
             history: [
                 { role: "user", parts: [{ text: systemInstruction }] },
-                { role: "model", parts: [{ text: "Entendido. Soy el Asesor de DATACAR. Me basaré estrictamente en el inventario provisto y usaré la etiqueta secreta al capturar los datos." }] }
+                { role: "model", parts: [{ text: "Entendido. Soy el Asesor Estratégico de DATACAR. Analizaré riesgos y beneficios para el cliente." }] }
             ]
         });
 
         const result = await chat.sendMessage(message);
         let replyText = result.response.text();
 
-        // 5. INTERCEPTOR DE LEADS PARA MAKE.COM
+        // 🚀 INTERCEPTOR PARA MAKE.COM
         const leadMatch = replyText.match(/\[LEAD:\s*(.*?),\s*(.*?)\]/);
-        
         if (leadMatch) {
-            const nombreCliente = leadMatch[1];
-            const celularCliente = leadMatch[2];
-
-            console.log("¡NUEVO LEAD CAPTURADO!", nombreCliente, celularCliente);
-
             try {
-                // ⚠️ REEMPLAZÁ ESTE LINK POR EL TUYO DE MAKE.COM
-                await fetch("https://hook.us1.make.com/TU_WEBHOOK_AQUI", {
+                await fetch("TU_WEBHOOK_DE_MAKE_AQUI", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ 
-                        nombre: nombreCliente, 
-                        celular: celularCliente,
-                        origen: "Asesor IA Datacar" 
-                    })
+                    body: JSON.stringify({ nombre: leadMatch[1], celular: leadMatch[2], origen: "Consultor IA" })
                 });
-            } catch (error) {
-                console.error("Error enviando a Make:", error);
-            }
-
-            // Borra la etiqueta secreta para que no se imprima en la pantalla del usuario
+            } catch (e) { console.error("Error Make", e); }
             replyText = replyText.replace(/\[LEAD:.*\]/, "").trim();
         }
 
         res.status(200).json({ reply: replyText });
-        
     } catch (error) {
-        console.error("Error Gemini:", error);
-        res.status(500).json({ error: "El sistema está experimentando una demora. Por favor, intentá de nuevo." });
+        console.error("Error:", error);
+        res.status(500).json({ error: "El sistema está descansando. Probá de nuevo en un segundo." });
     }
 }
