@@ -1,163 +1,20 @@
----
-// src/pages/miauto.astro
----
-
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DATACAR | Asesor Inteligente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F8F9FA;
-            color: #3A3A3C;
-            display: flex; flex-direction: column; height: 100vh; overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* Header Authority Blue */
-        header {
-            background-color: #0A1F33; 
-            padding: 1.5rem; display: flex; justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 10; flex-shrink: 0;
-        }
-        .logo { font-family: 'Montserrat', sans-serif; font-size: 2rem; text-transform: uppercase; letter-spacing: -0.5px; }
-        .logo-data { font-weight: 900; color: #FFFFFF; }
-        .logo-car { font-weight: 300; color: #C0C0C0; letter-spacing: 1px; }
-        
-        main { flex: 1; display: flex; padding: 20px; justify-content: center; overflow: hidden; }
-        
-        #chat-wrapper {
-            width: 100%; max-width: 900px; display: flex; flex-direction: column;
-            background: #FFFFFF; border-radius: 12px; border: 1px solid #E1E4E8;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05); overflow: hidden;
-        }
-        
-        #chat-messages {
-            flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;
-        }
-        
-        /* ACÁ ESTÁ LA MAGIA DEL FORMATO: white-space: pre-wrap respeta los saltos de línea */
-        .message { max-width: 85%; padding: 14px 18px; border-radius: 8px; line-height: 1.6; font-size: 0.95rem; white-space: pre-wrap; }
-        .bot-message { background-color: #F0F2F5; color: #3A3A3C; align-self: flex-start; border-bottom-left-radius: 0; }
-        .user-message { background-color: #0A1F33; color: #FFFFFF; align-self: flex-end; border-bottom-right-radius: 0; }
-        
-        /* Estilos para las negritas que genere la IA */
-        .bot-message strong { color: #0A1F33; font-weight: 700; }
-
-        #chat-input-area {
-            display: flex; padding: 15px; border-top: 1px solid #EEEEEE; background: #FFFFFF; flex-shrink: 0;
-        }
-        #chat-input {
-            flex: 1; padding: 12px; border: 1px solid #C0C0C0; border-radius: 6px;
-            font-family: 'Inter', sans-serif; font-size: 1rem; outline: none; transition: 0.2s;
-        }
-        #chat-input:focus { border-color: #00BFFF; }
-        
-        #send-btn {
-            background-color: #00BFFF; color: #FFFFFF; border: none; padding: 0 25px;
-            margin-left: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;
-        }
-        #send-btn:hover { background-color: #009acd; }
-        
-        footer { text-align: center; padding: 10px; font-size: 0.75rem; color: #6C757D; border-top: 1px solid #EEEEEE; flex-shrink: 0; }
-        
-        @media (max-width: 768px) {
-            main { padding: 0; }
-            #chat-wrapper { border-radius: 0; border: none; }
-            .logo { font-size: 1.5rem; }
-            .message { max-width: 90%; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo"><span class="logo-data">DATA</span><span class="logo-car">CAR</span></div>
-    </header>
-
-    <main>
-        <div id="chat-wrapper">
-            <div id="chat-messages">
-                <div class="message bot-message">¡Hola! Soy el Asesor Inteligente de DATACAR. ¿Qué tipo de vehículo estás buscando hoy o qué presupuesto tenés en mente?</div>
-            </div>
-            <div id="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Escribí tu mensaje aquí..." autocomplete="off">
-                <button id="send-btn">Enviar</button>
-            </div>
-        </div>
-    </main>
-
-    <footer>DATACAR Paraguay © 2026 | Transparencia y Ejecución Premium</footer>
-
-    <script is:inline>
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const sendBtn = document.getElementById('send-btn');
-
-        const BACKEND_URL = '/api/chat'; 
-
-        function addMessage(text, sender) {
-            const div = document.createElement('div');
-            div.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
-            
-            // EL TRADUCTOR DE MARKDOWN
-            if (sender === 'bot') {
-                // Reemplaza **texto** por <strong>texto</strong>
-                let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                div.innerHTML = formattedText;
-            } else {
-                div.textContent = text;
-            }
-
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
-        }
-
-        async function sendMessage() {
-            const text = chatInput.value.trim();
-            if (!text) return;
-
-            addMessage(text, 'user');
-            chatInput.value = '';
-            
-            const typingDiv = document.createElement('div');
-            typingDiv.classList.add('message', 'bot-message');
-            typingDiv.textContent = 'Analizando opciones...';
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            try {
-                const response = await fetch(BACKEND_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text })
-                });
-                
-                const data = await response.json();
-                
-                chatMessages.removeChild(typingDiv);
-                
-                if (data.error) {
-                    addMessage(data.error, 'bot');
-                } else {
-                    addMessage(data.reply, 'bot');
-                }
-                
-            } catch (error) {
-                chatMessages.removeChild(typingDiv);
-                addMessage('Lo siento, tuvimos un problema de conexión. ¿Podés intentarlo de nuevo?', 'bot');
-            }
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
+<script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '69c68fa6a1f89e8a5486cfd5' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          },
+          render: {
+            mode: 'embedded',
+            target: document.getElementById(...)
+          }
         });
-    </script>
-</body>
-</html>
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
