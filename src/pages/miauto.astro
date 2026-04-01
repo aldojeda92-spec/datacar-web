@@ -4,57 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Auto | DATACAR Asesor Inteligente</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'authority-blue': '#0033A0',
+                        'data-charcoal': '#3A3A3C',
+                        'silver-light': '#C0C0C0',
+                        'digital-cyan': '#00BFFF',
+                    },
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Ajustes específicos para el contenedor del bot */
+        /* Contenedor del bot */
         #voiceflow-container {
             width: 100%;
             max-width: 800px;
             height: 600px;
             margin: 0 auto;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 51, 160, 0.15); /* Sombra basada en Authority Blue */
+            border: 1px solid #C0C0C0;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+<body class="bg-gray-50 text-data-charcoal font-inter flex flex-col min-h-screen">
 
-    <header class="bg-blue-900 text-white shadow-md">
+    <header class="bg-authority-blue shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+            
             <div>
-                <h1 class="text-3xl font-extrabold tracking-tight">DATACAR</h1>
-                <p class="text-sm text-blue-200 mt-1">Consultoría Automotriz Premium en Paraguay</p>
+                <span class="font-montserrat font-black text-white text-3xl">DATA</span><span class="font-montserrat font-light text-silver-light text-3xl tracking-wide">CAR</span>
+                <p class="text-xs text-silver-light mt-1 font-inter">Consultoría Automotriz Premium</p>
             </div>
+            
             <nav class="hidden md:block">
-                <a href="#" class="px-4 py-2 hover:text-blue-300 transition">Inicio</a>
-                <a href="#" class="px-4 py-2 hover:text-blue-300 transition">Catálogo</a>
-                <a href="#" class="px-4 py-2 bg-blue-700 rounded-lg hover:bg-blue-600 transition font-semibold">Hablar con Asesor</a>
+                <a href="#" class="px-4 py-2 text-white hover:text-digital-cyan transition font-inter font-medium">Inicio</a>
+                <a href="#" class="px-4 py-2 text-white hover:text-digital-cyan transition font-inter font-medium">Catálogo</a>
+                <a href="#" class="ml-4 px-5 py-2.5 bg-digital-cyan text-white rounded font-inter font-bold hover:opacity-90 transition shadow-lg">Hablar con Asesor</a>
             </nav>
         </div>
     </header>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="text-center mb-10">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Encontrá tu próximo vehículo hoy</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Nuestro Asesor con Inteligencia Artificial está conectado a nuestro inventario en tiempo real. Contale tu presupuesto o el tipo de vehículo que buscas en Asunción.</p>
+            <h2 class="text-4xl font-montserrat font-black text-authority-blue mb-4 uppercase">Encontrá tu próximo vehículo hoy</h2>
+            <p class="text-lg text-data-charcoal max-w-2xl mx-auto font-inter">Nuestro Asesor Inteligente está conectado al inventario local en tiempo real. Contale tu presupuesto o el tipo de vehículo que buscas en Asunción.</p>
         </div>
 
-        <div id="voiceflow-container" class="bg-white border border-gray-200">
+        <div id="voiceflow-container" class="bg-white">
             </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-8 mt-auto">
+    <footer class="bg-data-charcoal text-white py-8 mt-auto border-t-4 border-digital-cyan">
         <div class="max-w-7xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <h3 class="text-xl font-bold">DATACAR</h3>
-                <p class="text-gray-400 text-sm mt-2">© 2026 Todos los derechos reservados.</p>
-                <p class="text-gray-400 text-sm">Asunción, Paraguay.</p>
-            </div>
-            <div class="flex space-x-6 text-sm text-gray-400">
-                <a href="#" class="hover:text-white transition">Términos y Condiciones</a>
-                <a href="#" class="hover:text-white transition">Política de Privacidad</a>
-                <a href="#" class="hover:text-white transition">Contacto</a>
+                <span class="font-montserrat font-black text-white text-xl">DATA</span><span class="font-montserrat font-light text-silver-light text-xl tracking-wide">CAR</span>
+                <p class="text-silver-light text-sm mt-2 font-inter">© 2026 Todos los derechos reservados.</p>
+                <p class="text-silver-light text-sm font-inter">Asunción, Paraguay.</p>
             </div>
         </div>
     </footer>
@@ -72,7 +93,7 @@
               },
               render: {
                 mode: 'embedded',
-                target: document.getElementById('voiceflow-container') // <-- CORRECCIÓN APLICADA AQUÍ
+                target: document.getElementById('voiceflow-container')
               }
             });
           }
