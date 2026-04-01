@@ -1,20 +1,83 @@
-<script type="text/javascript">
-  (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: '69c68fa6a1f89e8a5486cfd5' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production',
-          voice: {
-            url: "https://runtime-api.voiceflow.com"
-          },
-          render: {
-            mode: 'embedded',
-            target: document.getElementById(...)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Auto | DATACAR Asesor Inteligente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ajustes específicos para el contenedor del bot */
+        #voiceflow-container {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <header class="bg-blue-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tight">DATACAR</h1>
+                <p class="text-sm text-blue-200 mt-1">Consultoría Automotriz Premium en Paraguay</p>
+            </div>
+            <nav class="hidden md:block">
+                <a href="#" class="px-4 py-2 hover:text-blue-300 transition">Inicio</a>
+                <a href="#" class="px-4 py-2 hover:text-blue-300 transition">Catálogo</a>
+                <a href="#" class="px-4 py-2 bg-blue-700 rounded-lg hover:bg-blue-600 transition font-semibold">Hablar con Asesor</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Encontrá tu próximo vehículo hoy</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Nuestro Asesor con Inteligencia Artificial está conectado a nuestro inventario en tiempo real. Contale tu presupuesto o el tipo de vehículo que buscas en Asunción.</p>
+        </div>
+
+        <div id="voiceflow-container" class="bg-white border border-gray-200">
+            </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <h3 class="text-xl font-bold">DATACAR</h3>
+                <p class="text-gray-400 text-sm mt-2">© 2026 Todos los derechos reservados.</p>
+                <p class="text-gray-400 text-sm">Asunción, Paraguay.</p>
+            </div>
+            <div class="flex space-x-6 text-sm text-gray-400">
+                <a href="#" class="hover:text-white transition">Términos y Condiciones</a>
+                <a href="#" class="hover:text-white transition">Política de Privacidad</a>
+                <a href="#" class="hover:text-white transition">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: '69c68fa6a1f89e8a5486cfd5' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production',
+              voice: {
+                url: "https://runtime-api.voiceflow.com"
+              },
+              render: {
+                mode: 'embedded',
+                target: document.getElementById('voiceflow-container') // <-- CORRECCIÓN APLICADA AQUÍ
+              }
+            });
           }
-        });
-      }
-      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-  })(document, 'script');
-</script>
+          v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+</body>
+</html>
