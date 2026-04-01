@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Auto | DATACAR Asesor Inteligente</title>
+    <title>DATACAR | Asesoría Automotriz</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,62 +23,71 @@
                     fontFamily: {
                         'montserrat': ['Montserrat', 'sans-serif'],
                         'inter': ['Inter', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'car-tracking': '1px',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Contenedor del bot */
+        /* Contenedor del bot estilizado como una terminal premium */
         #voiceflow-container {
             width: 100%;
-            max-width: 800px;
-            height: 600px;
-            margin: 0 auto;
-            border-radius: 8px;
+            height: 650px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 51, 160, 0.15); /* Sombra basada en Authority Blue */
-            border: 1px solid #C0C0C0;
+            box-shadow: 0 20px 40px rgba(0, 51, 160, 0.08);
+            border: 1px solid #E5E7EB;
+            background-color: #FFFFFF;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-data-charcoal font-inter flex flex-col min-h-screen">
+<body class="bg-gray-50 text-data-charcoal font-inter min-h-screen flex flex-col">
 
-    <header class="bg-authority-blue shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             
-            <div>
-                <span class="font-montserrat font-black text-white text-3xl">DATA</span><span class="font-montserrat font-light text-silver-light text-3xl tracking-wide">CAR</span>
-                <p class="text-xs text-silver-light mt-1 font-inter">Consultoría Automotriz Premium</p>
+            <div class="flex items-center">
+                <span class="font-montserrat font-black text-authority-blue text-3xl">DATA</span><span class="font-montserrat font-light text-data-charcoal text-3xl tracking-car-tracking">CAR</span>
             </div>
             
-            <nav class="hidden md:block">
-                <a href="#" class="px-4 py-2 text-white hover:text-digital-cyan transition font-inter font-medium">Inicio</a>
-                <a href="#" class="px-4 py-2 text-white hover:text-digital-cyan transition font-inter font-medium">Catálogo</a>
-                <a href="#" class="ml-4 px-5 py-2.5 bg-digital-cyan text-white rounded font-inter font-bold hover:opacity-90 transition shadow-lg">Hablar con Asesor</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-data-charcoal hover:text-authority-blue transition font-medium text-sm">Metodología</a>
+                <a href="#" class="text-data-charcoal hover:text-authority-blue transition font-medium text-sm">Inventario Local</a>
+                <a href="#" class="px-6 py-2.5 bg-digital-cyan text-white rounded font-bold text-sm hover:opacity-90 transition shadow-md">Contacto Comercial</a>
             </nav>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-        <div class="text-center mb-10">
-            <h2 class="text-4xl font-montserrat font-black text-authority-blue mb-4 uppercase">Encontrá tu próximo vehículo hoy</h2>
-            <p class="text-lg text-data-charcoal max-w-2xl mx-auto font-inter">Nuestro Asesor Inteligente está conectado al inventario local en tiempo real. Contale tu presupuesto o el tipo de vehículo que buscas en Asunción.</p>
-        </div>
-
-        <div id="voiceflow-container" class="bg-white">
+    <main class="flex-grow flex items-center">
+        <div class="max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="pr-0 lg:pr-10">
+                <p class="text-digital-cyan font-bold tracking-widest uppercase text-xs mb-4 font-inter">Asesor Inteligente 24/7</p>
+                <h1 class="text-5xl md:text-6xl font-montserrat font-black text-authority-blue leading-tight mb-6 uppercase">
+                    Gestionamos<br>tu próxima<br>inversión.
+                </h1>
+                <p class="text-lg text-data-charcoal mb-8 font-inter leading-relaxed">
+                    Eliminamos la fricción del mercado paraguayo. Nuestro sistema cruza tus necesidades operativas con la base de datos de vehículos en tiempo real para recomendarte la decisión financiera correcta.
+                </p>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-1 bg-authority-blue"></div>
+                    <p class="text-sm font-bold text-data-charcoal uppercase tracking-wider">Inicia tu consulta a la derecha</p>
+                </div>
             </div>
+
+            <div class="relative w-full">
+                <div class="absolute -inset-1 bg-gradient-to-r from-authority-blue to-digital-cyan opacity-20 blur rounded-2xl"></div>
+                
+                <div id="voiceflow-container" class="relative">
+                    </div>
+            </div>
+
+        </div>
     </main>
-
-    <footer class="bg-data-charcoal text-white py-8 mt-auto border-t-4 border-digital-cyan">
-        <div class="max-w-7xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="font-montserrat font-black text-white text-xl">DATA</span><span class="font-montserrat font-light text-silver-light text-xl tracking-wide">CAR</span>
-                <p class="text-silver-light text-sm mt-2 font-inter">© 2026 Todos los derechos reservados.</p>
-                <p class="text-silver-light text-sm font-inter">Asunción, Paraguay.</p>
-            </div>
-        </div>
-    </footer>
 
     <script type="text/javascript">
       (function(d, t) {
