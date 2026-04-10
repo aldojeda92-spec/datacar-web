@@ -113,6 +113,40 @@
     <script is:inline>
         const URL_GOOGLE_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyfwObQ6J1jGycoeHlr_edfLLvz85rfKMKNJ3MmxShzDN2orGeUgwoDTOwJPzh9k5z3lINmxXjX_hG/pub?output=csv";
 
+        // MÓDULO: Compartir Nativo (Celulares)
+        async function compartirNativo(marca, modelo, precio, imagenUrl, codigo) {
+            const link = "https://www.datacarpy.com/catalogo"; 
+            const texto = `¡Mirá esta unidad en Datacar!\n🚘 ${marca} ${modelo}\n📍 REF: ${codigo}\n💵 ${precio}\n\nConocé más en: ${link}`;
+
+            if (!navigator.share) {
+                alert("Tu navegador o dispositivo no soporta la función de compartir nativa. Podés copiar el enlace de la web.");
+                return;
+            }
+
+            try {
+                const shareData = { title: `${marca} ${modelo}`, text: texto };
+
+                // Intentamos descargar la imagen en vivo para adjuntarla como archivo (necesario para Estados de WhatsApp)
+                try {
+                    const response = await fetch(imagenUrl, { mode: 'cors' });
+                    const blob = await response.blob();
+                    const file = new File([blob], `datacar-${codigo}.jpg`, { type: blob.type });
+
+                    // Verificamos si el celular permite compartir este tipo de archivo
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        shareData.files = [file];
+                    }
+                } catch (e) {
+                    console.warn("CORS bloqueó la descarga de la imagen. Se compartirá solo el texto y el link.", e);
+                }
+
+                // Disparamos el menú nativo del celular
+                await navigator.share(shareData);
+            } catch (error) {
+                console.error("Error al ejecutar el menú de compartir:", error);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('grid-vehiculos');
             const loader = document.getElementById('loader');
@@ -128,7 +162,7 @@
                     download: true,
                     header: true,
                     complete: function(results) {
-                        // AQUÍ ESTÁ EL CAMBIO: Se agregó .reverse() al final
+                        // El reverso para ordenar los últimos ingresos primero
                         vehiculosData = results.data.filter(auto => auto.codigo && auto.marca).reverse();
                         loader.style.display = 'none';
                         dibujarTarjetas();
@@ -176,7 +210,7 @@
 
                         const transmisionMostrar = auto.transmision ? auto.transmision : 'N/D';
 
-                        // MÓDULO: Bloque de Más Info (Solo se renderiza si hay texto en la columna "descripcion")
+                        // MÓDULO: Bloque de Más Info
                         let htmlMasInfo = '';
                         if (auto.descripcion && auto.descripcion.trim() !== '') {
                             htmlMasInfo = `
@@ -190,9 +224,6 @@
                                 </div>
                             `;
                         }
-
-                        // MÓDULO: Texto pre-armado para el botón Compartir
-                        const textoCompartir = encodeURIComponent(`¡Mirá esta unidad en Datacar!\n\n🚘 ${auto.marca} ${auto.modelo} (${auto.ano})\n⚙️ Transmisión: ${transmisionMostrar}\n📍 REF: ${auto.codigo}\n💵 ${auto.precio}\n\nConocé más en: https://www.datacarpy.com/catalogo`);
 
                         const cardHTML = `
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-shadow duration-300">
@@ -232,9 +263,9 @@
                                         <span class="text-xl md:text-2xl font-[900] text-[#0A1F33]" style="font-family: 'Montserrat', sans-serif;">${auto.precio}</span>
                                         
                                         <div class="flex items-center gap-2">
-                                            <a href="https://wa.me/?text=${textoCompartir}" target="_blank" class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-lg transition-colors flex items-center justify-center" title="Compartir por WhatsApp">
+                                            <button onclick="compartirNativo('${auto.marca}', '${auto.modelo}', '${auto.precio}', '${auto.imagen}', '${auto.codigo}')" class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-lg transition-colors flex items-center justify-center" title="Compartir en redes">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                            </a>
+                                            </button>
                                             <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20estoy%20interesado%20en%20el%20veh%C3%ADculo%20[REF:%20${auto.codigo}]%20-%20${auto.marca}%20${auto.modelo}" target="_blank" class="bg-[#00BFFF] hover:bg-[#0099CC] text-[#0A1F33] font-bold py-2 px-4 rounded-lg transition-colors text-sm">
                                                 Me interesa
                                             </a>
