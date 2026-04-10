@@ -128,7 +128,8 @@
                     download: true,
                     header: true,
                     complete: function(results) {
-                        vehiculosData = results.data.filter(auto => auto.codigo && auto.marca);
+                        // AQUÍ ESTÁ EL CAMBIO: Se agregó .reverse() al final
+                        vehiculosData = results.data.filter(auto => auto.codigo && auto.marca).reverse();
                         loader.style.display = 'none';
                         dibujarTarjetas();
                     },
