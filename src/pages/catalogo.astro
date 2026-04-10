@@ -115,9 +115,9 @@
 
         // MÓDULO: Fusión Dinámica y Compartir Nativo OMNICANAL
         async function compartirConMarco(marca, modelo, precio, imagenUrl, codigo) {
-            const numDatacar = "595 991 244469";
+            const numDatacar = "0991244469";
             const link = "https://www.datacarpy.com/catalogo";
-            const texto = `¡Mirá esta unidad en Datacar!\n🚘 ${marca} ${modelo}\n📍 REF: ${codigo}\n💵 ${precio}\n📞 Datacar EAS: ${numDatacar}\n\nConocé más en: ${link}`;
+            const texto = `¡Mirá esta unidad en Datacar!\n🚘 ${marca} ${modelo}\n📍 REF: ${codigo}\n💵 ${precio}\n📞 Datacar: ${numDatacar}\n\nConocé más en: ${link}`;
 
             if (!navigator.share) {
                 alert("Tu navegador o dispositivo no soporta la función de compartir nativa. Podés copiar el enlace de la web.");
@@ -156,7 +156,7 @@
                 ctx.fillStyle = "rgba(10, 31, 51, 0.85)"; // Fondo azul datacar con transparencia
                 ctx.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
 
-                // Configuración global de texto ( Montserrat/Inter recreadas)
+                // Configuración global de texto
                 ctx.shadowColor = "rgba(0, 0, 0, 0.5)"; // Sombra para legibilidad extra
                 ctx.shadowBlur = 8;
                 ctx.textBaseline = "middle";
@@ -170,11 +170,11 @@
                 ctx.textAlign = "left";
                 ctx.fillText("DATA", margin, logoY);
 
-                // CAR EAS
+                // CAR
                 const dataWidth = ctx.measureText("DATA").width;
                 ctx.font = `300 ${fontSize * 1.5}px Montserrat, sans-serif`;
                 ctx.fillStyle = "#C0C0C0"; // Plateado claro
-                ctx.fillText("CAR EAS", margin + dataWidth + (fontSize * 0.2), logoY);
+                ctx.fillText("CAR", margin + dataWidth + (fontSize * 0.2), logoY);
 
                 // --- ESTAMPAR NÚMERO DE DATACAR (Inf. Derecha) ---
                 ctx.font = `bold ${fontSize}px Inter, sans-serif`;
