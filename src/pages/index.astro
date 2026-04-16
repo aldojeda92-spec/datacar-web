@@ -118,6 +118,7 @@
                     <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-6" style="font-family: 'Montserrat', sans-serif;">El modelo tradicional está roto</h2>
                     <p class="text-lg text-[#3A3A3C] max-w-2xl mx-auto font-light">¿Cansado de visitar concesionarias, escuchar promesas vacías y recibir llamadas insistentes?</p>
                 </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 hover:shadow-xl transition duration-300 group">
                         <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300"><svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
@@ -152,7 +153,7 @@
                             <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#00BFFF] flex items-center justify-center mt-1 mr-4">
                                 <svg class="w-3 h-3 text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <span class="text-[#3A3A3C]"><strong>Asesoría 100% Gratuita</strong></span>
+                            <span class="text-[#3A3A3C]"><strong>Asesoría 100% Gratuita</strong> </span>
                         </li>
                         <li class="flex items-start">
                             <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#00BFFF] flex items-center justify-center mt-1 mr-4">
@@ -161,6 +162,10 @@
                             <span class="text-[#3A3A3C]"><strong>Negociación Experta</strong> y descuentos</span>
                         </li>
                     </ul>
+                    <a href="/nosotros" class="inline-flex items-center gap-2 text-[#00BFFF] font-bold hover:text-[#0A1F33] transition-colors border-b-2 border-[#00BFFF] hover:border-[#0A1F33] pb-1">
+                        Conocé nuestra historia y trayectoria
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
                 </div>
                 <div class="w-full md:w-1/2 order-1 md:order-2">
                     <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative border border-gray-200">
@@ -281,23 +286,34 @@
         </section>
 
         <section id="contacto" class="py-24 bg-[#0A1F33] text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5 bg-[url('/logo-white.png')] bg-repeat space-x-4 space-y-4 transform -rotate-12 scale-150 pointer-events-none"></div>
+
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 class="text-3xl md:text-5xl font-[900] mb-6" style="font-family: 'Montserrat', sans-serif;">¿Listo para comprar inteligente?</h2>
+                <p class="text-xl text-gray-300 mb-12 font-light">
+                    Completá este breve formulario para conocer tus necesidades exactas.
+                </p>
+                
                 <div class="bg-white rounded-3xl p-2 md:p-4 max-w-2xl mx-auto shadow-2xl overflow-hidden min-h-[500px]">
                     <div data-tf-live="01KK22DB3E8S91PJ7GF28ZH3P2"></div>
                     <script is:inline src="//embed.typeform.com/next/embed.js"></script>
                 </div>
+                
+                <p class="text-xs text-gray-400 mt-6 text-center">
+                    Tus datos están protegidos y encriptados. Conoce cómo gestionamos tu información en el 
+                    <a href="/legal" target="_blank" class="text-[#00BFFF] font-bold hover:underline">Aviso Legal de DATACAR EAS</a>.
+                </p>
             </div>
         </section>
 
-    <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
-        <div class="flex items-center justify-center mb-6" style="font-family: 'Montserrat', sans-serif;">
-            <span class="text-2xl font-[900] text-white leading-none opacity-70 hover:opacity-100 transition">DATA</span>
-            <span class="text-2xl font-[300] text-[#C0C0C0] leading-none tracking-[1px] opacity-70 hover:opacity-100 transition">CAR</span>
-        </div>
-        <p class="font-light text-sm mb-6" style="font-family: 'Inter', sans-serif;">Gestión de inversiones automotrices</p>
-        <p class="text-xs opacity-40" style="font-family: 'Inter', sans-serif;">© 2024 DATACAR EAS.</p>
-    </footer>
+        <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
+            <div class="flex items-center justify-center mb-6" style="font-family: 'Montserrat', sans-serif;">
+                <span class="text-2xl font-[900] text-white leading-none opacity-70 hover:opacity-100 transition">DATA</span>
+                <span class="text-2xl font-[300] text-[#C0C0C0] leading-none tracking-[1px] opacity-70 hover:opacity-100 transition">CAR</span>
+            </div>
+            <p class="font-light text-sm mb-6" style="font-family: 'Inter', sans-serif;">Gestión de inversiones automotrices</p>
+            <p class="text-xs opacity-40" style="font-family: 'Inter', sans-serif;">© 2024 DATACAR EAS.</p>
+        </footer>
 
         <script is:inline>
             const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
@@ -313,38 +329,49 @@
                 const loaderText = document.getElementById('loader-text');
                 const ui = document.getElementById('comparador-ui');
 
-                // Función maestra para detener la carga si hay un error
                 function mostrarError(mensaje) {
-                    loaderText.innerHTML = mensaje;
-                    loaderText.classList.replace("text-[#0A1F33]", "text-red-500");
-                    const spinner = loader.querySelector('.animate-spin');
-                    if(spinner) spinner.style.display = 'none'; // Frena la ruedita
+                    if(loaderText) {
+                        loaderText.innerHTML = mensaje;
+                        loaderText.classList.replace("text-[#0A1F33]", "text-red-500");
+                    }
+                    const spinner = loader ? loader.querySelector('.animate-spin') : null;
+                    if(spinner) spinner.style.display = 'none'; 
                 }
 
-                Papa.parse(URL_CSV, {
-                    download: true,
-                    header: true,
-                    skipEmptyLines: true,
-                    complete: function(results) {
-                        try {
-                            bdAutosOriginal = results.data.filter(car => car['Marca'] && car['Marca'].trim() !== "");
-                            if (bdAutosOriginal.length === 0) throw new Error("Excel vacío o columnas no coinciden");
+                fetch(URL_CSV)
+                    .then(respuesta => {
+                        if (!respuesta.ok) throw new Error("Google Sheets bloqueó la conexión.");
+                        return respuesta.text();
+                    })
+                    .then(textoCSV => {
+                        Papa.parse(textoCSV, {
+                            header: true,
+                            skipEmptyLines: true,
+                            transformHeader: function(h) { return h.trim(); }, 
+                            complete: function(results) {
+                                try {
+                                    bdAutosOriginal = results.data.filter(car => car['Marca'] && car['Marca'].trim() !== "");
+                                    
+                                    if (bdAutosOriginal.length === 0) {
+                                        throw new Error("El Excel está vacío o la columna principal no se llama exactamente 'Marca'.");
+                                    }
 
-                            cargarFiltroCarroceria();
-                            aplicarFiltrosGlobales();
-                            
-                            loader.classList.add('hidden');
-                            ui.classList.remove('hidden');
-                        } catch (error) {
-                            console.error("Detalle del error:", error);
-                            mostrarError("⚠️ Error leyendo datos. Verificá que la columna se llame 'Marca'.");
-                        }
-                    },
-                    error: function(err) {
-                        console.error("Error de descarga:", err);
-                        mostrarError("⚠️ Error de conexión con Google Sheets. Actualizá la página.");
-                    }
-                });
+                                    cargarFiltroCarroceria();
+                                    aplicarFiltrosGlobales();
+                                    
+                                    loader.classList.add('hidden');
+                                    ui.classList.remove('hidden');
+                                } catch (error) {
+                                    console.error("Detalle del error:", error);
+                                    mostrarError("⚠️ " + error.message);
+                                }
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error de Red:", error);
+                        mostrarError("⚠️ Error de red. Verificá que el enlace sea el de 'Publicar en la web' y no el privado.");
+                    });
             });
 
             function cargarFiltroCarroceria() {
@@ -385,13 +412,15 @@
 
             function resetComparadorResultados() {
                 [1, 2].forEach(col => {
-                    document.getElementById(`modelo${col}`).innerHTML = '<option value="">Modelo</option>';
-                    document.getElementById(`version${col}`).innerHTML = '<option value="">Versión</option>';
-                    document.getElementById(`modelo${col}`).disabled = true;
-                    document.getElementById(`version${col}`).disabled = true;
-                    document.getElementById(`resultado${col}`).classList.add('hidden');
+                    const selectMod = document.getElementById(`modelo${col}`);
+                    const selectVer = document.getElementById(`version${col}`);
+                    if(selectMod) { selectMod.innerHTML = '<option value="">Modelo</option>'; selectMod.disabled = true; }
+                    if(selectVer) { selectVer.innerHTML = '<option value="">Versión</option>'; selectVer.disabled = true; }
+                    const res = document.getElementById(`resultado${col}`);
+                    if(res) res.classList.add('hidden');
                 });
-                document.getElementById('veredicto-box').classList.add('hidden');
+                const box = document.getElementById('veredicto-box');
+                if(box) box.classList.add('hidden');
                 autoA = null;
                 autoB = null;
             }
@@ -413,8 +442,10 @@
                 const marcas = Object.keys(arbolFiltros).sort();
                 const selects = [document.getElementById('marca1'), document.getElementById('marca2')];
                 selects.forEach(s => {
-                    s.innerHTML = '<option value="">Seleccionar Marca</option>';
-                    marcas.forEach(m => s.add(new Option(m, m)));
+                    if(s) {
+                        s.innerHTML = '<option value="">Seleccionar Marca</option>';
+                        marcas.forEach(m => s.add(new Option(m, m)));
+                    }
                 });
             }
 
@@ -422,12 +453,13 @@
                 const marca = document.getElementById(`marca${col}`).value;
                 const selectMod = document.getElementById(`modelo${col}`);
                 const selectVer = document.getElementById(`version${col}`);
+                const res = document.getElementById(`resultado${col}`);
                 
                 selectMod.innerHTML = '<option value="">Modelo</option>';
                 selectVer.innerHTML = '<option value="">Versión</option>';
                 selectMod.disabled = true;
                 selectVer.disabled = true;
-                document.getElementById(`resultado${col}`).classList.add('hidden');
+                if(res) res.classList.add('hidden');
                 document.getElementById('veredicto-box').classList.add('hidden');
 
                 if (marca && arbolFiltros[marca]) {
@@ -441,10 +473,11 @@
                 const marca = document.getElementById(`marca${col}`).value;
                 const modelo = document.getElementById(`modelo${col}`).value;
                 const selectVer = document.getElementById(`version${col}`);
+                const res = document.getElementById(`resultado${col}`);
                 
                 selectVer.innerHTML = '<option value="">Versión</option>';
                 selectVer.disabled = true;
-                document.getElementById(`resultado${col}`).classList.add('hidden');
+                if(res) res.classList.add('hidden');
                 document.getElementById('veredicto-box').classList.add('hidden');
 
                 if (modelo && arbolFiltros[marca][modelo]) {
