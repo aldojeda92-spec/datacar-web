@@ -4,34 +4,18 @@
 
 <html lang="es">
 	<head>
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-52KCG6F3');</script>
+        
         <meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
-        <meta name="description" content="Comprá tu próximo auto 0km o usado en Paraguay al mejor precio. Negociamos por vos y te ahorramos tiempo y dinero. Asesoría 100% gratuita." />
-		
-        <title>Comprar autos 0km y Usados en Paraguay | Asesoría Datacar</title>
+        <meta name="description" content="Comprá tu próximo auto 0km o usado en Paraguay al mejor precio. Negociamos por vos." />
+		<title>Comprar autos 0km y Usados en Paraguay | Asesoría Datacar</title>
         
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "AutoDealer",
-          "name": "Datacar",
-          "description": "Consultoría y Asesoría Automotriz para la compra de vehículos 0km y usados en Paraguay.",
-          "url": "https://datacarpy.com",
-          "telephone": "+595991244469",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Asunción",
-            "addressCountry": "PY"
-          }
-        }
-        </script>
-
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
@@ -44,7 +28,6 @@
             .data-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; font-weight: 800; margin-bottom: 4px; }
             .data-value { font-size: 0.95rem; color: #3A3A3C; font-weight: 500; line-height: 1.4; }
             optgroup { font-weight: 800; color: #0A1F33; background-color: #f3f4f6; }
-            option { font-weight: 500; color: #3A3A3C; background-color: white; }
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
 	</head>
@@ -54,108 +37,71 @@
         
         <nav class="absolute top-0 w-full z-50 py-6 px-4">
 			<div class="max-w-7xl mx-auto flex justify-between items-center">
-                <a href="/" class="flex items-center group" style="font-family: 'Montserrat', sans-serif;">
+                <a href="/" class="flex items-center group">
                     <span class="text-2xl md:text-3xl font-[900] text-white leading-none">DATA</span>
                     <span class="text-2xl md:text-3xl font-[300] text-[#C0C0C0] leading-none tracking-[1px]">CAR</span>
                 </a>
 				<div class="hidden md:flex space-x-8 items-center text-white">
-					<a href="/servicios" class="hover:text-[#00BFFF] transition text-sm font-medium tracking-wide">SERVICIOS</a>
-					<a href="/nosotros" class="hover:text-[#00BFFF] transition text-sm font-medium tracking-wide">NOSOTROS</a>
-                    <a href="/catalogo" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'view_catalog', 'location': 'nav'});" class="hover:text-[#00BFFF] transition text-sm font-medium tracking-wide">CATÁLOGO</a>
-                    <a href="#comparador" class="hover:text-[#00BFFF] transition text-sm font-medium tracking-wide">COMPARADOR</a>
-                    <a href="#contacto" class="border-2 border-white px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-[#0A1F33] transition tracking-widest">AGENDAR</a>
+					<a href="/servicios" class="hover:text-[#00BFFF] transition text-sm font-medium">SERVICIOS</a>
+                    <a href="/catalogo" class="hover:text-[#00BFFF] transition text-sm font-medium">CATÁLOGO</a>
+                    <a href="#comparador" class="hover:text-[#00BFFF] transition text-sm font-medium">COMPARADOR</a>
+                    <a href="#contacto" class="border-2 border-white px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-[#0A1F33] transition">AGENDAR</a>
 				</div>
-                <a href="#contacto" class="md:hidden text-white font-bold border-2 border-white px-4 py-2 rounded-full text-xs tracking-widest">MENU</a>
 			</div>
 		</nav>
 
-		<section class="relative bg-[#0A1F33] text-white overflow-hidden min-h-screen flex items-center">
+        <section class="relative bg-[#0A1F33] text-white min-h-screen flex items-center">
             <div class="absolute inset-0 z-0">
-                <img src="/hero-image.webp" alt="Asesoría automotriz Datacar" class="w-full h-full object-cover opacity-40" onerror="this.src='/hero-image.jpg'" loading="eager" />
-                <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/90 via-[#0A1F33]/70 to-[#0A1F33]"></div>
+                <img src="/hero-image.webp" class="w-full h-full object-cover opacity-40" onerror="this.src='/hero-image.jpg'" />
+                <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/90 to-[#0A1F33]"></div>
             </div>
-            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-16">
-                <span class="text-[#00BFFF] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 border border-[#00BFFF]/30 px-4 py-1 rounded-full bg-[#0A1F33]/50 backdrop-blur-sm">Consultoría Automotriz</span>
-                <h1 class="text-4xl md:text-6xl font-[900] tracking-tight mb-6 leading-tight drop-shadow-lg" style="font-family: 'Montserrat', sans-serif;">
-                    Encontramos y Negociamos tu Próximo Auto por Vos <span class="text-[#00BFFF]">(Y al Mejor Precio)</span>.
+            <div class="relative z-10 max-w-5xl mx-auto px-4 text-center mt-16">
+                <h1 class="text-4xl md:text-6xl font-[900] mb-6 leading-tight">
+                    Encontramos y Negociamos tu Próximo Auto por Vos.
                 </h1>
-                <p class="text-lg md:text-xl text-white/90 max-w-3xl mb-10 leading-relaxed font-light drop-shadow-md">
-                    Ya sea un 0km o un usado seguro. Olvidate de recorrer concesionarias o lidiar con vendedores. Nosotros hacemos el trabajo sucio.
+                <p class="text-lg md:text-xl text-white/90 mb-10 font-light">
+                    Olvidate de recorrer concesionarias. Nosotros hacemos el trabajo sucio.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
-                    <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20hablar%20con%20un%20asesor." 
-                       target="_blank"
-                       onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'hero_primary'});"
-                       class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl text-lg transition duration-300 shadow-[0_0_30px_rgba(0,191,255,0.4)] text-center w-full sm:w-auto uppercase tracking-wide">
-                        Hablar con un Asesor
-                    </a>
-                    <a href="/catalogo" class="border-2 border-white/50 hover:border-white hover:bg-white/10 text-white font-[700] py-4 px-10 rounded-xl text-lg transition duration-300 text-center w-full sm:w-auto backdrop-blur-sm">
-                        Ver Catálogo
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="como-funciona" class="py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-6" style="font-family: 'Montserrat', sans-serif;">El modelo tradicional está roto</h2>
-                    <p class="text-lg text-[#3A3A3C] max-w-2xl mx-auto font-light">¿Cansado de visitar concesionarias, escuchar promesas vacías y recibir llamadas insistentes?</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 group">
-                        <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors"><svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
-                        <h3 class="text-xl font-[900] text-[#0A1F33] mb-4">Conflicto de Interés</h3>
-                        <p class="text-[#3A3A3C] text-sm leading-relaxed">El vendedor trabaja para la concesionaria, <strong>nosotros trabajamos para vos</strong>.</p>
-                    </div>
-                    <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 group">
-                        <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors"><svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div>
-                        <h3 class="text-xl font-[900] text-[#0A1F33] mb-4">Costos Ocultos</h3>
-                        <p class="text-[#3A3A3C] text-sm leading-relaxed">Te desglosamos el <strong>costo real</strong> antes de que firmes nada. Sin sorpresas.</p>
-                    </div>
-                    <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 group">
-                        <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors"><svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
-                        <h3 class="text-xl font-[900] text-[#0A1F33] mb-4">Tu tiempo vale oro</h3>
-                        <p class="text-[#3A3A3C] text-sm leading-relaxed">Olvidate de repetir lo mismo a 10 vendedores. <strong>Centralizá todo</strong> con un asesor.</p>
-                    </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20hablar%20con%20un%20asesor." class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl text-lg uppercase tracking-wide shadow-xl">Hablar con un Asesor</a>
+                    <a href="/catalogo" class="border-2 border-white/50 text-white font-[700] py-4 px-10 rounded-xl text-lg backdrop-blur-sm">Ver Catálogo</a>
                 </div>
             </div>
         </section>
 
         <section id="comparador" class="py-24 bg-[#F5F7FA] border-y border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-6 uppercase">Comparador Técnico</h2>
-                    <p class="text-lg text-[#3A3A3C] max-w-2xl mx-auto font-light">Filtros inteligentes por carrocería, motorización y presupuesto.</p>
+                    <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-4 uppercase">Comparador Técnico</h2>
+                    <p class="text-gray-600">Filtra y enfrenta dos unidades de nuestra base de datos.</p>
                 </div>
 
                 <div id="loader" class="text-center py-10">
-                    <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#00BFFF]"></div>
-                    <p class="mt-4 text-[#0A1F33] font-bold uppercase tracking-widest text-sm" id="loader-text">Conectando Inventario...</p>
+                    <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-[#00BFFF]"></div>
+                    <p class="mt-4 text-[#0A1F33] font-bold text-sm" id="loader-text">Cargando inventario...</p>
                 </div>
 
                 <div id="comparador-ui" class="hidden">
                     <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-10">
-                        <h3 class="text-sm font-black text-[#0A1F33] uppercase tracking-[0.1em] mb-4">Paso 1: Parámetros Generales</h3>
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 mb-2 uppercase">Carrocería</label>
-                                <select id="filtroTipo" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] p-3 outline-none font-bold">
-                                    <option value="Todos">Todas las carrocerías</option>
+                                <select id="filtroTipo" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold outline-none">
+                                    <option value="Todos">Todos los formatos</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 mb-2 uppercase">Motorización</label>
-                                <select id="filtroCombustible" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] p-3 outline-none font-bold">
+                                <select id="filtroCombustible" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold outline-none">
                                     <option value="Todos">Cualquier Motor</option>
-                                    <option value="Tradicional">Combustión (Nafta/Diésel)</option>
-                                    <option value="Hibridos">Híbridos (HEV/MHEV/PHEV)</option>
-                                    <option value="Electrico">100% Eléctricos (EV)</option>
+                                    <option value="Tradicional">Combustión</option>
+                                    <option value="Hibridos">Híbridos</option>
+                                    <option value="Electrico">Eléctricos</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-gray-500 mb-2 uppercase">Presupuesto</label>
-                                <select id="filtroPrecio" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] p-3 outline-none font-bold">
+                                <label class="block text-xs font-bold text-gray-500 mb-2 uppercase">Presupuesto Máximo</label>
+                                <select id="filtroPrecio" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold outline-none">
                                     <option value="Todos">Sin límite</option>
                                     <option value="15000">Hasta US$ 15.000</option>
                                     <option value="25000">Hasta US$ 25.000</option>
@@ -164,107 +110,74 @@
                                     <option value="80000">Hasta US$ 80.000</option>
                                 </select>
                             </div>
-                            <div class="md:text-right">
-                                <button id="btnLimpiar" class="text-[#00BFFF] font-bold hover:text-[#0A1F33] underline text-sm pb-3 w-full md:w-auto">Limpiar filtros</button>
-                            </div>
+                            <button id="btnLimpiar" class="text-[#00BFFF] font-bold underline text-sm pb-3">Limpiar filtros</button>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="flex flex-col shadow-lg rounded-2xl bg-white border border-gray-200">
-                            <div class="bg-gray-50 rounded-t-2xl p-6 border-b border-gray-200">
-                                <h3 class="text-xs font-black text-[#9ca3af] uppercase tracking-[0.2em] mb-4">Opción A</h3>
-                                <div class="space-y-4">
-                                    <select id="marca1" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold"><option value="">Seleccionar Marca</option></select>
-                                    <select id="modelo1" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Modelo</option></select>
-                                    <select id="version1" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Versión</option></select>
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                            <div class="bg-gray-50 p-6 border-b">
+                                <div class="space-y-3">
+                                    <select id="marca1" class="w-full border p-3 rounded-xl font-bold"><option value="">Marca</option></select>
+                                    <select id="modelo1" disabled class="w-full border p-3 rounded-xl"><option value="">Modelo</option></select>
+                                    <select id="version1" disabled class="w-full border p-3 rounded-xl"><option value="">Versión</option></select>
                                 </div>
                             </div>
-                            <div id="resultado1" class="hidden p-8 flex-grow">
-                                <div class="h-48 mb-6 relative"><img id="img1" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
-                                <h4 id="nombre1" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6"></h4>
-                                <div class="data-row"><span class="data-label">Precio Contado</span><span id="precio1" class="data-value font-[900] text-2xl text-[#00BFFF]"></span></div>
-                                <div class="data-row"><span class="data-label">Mecánica</span><span id="mecanica1" class="data-value text-sm"></span></div>
-                                <div class="data-row"><span class="data-label">Seguridad</span><span id="seguridad1" class="data-value text-sm"></span></div>
-                                <div class="data-row border-none"><span class="data-label">Garantía</span><span id="origenGarantia1" class="data-value text-sm"></span></div>
-                                <a id="cta1" href="#" target="_blank" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'comparador_a'});" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
+                            <div id="resultado1" class="hidden p-8">
+                                <img id="img1" src="" class="h-40 w-full object-contain mb-6" />
+                                <h4 id="nombre1" class="text-xl font-black mb-4"></h4>
+                                <div class="data-row"><span class="data-label">Precio</span><span id="precio1" class="data-value text-[#00BFFF] font-black text-xl"></span></div>
+                                <div class="data-row"><span class="data-label">Motor</span><span id="mecanica1" class="data-value"></span></div>
+                                <div class="data-row border-none"><span class="data-label">Garantía</span><span id="garantia1" class="data-value"></span></div>
+                                <a id="cta1" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-4 rounded-xl mt-6 font-bold uppercase text-xs">Elegir este Auto</a>
                             </div>
                         </div>
-
-                        <div class="flex flex-col shadow-lg rounded-2xl bg-white border border-gray-200">
-                            <div class="bg-gray-50 rounded-t-2xl p-6 border-b border-gray-200">
-                                <h3 class="text-xs font-black text-[#9ca3af] uppercase tracking-[0.2em] mb-4">Opción B</h3>
-                                <div class="space-y-4">
-                                    <select id="marca2" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold"><option value="">Seleccionar Marca</option></select>
-                                    <select id="modelo2" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Modelo</option></select>
-                                    <select id="version2" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Versión</option></select>
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                            <div class="bg-gray-50 p-6 border-b">
+                                <div class="space-y-3">
+                                    <select id="marca2" class="w-full border p-3 rounded-xl font-bold"><option value="">Marca</option></select>
+                                    <select id="modelo2" disabled class="w-full border p-3 rounded-xl"><option value="">Modelo</option></select>
+                                    <select id="version2" disabled class="w-full border p-3 rounded-xl"><option value="">Versión</option></select>
                                 </div>
                             </div>
-                            <div id="resultado2" class="hidden p-8 flex-grow">
-                                <div class="h-48 mb-6 relative"><img id="img2" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
-                                <h4 id="nombre2" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6"></h4>
-                                <div class="data-row"><span class="data-label">Precio Contado</span><span id="precio2" class="data-value font-[900] text-2xl text-[#00BFFF]"></span></div>
-                                <div class="data-row"><span class="data-label">Mecánica</span><span id="mecanica2" class="data-value text-sm"></span></div>
-                                <div class="data-row"><span class="data-label">Seguridad</span><span id="seguridad2" class="data-value text-sm"></span></div>
-                                <div class="data-row border-none"><span class="data-label">Garantía</span><span id="origenGarantia2" class="data-value text-sm"></span></div>
-                                <a id="cta2" href="#" target="_blank" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'comparador_b'});" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
+                            <div id="resultado2" class="hidden p-8">
+                                <img id="img2" src="" class="h-40 w-full object-contain mb-6" />
+                                <h4 id="nombre2" class="text-xl font-black mb-4"></h4>
+                                <div class="data-row"><span class="data-label">Precio</span><span id="precio2" class="data-value text-[#00BFFF] font-black text-xl"></span></div>
+                                <div class="data-row"><span class="data-label">Motor</span><span id="mecanica2" class="data-value"></span></div>
+                                <div class="data-row border-none"><span class="data-label">Garantía</span><span id="garantia2" class="data-value"></span></div>
+                                <a id="cta2" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-4 rounded-xl mt-6 font-bold uppercase text-xs">Elegir este Auto</a>
                             </div>
                         </div>
                     </div>
-
-                    <div id="veredicto-box" class="mt-16 bg-[#0A1F33] rounded-3xl p-10 text-center text-white shadow-2xl hidden border-t-4 border-[#00BFFF]">
-                        <h4 class="text-sm font-black text-[#00BFFF] tracking-[0.3em] uppercase mb-4">Análisis Datacar</h4>
-                        <p id="veredicto-texto" class="text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto"></p>
+                    
+                    <div id="veredicto-box" class="hidden mt-10 bg-[#0A1F33] p-8 rounded-3xl text-white text-center border-t-4 border-[#00BFFF]">
+                        <p id="veredicto-texto" class="text-xl font-light italic"></p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="contacto" class="py-24 bg-[#0A1F33]">
-            <div class="max-w-4xl mx-auto px-4">
-                <div class="text-center mb-12 text-white">
-                    <h2 class="text-3xl md:text-5xl font-[900] mb-4 uppercase">¿Listo para tu próximo auto?</h2>
-                    <p class="text-xl text-gray-400">Completá tus datos y un asesor te contactará hoy mismo.</p>
-                </div>
-                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
-                    <form id="lead-form" class="space-y-6">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Nombre Completo</label>
-                            <input type="text" name="nombre" required placeholder="Ej: Juan Pérez" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-xl text-[#0A1F33] focus:ring-2 focus:ring-[#00BFFF] outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">WhatsApp</label>
-                            <input type="tel" name="whatsapp" required placeholder="+595" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-xl text-[#0A1F33] focus:ring-2 focus:ring-[#00BFFF] outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">¿En qué podemos ayudarte?</label>
-                            <select name="interes" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-xl text-[#0A1F33] font-medium outline-none">
-                                <option value="0km">Busco un 0km</option>
-                                <option value="usado">Busco un Usado Seguro</option>
-                                <option value="vender">Quiero vender mi auto</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Contanos un poco más</label>
-                            <textarea name="mensaje" placeholder="Presupuesto aproximado o modelos que tenés en mente..." rows="3" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-xl text-[#0A1F33] focus:ring-2 focus:ring-[#00BFFF] outline-none transition"></textarea>
-                        </div>
-
-                        <button type="submit" id="submit-btn" class="w-full bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-[900] py-5 rounded-xl uppercase tracking-wider text-lg shadow-xl transition-all">
-                            Enviar solicitud
-                        </button>
+            <div class="max-w-xl mx-auto px-4">
+                <div class="bg-white rounded-3xl p-8 shadow-2xl">
+                    <h3 class="text-2xl font-black text-center mb-6 text-[#0A1F33]">¿LO BUSCAMOS POR VOS?</h3>
+                    <form id="lead-form" class="space-y-4">
+                        <input type="text" name="nombre" required placeholder="Nombre Completo" class="w-full border p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#00BFFF]">
+                        <input type="tel" name="whatsapp" required placeholder="WhatsApp" class="w-full border p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#00BFFF]">
+                        <select name="interes" class="w-full border p-4 rounded-xl outline-none">
+                            <option value="0km">Busco un 0km</option>
+                            <option value="usado">Busco un Usado</option>
+                            <option value="vender">Vender mi auto</option>
+                        </select>
+                        <textarea name="mensaje" placeholder="Modelo o presupuesto..." class="w-full border p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#00BFFF]"></textarea>
+                        <button type="submit" id="submit-btn" class="w-full bg-[#00BFFF] text-[#0A1F33] font-black py-5 rounded-xl uppercase shadow-lg">Enviar Solicitud</button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
-            <p class="text-xs opacity-40 uppercase tracking-widest">© 2026 DATACAR EAS. Gestión de inversiones automotrices.</p>
-        </footer>
-
-        <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20necesito%20asesor%C3%ADa." 
-           target="_blank" 
-           class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center"
-           onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'sticky_widget'});">
+        <a href="https://wa.me/595991244469" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform">
             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         </a>
 
@@ -274,176 +187,162 @@
             const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTBqtK9wDzl10vc226zFwn4f-v-DVjKCfo9JVj3XCcepIcw41NQHchLrbDK6mz1zWgWg/exec';
 
-            let bdAutosOriginal = []; 
-            let bdAutos = []; 
-            let autoA = null, autoB = null;
-            let arbolFiltros = {};
-            let columnaAA = 'Tipo Carrocería'; 
+            let bdOriginal = [];
+            let bdFiltrada = [];
+            let colAA = 'Tipo Carrocería';
+            let auto1 = null, auto2 = null;
 
-            // Formulario directo a Excel
-            const form = document.getElementById('lead-form');
-            const btn = document.getElementById('submit-btn');
-
-            form?.addEventListener('submit', e => {
+            // 1. Formulario
+            document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                const btn = document.getElementById('submit-btn');
                 btn.disabled = true; btn.innerText = "Enviando...";
-
-                fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
-                    .then(() => {
-                        window.dataLayer = window.dataLayer || [];
-                        window.dataLayer.push({'event': 'lead_success', 'form_name': 'home_lead'});
-                        window.location.href = '/gracias';
-                    })
-                    .catch(() => {
-                        alert('Error al enviar. Por favor intentá vía WhatsApp.');
-                        btn.disabled = false; btn.innerText = "Enviar solicitud";
-                    });
+                try {
+                    await fetch(SCRIPT_URL, { method: 'POST', body: new FormData(e.target) });
+                    window.location.href = '/gracias';
+                } catch {
+                    alert("Error. Intentá por WhatsApp.");
+                    btn.disabled = false; btn.innerText = "Enviar Solicitud";
+                }
             });
 
-            async function iniciarComparador() {
+            // 2. Comparador
+            async function init() {
                 try {
-                    const res = await fetch(URL_CSV, { cache: "no-store" });
-                    const csvText = await res.text();
-                    
-                    Papa.parse(csvText, {
+                    const res = await fetch(URL_CSV);
+                    const text = await res.text();
+                    Papa.parse(text, {
                         header: true, skipEmptyLines: true, transformHeader: h => h.trim(),
-                        complete: function(results) {
-                            bdAutosOriginal = results.data.filter(c => c['Marca'] && c['Marca'].trim() !== "");
-                            
+                        complete: (results) => {
+                            bdOriginal = results.data.filter(r => r.Marca);
                             const headers = results.meta.fields;
-                            if (headers.length > 26) columnaAA = headers[26]; 
+                            if(headers.length > 26) colAA = headers[26];
+                            
+                            poblarCarroceria();
+                            asignarEventosGlobales();
+                            aplicarFiltros();
 
-                            // Agrupación Jerárquica de Carrocerías
-                            const tiposRaw = [...new Set(bdAutosOriginal.map(c => c[columnaAA]?.trim()).filter(Boolean))].sort();
-                            const grupos = { 'SUV': [], 'Pick-up': [], 'Sedán': [], 'Hatchback': [], 'Furgón': [], 'Otros': [] };
-
-                            tiposRaw.forEach(t => {
-                                let tl = t.toLowerCase();
-                                if (tl.includes('suv')) grupos['SUV'].push(t);
-                                else if (tl.includes('pick-up') || tl.includes('pickup')) grupos['Pick-up'].push(t);
-                                else if (tl.includes('sedán') || tl.includes('sedan')) grupos['Sedán'].push(t);
-                                else if (tl.includes('hatchback')) grupos['Hatchback'].push(t);
-                                else if (tl.includes('furgón') || tl.includes('van')) grupos['Furgón'].push(t);
-                                else grupos['Otros'].push(t);
-                            });
-
-                            const selectTipo = document.getElementById('filtroTipo');
-                            for (const [nombre, items] of Object.entries(grupos)) {
-                                if (items.length > 0) {
-                                    const grp = document.createElement('optgroup'); grp.label = nombre;
-                                    items.forEach(i => grp.add(new Option(i, i)));
-                                    selectTipo.appendChild(grp);
-                                }
-                            }
-
-                            // Event Listeners
-                            document.getElementById('filtroTipo').addEventListener('change', aplicarFiltrosGlobales);
-                            document.getElementById('filtroPrecio').addEventListener('change', aplicarFiltrosGlobales);
-                            document.getElementById('filtroCombustible').addEventListener('change', aplicarFiltrosGlobales);
-                            document.getElementById('btnLimpiar').addEventListener('click', () => {
-                                document.getElementById('filtroTipo').value = "Todos";
-                                document.getElementById('filtroPrecio').value = "Todos";
-                                document.getElementById('filtroCombustible').value = "Todos";
-                                aplicarFiltrosGlobales();
-                            });
-
-                            [1, 2].forEach(col => {
-                                document.getElementById(`marca${col}`).addEventListener('change', () => updateModelos(col));
-                                document.getElementById(`modelo${col}`).addEventListener('change', () => updateVersiones(col));
-                                document.getElementById(`version${col}`).addEventListener('change', () => displayAuto(col));
-                            });
-
-                            aplicarFiltrosGlobales();
                             document.getElementById('loader').classList.add('hidden');
                             document.getElementById('comparador-ui').classList.remove('hidden');
                         }
                     });
-                } catch(e) { console.error(e); }
+                } catch(e) { console.error("Fallo carga", e); }
             }
 
-            function aplicarFiltrosGlobales() {
-                const tipo = document.getElementById('filtroTipo').value;
-                const precio = document.getElementById('filtroPrecio').value;
-                const comb = document.getElementById('filtroCombustible').value;
+            function poblarCarroceria() {
+                const tipos = [...new Set(bdOriginal.map(c => c[colAA]?.trim()).filter(Boolean))].sort();
+                const select = document.getElementById('filtroTipo');
+                const grupos = { 'SUV': [], 'Pick-up': [], 'Sedán': [], 'Hatchback': [], 'Otros': [] };
+                
+                tipos.forEach(t => {
+                    const tl = t.toLowerCase();
+                    if(tl.includes('suv')) grupos.SUV.push(t);
+                    else if(tl.includes('pick')) grupos['Pick-up'].push(t);
+                    else if(tl.includes('sed')) grupos.Sedán.push(t);
+                    else if(tl.includes('hatch')) grupos.Hatchback.push(t);
+                    else grupos.Otros.push(t);
+                });
 
-                bdAutos = bdAutosOriginal.filter(c => {
-                    let pT = (tipo === "Todos" || c[columnaAA]?.trim() === tipo);
-                    let pP = true;
-                    if(precio !== "Todos") {
-                        let v = parseInt(c['Precio (US$)']?.replace(/\D/g, ''));
-                        pP = !isNaN(v) && v <= parseInt(precio);
+                for(const [g, items] of Object.entries(grupos)) {
+                    if(items.length) {
+                        const og = document.createElement('optgroup'); og.label = g;
+                        items.forEach(i => og.appendChild(new Option(i, i)));
+                        select.appendChild(og);
                     }
-                    let pC = true;
-                    if(comb !== "Todos") {
-                        let vL = (c['Combustible'] || "").toLowerCase();
-                        let clas = vL.includes('hibrid') || vL.includes('hev') ? "Hibridos" : (vL.includes('electric') || vL.includes('ev') ? "Electrico" : "Tradicional");
-                        pC = (clas === comb);
-                    }
+                }
+            }
+
+            function asignarEventosGlobales() {
+                ['filtroTipo', 'filtroCombustible', 'filtroPrecio'].forEach(id => {
+                    document.getElementById(id).addEventListener('change', aplicarFiltros);
+                });
+                document.getElementById('btnLimpiar').onclick = () => {
+                    document.getElementById('filtroTipo').value = 'Todos';
+                    document.getElementById('filtroCombustible').value = 'Todos';
+                    document.getElementById('filtroPrecio').value = 'Todos';
+                    aplicarFiltros();
+                };
+                [1, 2].forEach(col => {
+                    document.getElementById(`marca${col}`).onchange = () => updateModelos(col);
+                    document.getElementById(`modelo${col}`).onchange = () => updateVersiones(col);
+                    document.getElementById(`version${col}`).onchange = () => mostrarAuto(col);
+                });
+            }
+
+            function aplicarFiltros() {
+                const fT = document.getElementById('filtroTipo').value;
+                const fC = document.getElementById('filtroCombustible').value;
+                const fP = document.getElementById('filtroPrecio').value;
+
+                bdFiltrada = bdOriginal.filter(c => {
+                    const pT = fT === 'Todos' || c[colAA]?.trim() === fT;
+                    const vP = parseInt(c['Precio (US$)']?.replace(/\D/g, '')) || 0;
+                    const pP = fP === 'Todos' || vP <= parseInt(fP);
+                    const vL = (c.Combustible || "").toLowerCase();
+                    const cat = vL.includes('hibrid') || vL.includes('hev') ? 'Hibridos' : (vL.includes('elect') || vL.includes('ev') ? 'Electrico' : 'Tradicional');
+                    const pC = fC === 'Todos' || cat === fC;
                     return pT && pP && pC;
                 });
 
-                arbolFiltros = {};
-                bdAutos.forEach(c => {
-                    const m = c['Marca'].trim(), mod = c['Modelo'] || "", ver = c['Versión'] || "Única";
-                    if(!arbolFiltros[m]) arbolFiltros[m] = {};
-                    if(mod && !arbolFiltros[m][mod]) arbolFiltros[m][mod] = [];
-                    if(mod && !arbolFiltros[m][mod].includes(ver)) arbolFiltros[m][mod].push(ver);
-                });
-
-                [1, 2].forEach(col => {
-                    const sM = document.getElementById(`marca${col}`);
-                    sM.innerHTML = '<option value="">Seleccionar Marca</option>';
-                    Object.keys(arbolFiltros).sort().forEach(m => sM.add(new Option(m, m)));
-                    document.getElementById(`modelo${col}`).innerHTML = '<option value="">Modelo</option>';
-                    document.getElementById(`version${col}`).innerHTML = '<option value="">Versión</option>';
-                    document.getElementById(`resultado${col}`).classList.add('hidden');
+                const marcas = [...new Set(bdFiltrada.map(c => c.Marca.trim()))].sort();
+                [1, 2].forEach(n => {
+                    const s = document.getElementById(`marca${n}`);
+                    s.innerHTML = '<option value="">Seleccionar Marca</option>';
+                    marcas.forEach(m => s.add(new Option(m, m)));
+                    document.getElementById(`modelo${n}`).disabled = true;
+                    document.getElementById(`version${n}`).disabled = true;
+                    document.getElementById(`resultado${n}`).classList.add('hidden');
                 });
                 document.getElementById('veredicto-box').classList.add('hidden');
             }
 
-            function updateModelos(col) {
-                const m = document.getElementById(`marca${col}`).value;
-                const sMod = document.getElementById(`modelo${col}`);
-                sMod.innerHTML = '<option value="">Modelo</option>';
-                if(m && arbolFiltros[m]) {
-                    Object.keys(arbolFiltros[m]).sort().forEach(mod => sMod.add(new Option(mod, mod)));
-                    sMod.disabled = false;
-                } else sMod.disabled = true;
+            function updateModelos(n) {
+                const m = document.getElementById(`marca${n}`).value;
+                const s = document.getElementById(`modelo${n}`);
+                s.innerHTML = '<option value="">Modelo</option>';
+                if(m) {
+                    const mods = [...new Set(bdFiltrada.filter(c => c.Marca === m).map(c => c.Modelo))].sort();
+                    mods.forEach(mo => s.add(new Option(mo, mo)));
+                    s.disabled = false;
+                } else s.disabled = true;
+                document.getElementById(`version${n}`).disabled = true;
             }
 
-            function updateVersiones(col) {
-                const m = document.getElementById(`marca${col}`).value;
-                const mod = document.getElementById(`modelo${col}`).value;
-                const sVer = document.getElementById(`version${col}`);
-                sVer.innerHTML = '<option value="">Versión</option>';
-                if(mod && arbolFiltros[m][mod]) {
-                    arbolFiltros[m][mod].sort().forEach(v => sVer.add(new Option(v, v)));
-                    sVer.disabled = false;
-                } else sVer.disabled = true;
+            function updateVersiones(n) {
+                const m = document.getElementById(`marca${n}`).value;
+                const mo = document.getElementById(`modelo${n}`).value;
+                const s = document.getElementById(`version${n}`);
+                s.innerHTML = '<option value="">Versión</option>';
+                if(mo) {
+                    const vers = [...new Set(bdFiltrada.filter(c => c.Marca === m && c.Modelo === mo).map(c => c.Versión || "Única"))].sort();
+                    vers.forEach(v => s.add(new Option(v, v)));
+                    s.disabled = false;
+                } else s.disabled = true;
             }
 
-            function displayAuto(col) {
-                const m = document.getElementById(`marca${col}`).value, mod = document.getElementById(`modelo${col}`).value, ver = document.getElementById(`version${col}`).value;
-                const auto = bdAutos.find(a => a['Marca'].trim() === m && a['Modelo'].trim() === mod && (a['Versión'] || "Única").trim() === ver);
-                if(auto) {
-                    if(col===1) autoA = auto; else autoB = auto;
-                    document.getElementById(`nombre${col}`).innerText = `${m} ${mod} ${ver !== 'Única' ? ver : ''}`;
-                    document.getElementById(`img${col}`).src = auto['URL de Imagen'] || '';
-                    let v = parseInt(auto['Precio (US$)']?.replace(/\D/g, ''));
-                    document.getElementById(`precio${col}`).innerText = isNaN(v) ? 'Consultar' : "US$ " + v.toLocaleString('es-ES');
-                    document.getElementById(`mecanica${col}`).innerText = `${auto['Combustible']} | ${auto['Transmisión (MT / AT / CVT y N° de marchas)']}`;
-                    document.getElementById(`seguridad${col}`).innerText = auto['ADAS (Full, Intermedio, Sin ADAS)'];
-                    document.getElementById(`origenGarantia${col}`).innerText = auto['Garantía'];
-                    
-                    const cta = document.getElementById(`cta${col}`);
-                    cta.href = `https://wa.me/595991244469?text=${encodeURIComponent('Hola Datacar, me interesa el ' + m + ' ' + mod + ' ' + ver)}`;
-                    
-                    document.getElementById(`resultado${col}`).classList.remove('hidden');
-                    if(autoA && autoB) document.getElementById('veredicto-box').classList.remove('hidden');
+            function mostrarAuto(n) {
+                const m = document.getElementById(`marca${n}`).value;
+                const mo = document.getElementById(`modelo${n}`).value;
+                const v = document.getElementById(`version${n}`).value;
+                const car = bdFiltrada.find(c => c.Marca === m && c.Modelo === mo && (c.Versión || "Única") === v);
+                
+                if(car) {
+                    if(n===1) auto1 = car; else auto2 = car;
+                    document.getElementById(`nombre${n}`).innerText = `${m} ${mo}`;
+                    document.getElementById(`img${n}`).src = car['URL de Imagen'] || '';
+                    document.getElementById(`precio${n}`).innerText = car['Precio (US$)'];
+                    document.getElementById(`mecanica${n}`).innerText = car.Combustible;
+                    document.getElementById(`garantia${n}`).innerText = car.Garantía;
+                    document.getElementById(`cta${n}`).href = `https://wa.me/595991244469?text=Me%20interesa%20el%20${m}%20${mo}`;
+                    document.getElementById(`resultado${n}`).classList.remove('hidden');
+                    if(auto1 && auto2) {
+                        document.getElementById('veredicto-box').classList.remove('hidden');
+                        document.getElementById('veredicto-texto').innerText = "Comparativa lista. Contactá a un asesor para el análisis final.";
+                    }
                 }
             }
 
-            iniciarComparador();
+            init();
         </script>
 	</body>
 </html>
