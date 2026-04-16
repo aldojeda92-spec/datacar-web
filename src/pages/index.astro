@@ -315,67 +315,84 @@
             <p class="text-xs opacity-40" style="font-family: 'Inter', sans-serif;">© 2024 DATACAR EAS.</p>
         </footer>
 
-        <script is:inline>
-            const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
-            
-            let bdAutosOriginal = []; 
-            let bdAutos = []; 
-            let arbolFiltros = {}; 
-            let autoA = null;
-            let autoB = null;
+       <script is:inline>
+            // Encapsulamos el código para que se ejecute INMEDIATAMENTE
+            (function iniciarComparador() {
+                console.log("Arrancando el motor del comparador...");
 
-            document.addEventListener('DOMContentLoaded', () => {
+                const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
+                
+                // Variables globales
+                window.bdAutosOriginal = []; 
+                window.bdAutos = []; 
+                window.arbolFiltros = {}; 
+                window.autoA = null;
+                window.autoB = null;
+
                 const loader = document.getElementById('loader');
                 const loaderText = document.getElementById('loader-text');
                 const ui = document.getElementById('comparador-ui');
 
+                // Función para detener la carga visualmente
                 function mostrarError(mensaje) {
+                    console.error("Fallo detectado:", mensaje);
                     if(loaderText) {
                         loaderText.innerHTML = mensaje;
-                        loaderText.classList.replace("text-[#0A1F33]", "text-red-500");
+                        loaderText.classList.replace("text-[#0A1F33]", "text-red-600");
                     }
-                    const spinner = loader ? loader.querySelector('.animate-spin') : null;
-                    if(spinner) spinner.style.display = 'none'; 
+                    if(loader) {
+                        const spinner = loader.querySelector('.animate-spin');
+                        if(spinner) spinner.style.display = 'none';
+                    }
                 }
 
+                // Iniciamos la descarga directa
                 fetch(URL_CSV)
                     .then(respuesta => {
-                        if (!respuesta.ok) throw new Error("Google Sheets bloqueó la conexión.");
+                        if (!respuesta.ok) throw new Error("Conexión bloqueada por Google Sheets.");
                         return respuesta.text();
                     })
                     .then(textoCSV => {
+                        console.log("Excel descargado. Analizando...");
+                        
                         Papa.parse(textoCSV, {
                             header: true,
                             skipEmptyLines: true,
-                            transformHeader: function(h) { return h.trim(); }, 
+                            transformHeader: function(h) { return h.trim(); }, // Limpia espacios en las columnas
                             complete: function(results) {
                                 try {
-                                    bdAutosOriginal = results.data.filter(car => car['Marca'] && car['Marca'].trim() !== "");
+                                    console.log("Muestra de datos:", results.data[0]); // Te mostrará la primera fila en consola
                                     
-                                    if (bdAutosOriginal.length === 0) {
-                                        throw new Error("El Excel está vacío o la columna principal no se llama exactamente 'Marca'.");
+                                    // Filtro de seguridad: buscamos la columna 'Marca'
+                                    window.bdAutosOriginal = results.data.filter(car => car['Marca'] && car['Marca'].trim() !== "");
+                                    
+                                    if (window.bdAutosOriginal.length === 0) {
+                                        throw new Error("No encontré la columna 'Marca'. ¿Estás seguro de que la primera fila del Excel dice 'Marca' (con M mayúscula)?");
                                     }
 
                                     cargarFiltroCarroceria();
                                     aplicarFiltrosGlobales();
                                     
+                                    // Todo salió bien, ocultamos la carga y mostramos la interfaz
                                     loader.classList.add('hidden');
                                     ui.classList.remove('hidden');
+                                    console.log("¡Comparador listo!");
+                                    
                                 } catch (error) {
-                                    console.error("Detalle del error:", error);
                                     mostrarError("⚠️ " + error.message);
                                 }
                             }
                         });
                     })
                     .catch(error => {
-                        console.error("Error de Red:", error);
-                        mostrarError("⚠️ Error de red. Verificá que el enlace sea el de 'Publicar en la web' y no el privado.");
+                        mostrarError("⚠️ Error de red: No se pudo descargar el archivo. Verifica el link.");
                     });
-            });
+            })();
+
+            // --- LÓGICA DE INTERFAZ ---
 
             function cargarFiltroCarroceria() {
-                const tipos = [...new Set(bdAutosOriginal.map(c => c['Tipo Carrocería'] ? c['Tipo Carrocería'].trim() : null).filter(Boolean))].sort();
+                const tipos = [...new Set(window.bdAutosOriginal.map(c => c['Tipo Carrocería'] ? c['Tipo Carrocería'].trim() : null).filter(Boolean))].sort();
                 const select = document.getElementById('filtroTipo');
                 tipos.forEach(t => select.add(new Option(t, t)));
             }
@@ -384,17 +401,14 @@
                 const tipoSel = document.getElementById('filtroTipo').value;
                 const precioMax = document.getElementById('filtroPrecio').value;
 
-                bdAutos = bdAutosOriginal.filter(car => {
+                window.bdAutos = window.bdAutosOriginal.filter(car => {
                     let pasaTipo = (tipoSel === "Todos" || (car['Tipo Carrocería'] && car['Tipo Carrocería'].trim() === tipoSel));
                     let pasaPrecio = true;
 
                     if (precioMax !== "Todos") {
                         const pValue = car['Precio (US$)'] ? parseInt(car['Precio (US$)'].replace(/\D/g, '')) : NaN;
-                        if (!isNaN(pValue)) {
-                            pasaPrecio = pValue <= parseInt(precioMax);
-                        } else {
-                            pasaPrecio = false; 
-                        }
+                        if (!isNaN(pValue)) pasaPrecio = pValue <= parseInt(precioMax);
+                        else pasaPrecio = false; 
                     }
                     return pasaTipo && pasaPrecio;
                 });
@@ -421,25 +435,25 @@
                 });
                 const box = document.getElementById('veredicto-box');
                 if(box) box.classList.add('hidden');
-                autoA = null;
-                autoB = null;
+                window.autoA = null;
+                window.autoB = null;
             }
 
             function generarEstructuraFiltros() {
-                arbolFiltros = {}; 
-                bdAutos.forEach(car => {
+                window.arbolFiltros = {}; 
+                window.bdAutos.forEach(car => {
                     const m = car['Marca'].trim();
                     const mod = car['Modelo'] ? car['Modelo'].trim() : "";
                     const ver = car['Versión'] ? car['Versión'].trim() : "Única";
 
-                    if (!arbolFiltros[m]) arbolFiltros[m] = {};
-                    if (mod && !arbolFiltros[m][mod]) arbolFiltros[m][mod] = [];
-                    if (mod && !arbolFiltros[m][mod].includes(ver)) arbolFiltros[m][mod].push(ver);
+                    if (!window.arbolFiltros[m]) window.arbolFiltros[m] = {};
+                    if (mod && !window.arbolFiltros[m][mod]) window.arbolFiltros[m][mod] = [];
+                    if (mod && !window.arbolFiltros[m][mod].includes(ver)) window.arbolFiltros[m][mod].push(ver);
                 });
             }
 
             function cargarMarcas() {
-                const marcas = Object.keys(arbolFiltros).sort();
+                const marcas = Object.keys(window.arbolFiltros).sort();
                 const selects = [document.getElementById('marca1'), document.getElementById('marca2')];
                 selects.forEach(s => {
                     if(s) {
@@ -462,8 +476,8 @@
                 if(res) res.classList.add('hidden');
                 document.getElementById('veredicto-box').classList.add('hidden');
 
-                if (marca && arbolFiltros[marca]) {
-                    const modelos = Object.keys(arbolFiltros[marca]).sort();
+                if (marca && window.arbolFiltros[marca]) {
+                    const modelos = Object.keys(window.arbolFiltros[marca]).sort();
                     modelos.forEach(mod => selectMod.add(new Option(mod, mod)));
                     selectMod.disabled = false;
                 }
@@ -480,8 +494,8 @@
                 if(res) res.classList.add('hidden');
                 document.getElementById('veredicto-box').classList.add('hidden');
 
-                if (modelo && arbolFiltros[marca][modelo]) {
-                    const versiones = arbolFiltros[marca][modelo].sort();
+                if (modelo && window.arbolFiltros[marca][modelo]) {
+                    const versiones = window.arbolFiltros[marca][modelo].sort();
                     versiones.forEach(v => selectVer.add(new Option(v, v)));
                     selectVer.disabled = false;
                 }
@@ -492,10 +506,10 @@
                 const mod = document.getElementById(`modelo${col}`).value;
                 const ver = document.getElementById(`version${col}`).value;
                 
-                const auto = bdAutos.find(a => a['Marca'].trim() === m && a['Modelo'].trim() === mod && (a['Versión'] || "Única").trim() === ver);
+                const auto = window.bdAutos.find(a => a['Marca'].trim() === m && a['Modelo'].trim() === mod && (a['Versión'] || "Única").trim() === ver);
                 
                 if (auto) {
-                    if(col === 1) autoA = auto; else autoB = auto;
+                    if(col === 1) window.autoA = auto; else window.autoB = auto;
 
                     document.getElementById(`nombre${col}`).innerText = `${m} ${mod} ${ver !== 'Única' ? ver : ''}`;
                     document.getElementById(`img${col}`).src = auto['URL de Imagen'] || '';
@@ -519,18 +533,18 @@
             }
 
             function calcularVeredicto() {
-                if(autoA && autoB) {
+                if(window.autoA && window.autoB) {
                     const box = document.getElementById('veredicto-box');
                     const txt = document.getElementById('veredicto-texto');
                     
-                    const pA = autoA['Precio (US$)'] ? parseInt(autoA['Precio (US$)'].replace(/\D/g, '')) : NaN;
-                    const pB = autoB['Precio (US$)'] ? parseInt(autoB['Precio (US$)'].replace(/\D/g, '')) : NaN;
+                    const pA = window.autoA['Precio (US$)'] ? parseInt(window.autoA['Precio (US$)'].replace(/\D/g, '')) : NaN;
+                    const pB = window.autoB['Precio (US$)'] ? parseInt(window.autoB['Precio (US$)'].replace(/\D/g, '')) : NaN;
 
                     if(!isNaN(pA) && !isNaN(pB)) {
                         if(pA < pB) {
-                            txt.innerHTML = `El <strong>${autoA['Marca']} ${autoA['Modelo']}</strong> representa un ahorro inicial de <strong>US$ ${(pB - pA).toLocaleString('es-ES')}</strong>. Analizá si la diferencia de equipamiento y origen justifica el salto de valor hacia el ${autoB['Marca']}.`;
+                            txt.innerHTML = `El <strong>${window.autoA['Marca']} ${window.autoA['Modelo']}</strong> representa un ahorro inicial de <strong>US$ ${(pB - pA).toLocaleString('es-ES')}</strong>. Analizá si la diferencia de equipamiento y origen justifica el salto de valor hacia el ${window.autoB['Marca']}.`;
                         } else if(pB < pA) {
-                            txt.innerHTML = `El <strong>${autoB['Marca']} ${autoB['Modelo']}</strong> representa un ahorro inicial de <strong>US$ ${(pA - pB).toLocaleString('es-ES')}</strong>. Analizá si la diferencia de equipamiento y origen justifica el salto de valor hacia el ${autoA['Marca']}.`;
+                            txt.innerHTML = `El <strong>${window.autoB['Marca']} ${window.autoB['Modelo']}</strong> representa un ahorro inicial de <strong>US$ ${(pA - pB).toLocaleString('es-ES')}</strong>. Analizá si la diferencia de equipamiento y origen justifica el salto de valor hacia el ${window.autoA['Marca']}.`;
                         } else {
                             txt.innerHTML = `Ambas unidades cuestan exactamente lo mismo (US$ ${pA.toLocaleString('es-ES')}). La decisión es 100% técnica: compará la seguridad ADAS, la mecánica y el confort interior.`;
                         }
