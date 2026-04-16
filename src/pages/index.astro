@@ -264,34 +264,52 @@
             </div>
         </section>
 
-        <section id="contacto" class="py-24 bg-[#0A1F33] text-white relative overflow-hidden">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <h2 class="text-3xl md:text-5xl font-[900] mb-6" style="font-family: 'Montserrat', sans-serif;">¿Listo para comprar inteligente?</h2>
-                <p class="text-xl text-gray-300 mb-12 font-light">Dejanos 3 datos básicos y nos ponemos a trabajar.</p>
-                
-                <div id="typeform-container" class="bg-white rounded-3xl p-2 md:p-4 max-w-2xl mx-auto shadow-2xl overflow-hidden min-h-[500px]"></div>
-                
-                <script src="//embed.typeform.com/next/embed.js" is:inline></script>
-                <script is:inline>
-                  document.addEventListener('DOMContentLoaded', () => {
-                    if (window.tf) {
-                      window.tf.createWidget('01KK22DB3E8S91PJ7GF28ZH3P2', {
-                        container: document.getElementById('typeform-container'),
-                        onSubmit: function (event) {
-                          window.dataLayer = window.dataLayer || [];
-                          window.dataLayer.push({
-                            'event': 'lead_success',
-                            'lead_source': 'typeform_home',
-                            'form_id': event.formId
-                          });
-                        }
-                      });
-                    }
-                  });
-                </script>
-            </div>
-        </section>
+       <section id="contacto" class="py-24 bg-[#0A1F33] text-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-5xl font-[900] mb-6" style="font-family: 'Montserrat', sans-serif;">¿Listo para comprar inteligente?</h2>
+            <p class="text-xl text-gray-400 font-light">Completá tus datos y un asesor te contactará en menos de 24hs.</p>
+        </div>
+        
+        <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl max-w-2xl mx-auto">
+            <form id="lead-form" class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Nombre Completo</label>
+                    <input type="text" name="nombre" required placeholder="Ej: Juan Pérez" 
+                        class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#00BFFF] transition">
+                </div>
 
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">WhatsApp (con código de área)</label>
+                    <input type="tel" name="whatsapp" required placeholder="Ej: +595 981 123456" 
+                        class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#00BFFF] transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">¿Qué estás buscando?</label>
+                    <select name="interes" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#00BFFF] transition font-medium">
+                        <option value="0km">Busco un 0km</option>
+                        <option value="usado">Busco un Usado Seguro</option>
+                        <option value="vender">Quiero vender mi auto</option>
+                        <option value="otro">Asesoría general / Flotas</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Presupuesto o Modelo de interés</label>
+                    <textarea name="mensaje" rows="3" placeholder="Contanos brevemente qué tenés en mente..." 
+                        class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] p-4 rounded-xl outline-none focus:ring-2 focus:ring-[#00BFFF] transition"></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-[900] py-5 rounded-xl text-lg transition duration-300 shadow-xl uppercase tracking-wider">
+                    Enviar solicitud
+                </button>
+                
+                <p id="form-status" class="text-center text-sm font-bold mt-4 hidden"></p>
+            </form>
+        </div>
+    </div>
+</section>
         <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
             <div class="flex items-center justify-center mb-6" style="font-family: 'Montserrat', sans-serif;">
                 <span class="text-2xl font-[900] text-white opacity-70">DATA</span>
