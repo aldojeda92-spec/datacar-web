@@ -302,15 +302,24 @@
         <script is:inline>
             const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
             
-            let bdAutosOriginal = []; // Base de datos intocable
-            let bdAutos = []; // Base de datos que se recorta con los filtros
+            let bdAutosOriginal = []; 
+            let bdAutos = []; 
             let arbolFiltros = {}; 
             let autoA = null;
             let autoB = null;
 
             document.addEventListener('DOMContentLoaded', () => {
                 const loader = document.getElementById('loader');
+                const loaderText = document.getElementById('loader-text');
                 const ui = document.getElementById('comparador-ui');
+
+                // Función maestra para detener la carga si hay un error
+                function mostrarError(mensaje) {
+                    loaderText.innerHTML = mensaje;
+                    loaderText.classList.replace("text-[#0A1F33]", "text-red-500");
+                    const spinner = loader.querySelector('.animate-spin');
+                    if(spinner) spinner.style.display = 'none'; // Frena la ruedita
+                }
 
                 Papa.parse(URL_CSV, {
                     download: true,
@@ -318,22 +327,22 @@
                     skipEmptyLines: true,
                     complete: function(results) {
                         try {
-                            // Limpiamos los vacíos desde el principio
                             bdAutosOriginal = results.data.filter(car => car['Marca'] && car['Marca'].trim() !== "");
-                            if (bdAutosOriginal.length === 0) throw new Error("Excel vacío");
+                            if (bdAutosOriginal.length === 0) throw new Error("Excel vacío o columnas no coinciden");
 
-                            // Cargamos el filtro dinámico de carrocería leyendo el excel
                             cargarFiltroCarroceria();
-                            
-                            // Aplicamos los filtros globales por primera vez (mostrará todo)
                             aplicarFiltrosGlobales();
                             
                             loader.classList.add('hidden');
                             ui.classList.remove('hidden');
                         } catch (error) {
-                            console.error(error);
-                            document.getElementById('loader-text').innerHTML = "⚠️ Error leyendo datos.";
+                            console.error("Detalle del error:", error);
+                            mostrarError("⚠️ Error leyendo datos. Verificá que la columna se llame 'Marca'.");
                         }
+                    },
+                    error: function(err) {
+                        console.error("Error de descarga:", err);
+                        mostrarError("⚠️ Error de conexión con Google Sheets. Actualizá la página.");
                     }
                 });
             });
@@ -348,7 +357,6 @@
                 const tipoSel = document.getElementById('filtroTipo').value;
                 const precioMax = document.getElementById('filtroPrecio').value;
 
-                // Filtramos la base original hacia la base de uso
                 bdAutos = bdAutosOriginal.filter(car => {
                     let pasaTipo = (tipoSel === "Todos" || (car['Tipo Carrocería'] && car['Tipo Carrocería'].trim() === tipoSel));
                     let pasaPrecio = true;
@@ -358,14 +366,12 @@
                         if (!isNaN(pValue)) {
                             pasaPrecio = pValue <= parseInt(precioMax);
                         } else {
-                            // Si no tiene precio numérico, lo ocultamos si el cliente puso un límite de plata
                             pasaPrecio = false; 
                         }
                     }
                     return pasaTipo && pasaPrecio;
                 });
 
-                // Re-generamos la cascada solo con los autos que sobrevivieron al filtro
                 generarEstructuraFiltros();
                 cargarMarcas();
                 resetComparadorResultados();
@@ -391,7 +397,7 @@
             }
 
             function generarEstructuraFiltros() {
-                arbolFiltros = {}; // Vaciamos para recalcular
+                arbolFiltros = {}; 
                 bdAutos.forEach(car => {
                     const m = car['Marca'].trim();
                     const mod = car['Modelo'] ? car['Modelo'].trim() : "";
