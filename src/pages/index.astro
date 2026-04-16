@@ -66,22 +66,19 @@
 			</div>
 		</nav>
 
-        <section class="relative bg-[#0A1F33] text-white overflow-hidden min-h-screen flex items-center">
+		<section class="relative bg-[#0A1F33] text-white overflow-hidden min-h-screen flex items-center">
             <div class="absolute inset-0 z-0">
                 <img src="/hero-image.webp" alt="Asesoría automotriz Datacar" class="w-full h-full object-cover opacity-40" onerror="this.src='/hero-image.jpg'" loading="eager" decoding="async" />
                 <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/90 via-[#0A1F33]/70 to-[#0A1F33]"></div>
             </div>
             <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-16">
                 <span class="text-[#00BFFF] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 border border-[#00BFFF]/30 px-4 py-1 rounded-full bg-[#0A1F33]/50 backdrop-blur-sm">Consultoría Automotriz</span>
-                
                 <h1 class="text-4xl md:text-6xl font-[900] tracking-tight mb-6 leading-tight drop-shadow-lg" style="font-family: 'Montserrat', sans-serif;">
                     Encontramos y Negociamos tu Próximo Auto por Vos <span class="text-[#00BFFF]">(Y al Mejor Precio)</span>.
                 </h1>
-                
                 <p class="text-lg md:text-xl text-white/90 max-w-3xl mb-10 leading-relaxed font-light drop-shadow-md">
                     Ya sea un 0km o un usado seguro. Olvidate de recorrer concesionarias o lidiar con vendedores. Nosotros hacemos el trabajo sucio.
                 </p>
-                
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
                     <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20hablar%20con%20un%20asesor." 
                        target="_blank"
@@ -89,7 +86,6 @@
                        class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl text-lg transition duration-300 shadow-[0_0_30px_rgba(0,191,255,0.4)] text-center w-full sm:w-auto uppercase tracking-wide">
                         Hablar con un Asesor
                     </a>
-                    
                     <a href="/catalogo" 
                        onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'view_catalog', 'location': 'hero_secondary'});"
                        class="border-2 border-white/50 hover:border-white hover:bg-white/10 text-white font-[700] py-4 px-10 rounded-xl text-lg transition duration-300 text-center w-full sm:w-auto backdrop-blur-sm">
@@ -144,15 +140,6 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="mt-12 text-center">
-                    <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20hablar%20con%20un%20asesor." 
-                       target="_blank"
-                       onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'como_funciona'});"
-                       class="inline-block bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl text-lg transition duration-300 shadow-lg uppercase tracking-wide">
-                        Hablar con un Asesor
-                    </a>
-                </div>
             </div>
         </section>
 
@@ -170,25 +157,19 @@
 
                 <div id="comparador-ui" class="hidden">
                     <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-10">
-                        <h3 class="text-sm font-black text-[#0A1F33] uppercase tracking-[0.1em] mb-4" style="font-family: 'Montserrat', sans-serif;">Paso 1: Definí tus parámetros</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
-                            <div>
-                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Carrocería</label>
-                                <select id="filtroTipo" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] p-3 outline-none font-bold">
-                                    <option value="Todos">Cualquier formato</option>
-                                </select>
-                            </div>
+                        <h3 class="text-sm font-black text-[#0A1F33] uppercase tracking-[0.1em] mb-4" style="font-family: 'Montserrat', sans-serif;">Paso 1: Parámetros Generales</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Motorización</label>
                                 <select id="filtroCombustible" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] p-3 outline-none font-bold">
                                     <option value="Todos">Cualquier Motor</option>
                                     <option value="Tradicional">Combustión (Nafta/Diésel)</option>
-                                    <option value="Hibridos">Híbridos (HEV/MHEV)</option>
+                                    <option value="Hibridos">Híbridos (HEV/MHEV/PHEV)</option>
                                     <option value="Electrico">100% Eléctricos (EV)</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Presupuesto</label>
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Presupuesto Máximo</label>
                                 <select id="filtroPrecio" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] p-3 outline-none font-bold">
                                     <option value="Todos">Sin límite</option>
                                     <option value="15000">Hasta US$ 15.000</option>
@@ -200,7 +181,7 @@
                                 </select>
                             </div>
                             <div class="md:text-right">
-                                <button id="btnLimpiar" class="text-[#00BFFF] font-bold hover:text-[#0A1F33] transition-colors underline text-sm pb-3 w-full md:w-auto">Limpiar filtros</button>
+                                <button id="btnLimpiar" class="text-[#00BFFF] font-bold hover:text-[#0A1F33] transition-colors underline text-sm pb-3 w-full md:w-auto">Limpiar filtros globales</button>
                             </div>
                         </div>
                     </div>
@@ -210,6 +191,7 @@
                             <div class="bg-gray-50 rounded-t-2xl p-6 border-b border-gray-200">
                                 <h3 class="text-xs font-black text-[#9ca3af] uppercase tracking-[0.2em] mb-4" style="font-family: 'Montserrat', sans-serif;">Paso 2: Elegí la Opción A</h3>
                                 <div class="space-y-4">
+                                    <select id="carroceria1" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold"><option value="Todos">Cualquier Carrocería</option></select>
                                     <select id="marca1" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold"><option value="">Seleccionar Marca</option></select>
                                     <select id="modelo1" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Modelo</option></select>
                                     <select id="version1" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Versión</option></select>
@@ -225,6 +207,7 @@
                                 <div class="data-row"><span class="data-label">Infoentretenimiento</span><span id="info1" class="data-value text-sm"></span></div>
                                 <div class="data-row"><span class="data-label">Confort</span><span id="confort1" class="data-value text-sm"></span></div>
                                 <div class="data-row border-none"><span class="data-label">Origen / Garantía</span><span id="origenGarantia1" class="data-value text-sm"></span></div>
+                                
                                 <a id="cta1" href="#" target="_blank" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'comparador_a'});" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
                             </div>
                         </div>
@@ -233,6 +216,7 @@
                             <div class="bg-gray-50 rounded-t-2xl p-6 border-b border-gray-200">
                                 <h3 class="text-xs font-black text-[#9ca3af] uppercase tracking-[0.2em] mb-4" style="font-family: 'Montserrat', sans-serif;">Paso 3: Elegí la Opción B</h3>
                                 <div class="space-y-4">
+                                    <select id="carroceria2" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold"><option value="Todos">Cualquier Carrocería</option></select>
                                     <select id="marca2" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl p-3 font-bold"><option value="">Seleccionar Marca</option></select>
                                     <select id="modelo2" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Modelo</option></select>
                                     <select id="version2" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl p-3 disabled:bg-gray-100"><option value="">Versión</option></select>
@@ -248,6 +232,7 @@
                                 <div class="data-row"><span class="data-label">Infoentretenimiento</span><span id="info2" class="data-value text-sm"></span></div>
                                 <div class="data-row"><span class="data-label">Confort</span><span id="confort2" class="data-value text-sm"></span></div>
                                 <div class="data-row border-none"><span class="data-label">Origen / Garantía</span><span id="origenGarantia2" class="data-value text-sm"></span></div>
+                                
                                 <a id="cta2" href="#" target="_blank" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'comparador_b'});" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
                             </div>
                         </div>
@@ -275,7 +260,6 @@
                       window.tf.createWidget('01KK22DB3E8S91PJ7GF28ZH3P2', {
                         container: document.getElementById('typeform-container'),
                         onSubmit: function (event) {
-                          // DISPARO DE EVENTO PARA GTM: lead_success
                           window.dataLayer = window.dataLayer || [];
                           window.dataLayer.push({
                             'event': 'lead_success',
@@ -315,8 +299,7 @@
             const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
             
             let bdAutosOriginal = []; 
-            let bdAutos = []; 
-            let arbolFiltros = {}; 
+            let bdAutos = []; // Filtrada solo por Presupuesto y Motor
             let autoA = null;
             let autoB = null;
             let columnaAA = 'Tipo Carrocería'; 
@@ -350,36 +333,31 @@
                         transformHeader: h => h.trim(),
                         complete: function(results) {
                             bdAutosOriginal = results.data.filter(c => c['Marca'] && c['Marca'].trim() !== "");
-                            
-                            if (bdAutosOriginal.length === 0) {
-                                showError("⚠️ No se detectó la columna 'Marca'.");
-                                return;
-                            }
+                            if (bdAutosOriginal.length === 0) return showError("⚠️ No se detectó la columna 'Marca'.");
 
+                            // Autodetectar columna AA (subconjunto de carrocería)
                             const headers = results.meta.fields;
-                            if (headers.length > 26) {
-                                columnaAA = headers[26]; 
-                            }
+                            if (headers.length > 26) columnaAA = headers[26]; 
 
+                            // Cargar los select de Carrocería en cada vehículo
                             const tipos = [...new Set(bdAutosOriginal.map(c => c[columnaAA] ? c[columnaAA].trim() : null).filter(Boolean))].sort();
-                            const selectTipo = document.getElementById('filtroTipo');
-                            tipos.forEach(t => selectTipo.add(new Option(t, t)));
+                            [1, 2].forEach(col => {
+                                const selectTipo = document.getElementById(`carroceria${col}`);
+                                tipos.forEach(t => selectTipo.add(new Option(t, t)));
+                                
+                                // Escuchadores Individuales
+                                selectTipo.addEventListener('change', () => actualizarFiltrosIndividuales(col));
+                                document.getElementById(`marca${col}`).addEventListener('change', () => updateModelos(col));
+                                document.getElementById(`modelo${col}`).addEventListener('change', () => updateVersiones(col));
+                                document.getElementById(`version${col}`).addEventListener('change', () => displayAuto(col));
+                            });
 
-                            document.getElementById('filtroTipo').addEventListener('change', aplicarFiltrosGlobales);
+                            // Escuchadores Globales
                             document.getElementById('filtroPrecio').addEventListener('change', aplicarFiltrosGlobales);
                             document.getElementById('filtroCombustible').addEventListener('change', aplicarFiltrosGlobales);
                             document.getElementById('btnLimpiar').addEventListener('click', resetearFiltros);
                             
-                            document.getElementById('marca1').addEventListener('change', () => updateModelos(1));
-                            document.getElementById('modelo1').addEventListener('change', () => updateVersiones(1));
-                            document.getElementById('version1').addEventListener('change', () => displayAuto(1));
-                            
-                            document.getElementById('marca2').addEventListener('change', () => updateModelos(2));
-                            document.getElementById('modelo2').addEventListener('change', () => updateVersiones(2));
-                            document.getElementById('version2').addEventListener('change', () => displayAuto(2));
-
                             aplicarFiltrosGlobales();
-                            
                             loader.classList.add('hidden');
                             ui.classList.remove('hidden');
                         }
@@ -389,15 +367,12 @@
                 }
             }
 
+            // Filtro Maestro: Aplica Presupuesto y Motor a toda la base.
             function aplicarFiltrosGlobales() {
-                const tipo = document.getElementById('filtroTipo').value;
                 const precio = document.getElementById('filtroPrecio').value;
                 const comb = document.getElementById('filtroCombustible').value;
 
                 bdAutos = bdAutosOriginal.filter(c => {
-                    let valorCarroceria = c[columnaAA] ? c[columnaAA].trim() : "";
-                    let pasaTipo = (tipo === "Todos" || valorCarroceria === tipo);
-                    
                     let pasaPrecio = true;
                     if(precio !== "Todos") {
                         let val = c['Precio (US$)'] ? parseInt(c['Precio (US$)'].replace(/\D/g, '')) : NaN;
@@ -412,93 +387,100 @@
                         
                         if(vLower.includes('hibrid') || vLower.includes('híbrid') || vLower.includes('hev') || vLower.includes('mhev') || vLower.includes('phev')) {
                             clasificacion = "Hibridos";
-                        } 
-                        else if(vLower.includes('electric') || vLower.includes('eléctric') || vLower === 'ev' || vLower.includes(' ev') || vLower.includes('bev')) {
+                        } else if(vLower.includes('electric') || vLower.includes('eléctric') || vLower === 'ev' || vLower.includes(' ev') || vLower.includes('bev')) {
                             clasificacion = "Electrico";
                         }
-                        
                         pasaCombustible = (clasificacion === comb);
                     }
-
-                    return pasaTipo && pasaPrecio && pasaCombustible;
+                    return pasaPrecio && pasaCombustible;
                 });
 
-                arbolFiltros = {};
-                bdAutos.forEach(c => {
-                    const m = c['Marca'].trim();
-                    const mod = c['Modelo'] ? c['Modelo'].trim() : "";
-                    const ver = c['Versión'] ? c['Versión'].trim() : "Única";
-                    if(!arbolFiltros[m]) arbolFiltros[m] = {};
-                    if(mod && !arbolFiltros[m][mod]) arbolFiltros[m][mod] = [];
-                    if(mod && !arbolFiltros[m][mod].includes(ver)) arbolFiltros[m][mod].push(ver);
-                });
-
-                [1, 2].forEach(col => {
-                    const sel = document.getElementById(`marca${col}`);
-                    sel.innerHTML = '<option value="">Seleccionar Marca</option>';
-                    Object.keys(arbolFiltros).sort().forEach(m => sel.add(new Option(m, m)));
-                });
-                resetearResultados();
+                // Refresca ambas columnas con la nueva base de datos permitida
+                actualizarFiltrosIndividuales(1);
+                actualizarFiltrosIndividuales(2);
             }
 
-            function resetearFiltros() {
-                document.getElementById('filtroTipo').value = "Todos";
-                document.getElementById('filtroPrecio').value = "Todos";
-                document.getElementById('filtroCombustible').value = "Todos";
-                aplicarFiltrosGlobales();
+            // Cascadas Individuales: Carrocería -> Marca -> Modelo -> Versión
+            function actualizarFiltrosIndividuales(col) {
+                const tipoSel = document.getElementById(`carroceria${col}`).value;
+                
+                // Recorta los autos solo a la carrocería elegida
+                const autosCol = bdAutos.filter(c => tipoSel === 'Todos' || (c[columnaAA] && c[columnaAA].trim() === tipoSel));
+                
+                // Extrae las marcas disponibles
+                const marcas = [...new Set(autosCol.map(c => c['Marca'].trim()))].sort();
+                
+                const marcaSelect = document.getElementById(`marca${col}`);
+                const currentMarca = marcaSelect.value;
+                marcaSelect.innerHTML = '<option value="">Seleccionar Marca</option>';
+                marcas.forEach(m => marcaSelect.add(new Option(m, m)));
+                
+                if(marcas.includes(currentMarca)) marcaSelect.value = currentMarca;
+                else marcaSelect.value = "";
+                
+                updateModelos(col, autosCol);
             }
 
-            function resetearResultados() {
-                [1, 2].forEach(col => {
-                    document.getElementById(`modelo${col}`).innerHTML = '<option value="">Modelo</option>';
-                    document.getElementById(`modelo${col}`).disabled = true;
-                    document.getElementById(`version${col}`).innerHTML = '<option value="">Versión</option>';
-                    document.getElementById(`version${col}`).disabled = true;
-                    document.getElementById(`resultado${col}`).classList.add('hidden');
-                });
-                document.getElementById('veredicto-box').classList.add('hidden');
-                autoA = null; autoB = null;
-            }
-
-            function updateModelos(col) {
-                const m = document.getElementById(`marca${col}`).value;
-                const sMod = document.getElementById(`modelo${col}`);
-                sMod.innerHTML = '<option value="">Modelo</option>';
-                document.getElementById(`version${col}`).innerHTML = '<option value="">Versión</option>';
-                document.getElementById(`version${col}`).disabled = true;
+            function updateModelos(col, autosCol = null) {
+                if(!autosCol) {
+                    const tipoSel = document.getElementById(`carroceria${col}`).value;
+                    autosCol = bdAutos.filter(c => tipoSel === 'Todos' || (c[columnaAA] && c[columnaAA].trim() === tipoSel));
+                }
+                
+                const marcaSel = document.getElementById(`marca${col}`).value;
+                const selectMod = document.getElementById(`modelo${col}`);
+                const selectVer = document.getElementById(`version${col}`);
+                const currentMod = selectMod.value;
+                
+                selectMod.innerHTML = '<option value="">Modelo</option>';
+                selectVer.innerHTML = '<option value="">Versión</option>';
                 document.getElementById(`resultado${col}`).classList.add('hidden');
                 document.getElementById('veredicto-box').classList.add('hidden');
-
-                if(m && arbolFiltros[m]) {
-                    Object.keys(arbolFiltros[m]).sort().forEach(mod => sMod.add(new Option(mod, mod)));
-                    sMod.disabled = false;
+                
+                if(marcaSel) {
+                    const modelos = [...new Set(autosCol.filter(c => c['Marca'].trim() === marcaSel).map(c => c['Modelo'] ? c['Modelo'].trim() : ""))].sort();
+                    modelos.forEach(m => selectMod.add(new Option(m, m)));
+                    selectMod.disabled = false;
+                    
+                    if(modelos.includes(currentMod)) {
+                        selectMod.value = currentMod;
+                        updateVersiones(col, autosCol);
+                    } else selectVer.disabled = true;
                 } else {
-                    sMod.disabled = true;
+                    selectMod.disabled = true;
+                    selectVer.disabled = true;
                 }
             }
 
-            function updateVersiones(col) {
-                const m = document.getElementById(`marca${col}`).value;
-                const mod = document.getElementById(`modelo${col}`).value;
-                const sVer = document.getElementById(`version${col}`);
-                sVer.innerHTML = '<option value="">Versión</option>';
+            function updateVersiones(col, autosCol = null) {
+                if(!autosCol) {
+                    const tipoSel = document.getElementById(`carroceria${col}`).value;
+                    autosCol = bdAutos.filter(c => tipoSel === 'Todos' || (c[columnaAA] && c[columnaAA].trim() === tipoSel));
+                }
+                
+                const marcaSel = document.getElementById(`marca${col}`).value;
+                const modSel = document.getElementById(`modelo${col}`).value;
+                const selectVer = document.getElementById(`version${col}`);
+                
+                selectVer.innerHTML = '<option value="">Versión</option>';
                 document.getElementById(`resultado${col}`).classList.add('hidden');
                 document.getElementById('veredicto-box').classList.add('hidden');
-
-                if(mod && arbolFiltros[m][mod]) {
-                    arbolFiltros[m][mod].sort().forEach(v => sVer.add(new Option(v, v)));
-                    sVer.disabled = false;
-                } else {
-                    sVer.disabled = true;
-                }
+                
+                if(modSel) {
+                    const versiones = [...new Set(autosCol.filter(c => c['Marca'].trim() === marcaSel && (c['Modelo'] ? c['Modelo'].trim() : "") === modSel).map(c => c['Versión'] ? c['Versión'].trim() : "Única"))].sort();
+                    versiones.forEach(v => selectVer.add(new Option(v, v)));
+                    selectVer.disabled = false;
+                } else selectVer.disabled = true;
             }
 
             function displayAuto(col) {
+                const tipoSel = document.getElementById(`carroceria${col}`).value;
                 const m = document.getElementById(`marca${col}`).value;
                 const mod = document.getElementById(`modelo${col}`).value;
                 const ver = document.getElementById(`version${col}`).value;
                 
-                const auto = bdAutos.find(a => a['Marca'].trim() === m && a['Modelo'].trim() === mod && (a['Versión'] || "Única").trim() === ver);
+                const autosFiltrados = bdAutos.filter(c => tipoSel === 'Todos' || (c[columnaAA] && c[columnaAA].trim() === tipoSel));
+                const auto = autosFiltrados.find(a => a['Marca'].trim() === m && (a['Modelo']||"").trim() === mod && (a['Versión'] || "Única").trim() === ver);
                 
                 if(auto) {
                     if(col===1) autoA = auto; else autoB = auto;
@@ -516,6 +498,13 @@
                     document.getElementById(`confort${col}`).innerText = `Asientos cuero: ${auto['Asientos de Cuero (Sí/No)']} | Techo: ${auto['Techo Panorámico/Corredizo (Sí/No)']}`;
                     document.getElementById(`origenGarantia${col}`).innerText = `Origen: ${auto['Origen']||'-'} | Garantía: ${auto['Garantía']||'-'}`;
 
+                    // CTA DINÁMICO Y ARREGLADO
+                    const ctaBtn = document.getElementById(`cta${col}`);
+                    if(ctaBtn) {
+                        const mensaje = `Hola Datacar, me interesa el ${m} ${mod} ${ver !== 'Única' ? ver : ''}. Me gustaría recibir asesoramiento.`;
+                        ctaBtn.href = `https://wa.me/595991244469?text=${encodeURIComponent(mensaje)}`;
+                    }
+
                     document.getElementById(`resultado${col}`).classList.remove('hidden');
 
                     if(autoA && autoB) {
@@ -527,11 +516,19 @@
                             else if(p2 < p1) txt.innerHTML = `El <strong>${autoB['Marca']} ${autoB['Modelo']}</strong> representa un ahorro de <strong>US$ ${(p1-p2).toLocaleString('es-ES')}</strong>.`;
                             else txt.innerHTML = `Ambas unidades cuestan exactamente lo mismo. La decisión es 100% técnica.`;
                         } else {
-                            txt.innerHTML = `Comparativa técnica lista. Contactá a nuestro equipo para cotizaciones.`;
+                            txt.innerHTML = `Comparativa técnica lista. Contactá a nuestro equipo para cotizaciones exactas.`;
                         }
                         document.getElementById('veredicto-box').classList.remove('hidden');
                     }
                 }
+            }
+
+            function resetearFiltros() {
+                document.getElementById('filtroPrecio').value = "Todos";
+                document.getElementById('filtroCombustible').value = "Todos";
+                document.getElementById('carroceria1').value = "Todos";
+                document.getElementById('carroceria2').value = "Todos";
+                aplicarFiltrosGlobales();
             }
 
             iniciarComparador();
