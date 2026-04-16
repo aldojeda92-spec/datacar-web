@@ -1,39 +1,37 @@
+---
+// src/pages/index.astro
+---
 
 <html lang="es">
 	<head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18003746499"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-18003746499');
-        </script>
-        <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '2199237414155406');
-        fbq('track', 'PageView');
-        </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=2199237414155406&ev=PageView&noscript=1"
-        /></noscript>
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-52KCG6F3');</script>
-        
         <meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
-		<title>Datacar | Tu compra inteligente</title>
+        <meta name="description" content="Comprá tu próximo auto 0km o usado en Paraguay al mejor precio. Negociamos por vos y te ahorramos tiempo y dinero. Asesoría 100% gratuita." />
+		
+        <title>Comprar autos 0km y Usados en Paraguay | Asesoría Datacar</title>
         
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "AutoDealer",
+          "name": "Datacar",
+          "description": "Consultoría y Asesoría Automotriz para la compra de vehículos 0km y usados en Paraguay.",
+          "url": "https://datacarpy.com",
+          "telephone": "+595991244469",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Asunción",
+            "addressCountry": "PY"
+          }
+        }
+        </script>
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
@@ -51,7 +49,6 @@
 	<body class="bg-gray-50 text-[#3A3A3C] antialiased">
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52KCG6F3"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        
         <nav class="absolute top-0 w-full z-50 py-6 px-4">
 			<div class="max-w-7xl mx-auto flex justify-between items-center">
                 <a href="/" class="flex items-center group" style="font-family: 'Montserrat', sans-serif;">
@@ -61,7 +58,7 @@
 				<div class="hidden md:flex space-x-8 items-center">
 					<a href="/servicios" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">SERVICIOS</a>
 					<a href="/nosotros" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">NOSOTROS</a>
-                    <a href="/catalogo" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">CATÁLOGO</a>
+                    <a href="/catalogo" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'view_catalog', 'location': 'nav'});" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">CATÁLOGO</a>
                     <a href="#comparador" class="text-white font-medium hover:text-[#00BFFF] transition text-sm tracking-wide">COMPARADOR</a>
                     <a href="#contacto" class="border-2 border-white text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-[#0A1F33] transition tracking-widest">AGENDAR</a>
 				</div>
@@ -69,35 +66,47 @@
 			</div>
 		</nav>
 
-		<section class="relative bg-[#0A1F33] text-white overflow-hidden min-h-screen flex items-center">
+        <section class="relative bg-[#0A1F33] text-white overflow-hidden min-h-screen flex items-center">
             <div class="absolute inset-0 z-0">
-                <img src="/hero-image.jpg" alt="Cliente satisfecho Datacar" class="w-full h-full object-cover opacity-60" onerror="this.style.display='none'" />
-                <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/80 via-transparent to-[#0A1F33]/90"></div>
+                <img src="/hero-image.webp" alt="Asesoría automotriz Datacar" class="w-full h-full object-cover opacity-40" onerror="this.src='/hero-image.jpg'" loading="eager" decoding="async" />
+                <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/90 via-[#0A1F33]/70 to-[#0A1F33]"></div>
             </div>
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-16">
-                <span class="text-white/90 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 border border-white/30 px-4 py-1 rounded-full bg-[#0A1F33]/30 backdrop-blur-sm">Consultoría Automotriz</span>
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center mt-16">
+                <span class="text-[#00BFFF] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 border border-[#00BFFF]/30 px-4 py-1 rounded-full bg-[#0A1F33]/50 backdrop-blur-sm">Consultoría Automotriz</span>
+                
                 <h1 class="text-4xl md:text-6xl font-[900] tracking-tight mb-6 leading-tight drop-shadow-lg" style="font-family: 'Montserrat', sans-serif;">
-                    Tu próximo 0km, <br /> al mejor precio y sin estrés.
+                    Encontramos y Negociamos tu Próximo Auto por Vos <span class="text-[#00BFFF]">(Y al Mejor Precio)</span>.
                 </h1>
+                
                 <p class="text-lg md:text-xl text-white/90 max-w-3xl mb-10 leading-relaxed font-light drop-shadow-md">
-                    Dejá de recorrer concesionarias. Nosotros buscamos, comparamos y negociamos por vos. Te conseguimos el mejor trato de <strong>cualquier marca</strong>.
-                    <br/><span class="text-[#00BFFF] font-bold mt-3 block">Servicio 100% gratuito para vos.</span>
+                    Ya sea un 0km o un usado seguro. Olvidate de recorrer concesionarias o lidiar con vendedores. Nosotros hacemos el trabajo sucio.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center flex-wrap">
-                    <a href="#contacto" class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-[0_0_30px_rgba(0,191,255,0.4)] text-center">Agendar asesoramiento</a>
-                    <a href="/catalogo" class="border-2 border-[#00BFFF] text-[#00BFFF] hover:bg-[#00BFFF] hover:text-[#0A1F33] font-bold py-4 px-10 rounded-full text-lg transition duration-300 flex items-center justify-center gap-2">Ver Catálogo</a>
-                    <a href="#comparador" class="bg-white/10 hover:bg-white/20 border border-white/30 backdrop-blur-sm text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 text-center flex items-center justify-center gap-2">Usar Comparador</a>
+                
+                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+                    <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20hablar%20con%20un%20asesor." 
+                       target="_blank"
+                       onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'hero_primary'});"
+                       class="bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl text-lg transition duration-300 shadow-[0_0_30px_rgba(0,191,255,0.4)] text-center w-full sm:w-auto uppercase tracking-wide">
+                        Hablar con un Asesor
+                    </a>
+                    
+                    <a href="/catalogo" 
+                       onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'view_catalog', 'location': 'hero_secondary'});"
+                       class="border-2 border-white/50 hover:border-white hover:bg-white/10 text-white font-[700] py-4 px-10 rounded-xl text-lg transition duration-300 text-center w-full sm:w-auto backdrop-blur-sm">
+                        Ver Catálogo
+                    </a>
                 </div>
             </div>
         </section>
 
         <section id="como-funciona" class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-20">
+                <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-6" style="font-family: 'Montserrat', sans-serif;">El modelo tradicional está roto</h2>
                     <p class="text-lg text-[#3A3A3C] max-w-2xl mx-auto font-light">¿Cansado de visitar concesionarias, escuchar promesas vacías y recibir llamadas insistentes?</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
                     <div class="bg-gray-50 p-10 rounded-2xl border border-gray-100 hover:shadow-xl transition duration-300 group">
                         <div class="w-14 h-14 bg-[#0A1F33] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00BFFF] transition-colors duration-300"><svg class="w-7 h-7 text-white group-hover:text-[#0A1F33]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
                         <h3 class="text-xl font-[900] text-[#0A1F33] mb-4" style="font-family: 'Montserrat', sans-serif;">Conflicto de Interés</h3>
@@ -113,6 +122,36 @@
                         <h3 class="text-xl font-[900] text-[#0A1F33] mb-4" style="font-family: 'Montserrat', sans-serif;">Tu tiempo vale oro</h3>
                         <p class="text-[#3A3A3C] text-sm leading-relaxed">Olvidate de repetir lo mismo a 10 vendedores. <strong>Centralizá todo</strong> con un asesor.</p>
                     </div>
+                </div>
+
+                <div class="bg-[#0A1F33] rounded-3xl p-8 md:p-12 text-white shadow-2xl flex flex-col md:flex-row items-center gap-10">
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-[900] mb-4 text-[#00BFFF]" style="font-family: 'Montserrat', sans-serif;">¿Por qué nuestro servicio 0km es 100% gratis?</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Gracias a nuestros acuerdos corporativos con las concesionarias. Tenemos convenios directos con los representantes oficiales en Paraguay por acercarles compradores decididos. Vos te llevás nuestra experiencia y el ahorro de tiempo, a costo cero.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 border-l-0 md:border-l-2 border-white/20 pt-6 md:pt-0 md:pl-10">
+                        <div class="flex text-yellow-400 mb-3">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="font-bold text-lg italic leading-snug">
+                            "Caso de éxito: Ahorramos US$ 1.500 en la compra de la camioneta de Jorge y gestionamos su transferencia en tiempo récord."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20hablar%20con%20un%20asesor." 
+                       target="_blank"
+                       onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'como_funciona'});"
+                       class="inline-block bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl text-lg transition duration-300 shadow-lg uppercase tracking-wide">
+                        Hablar con un Asesor
+                    </a>
                 </div>
             </div>
         </section>
@@ -137,27 +176,6 @@
                                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Carrocería</label>
                                 <select id="filtroTipo" class="w-full bg-gray-50 border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] p-3 outline-none font-bold">
                                     <option value="Todos">Cualquier formato</option>
-                                    <optgroup label="SUV">
-                                        <option value="SUV Subcompacta (B)">SUV Subcompacta</option>
-                                        <option value="SUV Compacta (C)">SUV Compacta</option>
-                                        <option value="SUV Mediana (D)">SUV Mediana</option>
-                                        <option value="SUV Grande (E)">SUV Grande</option>
-                                    </optgroup>
-                                    <optgroup label="SEDÁN">
-                                        <option value="Sedán Subcompacto (B)">Sedán Subcompacto</option>
-                                        <option value="Sedán Compacto (C)">Sedán Compacto</option>
-                                        <option value="Sedán Mediano (D)">Sedán Mediano</option>
-                                    </optgroup>
-                                    <optgroup label="HATCHBACK">
-                                        <option value="Hatch Subcompacto (B)">Hatch Subcompacto</option>
-                                        <option value="Hatch Compacto (C)">Hatch Compacto</option>
-                                    </optgroup>
-                                    <optgroup label="PICKUP">
-                                        <option value="Pickup Pequeña">Pickup Pequeña</option>
-                                        <option value="Pickup Compacta">Pickup Compacta</option>
-                                        <option value="Pickup Mediana">Pickup Mediana</option>
-                                        <option value="Pickup Grande">Pickup Grande</option>
-                                    </optgroup>
                                 </select>
                             </div>
                             <div>
@@ -198,7 +216,7 @@
                                 </div>
                             </div>
                             <div id="resultado1" class="hidden p-8 flex-grow">
-                                <div class="h-48 mb-6 relative"><img id="img1" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
+                                <div class="h-48 mb-6 relative"><img id="img1" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" loading="lazy" /></div>
                                 <h4 id="nombre1" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6" style="font-family: 'Montserrat', sans-serif;"></h4>
                                 <div class="data-row"><span class="data-label">Precio Contado</span><span id="precio1" class="data-value font-[900] text-2xl text-[#00BFFF]"></span></div>
                                 <div class="data-row"><span class="data-label">Mecánica</span><span id="mecanica1" class="data-value text-sm"></span></div>
@@ -207,7 +225,7 @@
                                 <div class="data-row"><span class="data-label">Infoentretenimiento</span><span id="info1" class="data-value text-sm"></span></div>
                                 <div class="data-row"><span class="data-label">Confort</span><span id="confort1" class="data-value text-sm"></span></div>
                                 <div class="data-row border-none"><span class="data-label">Origen / Garantía</span><span id="origenGarantia1" class="data-value text-sm"></span></div>
-                                <a id="cta1" href="#" target="_blank" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
+                                <a id="cta1" href="#" target="_blank" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'comparador_a'});" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
                             </div>
                         </div>
 
@@ -221,7 +239,7 @@
                                 </div>
                             </div>
                             <div id="resultado2" class="hidden p-8 flex-grow">
-                                <div class="h-48 mb-6 relative"><img id="img2" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
+                                <div class="h-48 mb-6 relative"><img id="img2" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" loading="lazy" /></div>
                                 <h4 id="nombre2" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6" style="font-family: 'Montserrat', sans-serif;"></h4>
                                 <div class="data-row"><span class="data-label">Precio Contado</span><span id="precio2" class="data-value font-[900] text-2xl text-[#00BFFF]"></span></div>
                                 <div class="data-row"><span class="data-label">Mecánica</span><span id="mecanica2" class="data-value text-sm"></span></div>
@@ -230,7 +248,7 @@
                                 <div class="data-row"><span class="data-label">Infoentretenimiento</span><span id="info2" class="data-value text-sm"></span></div>
                                 <div class="data-row"><span class="data-label">Confort</span><span id="confort2" class="data-value text-sm"></span></div>
                                 <div class="data-row border-none"><span class="data-label">Origen / Garantía</span><span id="origenGarantia2" class="data-value text-sm"></span></div>
-                                <a id="cta2" href="#" target="_blank" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
+                                <a id="cta2" href="#" target="_blank" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'comparador_b'});" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl shadow-lg uppercase text-sm">Elegir este Auto</a>
                             </div>
                         </div>
                     </div>
@@ -246,10 +264,29 @@
         <section id="contacto" class="py-24 bg-[#0A1F33] text-white relative overflow-hidden">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 class="text-3xl md:text-5xl font-[900] mb-6" style="font-family: 'Montserrat', sans-serif;">¿Listo para comprar inteligente?</h2>
-                <div class="bg-white rounded-3xl p-2 md:p-4 max-w-2xl mx-auto shadow-2xl overflow-hidden min-h-[500px]">
-                    <div data-tf-live="01KK22DB3E8S91PJ7GF28ZH3P2"></div>
-                    <script is:inline src="https://embed.typeform.com/next/embed.js"></script>
-                </div>
+                <p class="text-xl text-gray-300 mb-12 font-light">Dejanos 3 datos básicos y nos ponemos a trabajar.</p>
+                
+                <div id="typeform-container" class="bg-white rounded-3xl p-2 md:p-4 max-w-2xl mx-auto shadow-2xl overflow-hidden min-h-[500px]"></div>
+                
+                <script src="//embed.typeform.com/next/embed.js" is:inline></script>
+                <script is:inline>
+                  document.addEventListener('DOMContentLoaded', () => {
+                    if (window.tf) {
+                      window.tf.createWidget('01KK22DB3E8S91PJ7GF28ZH3P2', {
+                        container: document.getElementById('typeform-container'),
+                        onSubmit: function (event) {
+                          // DISPARO DE EVENTO PARA GTM: lead_success
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({
+                            'event': 'lead_success',
+                            'lead_source': 'typeform_home',
+                            'form_id': event.formId
+                          });
+                        }
+                      });
+                    }
+                  });
+                </script>
             </div>
         </section>
 
@@ -259,8 +296,18 @@
                 <span class="text-2xl font-[300] text-[#C0C0C0] tracking-[1px] opacity-70">CAR</span>
             </div>
             <p class="font-light text-sm mb-6">Gestión de inversiones automotrices</p>
-            <p class="text-xs opacity-40">© 2024 DATACAR EAS.</p>
+            <p class="text-xs opacity-40">© 2026 DATACAR EAS.</p>
         </footer>
+
+        <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20necesito%20asesor%C3%ADa." 
+           target="_blank" 
+           class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
+           onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'sticky_widget'});"
+           aria-label="Contactar por WhatsApp">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+        </a>
 
         <script type="module" is:inline>
             import Papa from 'https://cdn.jsdelivr.net/npm/papaparse@5.4.1/+esm';
@@ -272,7 +319,7 @@
             let arbolFiltros = {}; 
             let autoA = null;
             let autoB = null;
-            let columnaAA = 'Tipo Carrocería'; // Valor por defecto
+            let columnaAA = 'Tipo Carrocería'; 
 
             const loaderText = document.getElementById('loader-text');
             const loader = document.getElementById('loader');
@@ -309,18 +356,15 @@
                                 return;
                             }
 
-                            // DETECTA AUTOMÁTICAMENTE EL NOMBRE DE LA COLUMNA AA (La nro 26)
                             const headers = results.meta.fields;
                             if (headers.length > 26) {
                                 columnaAA = headers[26]; 
                             }
 
-                            // ---> ESTAS SON LAS LÍNEAS DESACTIVADAS PARA QUE NO SE SOBREESCRIBA TU HTML FIJO <---
-                            // const tipos = [...new Set(bdAutosOriginal.map(c => c[columnaAA] ? c[columnaAA].trim() : null).filter(Boolean))].sort();
-                            // const selectTipo = document.getElementById('filtroTipo');
-                            // tipos.forEach(t => selectTipo.add(new Option(t, t)));
+                            const tipos = [...new Set(bdAutosOriginal.map(c => c[columnaAA] ? c[columnaAA].trim() : null).filter(Boolean))].sort();
+                            const selectTipo = document.getElementById('filtroTipo');
+                            tipos.forEach(t => selectTipo.add(new Option(t, t)));
 
-                            // Asignar Eventos de los filtros
                             document.getElementById('filtroTipo').addEventListener('change', aplicarFiltrosGlobales);
                             document.getElementById('filtroPrecio').addEventListener('change', aplicarFiltrosGlobales);
                             document.getElementById('filtroCombustible').addEventListener('change', aplicarFiltrosGlobales);
@@ -351,29 +395,24 @@
                 const comb = document.getElementById('filtroCombustible').value;
 
                 bdAutos = bdAutosOriginal.filter(c => {
-                    // Filtro 1: Carrocería (Usando la columna AA exacta)
                     let valorCarroceria = c[columnaAA] ? c[columnaAA].trim() : "";
                     let pasaTipo = (tipo === "Todos" || valorCarroceria === tipo);
                     
-                    // Filtro 2: Precio
                     let pasaPrecio = true;
                     if(precio !== "Todos") {
                         let val = c['Precio (US$)'] ? parseInt(c['Precio (US$)'].replace(/\D/g, '')) : NaN;
                         pasaPrecio = !isNaN(val) && val <= parseInt(precio);
                     }
 
-                    // Filtro 3: Inteligencia de Combustible
                     let pasaCombustible = true;
                     if(comb !== "Todos") {
                         let valorComb = c['Combustible'] || "";
                         let vLower = valorComb.toLowerCase();
-                        let clasificacion = "Tradicional"; // Por defecto todo es combustión
+                        let clasificacion = "Tradicional"; 
                         
-                        // Busca si es híbrido en cualquiera de sus formas
                         if(vLower.includes('hibrid') || vLower.includes('híbrid') || vLower.includes('hev') || vLower.includes('mhev') || vLower.includes('phev')) {
                             clasificacion = "Hibridos";
                         } 
-                        // Busca si es 100% eléctrico
                         else if(vLower.includes('electric') || vLower.includes('eléctric') || vLower === 'ev' || vLower.includes(' ev') || vLower.includes('bev')) {
                             clasificacion = "Electrico";
                         }
@@ -477,7 +516,6 @@
                     document.getElementById(`confort${col}`).innerText = `Asientos cuero: ${auto['Asientos de Cuero (Sí/No)']} | Techo: ${auto['Techo Panorámico/Corredizo (Sí/No)']}`;
                     document.getElementById(`origenGarantia${col}`).innerText = `Origen: ${auto['Origen']||'-'} | Garantía: ${auto['Garantía']||'-'}`;
 
-                    document.getElementById(`cta${col}`).href = `https://wa.me/0991244469?text=${encodeURIComponent('Hola Datacar, me interesa el ' + m + ' ' + mod + ' ' + ver)}`;
                     document.getElementById(`resultado${col}`).classList.remove('hidden');
 
                     if(autoA && autoB) {
@@ -496,9 +534,7 @@
                 }
             }
 
-            // Ejecución segura
             iniciarComparador();
         </script>
 	</body>
 </html>
-//
