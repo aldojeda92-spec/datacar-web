@@ -35,14 +35,13 @@
         <meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
 		<title>Datacar | Tu compra inteligente</title>
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" is:inline></script>
-
         <style>
             h1, h2, h3, .brand-font { font-family: 'Montserrat', sans-serif; }
             body, p, a, input, textarea, select { font-family: 'Inter', sans-serif; }
@@ -158,7 +157,7 @@
                                 </select>
                             </div>
                             <div class="w-full md:w-1/3 md:text-right">
-                                <button onclick="resetearFiltros()" class="text-[#00BFFF] font-bold hover:text-[#0A1F33] underline text-sm pb-3">Limpiar filtros</button>
+                                <button onclick="resetearFiltros()" class="text-[#00BFFF] font-bold hover:text-[#0A1F33] transition-colors underline text-sm pb-3">Limpiar filtros</button>
                             </div>
                         </div>
                     </div>
@@ -174,7 +173,7 @@
                                 </div>
                             </div>
                             <div id="resultado1" class="hidden p-8 flex-grow">
-                                <div class="h-48 mb-6 relative"><img id="img1" src="" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
+                                <div class="h-48 mb-6 relative"><img id="img1" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
                                 <h4 id="nombre1" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6" style="font-family: 'Montserrat', sans-serif;"></h4>
                                 <div class="data-row"><span class="data-label">Precio Contado</span><span id="precio1" class="data-value font-[900] text-2xl text-[#00BFFF]"></span></div>
                                 <div class="data-row"><span class="data-label">Mecánica</span><span id="mecanica1" class="data-value text-sm"></span></div>
@@ -197,7 +196,7 @@
                                 </div>
                             </div>
                             <div id="resultado2" class="hidden p-8 flex-grow">
-                                <div class="h-48 mb-6 relative"><img id="img2" src="" class="w-full h-full object-contain" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
+                                <div class="h-48 mb-6 relative"><img id="img2" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
                                 <h4 id="nombre2" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6" style="font-family: 'Montserrat', sans-serif;"></h4>
                                 <div class="data-row"><span class="data-label">Precio Contado</span><span id="precio2" class="data-value font-[900] text-2xl text-[#00BFFF]"></span></div>
                                 <div class="data-row"><span class="data-label">Mecánica</span><span id="mecanica2" class="data-value text-sm"></span></div>
@@ -238,198 +237,202 @@
             <p class="text-xs opacity-40">© 2024 DATACAR EAS.</p>
         </footer>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" is:inline></script>
+        
         <script is:inline>
-            // El código se ejecuta inmediatamente al llegar al final de la página
-            (function() {
+            window.bdAutosOriginal = []; 
+            window.bdAutos = []; 
+            window.arbolFiltros = {}; 
+            window.autoA = null;
+            window.autoB = null;
+
+            function arrancarComparador() {
                 const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
-                
                 const loader = document.getElementById('loader');
                 const loaderText = document.getElementById('loader-text');
                 const ui = document.getElementById('comparador-ui');
 
-                function error(msg) {
+                if(loaderText) loaderText.innerText = "Conectando con la base de datos...";
+
+                if(typeof Papa === 'undefined') {
                     if(loaderText) {
-                        loaderText.innerHTML = msg;
+                        loaderText.innerText = "⚠️ Error: Un bloqueador detuvo el script.";
                         loaderText.classList.replace("text-[#0A1F33]", "text-red-600");
                     }
-                    if(loader) {
-                        const spin = loader.querySelector('.animate-spin');
-                        if(spin) spin.style.display = 'none';
-                    }
-                }
-
-                if (typeof Papa === 'undefined') {
-                    error("Error: La librería de lectura no cargó.");
                     return;
                 }
 
-                // Evitar caché para siempre obtener datos frescos
                 fetch(URL_CSV, { cache: "no-store" })
                     .then(res => {
-                        if (!res.ok) throw new Error("Google Sheets bloqueó la solicitud.");
+                        if (!res.ok) throw new Error("Conexión rechazada.");
                         return res.text();
                     })
-                    .then(csvText => {
-                        Papa.parse(csvText, {
+                    .then(csv => {
+                        if(loaderText) loaderText.innerText = "Procesando vehículos...";
+                        Papa.parse(csv, {
                             header: true,
                             skipEmptyLines: true,
+                            transformHeader: function(h) { return h.trim(); },
                             complete: function(results) {
                                 try {
-                                    // LIMPIEZA EXTREMA: Quitamos espacios ocultos a los nombres de columnas
-                                    const dataLimpia = results.data.map(fila => {
-                                        let nuevaFila = {};
-                                        for(let key in fila) {
-                                            nuevaFila[key.trim()] = typeof fila[key] === 'string' ? fila[key].trim() : fila[key];
-                                        }
-                                        return nuevaFila;
-                                    });
+                                    window.bdAutosOriginal = results.data.filter(c => c['Marca'] && c['Marca'].trim() !== "");
+                                    if (window.bdAutosOriginal.length === 0) throw new Error("No encontré la columna 'Marca'.");
 
-                                    window.bdAutosOriginal = dataLimpia.filter(c => c['Marca'] && c['Marca'] !== "");
-                                    
-                                    if (window.bdAutosOriginal.length === 0) {
-                                        throw new Error("No encontré la columna 'Marca' en tu Excel.");
-                                    }
+                                    const tipos = [...new Set(window.bdAutosOriginal.map(c => c['Tipo Carrocería'] ? c['Tipo Carrocería'].trim() : null).filter(Boolean))].sort();
+                                    const selectTipo = document.getElementById('filtroTipo');
+                                    tipos.forEach(t => selectTipo.add(new Option(t, t)));
 
                                     window.aplicarFiltrosGlobales();
                                     
-                                    const tipos = [...new Set(window.bdAutosOriginal.map(c => c['Tipo Carrocería']).filter(Boolean))].sort();
-                                    const select = document.getElementById('filtroTipo');
-                                    tipos.forEach(t => select.add(new Option(t, t)));
-
-                                    loader.style.display = 'none';
+                                    loader.classList.add('hidden');
                                     ui.classList.remove('hidden');
                                 } catch(e) {
-                                    error("⚠️ " + e.message);
+                                    if(loaderText) { loaderText.innerText = "⚠️ " + e.message; loaderText.classList.replace("text-[#0A1F33]", "text-red-600"); }
+                                    const spin = loader.querySelector('.animate-spin');
+                                    if(spin) spin.style.display = 'none';
                                 }
                             }
                         });
                     })
-                    .catch(e => error("⚠️ Error de Red: " + e.message));
-
-                // Funciones globales anexadas a 'window' para que el HTML pueda verlas siempre
-                window.aplicarFiltrosGlobales = function() {
-                    const tipo = document.getElementById('filtroTipo').value;
-                    const precio = document.getElementById('filtroPrecio').value;
-
-                    window.bdAutos = window.bdAutosOriginal.filter(c => {
-                        let pasaTipo = tipo === "Todos" || c['Tipo Carrocería'] === tipo;
-                        let pasaPrecio = true;
-                        if(precio !== "Todos") {
-                            let val = c['Precio (US$)'] ? parseInt(c['Precio (US$)'].replace(/\D/g, '')) : NaN;
-                            pasaPrecio = !isNaN(val) && val <= parseInt(precio);
-                        }
-                        return pasaTipo && pasaPrecio;
+                    .catch(e => {
+                        if(loaderText) { loaderText.innerText = "⚠️ Error de red. Verificá tu conexión o el enlace."; loaderText.classList.replace("text-[#0A1F33]", "text-red-600"); }
+                        const spin = loader.querySelector('.animate-spin');
+                        if(spin) spin.style.display = 'none';
                     });
+            }
 
-                    window.arbolFiltros = {};
-                    window.bdAutos.forEach(c => {
-                        const m = c['Marca'], mod = c['Modelo'] || "", ver = c['Versión'] || "Única";
-                        if(!window.arbolFiltros[m]) window.arbolFiltros[m] = {};
-                        if(mod && !window.arbolFiltros[m][mod]) window.arbolFiltros[m][mod] = [];
-                        if(mod && !window.arbolFiltros[m][mod].includes(ver)) window.arbolFiltros[m][mod].push(ver);
-                    });
+            window.aplicarFiltrosGlobales = function() {
+                const tipo = document.getElementById('filtroTipo').value;
+                const precio = document.getElementById('filtroPrecio').value;
 
-                    [1, 2].forEach(col => {
-                        const sM = document.getElementById(`marca${col}`);
-                        sM.innerHTML = '<option value="">Seleccionar Marca</option>';
-                        Object.keys(window.arbolFiltros).sort().forEach(m => sM.add(new Option(m, m)));
-                    });
+                window.bdAutos = window.bdAutosOriginal.filter(c => {
+                    let pasaTipo = (tipo === "Todos" || (c['Tipo Carrocería'] && c['Tipo Carrocería'].trim() === tipo));
+                    let pasaPrecio = true;
+                    if(precio !== "Todos") {
+                        let val = c['Precio (US$)'] ? parseInt(c['Precio (US$)'].replace(/\D/g, '')) : NaN;
+                        pasaPrecio = !isNaN(val) && val <= parseInt(precio);
+                    }
+                    return pasaTipo && pasaPrecio;
+                });
 
-                    window.resetearResultados();
-                };
+                window.arbolFiltros = {};
+                window.bdAutos.forEach(c => {
+                    const m = c['Marca'].trim();
+                    const mod = c['Modelo'] ? c['Modelo'].trim() : "";
+                    const ver = c['Versión'] ? c['Versión'].trim() : "Única";
+                    if(!window.arbolFiltros[m]) window.arbolFiltros[m] = {};
+                    if(mod && !window.arbolFiltros[m][mod]) window.arbolFiltros[m][mod] = [];
+                    if(mod && !window.arbolFiltros[m][mod].includes(ver)) window.arbolFiltros[m][mod].push(ver);
+                });
 
-                window.resetearFiltros = function() {
-                    document.getElementById('filtroTipo').value = "Todos";
-                    document.getElementById('filtroPrecio').value = "Todos";
-                    window.aplicarFiltrosGlobales();
-                };
+                [1, 2].forEach(col => {
+                    const sel = document.getElementById(`marca${col}`);
+                    sel.innerHTML = '<option value="">Seleccionar Marca</option>';
+                    Object.keys(window.arbolFiltros).sort().forEach(m => sel.add(new Option(m, m)));
+                });
+                window.resetearResultados();
+            };
 
-                window.resetearResultados = function() {
-                    [1, 2].forEach(col => {
-                        document.getElementById(`modelo${col}`).innerHTML = '<option value="">Modelo</option>';
-                        document.getElementById(`modelo${col}`).disabled = true;
-                        document.getElementById(`version${col}`).innerHTML = '<option value="">Versión</option>';
-                        document.getElementById(`version${col}`).disabled = true;
-                        document.getElementById(`resultado${col}`).classList.add('hidden');
-                    });
-                    document.getElementById('veredicto-box').classList.add('hidden');
-                    window.auto1 = null; window.auto2 = null;
-                };
+            window.resetearFiltros = function() {
+                document.getElementById('filtroTipo').value = "Todos";
+                document.getElementById('filtroPrecio').value = "Todos";
+                window.aplicarFiltrosGlobales();
+            };
 
-                window.updateModelos = function(col) {
-                    const m = document.getElementById(`marca${col}`).value;
-                    const sMod = document.getElementById(`modelo${col}`);
-                    sMod.innerHTML = '<option value="">Modelo</option>';
+            window.resetearResultados = function() {
+                [1, 2].forEach(col => {
+                    document.getElementById(`modelo${col}`).innerHTML = '<option value="">Modelo</option>';
+                    document.getElementById(`modelo${col}`).disabled = true;
                     document.getElementById(`version${col}`).innerHTML = '<option value="">Versión</option>';
                     document.getElementById(`version${col}`).disabled = true;
                     document.getElementById(`resultado${col}`).classList.add('hidden');
-                    document.getElementById('veredicto-box').classList.add('hidden');
+                });
+                document.getElementById('veredicto-box').classList.add('hidden');
+                window.autoA = null; window.autoB = null;
+            };
 
-                    if(m && window.arbolFiltros[m]) {
-                        Object.keys(window.arbolFiltros[m]).sort().forEach(mod => sMod.add(new Option(mod, mod)));
-                        sMod.disabled = false;
-                    } else {
-                        sMod.disabled = true;
-                    }
-                };
+            window.updateModelos = function(col) {
+                const m = document.getElementById(`marca${col}`).value;
+                const sMod = document.getElementById(`modelo${col}`);
+                sMod.innerHTML = '<option value="">Modelo</option>';
+                document.getElementById(`version${col}`).innerHTML = '<option value="">Versión</option>';
+                document.getElementById(`version${col}`).disabled = true;
+                document.getElementById(`resultado${col}`).classList.add('hidden');
+                document.getElementById('veredicto-box').classList.add('hidden');
 
-                window.updateVersiones = function(col) {
-                    const m = document.getElementById(`marca${col}`).value;
-                    const mod = document.getElementById(`modelo${col}`).value;
-                    const sVer = document.getElementById(`version${col}`);
-                    sVer.innerHTML = '<option value="">Versión</option>';
-                    document.getElementById(`resultado${col}`).classList.add('hidden');
-                    document.getElementById('veredicto-box').classList.add('hidden');
+                if(m && window.arbolFiltros[m]) {
+                    Object.keys(window.arbolFiltros[m]).sort().forEach(mod => sMod.add(new Option(mod, mod)));
+                    sMod.disabled = false;
+                } else {
+                    sMod.disabled = true;
+                }
+            };
 
-                    if(mod && window.arbolFiltros[m][mod]) {
-                        window.arbolFiltros[m][mod].sort().forEach(v => sVer.add(new Option(v, v)));
-                        sVer.disabled = false;
-                    } else {
-                        sVer.disabled = true;
-                    }
-                };
+            window.updateVersiones = function(col) {
+                const m = document.getElementById(`marca${col}`).value;
+                const mod = document.getElementById(`modelo${col}`).value;
+                const sVer = document.getElementById(`version${col}`);
+                sVer.innerHTML = '<option value="">Versión</option>';
+                document.getElementById(`resultado${col}`).classList.add('hidden');
+                document.getElementById('veredicto-box').classList.add('hidden');
 
-                window.displayAuto = function(col) {
-                    const m = document.getElementById(`marca${col}`).value;
-                    const mod = document.getElementById(`modelo${col}`).value;
-                    const ver = document.getElementById(`version${col}`).value;
+                if(mod && window.arbolFiltros[m][mod]) {
+                    window.arbolFiltros[m][mod].sort().forEach(v => sVer.add(new Option(v, v)));
+                    sVer.disabled = false;
+                } else {
+                    sVer.disabled = true;
+                }
+            };
+
+            window.displayAuto = function(col) {
+                const m = document.getElementById(`marca${col}`).value;
+                const mod = document.getElementById(`modelo${col}`).value;
+                const ver = document.getElementById(`version${col}`).value;
+                
+                const auto = window.bdAutos.find(a => a['Marca'].trim() === m && a['Modelo'].trim() === mod && (a['Versión'] || "Única").trim() === ver);
+                
+                if(auto) {
+                    if(col===1) window.autoA = auto; else window.autoB = auto;
                     
-                    const auto = window.bdAutos.find(a => a['Marca'] === m && a['Modelo'] === mod && (a['Versión'] || "Única") === ver);
+                    document.getElementById(`nombre${col}`).innerText = `${m} ${mod} ${ver !== 'Única' ? ver : ''}`;
+                    document.getElementById(`img${col}`).src = auto['URL de Imagen'] || '';
                     
-                    if(auto) {
-                        if(col===1) window.auto1 = auto; else window.auto2 = auto;
-                        
-                        document.getElementById(`nombre${col}`).innerText = `${m} ${mod} ${ver !== 'Única' ? ver : ''}`;
-                        document.getElementById(`img${col}`).src = auto['URL de Imagen'] || '';
-                        
-                        let val = parseInt((auto['Precio (US$)']||"").replace(/\D/g, ''));
-                        document.getElementById(`precio${col}`).innerText = isNaN(val) ? (auto['Precio (US$)'] || 'Consultar') : "US$ " + val.toLocaleString('es-ES');
-                        
-                        document.getElementById(`mecanica${col}`).innerText = `${auto['Combustible']||'-'} | Motor: ${auto['Motor (Cilindrada / HP / Torque)']||'-'} | Caja: ${auto['Transmisión (MT / AT / CVT y N° de marchas)']||'-'} | Tracción: ${auto['Tracción']||'-'}`;
-                        document.getElementById(`medidas${col}`).innerText = `L: ${auto['Largo (mm)']}mm | A: ${auto['Ancho (mm)']}mm | Alt: ${auto['Alto (mm)']}mm | Despeje: ${auto['Despeje del suelo (mm)']}mm | Baúl: ${auto['Baulera (Litros)']}L | Plazas: ${auto['Plazas (Asientos) (Nuevo)']}`;
-                        document.getElementById(`seguridad${col}`).innerText = `ADAS: ${auto['ADAS (Full, Intermedio, Sin ADAS)']||'-'} | Cámaras: ${auto['Cámaras (Retroceso / 360)']||'-'}`;
-                        document.getElementById(`info${col}`).innerText = `Pantalla: ${auto['Tamaño Pantalla (Pulgadas)']} | ${auto['Conectividad (Inalámbrico/Cable)']}`;
-                        document.getElementById(`confort${col}`).innerText = `Asientos cuero: ${auto['Asientos de Cuero (Sí/No)']} | Techo: ${auto['Techo Panorámico/Corredizo (Sí/No)']}`;
-                        document.getElementById(`origenGarantia${col}`).innerText = `Origen: ${auto['Origen']||'-'} | Garantía: ${auto['Garantía']||'-'}`;
+                    let val = parseInt((auto['Precio (US$)']||"").replace(/\D/g, ''));
+                    document.getElementById(`precio${col}`).innerText = isNaN(val) ? (auto['Precio (US$)'] || 'Consultar') : "US$ " + val.toLocaleString('es-ES');
+                    
+                    document.getElementById(`mecanica${col}`).innerText = `${auto['Combustible']||'-'} | Motor: ${auto['Motor (Cilindrada / HP / Torque)']||'-'} | Caja: ${auto['Transmisión (MT / AT / CVT y N° de marchas)']||'-'} | Tracción: ${auto['Tracción']||'-'}`;
+                    document.getElementById(`medidas${col}`).innerText = `L: ${auto['Largo (mm)']}mm | A: ${auto['Ancho (mm)']}mm | Alt: ${auto['Alto (mm)']}mm | Despeje: ${auto['Despeje del suelo (mm)']}mm | Baúl: ${auto['Baulera (Litros)']}L | Plazas: ${auto['Plazas (Asientos) (Nuevo)']}`;
+                    document.getElementById(`seguridad${col}`).innerText = `ADAS: ${auto['ADAS (Full, Intermedio, Sin ADAS)']||'-'} | Cámaras: ${auto['Cámaras (Retroceso / 360)']||'-'}`;
+                    document.getElementById(`info${col}`).innerText = `Pantalla: ${auto['Tamaño Pantalla (Pulgadas)']} | ${auto['Conectividad (Inalámbrico/Cable)']}`;
+                    document.getElementById(`confort${col}`).innerText = `Asientos de cuero: ${auto['Asientos de Cuero (Sí/No)']} | Techo: ${auto['Techo Panorámico/Corredizo (Sí/No)']}`;
+                    document.getElementById(`origenGarantia${col}`).innerText = `Origen: ${auto['Origen']||'-'} | Garantía: ${auto['Garantía']||'-'}`;
 
-                        document.getElementById(`cta${col}`).href = `https://wa.me/595991244469?text=${encodeURIComponent('Hola Datacar, quiero asesoría sobre el ' + m + ' ' + mod)}`;
-                        document.getElementById(`resultado${col}`).classList.remove('hidden');
+                    document.getElementById(`cta${col}`).href = `https://wa.me/595991244469?text=${encodeURIComponent('Hola Datacar, me interesa el ' + m + ' ' + mod + ' ' + ver)}`;
+                    document.getElementById(`resultado${col}`).classList.remove('hidden');
 
-                        if(window.auto1 && window.auto2) {
-                            let p1 = parseInt((window.auto1['Precio (US$)']||"").replace(/\D/g, ''));
-                            let p2 = parseInt((window.auto2['Precio (US$)']||"").replace(/\D/g, ''));
-                            let txt = document.getElementById('veredicto-texto');
-                            if(!isNaN(p1) && !isNaN(p2)) {
-                                if(p1 < p2) txt.innerHTML = `El <strong>${window.auto1['Marca']}</strong> te ahorra <strong>US$ ${(p2-p1).toLocaleString('es-ES')}</strong>. Analizá el equipamiento.`;
-                                else if(p2 < p1) txt.innerHTML = `El <strong>${window.auto2['Marca']}</strong> te ahorra <strong>US$ ${(p1-p2).toLocaleString('es-ES')}</strong>. Analizá el equipamiento.`;
-                                else txt.innerHTML = `Ambos cuestan exactamente igual. La decisión es 100% técnica.`;
-                            } else {
-                                txt.innerHTML = `Consultá disponibilidad de precios formales con nuestro equipo.`;
-                            }
-                            document.getElementById('veredicto-box').classList.remove('hidden');
+                    if(window.autoA && window.autoB) {
+                        let p1 = parseInt((window.autoA['Precio (US$)']||"").replace(/\D/g, ''));
+                        let p2 = parseInt((window.autoB['Precio (US$)']||"").replace(/\D/g, ''));
+                        let txt = document.getElementById('veredicto-texto');
+                        if(!isNaN(p1) && !isNaN(p2)) {
+                            if(p1 < p2) txt.innerHTML = `El <strong>${window.autoA['Marca']} ${window.autoA['Modelo']}</strong> representa un ahorro de <strong>US$ ${(p2-p1).toLocaleString('es-ES')}</strong>.`;
+                            else if(p2 < p1) txt.innerHTML = `El <strong>${window.autoB['Marca']} ${window.autoB['Modelo']}</strong> representa un ahorro de <strong>US$ ${(p1-p2).toLocaleString('es-ES')}</strong>.`;
+                            else txt.innerHTML = `Ambas unidades cuestan exactamente lo mismo. La decisión es 100% técnica.`;
+                        } else {
+                            txt.innerHTML = `Comparativa técnica lista. Contactá a nuestro equipo para cotizaciones.`;
                         }
+                        document.getElementById('veredicto-box').classList.remove('hidden');
                     }
-                };
+                }
+            };
+
+            (function vigilarYArrancar() {
+                const loader = document.getElementById('loader');
+                if(loader) {
+                    setTimeout(arrancarComparador, 1000); 
+                } else {
+                    setTimeout(vigilarYArrancar, 500);
+                }
             })();
         </script>
 	</body>
