@@ -1,141 +1,170 @@
 ---
 // src/pages/servicios.astro
-// PÁGINA DE SERVICIOS - ENFOCADA EN DOLORES, SOLUCIONES Y WHATSAPP
 ---
+
 <html lang="es">
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18003746499"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<head>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-52KCG6F3');</script>
+        <meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+        
+        <title>Servicios de Asesoría Automotriz | Compra y Venta de Autos | Datacar</title>
+        <meta name="description" content="¿Buscás un 0km o querés vender tu usado? En Datacar filtramos el mercado por vos, realizamos inspecciones técnicas y negociamos el mejor precio. Servicio 0km gratuito." />
 
-  gtag('config', 'AW-18003746499');
-</script>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Servicios | Datacar EAS</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; color: #3A3A3C; margin: 0; }
-        h1, h2, h3, .brand-font { font-family: 'Montserrat', sans-serif; }
-        .svg-icon { width: 40px !important; height: 40px !important; color: #00BFFF; margin-bottom: 15px; }
-        .nav-icon { width: 20px !important; height: 20px !important; }
-    </style>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="antialiased flex flex-col min-h-screen">
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Datacar"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios Automotrices",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Asesoría 0km" }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Venta de Usados" }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Shopper de Usados" }
+              }
+            ]
+          }
+        }
+        </script>
 
-    <nav class="bg-[#0A1F33] py-5 px-4 shadow-md">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="/" class="flex items-center group" style="font-family: 'Montserrat', sans-serif;">
-                <span class="text-2xl md:text-3xl font-[900] text-white leading-none">DATA</span>
-                <span class="text-2xl md:text-3xl font-[300] text-[#C0C0C0] leading-none tracking-[1px]">CAR</span>
-            </a>
-            <div class="hidden md:flex space-x-6 text-sm font-bold tracking-wide">
-                <a href="/servicios" class="text-[#00BFFF]">SERVICIOS</a>
-                <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20vender%20mi%20auto%20y%20me%20gustar%C3%ADa%20conocer%20el%20proceso." target="_blank" class="text-white hover:text-[#00BFFF] transition">VENDER MI AUTO</a>
-                <a href="/catalogo" class="text-white hover:text-[#00BFFF] transition">CATÁLOGO</a>
-                <a href="/nosotros" class="text-white hover:text-[#00BFFF] transition">NOSOTROS</a>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
+        
+        <style>
+            h1, h2, h3, .brand-font { font-family: 'Montserrat', sans-serif; }
+            body, p, a { font-family: 'Inter', sans-serif; }
+            html { scroll-behavior: smooth; }
+            .service-card { transition: all 0.3s ease; }
+            .service-card:hover { transform: translateY(-5px); }
+        </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-white text-[#3A3A3C] antialiased">
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52KCG6F3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+		<nav class="w-full z-50 py-6 px-4 bg-[#0A1F33]">
+			<div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="/" class="flex items-center group">
+                    <span class="text-2xl font-[900] text-white">DATA</span>
+                    <span class="text-2xl font-[300] text-[#C0C0C0] tracking-[1px]">CAR</span>
+                </a>
+				<div class="hidden md:flex space-x-8 items-center text-sm font-bold text-white uppercase tracking-widest">
+					<a href="/" class="hover:text-[#00BFFF] transition">Inicio</a>
+					<a href="/catalogo" class="hover:text-[#00BFFF] transition">Catálogo</a>
+				</div>
+			</div>
+		</nav>
+
+        <header class="bg-[#0A1F33] pt-20 pb-32 px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl font-[900] text-white mb-6 leading-tight uppercase tracking-tight">
+                    Servicios de Asesoría Automotriz en Paraguay
+                </h1>
+                <p class="text-xl text-[#00BFFF] font-light max-w-2xl mx-auto">
+                    Nosotros hacemos el trabajo sucio para que vos disfrutes tu próximo auto.
+                </p>
             </div>
-            <a href="/" class="md:hidden flex items-center gap-2 text-white font-bold text-sm">
-                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Volver
-            </a>
+        </header>
+
+        <div class="sticky top-0 bg-gray-100 border-b border-gray-200 z-40 overflow-x-auto shadow-sm">
+            <div class="max-w-7xl mx-auto flex justify-center whitespace-nowrap py-4 px-4 gap-8 md:gap-16">
+                <a href="#asesoria-0km" class="text-xs font-black uppercase tracking-widest text-[#0A1F33] hover:text-[#00BFFF]">Asesoría 0km</a>
+                <a href="#venta-usado" class="text-xs font-black uppercase tracking-widest text-[#0A1F33] hover:text-[#00BFFF]">Vender mi Auto</a>
+                <a href="#shopper-usados" class="text-xs font-black uppercase tracking-widest text-[#0A1F33] hover:text-[#00BFFF]">Comprar Usado</a>
+            </div>
         </div>
-    </nav>
 
-    <section class="bg-[#0A1F33] text-white py-20 text-center px-4">
-        <h1 class="text-4xl md:text-5xl font-[900] mb-6" style="font-family: 'Montserrat', sans-serif;">Soluciones a tu medida</h1>
-        <p class="text-lg text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
-            Cambiar de auto no debería ser un dolor de cabeza. Nosotros hacemos el trabajo sucio, filtramos el ruido del mercado y protegemos tu dinero para que vos solo te preocupes por disfrutar.
-        </p>
-    </section>
-
-    <section class="py-20 px-4 flex-grow">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group hover:border-[#00BFFF]/50 transition flex flex-col">
-                <div class="absolute top-0 right-0 bg-[#00BFFF] text-[#0A1F33] text-xs font-black px-4 py-1 rounded-bl-lg uppercase tracking-wider">
-                    100% Gratuito
-                </div>
-                <svg class="svg-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
-                <h3 class="text-xl font-[900] text-[#0A1F33] mb-3" style="font-family: 'Montserrat', sans-serif;">Asesoría 0km Premium</h3>
-                <p class="text-gray-600 leading-relaxed text-sm mb-4 flex-grow">
-                    ¿Abrumado por tener que visitar distintas agencias? Nosotros te presentamos en un reporte estandarizado las mejores opciones del mercado.
-                </p>
-                <ul class="text-sm text-gray-500 space-y-2 border-t border-gray-100 pt-4">
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Análisis neutral de marcas</li>
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Comparativa de precios y prestaciones</li>
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> <strong class="text-[#0A1F33]">Sin costo para vos</strong></li>
-                </ul>
-            </div>
-
-            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group hover:border-[#00BFFF]/50 transition flex flex-col">
-                <div class="absolute top-0 right-0 bg-[#0A1F33] text-white text-xs font-bold px-4 py-1 rounded-bl-lg tracking-wider">
-                    Comisión: 2.5%
-                </div>
-                <svg class="svg-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <h3 class="text-xl font-[900] text-[#0A1F33] mb-3" style="font-family: 'Montserrat', sans-serif;">Venta de tu Usado</h3>
-                <p class="text-gray-600 leading-relaxed text-sm mb-4">
-                    Vender en redes es peligroso y estresante. Nosotros nos encargamos de todo el proceso para que vendas rápido y seguro.
-                </p>
+        <main class="max-w-7xl mx-auto px-4 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 
-                <div class="mb-4">
-                    <a href="/catalogo" class="inline-flex items-center gap-2 bg-[#0A1F33] hover:bg-[#0A1F33]/80 text-[#00BFFF] font-bold py-2 px-4 rounded-lg transition-colors text-xs tracking-wide">
-                        Ver unidades disponibles
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                </div>
+                <section id="asesoria-0km" class="service-card flex flex-col bg-gray-50 rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <img src="/service-0km.webp" alt="Asesoría 0km" class="w-full h-full object-cover" loading="lazy" />
+                        <div class="absolute top-4 left-4 bg-[#00BFFF] text-[#0A1F33] text-[10px] font-black px-3 py-1 rounded-full uppercase">Costo Cero</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h2 class="text-2xl font-[900] text-[#0A1F33] mb-4 uppercase">Asesoría 0km Premium</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">
+                            Buscamos disponibilidad de stock en todas las marcas y negociamos el precio final por vos. <br/><br/>
+                            <strong>¿Por qué es gratis?</strong> Gracias a convenios directos con representantes oficiales en Paraguay por acercarles compradores decididos. Vos ahorrás tiempo y dinero, sin pagar un guaraní extra.
+                        </p>
+                        <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20asesor%C3%ADa%20para%20un%200km." 
+                           target="_blank"
+                           class="w-full bg-[#0A1F33] hover:bg-[#00BFFF] hover:text-[#0A1F33] text-white text-center font-black py-4 rounded-xl transition-all uppercase text-xs tracking-widest">
+                            Hablar con un Asesor
+                        </a>
+                    </div>
+                </section>
 
-                <ul class="text-sm text-gray-500 space-y-2 border-t border-gray-100 pt-4 mt-auto">
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Fotos profesionales de tu vehículo</li>
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Filtro de interesados y visitas</li>
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Venta segura sin recibir llamadas</li>
-                </ul>
+                <section id="venta-usado" class="service-card flex flex-col bg-gray-50 rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <img src="/service-venta.webp" alt="Venta de usado" class="w-full h-full object-cover" loading="lazy" />
+                        <div class="absolute top-4 left-4 bg-white text-[#0A1F33] text-[10px] font-black px-3 py-1 rounded-full uppercase">Inversión: 2.5% comisión</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h2 class="text-2xl font-[900] text-[#0A1F33] mb-4 uppercase">Gestión de Venta</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">
+                            Publicamos tu auto en los portales más importantes, filtramos a los curiosos y solo te llevamos ofertas reales. <br/><br/>
+                            <strong>Inversión:</strong> 2.5% de comisión (Solo si vendemos). Nos encargamos de las fotos profesionales y la negociación para que no pierdas tiempo con desconocidos.
+                        </p>
+                        <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20vender%20mi%20usado." 
+                           target="_blank"
+                           class="w-full bg-[#00BFFF] hover:bg-[#33CCFF] text-[#0A1F33] text-center font-black py-4 rounded-xl transition-all uppercase text-xs tracking-widest shadow-lg">
+                            Vender mi auto ahora
+                        </a>
+                    </div>
+                </section>
+
+                <section id="shopper-usados" class="service-card flex flex-col bg-gray-50 rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <img src="/service-shopper.webp" alt="Shopper de usados" class="w-full h-full object-cover" loading="lazy" />
+                        <div class="absolute top-4 left-4 bg-white text-[#0A1F33] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Gs. 350.000</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h2 class="text-2xl font-[900] text-[#0A1F33] mb-4 uppercase">Shopper de Usados</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">
+                            ¿Viste un auto pero tenés miedo de que esté roto? Vamos con vos. <br/><br/>
+                            <strong>Inversión: Gs. 350.000.</strong> Ahorrate millones detectando fallas ocultas antes de comprar o dejando que nosotros negociemos el precio final por vos para cubrir nuestro fee.
+                        </p>
+                        <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20necesito%20un%20shopper%20de%20usados." 
+                           target="_blank"
+                           class="w-full bg-[#0A1F33] hover:bg-[#00BFFF] hover:text-[#0A1F33] text-white text-center font-black py-4 rounded-xl transition-all uppercase text-xs tracking-widest">
+                            Solicitar Shopper
+                        </a>
+                    </div>
+                </section>
+
             </div>
+        </main>
 
-            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group hover:border-[#00BFFF]/50 transition flex flex-col">
-                <div class="absolute top-0 right-0 bg-[#3A3A3C] text-white text-xs font-bold px-4 py-1 rounded-bl-lg tracking-wider">
-                    Fee Inicial: Gs. 350.000
-                </div>
-                <svg class="svg-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                <h3 class="text-xl font-[900] text-[#0A1F33] mb-3" style="font-family: 'Montserrat', sans-serif;">Shopper de Usados</h3>
-                <p class="text-gray-600 leading-relaxed text-sm mb-4 flex-grow">
-                    Filtramos la basura del mercado, hacemos la inspección técnica y negociamos el precio final por vos.
-                </p>
-                <ul class="text-sm text-gray-500 space-y-2 border-t border-gray-100 pt-4">
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Búsqueda y filtrado de opciones</li>
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Escáner mecánico y revisión legal</li>
-                    <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold">✓</span> Negociación para bajarte el precio</li>
-                </ul>
-            </div>
+        <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
+            <p class="text-xs opacity-40">© 2026 DATACAR EAS. Gestión inteligente de inversiones automotrices.</p>
+        </footer>
 
-        </div>
-
-        <div class="mt-16 text-center">
-            <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios." 
-               target="_blank"
-               class="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE55] text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-lg shadow-green-500/30">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                Contactar por WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <footer class="bg-[#05111D] text-gray-500 py-16 text-center border-t border-[#1A3A5C]">
-        <div class="flex items-center justify-center mb-6" style="font-family: 'Montserrat', sans-serif;">
-            <span class="text-2xl font-[900] text-white leading-none opacity-70 hover:opacity-100 transition">DATA</span>
-            <span class="text-2xl font-[300] text-[#C0C0C0] leading-none tracking-[1px] opacity-70 hover:opacity-100 transition">CAR</span>
-        </div>
-        <p class="font-light text-sm mb-6" style="font-family: 'Inter', sans-serif;">Gestión de inversiones automotrices</p>
-        <p class="text-xs opacity-40" style="font-family: 'Inter', sans-serif;">© 2024 DATACAR EAS.</p>
-    </footer>
-
-</body>
+        <a href="https://wa.me/595991244469?text=Hola%20Datacar,%20necesito%20asesor%C3%ADa%20automotriz." 
+           target="_blank" 
+           class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 md:hidden"
+           onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'whatsapp_click', 'location': 'sticky_servicios'});">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
+	</body>
 </html>
