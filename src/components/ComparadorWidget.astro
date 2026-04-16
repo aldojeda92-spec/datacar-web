@@ -1,0 +1,399 @@
+---
+// src/components/ComparadorWidget.astro
+---
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" is:inline></script>
+
+<style>
+    .data-row { border-bottom: 1px solid #f3f4f6; padding: 14px 0; display: flex; flex-direction: column; }
+    .data-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; font-weight: 800; margin-bottom: 4px; }
+    .data-value { font-size: 0.95rem; color: #3A3A3C; font-weight: 500; line-height: 1.4; }
+</style>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-[900] text-[#0A1F33] mb-6" style="font-family: 'Montserrat', sans-serif;">Comparador Técnico</h2>
+        <p class="text-lg text-[#3A3A3C] max-w-2xl mx-auto font-light" style="font-family: 'Inter', sans-serif;">Enfrentá dos unidades de nuestra base de datos y dejá que los números decidan.</p>
+    </div>
+
+    <div id="loader" class="text-center py-10">
+        <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#00BFFF]"></div>
+        <p class="mt-4 text-[#0A1F33] font-bold uppercase tracking-widest text-sm" id="loader-text" style="font-family: 'Montserrat', sans-serif;">Sincronizando Inventario...</p>
+    </div>
+
+    <div id="comparador-ui" class="hidden">
+        
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 shadow-sm mb-10">
+            <h3 class="text-sm font-black text-[#0A1F33] uppercase tracking-[0.1em] mb-4" style="font-family: 'Montserrat', sans-serif;">Paso 1: Definí tus parámetros</h3>
+            <div class="flex flex-col md:flex-row gap-6 items-end">
+                <div class="w-full md:w-1/3">
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Tipo de Vehículo</label>
+                    <select id="filtroTipo" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none font-bold">
+                        <option value="Todos">Cualquier Carrocería</option>
+                    </select>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Presupuesto Máximo</label>
+                    <select id="filtroPrecio" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none font-bold">
+                        <option value="Todos">Sin límite</option>
+                        <option value="15000">Hasta US$ 15.000</option>
+                        <option value="20000">Hasta US$ 20.000</option>
+                        <option value="25000">Hasta US$ 25.000</option>
+                        <option value="35000">Hasta US$ 35.000</option>
+                        <option value="50000">Hasta US$ 50.000</option>
+                        <option value="80000">Hasta US$ 80.000</option>
+                    </select>
+                </div>
+                <div class="w-full md:w-1/3 md:text-right">
+                    <button id="btnLimpiar" class="text-[#00BFFF] font-bold hover:text-[#0A1F33] transition-colors underline text-sm pb-3">Limpiar filtros</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="flex flex-col">
+                <div class="bg-gray-50 rounded-t-2xl p-6 border border-gray-200 border-b-0 shadow-sm">
+                    <h3 class="text-xs font-black text-[#9ca3af] uppercase tracking-[0.2em] mb-4" style="font-family: 'Montserrat', sans-serif;">Paso 2: Elegí la Opción A</h3>
+                    <div class="space-y-4">
+                        <select id="marca1" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none font-bold"><option value="">Seleccionar Marca</option></select>
+                        <select id="modelo1" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none disabled:bg-gray-100 disabled:text-gray-400"><option value="">Modelo</option></select>
+                        <select id="version1" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none disabled:bg-gray-100 disabled:text-gray-400"><option value="">Versión</option></select>
+                    </div>
+                </div>
+                
+                <div id="resultado1" class="hidden bg-white rounded-b-2xl shadow-xl overflow-hidden flex-grow border border-gray-200 border-t-0">
+                    <div class="h-56 bg-gray-200 relative"><img id="img1" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
+                    <div class="p-8">
+                        <h4 id="nombre1" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6" style="font-family: 'Montserrat', sans-serif;"></h4>
+                        
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Precio Contado</span><span id="precio1" class="data-value font-[900] text-2xl text-[#00BFFF]" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Mecánica</span><span id="mecanica1" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Medidas & Capacidades</span><span id="medidas1" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Seguridad</span><span id="seguridad1" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Infoentretenimiento</span><span id="info1" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Confort</span><span id="confort1" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row border-none"><span class="data-label" style="font-family: 'Inter', sans-serif;">Origen / Garantía</span><span id="origenGarantia1" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+
+                        <a id="cta1" href="#" target="_blank" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl transition-all shadow-lg uppercase text-sm tracking-wider" style="font-family: 'Inter', sans-serif;">Elegir este Auto</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <div class="bg-gray-50 rounded-t-2xl p-6 border border-gray-200 border-b-0 shadow-sm">
+                    <h3 class="text-xs font-black text-[#9ca3af] uppercase tracking-[0.2em] mb-4" style="font-family: 'Montserrat', sans-serif;">Paso 3: Elegí la Opción B</h3>
+                    <div class="space-y-4">
+                        <select id="marca2" class="w-full bg-white border border-gray-300 text-[#0A1F33] text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none font-bold"><option value="">Seleccionar Marca</option></select>
+                        <select id="modelo2" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none disabled:bg-gray-100 disabled:text-gray-400"><option value="">Modelo</option></select>
+                        <select id="version2" disabled class="w-full bg-white border border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-[#00BFFF] focus:border-[#00BFFF] p-3 outline-none disabled:bg-gray-100 disabled:text-gray-400"><option value="">Versión</option></select>
+                    </div>
+                </div>
+                
+                <div id="resultado2" class="hidden bg-white rounded-b-2xl shadow-xl overflow-hidden flex-grow border border-gray-200 border-t-0">
+                    <div class="h-56 bg-gray-200 relative"><img id="img2" src="" class="w-full h-full object-contain p-4 bg-white" onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'" /></div>
+                    <div class="p-8">
+                        <h4 id="nombre2" class="text-2xl font-[900] text-[#0A1F33] leading-tight mb-6" style="font-family: 'Montserrat', sans-serif;"></h4>
+                        
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Precio Contado</span><span id="precio2" class="data-value font-[900] text-2xl text-[#00BFFF]" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Mecánica</span><span id="mecanica2" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Medidas & Capacidades</span><span id="medidas2" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Seguridad</span><span id="seguridad2" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Infoentretenimiento</span><span id="info2" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row"><span class="data-label" style="font-family: 'Inter', sans-serif;">Confort</span><span id="confort2" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+                        <div class="data-row border-none"><span class="data-label" style="font-family: 'Inter', sans-serif;">Origen / Garantía</span><span id="origenGarantia2" class="data-value text-sm" style="font-family: 'Inter', sans-serif;"></span></div>
+
+                        <a id="cta2" href="#" target="_blank" class="mt-8 block w-full text-center bg-[#0A1F33] hover:bg-[#153454] text-white font-[900] py-4 px-6 rounded-xl transition-all shadow-lg uppercase text-sm tracking-wider" style="font-family: 'Inter', sans-serif;">Elegir este Auto</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="veredicto-box" class="mt-16 bg-[#0A1F33] rounded-3xl p-10 text-center text-white shadow-2xl hidden border-t-4 border-[#00BFFF]">
+            <h4 class="text-sm font-black text-[#00BFFF] tracking-[0.3em] uppercase mb-4" style="font-family: 'Montserrat', sans-serif;">Análisis Financiero Datacar</h4>
+            <p id="veredicto-texto" class="text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto" style="font-family: 'Inter', sans-serif;"></p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Usamos el decorador de Astro para evitar conflictos con otras páginas
+    document.addEventListener('astro:page-load', () => {
+        iniciarAppComparador();
+    }, { once: false });
+
+    // También lo ejecutamos en el DOMContentLoaded por seguridad
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!window.comparadorIniciado) {
+            iniciarAppComparador();
+        }
+    });
+
+    function iniciarAppComparador() {
+        const uiContainer = document.getElementById('comparador-ui');
+        if (!uiContainer) return; // Si no estamos en la página del comparador, no hace nada
+        
+        if (window.comparadorIniciado) return; // Evita ejecuciones dobles
+        window.comparadorIniciado = true;
+
+        const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
+        
+        let bdAutosOriginal = []; 
+        let bdAutos = []; 
+        let arbolFiltros = {}; 
+        let autoA = null;
+        let autoB = null;
+
+        const loader = document.getElementById('loader');
+        const loaderText = document.getElementById('loader-text');
+
+        function mostrarError(mensaje) {
+            if(loaderText) {
+                loaderText.innerHTML = mensaje;
+                loaderText.classList.replace("text-[#0A1F33]", "text-red-600");
+            }
+            if(loader) {
+                const spinner = loader.querySelector('.animate-spin');
+                if(spinner) spinner.style.display = 'none';
+            }
+        }
+
+        // Descarga de datos
+        fetch(URL_CSV)
+            .then(respuesta => {
+                if (!respuesta.ok) throw new Error("Conexión bloqueada.");
+                return respuesta.text();
+            })
+            .then(textoCSV => {
+                if(typeof window.Papa === 'undefined') {
+                    throw new Error("Librería de lectura no cargada.");
+                }
+                
+                window.Papa.parse(textoCSV, {
+                    header: true,
+                    skipEmptyLines: true,
+                    transformHeader: function(h) { return h.trim(); },
+                    complete: function(results) {
+                        try {
+                            bdAutosOriginal = results.data.filter(car => car['Marca'] && car['Marca'].trim() !== "");
+                            
+                            if (bdAutosOriginal.length === 0) {
+                                throw new Error("No encontré la columna 'Marca'.");
+                            }
+
+                            configurarEventos();
+                            cargarFiltroCarroceria();
+                            aplicarFiltrosGlobales();
+                            
+                            if(loader) loader.classList.add('hidden');
+                            uiContainer.classList.remove('hidden');
+                            
+                        } catch (error) {
+                            mostrarError("⚠️ " + error.message);
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                mostrarError("⚠️ Error cargando la base de datos de autos.");
+            });
+
+        // Configuración de Eventos JS sin atributos inline (Más seguro)
+        function configurarEventos() {
+            document.getElementById('filtroTipo')?.addEventListener('change', aplicarFiltrosGlobales);
+            document.getElementById('filtroPrecio')?.addEventListener('change', aplicarFiltrosGlobales);
+            document.getElementById('btnLimpiar')?.addEventListener('click', resetearFiltros);
+            
+            document.getElementById('marca1')?.addEventListener('change', () => updateModelos(1));
+            document.getElementById('modelo1')?.addEventListener('change', () => updateVersiones(1));
+            document.getElementById('version1')?.addEventListener('change', () => displayAuto(1));
+            
+            document.getElementById('marca2')?.addEventListener('change', () => updateModelos(2));
+            document.getElementById('modelo2')?.addEventListener('change', () => updateVersiones(2));
+            document.getElementById('version2')?.addEventListener('change', () => displayAuto(2));
+        }
+
+        function cargarFiltroCarroceria() {
+            const tipos = [...new Set(bdAutosOriginal.map(c => c['Tipo Carrocería'] ? c['Tipo Carrocería'].trim() : null).filter(Boolean))].sort();
+            const select = document.getElementById('filtroTipo');
+            if(!select) return;
+            select.innerHTML = '<option value="Todos">Cualquier Carrocería</option>';
+            tipos.forEach(t => select.add(new Option(t, t)));
+        }
+
+        function aplicarFiltrosGlobales() {
+            const tipoSel = document.getElementById('filtroTipo')?.value || "Todos";
+            const precioMax = document.getElementById('filtroPrecio')?.value || "Todos";
+
+            bdAutos = bdAutosOriginal.filter(car => {
+                let pasaTipo = (tipoSel === "Todos" || (car['Tipo Carrocería'] && car['Tipo Carrocería'].trim() === tipoSel));
+                let pasaPrecio = true;
+
+                if (precioMax !== "Todos") {
+                    const pValue = car['Precio (US$)'] ? parseInt(car['Precio (US$)'].replace(/\D/g, '')) : NaN;
+                    if (!isNaN(pValue)) pasaPrecio = pValue <= parseInt(precioMax);
+                    else pasaPrecio = false; 
+                }
+                return pasaTipo && pasaPrecio;
+            });
+
+            generarEstructuraFiltros();
+            cargarMarcas();
+            resetComparadorResultados();
+        }
+
+        function resetearFiltros() {
+            const fTipo = document.getElementById('filtroTipo');
+            const fPrecio = document.getElementById('filtroPrecio');
+            if(fTipo) fTipo.value = "Todos";
+            if(fPrecio) fPrecio.value = "Todos";
+            aplicarFiltrosGlobales();
+        }
+
+        function resetComparadorResultados() {
+            [1, 2].forEach(col => {
+                const selectMod = document.getElementById(`modelo${col}`);
+                const selectVer = document.getElementById(`version${col}`);
+                if(selectMod) { selectMod.innerHTML = '<option value="">Modelo</option>'; selectMod.disabled = true; }
+                if(selectVer) { selectVer.innerHTML = '<option value="">Versión</option>'; selectVer.disabled = true; }
+                const res = document.getElementById(`resultado${col}`);
+                if(res) res.classList.add('hidden');
+            });
+            const box = document.getElementById('veredicto-box');
+            if(box) box.classList.add('hidden');
+            autoA = null;
+            autoB = null;
+        }
+
+        function generarEstructuraFiltros() {
+            arbolFiltros = {}; 
+            bdAutos.forEach(car => {
+                const m = car['Marca'].trim();
+                const mod = car['Modelo'] ? car['Modelo'].trim() : "";
+                const ver = car['Versión'] ? car['Versión'].trim() : "Única";
+
+                if (!arbolFiltros[m]) arbolFiltros[m] = {};
+                if (mod && !arbolFiltros[m][mod]) arbolFiltros[m][mod] = [];
+                if (mod && !arbolFiltros[m][mod].includes(ver)) arbolFiltros[m][mod].push(ver);
+            });
+        }
+
+        function cargarMarcas() {
+            const marcas = Object.keys(arbolFiltros).sort();
+            const selects = [document.getElementById('marca1'), document.getElementById('marca2')];
+            selects.forEach(s => {
+                if(s) {
+                    s.innerHTML = '<option value="">Seleccionar Marca</option>';
+                    marcas.forEach(m => s.add(new Option(m, m)));
+                }
+            });
+        }
+
+        function updateModelos(col) {
+            const marca = document.getElementById(`marca${col}`)?.value;
+            const selectMod = document.getElementById(`modelo${col}`);
+            const selectVer = document.getElementById(`version${col}`);
+            const res = document.getElementById(`resultado${col}`);
+            
+            if(selectMod) { selectMod.innerHTML = '<option value="">Modelo</option>'; selectMod.disabled = true; }
+            if(selectVer) { selectVer.innerHTML = '<option value="">Versión</option>'; selectVer.disabled = true; }
+            if(res) res.classList.add('hidden');
+            const vBox = document.getElementById('veredicto-box');
+            if(vBox) vBox.classList.add('hidden');
+
+            if (marca && arbolFiltros[marca] && selectMod) {
+                const modelos = Object.keys(arbolFiltros[marca]).sort();
+                modelos.forEach(mod => selectMod.add(new Option(mod, mod)));
+                selectMod.disabled = false;
+            }
+        }
+
+        function updateVersiones(col) {
+            const marca = document.getElementById(`marca${col}`)?.value;
+            const modelo = document.getElementById(`modelo${col}`)?.value;
+            const selectVer = document.getElementById(`version${col}`);
+            const res = document.getElementById(`resultado${col}`);
+            
+            if(selectVer) { selectVer.innerHTML = '<option value="">Versión</option>'; selectVer.disabled = true; }
+            if(res) res.classList.add('hidden');
+            const vBox = document.getElementById('veredicto-box');
+            if(vBox) vBox.classList.add('hidden');
+
+            if (modelo && arbolFiltros[marca] && arbolFiltros[marca][modelo] && selectVer) {
+                const versiones = arbolFiltros[marca][modelo].sort();
+                versiones.forEach(v => selectVer.add(new Option(v, v)));
+                selectVer.disabled = false;
+            }
+        }
+
+        function displayAuto(col) {
+            const m = document.getElementById(`marca${col}`)?.value;
+            const mod = document.getElementById(`modelo${col}`)?.value;
+            const ver = document.getElementById(`version${col}`)?.value;
+            
+            if(!m || !mod || !ver) return;
+
+            const auto = bdAutos.find(a => a['Marca'].trim() === m && a['Modelo'].trim() === mod && (a['Versión'] || "Única").trim() === ver);
+            
+            if (auto) {
+                if(col === 1) autoA = auto; else autoB = auto;
+
+                const eNombre = document.getElementById(`nombre${col}`);
+                const eImg = document.getElementById(`img${col}`);
+                const ePrecio = document.getElementById(`precio${col}`);
+                const eMecanica = document.getElementById(`mecanica${col}`);
+                const eMedidas = document.getElementById(`medidas${col}`);
+                const eSeguridad = document.getElementById(`seguridad${col}`);
+                const eInfo = document.getElementById(`info${col}`);
+                const eConfort = document.getElementById(`confort${col}`);
+                const eOrigenGarantia = document.getElementById(`origenGarantia${col}`);
+                const eCta = document.getElementById(`cta${col}`);
+                const eResultado = document.getElementById(`resultado${col}`);
+
+                if(eNombre) eNombre.innerText = `${m} ${mod} ${ver !== 'Única' ? ver : ''}`;
+                if(eImg) eImg.src = auto['URL de Imagen'] || '';
+                
+                const pValue = auto['Precio (US$)'] ? parseInt(auto['Precio (US$)'].replace(/\D/g, '')) : NaN;
+                if(ePrecio) ePrecio.innerText = isNaN(pValue) ? (auto['Precio (US$)'] || 'Consultar') : "US$ " + pValue.toLocaleString('es-ES');
+                
+                if(eMecanica) eMecanica.innerText = `${auto['Combustible'] || '-'} | Motor: ${auto['Motor (Cilindrada / HP / Torque)'] || '-'} | Caja: ${auto['Transmisión (MT / AT / CVT y N° de marchas)'] || '-'} | Tracción: ${auto['Tracción'] || '-'}`;
+                if(eMedidas) eMedidas.innerText = `L: ${auto['Largo (mm)']}mm | A: ${auto['Ancho (mm)']}mm | Alt: ${auto['Alto (mm)']}mm | Despeje: ${auto['Despeje del suelo (mm)']}mm | Baúl: ${auto['Baulera (Litros)']}L | Plazas: ${auto['Plazas (Asientos) (Nuevo)']}`;
+                if(eSeguridad) eSeguridad.innerText = `ADAS: ${auto['ADAS (Full, Intermedio, Sin ADAS)'] || '-'} | Cámaras: ${auto['Cámaras (Retroceso / 360)'] || '-'}`;
+                if(eInfo) eInfo.innerText = `Pantalla: ${auto['Tamaño Pantalla (Pulgadas)']} | ${auto['Conectividad (Inalámbrico/Cable)']}`;
+                if(eConfort) eConfort.innerText = `Asientos de cuero: ${auto['Asientos de Cuero (Sí/No)']} | Techo: ${auto['Techo Panorámico/Corredizo (Sí/No)']}`;
+                if(eOrigenGarantia) eOrigenGarantia.innerText = `Fabricado en: ${auto['Origen'] || '-'} | Garantía: ${auto['Garantía'] || '-'}`;
+
+                const msg = encodeURIComponent(`¡Hola Datacar! Estuve comparando en la web y me interesa comprar el ${m} ${mod} ${ver}. ¿Me asesoran?`);
+                if(eCta) eCta.href = `https://wa.me/595991244469?text=${msg}`;
+
+                if(eResultado) eResultado.classList.remove('hidden');
+                calcularVeredicto();
+            }
+        }
+
+        function calcularVeredicto() {
+            if(autoA && autoB) {
+                const box = document.getElementById('veredicto-box');
+                const txt = document.getElementById('veredicto-texto');
+                
+                const pA = autoA['Precio (US$)'] ? parseInt(autoA['Precio (US$)'].replace(/\D/g, '')) : NaN;
+                const pB = autoB['Precio (US$)'] ? parseInt(autoB['Precio (US$)'].replace(/\D/g, '')) : NaN;
+
+                if(!isNaN(pA) && !isNaN(pB) && txt) {
+                    if(pA < pB) {
+                        txt.innerHTML = `El <strong>${autoA['Marca']} ${autoA['Modelo']}</strong> representa un ahorro inicial de <strong>US$ ${(pB - pA).toLocaleString('es-ES')}</strong>. Analizá si la diferencia de equipamiento y origen justifica el salto de valor hacia el ${autoB['Marca']}.`;
+                    } else if(pB < pA) {
+                        txt.innerHTML = `El <strong>${autoB['Marca']} ${autoB['Modelo']}</strong> representa un ahorro inicial de <strong>US$ ${(pA - pB).toLocaleString('es-ES')}</strong>. Analizá si la diferencia de equipamiento y origen justifica el salto de valor hacia el ${autoA['Marca']}.`;
+                    } else {
+                        txt.innerHTML = `Ambas unidades cuestan exactamente lo mismo (US$ ${pA.toLocaleString('es-ES')}). La decisión es 100% técnica: compará la seguridad ADAS, la mecánica y el confort interior.`;
+                    }
+                } else if(txt) {
+                    txt.innerHTML = `Comparativa técnica lista. Contactá a nuestro equipo para obtener las cotizaciones formales y comparar los costos de mantenimiento de ambos modelos.`;
+                }
+                if(box) box.classList.remove('hidden');
+            }
+        }
+    }
+</script>
