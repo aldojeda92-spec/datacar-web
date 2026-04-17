@@ -28,36 +28,37 @@
             body, p, a, input, textarea, select { font-family: 'Inter', sans-serif; }
             html { scroll-behavior: smooth; }
             
-            /* Ficha Técnica Premium Legible (Sin Iconos) */
+            /* Ficha Técnica Dinámica - Estilo Limpio sin Iconos */
             .spec-card-row {
                 display: flex;
                 flex-direction: column;
-                padding: 12px 16px;
+                padding: 14px 18px;
                 background: #ffffff;
-                border-radius: 12px;
+                border-radius: 14px;
                 border: 1px solid #e2e8f0;
                 margin-bottom: 8px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.02);
             }
             .spec-label {
                 font-size: 0.65rem;
                 font-weight: 800;
-                color: #94a3b8;
+                color: #64748b;
                 text-transform: uppercase;
-                letter-spacing: 0.05em;
-                margin-bottom: 3px;
+                letter-spacing: 0.08em;
+                margin-bottom: 4px;
             }
             .spec-value {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 font-weight: 600;
-                color: #1e293b;
+                color: #0f172a;
                 line-height: 1.4;
             }
-            .highlight-price-card {
+            .price-highlight-card {
                 background: #f0f9ff;
                 border: 2px solid #00BFFF;
-                padding: 18px;
+                padding: 20px;
             }
-            .highlight-price-card .spec-value {
+            .price-highlight-card .spec-value {
                 color: #00BFFF;
                 font-size: 1.6rem;
                 font-weight: 900;
@@ -88,16 +89,16 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/90 to-[#0A1F33]"></div>
             </div>
             <div class="relative z-10 max-w-5xl mx-auto px-4 text-center mt-16">
-                <span class="text-[#00BFFF] font-bold tracking-[0.4em] uppercase text-[10px] mb-6 inline-block border border-[#00BFFF]/30 px-4 py-1 rounded-full bg-[#00BFFF]/10">Negociación Automotriz</span>
+                <span class="text-[#00BFFF] font-bold tracking-[0.4em] uppercase text-[10px] mb-6 inline-block border border-[#00BFFF]/30 px-4 py-1 rounded-full bg-[#00BFFF]/10">Expertos en Negociación Automotriz</span>
                 <h1 class="text-4xl md:text-7xl font-[900] mb-6 leading-tight tracking-tighter uppercase">
                     Compra y venta de autos 0km y usados en Paraguay.
                 </h1>
                 <p class="text-lg md:text-xl text-slate-300 max-w-3xl mb-10 mx-auto font-light leading-relaxed">
-                    Elegí el auto, nosotros nos encargamos de que pagues el precio más bajo. Sin recorrer playas, sin lidiar con vendedores. <span class="text-white font-bold">Hacemos el trabajo sucio por vos.</span>
+                    Usted elige el vehículo, nosotros nos encargamos de que pague el precio más bajo posible. Olvídese de lidiar con vendedores, <span class="text-white font-bold underline decoration-[#00BFFF]">nosotros hacemos el trabajo sucio por usted.</span>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#contacto" class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-5 px-12 rounded-xl text-lg uppercase shadow-xl transition hover:scale-105">Activar mi Búsqueda</a>
-                    <a href="#comparador" class="border-2 border-white/30 text-white font-[700] py-5 px-12 rounded-xl text-lg backdrop-blur-sm hover:bg-white/10 transition">Ver Comparador</a>
+                    <a href="#contacto" class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-5 px-12 rounded-xl text-lg uppercase shadow-xl transition hover:scale-105">Empezar Búsqueda</a>
+                    <a href="#metodologia" class="border-2 border-white/30 text-white font-[700] py-5 px-12 rounded-xl text-lg backdrop-blur-sm hover:bg-white/10 transition">Ver Metodología</a>
                 </div>
             </div>
 		</section>
@@ -105,54 +106,65 @@
         <section class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-20">
-                    <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-6 uppercase tracking-tight leading-none italic">El modelo tradicional <br/><span class="text-[#00BFFF] not-italic">está roto</span></h2>
-                    <p class="text-slate-500 max-w-2xl mx-auto text-lg font-light">Visitar playas de autos y negociar con vendedores no es eficiente. Así es como Datacar cambia las reglas:</p>
+                    <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-6 uppercase tracking-tight leading-none">El modelo tradicional <br/><span class="text-[#00BFFF]">está roto</span></h2>
+                    <p class="text-slate-500 max-w-2xl mx-auto text-lg font-light">Comprar un auto en Paraguay no debería ser un proceso agotador. Datacar nace para solucionar los 3 grandes problemas del mercado:</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition">
-                        <h3 class="text-xl font-black text-[#0A1F33] mb-4 uppercase leading-tight">Basta de recorrer</h3>
-                        <p class="text-slate-600 leading-relaxed font-light">¿Por qué perder tus sábados visitando concesionarias? Nosotros filtramos el mercado por vos, verificamos stock real y descartamos unidades problemáticas.</p>
+                    <div class="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                        <h3 class="text-xl font-black text-[#0A1F33] mb-4 uppercase group-hover:text-[#00BFFF]">Basta de recorrer</h3>
+                        <p class="text-slate-600 leading-relaxed font-light italic">"¿Por qué perder sábados enteros visitando playas?"</p>
+                        <p class="mt-4 text-slate-600 leading-relaxed font-light">Nosotros filtramos el mercado por usted, verificamos stock real y descartamos unidades que no pasan nuestra auditoría.</p>
                     </div>
-                    <div class="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition">
-                        <h3 class="text-xl font-black text-[#0A1F33] mb-4 uppercase leading-tight">Sin negociar con 5 vendedores</h3>
-                        <p class="text-slate-600 leading-relaxed font-light">No pelees el precio con extraños. Datacar utiliza su volumen de compra y red de contactos para presionar y bajar el precio final por vos.</p>
+                    <div class="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                        <h3 class="text-xl font-black text-[#0A1F33] mb-4 uppercase group-hover:text-[#00BFFF]">Sin negociar con 5 vendedores</h3>
+                        <p class="text-slate-600 leading-relaxed font-light italic">"Basta de pelear el precio con extraños."</p>
+                        <p class="mt-4 text-slate-600 leading-relaxed font-light">Utilizamos nuestro volumen de compra y red de contactos para presionar y bajar el precio final a niveles que un particular no logra.</p>
                     </div>
-                    <div class="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition">
-                        <h3 class="text-xl font-black text-[#0A1F33] mb-4 uppercase leading-tight">Decidí con información</h3>
-                        <p class="text-slate-600 leading-relaxed font-light">La mayoría compra por emoción. Nosotros te entregamos datos técnicos y comparativos reales para que tu inversión sea 100% racional y segura.</p>
+                    <div class="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                        <h3 class="text-xl font-black text-[#0A1F33] mb-4 uppercase group-hover:text-[#00BFFF]">Decidir con información</h3>
+                        <p class="text-slate-600 leading-relaxed font-light italic">"Elimine la incertidumbre de su inversión."</p>
+                        <p class="mt-4 text-slate-600 leading-relaxed font-light">La mayoría compra por emoción. Datacar le entrega datos técnicos y comparativos reales para que su decisión sea 100% racional.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-slate-900 text-white overflow-hidden">
+        <section id="metodologia" class="py-24 bg-[#0A1F33] text-white overflow-hidden">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex flex-col lg:flex-row items-center gap-20">
                     <div class="lg:w-1/2">
-                        <h2 class="text-3xl md:text-5xl font-[900] text-[#00BFFF] mb-8 uppercase leading-tight">Nuestra Metodología: <br/>El Reporte Ejecutivo</h2>
+                        <h2 class="text-3xl md:text-5xl font-[900] text-[#00BFFF] mb-8 uppercase leading-tight">Su mayor beneficio: <br/>El Reporte Ejecutivo</h2>
                         <p class="text-xl text-slate-300 mb-8 font-light leading-relaxed">
-                            No enviamos links sueltos. Te entregamos un documento profesional con las **5 mejores opciones del mercado** según tu presupuesto e intereses.
+                            No enviamos links sueltos. Entregamos un documento profesional con las **5 mejores opciones del mercado** seleccionadas según su perfil.
                         </p>
                         <div class="space-y-6 mb-10">
                             <div class="flex items-start gap-4">
-                                <div class="bg-[#00BFFF] text-[#0A1F33] rounded-full w-7 h-7 flex items-center justify-center font-black shrink-0 mt-1">1</div>
-                                <p class="text-slate-300"><span class="text-white font-bold">Análisis Técnico:</span> Filtramos mecánicamente cada unidad finalista.</p>
+                                <div class="bg-[#00BFFF] text-[#0A1F33] rounded-full w-8 h-8 flex items-center justify-center font-black shrink-0 mt-1">1</div>
+                                <p class="text-slate-300"><span class="text-white font-bold">Auditoría Técnica:</span> Cada unidad del reporte pasa por un filtro de equipamiento y mantenimiento.</p>
                             </div>
                             <div class="flex items-start gap-4">
-                                <div class="bg-[#00BFFF] text-[#0A1F33] rounded-full w-7 h-7 flex items-center justify-center font-black shrink-0 mt-1">2</div>
-                                <p class="text-slate-300"><span class="text-white font-bold">Auditoría de Seguridad:</span> Comparamos ADAS y equipamiento real.</p>
+                                <div class="bg-[#00BFFF] text-[#0A1F33] rounded-full w-8 h-8 flex items-center justify-center font-black shrink-0 mt-1">2</div>
+                                <p class="text-slate-300"><span class="text-white font-bold">Comparativa de Seguridad:</span> Analizamos frenado, ADAS y estructuras antes de recomendar.</p>
                             </div>
                             <div class="flex items-start gap-4">
-                                <div class="bg-[#00BFFF] text-[#0A1F33] rounded-full w-7 h-7 flex items-center justify-center font-black shrink-0 mt-1">3</div>
-                                <p class="text-slate-300"><span class="text-white font-bold">Precio Negociado:</span> Recibís el costo final real listo para cerrar.</p>
+                                <div class="bg-[#00BFFF] text-[#0A1F33] rounded-full w-8 h-8 flex items-center justify-center font-black shrink-0 mt-1">3</div>
+                                <p class="text-slate-300"><span class="text-white font-bold">Precio Ya Negociado:</span> Lo que ve es el precio final que logramos bajar para usted.</p>
                             </div>
                         </div>
-                        <a href="#contacto" class="inline-block bg-[#00BFFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl uppercase tracking-widest shadow-2xl hover:scale-105 transition">Solicitar mi Reporte</a>
+                        <a href="#contacto" class="inline-block bg-[#00BFFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl uppercase tracking-widest shadow-2xl hover:bg-white transition-colors">Solicitar mi Reporte</a>
                     </div>
                     <div class="lg:w-1/2">
-                        <div class="bg-white/5 p-2 rounded-[3rem] border border-white/10">
-                            <img src="/service-shopper.webp" class="rounded-[2.8rem] opacity-90" alt="Metodología Datacar" />
+                        <div class="bg-white/5 p-4 rounded-[3rem] border border-white/10 shadow-inner">
+                            <div class="bg-slate-800/50 p-8 rounded-[2.5rem] border border-white/5 backdrop-blur-xl">
+                                <div class="h-2 w-20 bg-[#00BFFF] rounded mb-6"></div>
+                                <h4 class="text-2xl font-bold mb-4 italic">"Selección Datacar: Las 5 Finalistas"</h4>
+                                <div class="space-y-4 opacity-40">
+                                    <div class="h-4 bg-white/20 rounded w-full"></div>
+                                    <div class="h-4 bg-white/20 rounded w-3/4"></div>
+                                    <div class="h-24 bg-white/5 rounded-xl w-full border border-white/10"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,14 +173,14 @@
 
         <section class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4">
-                <div class="bg-[#0A1F33] rounded-[3.5rem] p-10 md:p-20 text-white flex flex-col md:flex-row items-center gap-12 shadow-2xl relative overflow-hidden">
+                <div class="bg-slate-50 rounded-[3.5rem] p-10 md:p-20 text-[#0A1F33] flex flex-col md:flex-row items-center gap-12 shadow-sm border border-slate-100 relative overflow-hidden">
                     <div class="md:w-3/5 relative z-10">
-                        <h2 class="text-3xl md:text-5xl font-[900] text-[#00BFFF] mb-6 uppercase tracking-tight leading-none">¿Por qué nuestro servicio 0km es GRATIS?</h2>
-                        <p class="text-slate-300 leading-relaxed text-lg font-light">Gracias a nuestros acuerdos corporativos con las representantes oficiales en Paraguay. Ellas nos pagan por acercarles compradores decididos. Vos te llevás nuestra **experiencia negociadora** y el ahorro de tiempo, sin pagar de más.</p>
+                        <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-6 uppercase tracking-tight leading-none">¿Por qué nuestro servicio 0km es GRATIS?</h2>
+                        <p class="text-slate-600 leading-relaxed text-lg font-light">Debido a nuestros acuerdos corporativos con las representantes oficiales en Paraguay. Ellos nos pagan por acercarles compradores decididos. Usted recibe nuestra **experiencia negociadora** y ahorra tiempo sin pagar un solo guaraní extra.</p>
                     </div>
-                    <div class="md:w-2/5 border-l-0 md:border-l-2 border-white/10 md:pl-12 relative z-10">
-                        <p class="font-bold text-xl italic leading-relaxed text-white">"Ahorramos US$ 1.500 en la compra de la camioneta de Jorge y gestionamos su transferencia en tiempo récord."</p>
-                        <div class="mt-4 text-yellow-400 font-black tracking-widest uppercase text-[10px]">★★★★★ Caso Real Datacar</div>
+                    <div class="md:w-2/5 border-l-0 md:border-l-2 border-slate-200 md:pl-12 relative z-10">
+                        <p class="font-bold text-xl italic leading-relaxed text-[#0A1F33]">"Ahorramos US$ 1.500 en la compra de la camioneta de Jorge y gestionamos su transferencia en tiempo récord."</p>
+                        <div class="mt-4 flex text-[#00BFFF] font-black tracking-widest uppercase text-[10px]">Caso Real Datacar ★★★★★</div>
                     </div>
                 </div>
             </div>
@@ -177,8 +189,8 @@
         <section id="comparador" class="py-24 bg-slate-100 border-y border-slate-200">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-4 uppercase tracking-tighter">Veredicto Técnico</h2>
-                    <p class="text-slate-500 text-lg font-light">Analizá las unidades finalistas de tu reporte ejecutivo aquí.</p>
+                    <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-4 uppercase tracking-tighter italic">Veredicto Técnico</h2>
+                    <p class="text-slate-500 text-lg">Compare las unidades finalistas de su reporte ejecutivo aquí.</p>
                 </div>
 
                 <div id="loader" class="text-center py-20">
@@ -203,20 +215,21 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Presupuesto</label>
+                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Presupuesto Máx.</label>
                                 <select id="filtroPrecio" class="w-full bg-slate-50 border border-slate-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
                                     <option value="Todos">Sin límite</option>
-                                    <option value="25000">Hasta US$ 25.000</option>
+                                    <option value="15000">Hasta US$ 15.000</option>
+                                    <option value="35000">Hasta US$ 35.000</option>
                                     <option value="50000">Hasta US$ 50.000</option>
                                     <option value="80000">Hasta US$ 80.000</option>
                                 </select>
                             </div>
-                            <button id="btnLimpiar" class="text-[#00BFFF] font-bold underline text-sm pb-4">Reiniciar</button>
+                            <button id="btnLimpiar" class="text-[#00BFFF] font-bold underline text-sm pb-4">Reiniciar filtros</button>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 flex flex-col overflow-hidden">
+                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden flex flex-col">
                             <div class="bg-slate-50 p-8 border-b">
                                 <div class="space-y-4">
                                     <select id="marca1" class="w-full border p-4 rounded-xl font-bold bg-white outline-none"><option value="">Marca</option></select>
@@ -225,13 +238,13 @@
                                 </div>
                             </div>
                             <div id="resultado1" class="hidden p-8 flex-grow">
-                                <div class="h-48 w-full flex items-center justify-center mb-8"><img id="img1" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" /></div>
+                                <div class="h-48 w-full flex items-center justify-center mb-10"><img id="img1" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" /></div>
                                 <h4 id="nombre1" class="text-2xl font-black text-slate-900 mb-8 leading-tight"></h4>
                                 <div id="specs1" class="spec-container"></div>
                                 <a id="cta1" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-10 font-black uppercase text-xs tracking-widest shadow-lg">Negociar este Auto</a>
                             </div>
                         </div>
-                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 flex flex-col overflow-hidden">
+                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden flex flex-col">
                             <div class="bg-slate-50 p-8 border-b">
                                 <div class="space-y-4">
                                     <select id="marca2" class="w-full border p-4 rounded-xl font-bold bg-white outline-none"><option value="">Marca</option></select>
@@ -240,7 +253,7 @@
                                 </div>
                             </div>
                             <div id="resultado2" class="hidden p-8 flex-grow">
-                                <div class="h-48 w-full flex items-center justify-center mb-8"><img id="img2" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" /></div>
+                                <div class="h-48 w-full flex items-center justify-center mb-10"><img id="img2" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" /></div>
                                 <h4 id="nombre2" class="text-2xl font-black text-slate-900 mb-8 leading-tight"></h4>
                                 <div id="specs2" class="spec-container"></div>
                                 <a id="cta2" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-10 font-black uppercase text-xs tracking-widest shadow-lg">Negociar este Auto</a>
@@ -264,7 +277,7 @@
                             <option value="usado">Compra de un Usado Seguro</option>
                             <option value="vender">Venta de mi auto actual</option>
                         </select>
-                        <textarea name="mensaje" placeholder="Presupuesto aproximado o modelos..." class="w-full border-b-2 border-slate-100 p-4 outline-none focus:border-[#00BFFF] min-h-[100px] transition-all"></textarea>
+                        <textarea name="mensaje" placeholder="Indique modelos de interés o su presupuesto aproximado..." class="w-full border-b-2 border-slate-100 p-4 outline-none focus:border-[#00BFFF] min-h-[100px] transition-all"></textarea>
                         <button type="submit" id="submit-btn" class="w-full bg-[#00BFFF] text-[#0A1F33] font-[900] py-6 rounded-2xl uppercase tracking-widest shadow-xl hover:scale-[1.02] transition-all">Activar mi Búsqueda</button>
                     </form>
                 </div>
@@ -274,6 +287,10 @@
         <footer class="bg-[#05111D] text-slate-600 py-12 text-center">
             <p class="text-[10px] uppercase tracking-[0.4em]">© 2026 DATACAR EAS. Compra y venta de autos 0km y usados en Paraguay.</p>
         </footer>
+
+        <a href="https://wa.me/595991244469" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-transform">
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
 
         <script type="module" is:inline>
             import Papa from 'https://cdn.jsdelivr.net/npm/papaparse@5.4.1/+esm';
@@ -285,7 +302,6 @@
             let bdFiltrada = [];
             let colMap = {};
 
-            // Formulario
             document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const btn = document.getElementById('submit-btn');
@@ -299,7 +315,6 @@
                 }
             });
 
-            // Motor de Comparación
             async function init() {
                 try {
                     const res = await fetch(URL_CSV, { cache: "no-store" });
@@ -309,21 +324,21 @@
                         complete: (results) => {
                             bdOriginal = results.data.filter(r => r.Marca && r.Marca.trim() !== "");
                             const fields = results.meta.fields;
-                            const f = (kws) => fields.find(f => kws.some(k => f.toLowerCase().includes(k.toLowerCase()))) || "";
+                            const find = (kws) => fields.find(f => kws.some(k => f.toLowerCase().includes(k.toLowerCase()))) || "";
                             
                             colMap = {
                                 cat: fields[26],
-                                precio: f(['precio']),
-                                motor: f(['motor (cilindrada']),
-                                trans: f(['transmisión']),
-                                largo: f(['largo (mm)']),
-                                baul: f(['baulera']),
-                                plazas: f(['plazas']),
-                                adas: f(['adas', 'seguridad']),
-                                camara: f(['cámara']),
-                                pantalla: f(['pantalla']),
-                                conect: f(['conectividad']),
-                                garantia: f(['garantía'])
+                                precio: find(['precio']),
+                                motor: find(['motor (cilindrada']),
+                                trans: find(['transmisión']),
+                                largo: find(['largo (mm)']),
+                                baul: find(['baulera']),
+                                plazas: find(['plazas']),
+                                adas: find(['adas', 'seguridad']),
+                                camara: find(['cámara']),
+                                pantalla: find(['pantalla']),
+                                conect: find(['conectividad']),
+                                garantia: find(['garantía'])
                             };
 
                             poblarCategorias();
@@ -415,7 +430,8 @@
                 const s = document.getElementById(`modelo${n}`);
                 s.innerHTML = '<option value="">Modelo</option>';
                 if(m) {
-                    const mods = [...new Set(bdFiltrada.filter(c => c.Marca.trim() === m).map(c => (c.Modelo||"").trim()))].sort();
+                    const filtered = bdFiltrada.filter(c => c.Marca.trim() === m);
+                    const mods = [...new Set(filtered.map(c => (c.Modelo||"").trim()))].sort();
                     mods.forEach(mo => s.add(new Option(mo, mo)));
                     s.disabled = false;
                 } else s.disabled = true;
@@ -427,7 +443,8 @@
                 const s = document.getElementById(`version${n}`);
                 s.innerHTML = '<option value="">Versión</option>';
                 if(mo) {
-                    const vers = [...new Set(bdFiltrada.filter(c => c.Marca.trim() === m && (c.Modelo||"").trim() === mo).map(c => (c.Versión || "Única").trim()))].sort();
+                    const filtered = bdFiltrada.filter(c => c.Marca.trim() === m && (c.Modelo||"").trim() === mo);
+                    const vers = [...new Set(filtered.map(c => (c.Versión || "Única").trim()))].sort();
                     vers.forEach(v => s.add(new Option(v, v)));
                     s.disabled = false;
                 } else s.disabled = true;
@@ -446,7 +463,7 @@
                     const adas = car[colMap.adas]?.trim();
 
                     specs.innerHTML = `
-                        <div class="spec-card-row highlight-price-card"><span class="spec-label">Precio Final Negociado</span><span class="spec-value">${car[colMap.precio] || 'Consultar'}</span></div>
+                        <div class="spec-card-row price-highlight-card"><span class="spec-label">Precio Final Negociado</span><span class="spec-value">${car[colMap.precio] || 'Consultar'}</span></div>
                         <div class="spec-card-row"><span class="spec-label">Mecánica & Transmisión</span><span class="spec-value">${car.Combustible} | ${car[colMap.motor]} | ${car[colMap.trans]}</span></div>
                         <div class="spec-card-row"><span class="spec-label">Dimensiones & Espacio</span><span class="spec-value">Largo: ${car[colMap.largo]}mm | Baúl: ${car[colMap.baul]}L | Plazas: ${car[colMap.plazas]}</span></div>
                         <div class="spec-card-row"><span class="spec-label">Seguridad Avanzada</span><span class="spec-value ${!adas ? 'text-red-500 font-bold' : ''}">${adas || 'Consultar ADAS con asesor'} | Cámaras: ${car[colMap.camara] || '-'}</span></div>
