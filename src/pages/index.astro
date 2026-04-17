@@ -13,12 +13,13 @@
         <meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
-        <meta name="description" content="Encontramos y negociamos tu próximo auto por vos. Expertos en negociación automotriz en Paraguay." />
-		<title>Negociación Automotriz | Datacar</title>
+        
+        <meta name="description" content="Especialistas en la compra y venta de autos 0km y usados en Paraguay. Negociamos por vos para conseguir el mejor precio sin complicaciones." />
+		<title>Compra y venta de autos 0km y usados en Paraguay | Datacar</title>
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
         
         <script src="https://cdn.tailwindcss.com"></script>
 
@@ -27,30 +28,54 @@
             body, p, a, input, textarea, select { font-family: 'Inter', sans-serif; }
             html { scroll-behavior: smooth; }
             
-            .spec-table-row {
+            /* Formato de Ficha Técnica Legible */
+            .spec-container {
                 display: flex;
-                justify-content: space-between;
-                padding: 12px 0;
-                border-bottom: 1px solid #f3f4f6;
+                flex-direction: column;
+                gap: 4px;
             }
-            .spec-table-label {
-                font-size: 0.7rem;
-                font-weight: 700;
-                color: #9ca3af;
+            .spec-card-row {
+                display: flex;
+                flex-direction: column;
+                padding: 12px 16px;
+                background: #ffffff;
+                border-radius: 12px;
+                border: 1px solid #f1f5f9;
+                margin-bottom: 6px;
+                transition: all 0.2s ease;
+            }
+            .spec-card-row:hover {
+                border-color: #00BFFF;
+                background: #f8fafc;
+            }
+            .spec-header-label {
+                font-size: 0.65rem;
+                font-weight: 800;
+                color: #94a3b8;
                 text-transform: uppercase;
-                letter-spacing: 0.05em;
+                letter-spacing: 0.1em;
+                margin-bottom: 2px;
             }
-            .spec-table-value {
-                font-size: 0.85rem;
+            .spec-data-value {
+                font-size: 0.95rem;
                 font-weight: 600;
-                color: #1f2937;
-                text-align: right;
-                max-width: 60%;
+                color: #0f172a;
+                line-height: 1.4;
+            }
+            .highlight-price {
+                background: #f0f9ff;
+                border: 2px solid #00BFFF;
+                padding: 16px;
+            }
+            .highlight-price .spec-data-value {
+                color: #00BFFF;
+                font-size: 1.5rem;
+                font-weight: 900;
             }
             optgroup { font-weight: 800; color: #0A1F33; background-color: #f3f4f6; }
         </style>
 	</head>
-	<body class="bg-gray-50 text-[#3A3A3C] antialiased">
+	<body class="bg-slate-50 text-[#3A3A3C] antialiased">
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52KCG6F3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         
         <nav class="absolute top-0 w-full z-50 py-6 px-4">
@@ -74,12 +99,16 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-[#0A1F33]/90 to-[#0A1F33]"></div>
             </div>
             <div class="relative z-10 max-w-5xl mx-auto px-4 text-center mt-16">
-                <span class="text-[#00BFFF] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 inline-block border border-[#00BFFF]/30 px-4 py-1 rounded-full bg-[#00BFFF]/10">Expertos en Negociación Automotriz</span>
-                <h1 class="text-4xl md:text-7xl font-[900] mb-6 leading-tight tracking-tighter uppercase">Encontramos y Negociamos tu Próximo Auto por Vos.</h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mb-10 mx-auto font-light">Ya sea un 0km o un usado seguro. Nosotros hacemos el trabajo sucio.</p>
+                <span class="text-[#00BFFF] font-bold tracking-[0.4em] uppercase text-[10px] mb-6 inline-block border border-[#00BFFF]/30 px-4 py-1 rounded-full bg-[#00BFFF]/10">Negociación Automotriz</span>
+                <h1 class="text-4xl md:text-7xl font-[900] mb-6 leading-tight tracking-tighter uppercase">
+                    Compra y venta de autos 0km y usados en Paraguay.
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mb-10 mx-auto font-light leading-relaxed">
+                    Usted elija el vehículo, nosotros nos encargamos de que pague el precio más bajo posible. Olvídese de las concesionarias, <span class="text-white font-bold">nosotros hacemos el trabajo sucio por usted.</span>
+                </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#contacto" class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-5 px-12 rounded-xl text-lg uppercase shadow-xl transition hover:scale-105">Empezar mi Búsqueda</a>
-                    <a href="#comparador" class="border-2 border-white/30 text-white font-[700] py-5 px-12 rounded-xl text-lg backdrop-blur-sm hover:bg-white/10 transition">Ver Comparador</a>
+                    <a href="#contacto" class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-5 px-12 rounded-xl text-lg uppercase shadow-xl transition hover:scale-105">Empezar ahora</a>
+                    <a href="#comparador" class="border-2 border-white/30 text-white font-[700] py-5 px-12 rounded-xl text-lg backdrop-blur-sm hover:bg-white/10 transition">Usar Comparador</a>
                 </div>
             </div>
 		</section>
@@ -88,48 +117,47 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="bg-[#0A1F33] rounded-[3rem] p-10 md:p-16 text-white flex flex-col md:flex-row items-center gap-12 shadow-2xl">
                     <div class="md:w-3/5">
-                        <h2 class="text-3xl md:text-5xl font-[900] text-[#00BFFF] mb-6 tracking-tight uppercase leading-none">¿Por qué nuestro servicio 0km es 100% gratis?</h2>
-                        <p class="text-gray-300 leading-relaxed text-lg font-light">Gracias a nuestros acuerdos corporativos con las representantes oficiales en Paraguay. Ellas nos pagan por acercarles compradores decididos. Vos te llevás nuestra <span class="text-white font-bold">experiencia negociadora</span> y el ahorro de tiempo, a costo cero.</p>
+                        <h2 class="text-3xl md:text-5xl font-[900] text-[#00BFFF] mb-6 tracking-tight uppercase leading-none">Tu aliado estratégico en el mercado.</h2>
+                        <p class="text-slate-300 leading-relaxed text-lg font-light">Nuestro servicio de asesoría en la compra de 0km es <span class="text-white font-bold underline">100% gratuito</span> para usted. Gracias a convenios corporativos con los representantes oficiales en Paraguay, ahorramos su tiempo y su dinero sin costo adicional.</p>
                     </div>
                     <div class="md:w-2/5 border-l-0 md:border-l-2 border-white/10 md:pl-12">
                         <p class="font-bold text-xl italic leading-relaxed text-white">"Ahorramos US$ 1.500 en la compra de la camioneta de Jorge y gestionamos su transferencia en tiempo récord."</p>
-                        <div class="mt-4 flex text-[#00BFFF] font-black tracking-widest uppercase text-[10px]">Caso de Éxito Datacar</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="comparador" class="py-24 bg-[#F5F7FA] border-y border-gray-200">
+        <section id="comparador" class="py-24 bg-slate-100 border-y border-slate-200">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-4 uppercase tracking-tighter">Comparativa Técnica Total</h2>
-                    <p class="text-gray-500 text-lg">Análisis de datos crudos para una decisión racional.</p>
+                    <p class="text-slate-500 text-lg">Los números no mienten. Analice cada detalle antes de comprar.</p>
                 </div>
 
-                <div id="loader" class="text-center py-10">
+                <div id="loader" class="text-center py-20">
                     <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-[#00BFFF]"></div>
-                    <p class="mt-4 text-[#0A1F33] font-bold uppercase tracking-widest text-xs">Sincronizando Mercado...</p>
+                    <p class="mt-4 text-[#0A1F33] font-bold uppercase tracking-widest text-xs">Actualizando inventario real...</p>
                 </div>
 
                 <div id="comparador-ui" class="hidden">
-                    <div class="bg-white rounded-[2rem] p-8 border border-gray-200 shadow-sm mb-12">
+                    <div class="bg-white rounded-[2rem] p-8 border border-slate-200 shadow-sm mb-12">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Categoría</label>
-                                <select id="filtroTipo" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none"></select>
+                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Categoría</label>
+                                <select id="filtroTipo" class="w-full bg-slate-50 border border-slate-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none focus:ring-2 focus:ring-[#00BFFF]"></select>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Motor</label>
-                                <select id="filtroCombustible" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
-                                    <option value="Todos">Todos</option>
+                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Motorización</label>
+                                <select id="filtroCombustible" class="w-full bg-slate-50 border border-slate-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
+                                    <option value="Todos">Cualquier Motor</option>
                                     <option value="Tradicional">Combustión</option>
                                     <option value="Hibridos">Híbridos</option>
                                     <option value="Electrico">Eléctricos</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Presupuesto</label>
-                                <select id="filtroPrecio" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
+                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Presupuesto Máx.</label>
+                                <select id="filtroPrecio" class="w-full bg-slate-50 border border-slate-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
                                     <option value="Todos">Sin límite</option>
                                     <option value="15000">Hasta US$ 15.000</option>
                                     <option value="25000">Hasta US$ 25.000</option>
@@ -138,13 +166,13 @@
                                     <option value="80000">Hasta US$ 80.000</option>
                                 </select>
                             </div>
-                            <button id="btnLimpiar" class="text-[#00BFFF] font-bold underline text-sm pb-4">Reiniciar</button>
+                            <button id="btnLimpiar" class="text-[#00BFFF] font-bold underline text-sm pb-4 hover:text-[#0A1F33]">Limpiar filtros</button>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden flex flex-col">
-                            <div class="bg-gray-50 p-8 border-b">
+                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden flex flex-col">
+                            <div class="bg-slate-50 p-8 border-b border-slate-100">
                                 <div class="space-y-4">
                                     <select id="marca1" class="w-full border p-4 rounded-xl font-bold bg-white outline-none"><option value="">Marca</option></select>
                                     <select id="modelo1" disabled class="w-full border p-4 rounded-xl bg-white outline-none"><option value="">Modelo</option></select>
@@ -152,15 +180,17 @@
                                 </div>
                             </div>
                             <div id="resultado1" class="hidden p-8 flex-grow">
-                                <img id="img1" src="" class="h-48 w-full object-contain mb-8 mix-blend-multiply" />
-                                <h4 id="nombre1" class="text-2xl font-black text-[#0A1F33] mb-6 leading-tight"></h4>
-                                <div id="specs1"></div>
-                                <a id="cta1" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-8 font-black uppercase text-xs shadow-lg">Negociar este Auto</a>
+                                <div class="h-56 w-full flex items-center justify-center mb-10">
+                                    <img id="img1" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" />
+                                </div>
+                                <h4 id="nombre1" class="text-2xl font-black text-slate-900 mb-8 leading-tight"></h4>
+                                <div id="specs1" class="spec-container"></div>
+                                <a id="cta1" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-10 font-black uppercase text-xs shadow-lg hover:bg-slate-800 transition tracking-widest">Me interesa negociar</a>
                             </div>
                         </div>
 
-                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden flex flex-col">
-                            <div class="bg-gray-50 p-8 border-b">
+                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden flex flex-col">
+                            <div class="bg-slate-50 p-8 border-b border-slate-100">
                                 <div class="space-y-4">
                                     <select id="marca2" class="w-full border p-4 rounded-xl font-bold bg-white outline-none"><option value="">Marca</option></select>
                                     <select id="modelo2" disabled class="w-full border p-4 rounded-xl bg-white outline-none"><option value="">Modelo</option></select>
@@ -168,10 +198,12 @@
                                 </div>
                             </div>
                             <div id="resultado2" class="hidden p-8 flex-grow">
-                                <img id="img2" src="" class="h-48 w-full object-contain mb-8 mix-blend-multiply" />
-                                <h4 id="nombre2" class="text-2xl font-black text-[#0A1F33] mb-8 leading-tight"></h4>
-                                <div id="specs2"></div>
-                                <a id="cta2" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-8 font-black uppercase text-xs shadow-lg">Negociar este Auto</a>
+                                <div class="h-56 w-full flex items-center justify-center mb-10">
+                                    <img id="img2" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" />
+                                </div>
+                                <h4 id="nombre2" class="text-2xl font-black text-slate-900 mb-8 leading-tight"></h4>
+                                <div id="specs2" class="spec-container"></div>
+                                <a id="cta2" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-10 font-black uppercase text-xs shadow-lg hover:bg-slate-800 transition tracking-widest">Me interesa negociar</a>
                             </div>
                         </div>
                     </div>
@@ -181,30 +213,30 @@
 
         <section id="contacto" class="py-24 bg-[#0A1F33]">
             <div class="max-w-xl mx-auto px-4">
-                <div class="bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl text-center">
-                    <h3 class="text-2xl md:text-3xl font-black mb-2 text-[#0A1F33] uppercase">¿Lo buscamos por vos?</h3>
-                    <p class="text-gray-400 mb-8 font-light text-sm uppercase tracking-widest">Un experto te contactará en minutos.</p>
+                <div class="bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl text-center border-t-8 border-[#00BFFF]">
+                    <h3 class="text-2xl md:text-3xl font-black mb-2 text-[#0A1F33] uppercase">Solicitar Asesoría</h3>
+                    <p class="text-slate-400 mb-8 font-light text-sm uppercase tracking-widest">Un experto le contactará en minutos.</p>
                     <form id="lead-form" class="space-y-5 text-left">
-                        <input type="text" name="nombre" required placeholder="Nombre Completo" class="w-full border-b-2 border-gray-100 p-4 outline-none focus:border-[#00BFFF] text-lg">
-                        <input type="tel" name="whatsapp" required placeholder="WhatsApp" class="w-full border-b-2 border-gray-100 p-4 outline-none focus:border-[#00BFFF] text-lg">
-                        <select name="interes" class="w-full border-b-2 border-gray-100 p-4 outline-none text-gray-500 bg-transparent">
+                        <input type="text" name="nombre" required placeholder="Nombre Completo" class="w-full border-b-2 border-slate-100 p-4 outline-none focus:border-[#00BFFF] text-lg transition-all">
+                        <input type="tel" name="whatsapp" required placeholder="WhatsApp" class="w-full border-b-2 border-slate-100 p-4 outline-none focus:border-[#00BFFF] text-lg transition-all">
+                        <select name="interes" class="w-full border-b-2 border-slate-100 p-4 outline-none text-slate-500 bg-transparent">
                             <option value="0km">Busco un 0km</option>
                             <option value="usado">Busco un Usado Seguro</option>
-                            <option value="vender">Quiero vender mi auto</option>
+                            <option value="vender">Venta de mi auto</option>
                         </select>
-                        <textarea name="mensaje" placeholder="Presupuesto o modelo..." class="w-full border-b-2 border-gray-100 p-4 outline-none focus:border-[#00BFFF] min-h-[100px]"></textarea>
-                        <button type="submit" id="submit-btn" class="w-full bg-[#00BFFF] text-[#0A1F33] font-[900] py-6 rounded-2xl uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition-transform">Activar mi Búsqueda</button>
+                        <textarea name="mensaje" placeholder="Modelo de interés o presupuesto..." class="w-full border-b-2 border-slate-100 p-4 outline-none focus:border-[#00BFFF] min-h-[100px] transition-all"></textarea>
+                        <button type="submit" id="submit-btn" class="w-full bg-[#00BFFF] text-[#0A1F33] font-[900] py-6 rounded-2xl uppercase tracking-widest shadow-xl hover:scale-[1.02] transition-transform">Activar mi Búsqueda</button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <footer class="bg-[#05111D] text-gray-600 py-12 text-center">
-            <p class="text-[10px] uppercase tracking-[0.3em]">© 2026 DATACAR EAS.</p>
+        <footer class="bg-[#05111D] text-slate-600 py-12 text-center">
+            <p class="text-[10px] uppercase tracking-[0.4em]">© 2026 DATACAR EAS. Expertos en Negociación Automotriz en Paraguay.</p>
         </footer>
 
         <a href="https://wa.me/595991244469" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-transform">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         </a>
 
         <script type="module" is:inline>
@@ -216,9 +248,8 @@
             let bdOriginal = [];
             let bdFiltrada = [];
             let colMap = {};
-            let arbol = {};
 
-            // Formulario
+            // 1. Formulario
             document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const btn = document.getElementById('submit-btn');
@@ -232,13 +263,7 @@
                 }
             });
 
-            // Función buscador de columnas
-            function getCol(car, kws) {
-                const keys = Object.keys(car);
-                const found = keys.find(k => kws.some(kw => k.toLowerCase().includes(kw.toLowerCase())));
-                return found ? car[found]?.trim() : "";
-            }
-
+            // 2. Motor de Comparación
             async function init() {
                 try {
                     const res = await fetch(URL_CSV, { cache: "no-store" });
@@ -248,20 +273,21 @@
                         complete: (results) => {
                             bdOriginal = results.data.filter(r => r.Marca && r.Marca.trim() !== "");
                             const fields = results.meta.fields;
+                            const f = (kws) => fields.find(f => kws.some(k => f.toLowerCase().includes(k.toLowerCase()))) || "";
                             
                             colMap = {
                                 cat: fields[26],
-                                precio: getColName(fields, ['precio']),
-                                motor: getColName(fields, ['motor (cilindrada']),
-                                trans: getColName(fields, ['transmisión']),
-                                largo: getColName(fields, ['largo (mm)']),
-                                baul: getColName(fields, ['baulera']),
-                                plazas: getColName(fields, ['plazas']),
-                                adas: getColName(fields, ['adas', 'seguridad']),
-                                camara: getColName(fields, ['cámara']),
-                                pantalla: getColName(fields, ['pantalla']),
-                                conect: getColName(fields, ['conectividad']),
-                                garantia: getColName(fields, ['garantía'])
+                                precio: f(['precio']),
+                                motor: f(['motor (cilindrada']),
+                                trans: f(['transmisión']),
+                                largo: f(['largo (mm)']),
+                                baul: f(['baulera']),
+                                plazas: f(['plazas']),
+                                adas: f(['adas', 'seguridad']),
+                                camara: f(['cámara']),
+                                pantalla: f(['pantalla']),
+                                conect: f(['conectividad']),
+                                garantia: f(['garantía'])
                             };
 
                             poblarCategorias();
@@ -272,10 +298,6 @@
                         }
                     });
                 } catch(e) { console.error(e); }
-            }
-
-            function getColName(fields, kws) {
-                return fields.find(f => kws.some(k => f.toLowerCase().includes(k.toLowerCase()))) || "";
             }
 
             function poblarCategorias() {
@@ -332,7 +354,7 @@
                     return pT && pP && pC;
                 });
 
-                arbol = {};
+                const arbol = {};
                 bdFiltrada.forEach(c => {
                     const m = c.Marca.trim(), mo = (c.Modelo||"").trim(), v = (c.Versión||"Única").trim();
                     if(!arbol[m]) arbol[m] = {};
@@ -356,19 +378,21 @@
                 const m = document.getElementById(`marca${n}`).value;
                 const s = document.getElementById(`modelo${n}`);
                 s.innerHTML = '<option value="">Modelo</option>';
-                if(m && arbol[m]) {
-                    Object.keys(arbol[m]).sort().forEach(mo => s.add(new Option(mo, mo)));
+                if(m) {
+                    const mods = [...new Set(bdFiltrada.filter(c => c.Marca.trim() === m).map(c => (c.Modelo||"").trim()))].sort();
+                    mods.forEach(mo => s.add(new Option(mo, mo)));
                     s.disabled = false;
                 } else s.disabled = true;
             }
 
             function updateVersiones(n) {
-                const mo = document.getElementById(`modelo${n}`).value;
                 const m = document.getElementById(`marca${n}`).value;
+                const mo = document.getElementById(`modelo${n}`).value;
                 const s = document.getElementById(`version${n}`);
                 s.innerHTML = '<option value="">Versión</option>';
-                if(mo && arbol[m][mo]) {
-                    arbol[m][mo].forEach(v => s.add(new Option(v, v)));
+                if(mo) {
+                    const vers = [...new Set(bdFiltrada.filter(c => c.Marca.trim() === m && (c.Modelo||"").trim() === mo).map(c => (c.Versión || "Única").trim()))].sort();
+                    vers.forEach(v => s.add(new Option(v, v)));
                     s.disabled = false;
                 } else s.disabled = true;
             }
@@ -387,15 +411,33 @@
                     const adas = car[colMap.adas]?.trim();
 
                     specs.innerHTML = `
-                        <div class="spec-table-row"><span class="spec-table-label">Precio Contado</span><span class="spec-table-value text-[#00BFFF] text-lg font-bold">${car[colMap.precio] || 'Consultar'}</span></div>
-                        <div class="spec-table-row"><span class="spec-table-label">Mecánica</span><span class="spec-table-value">${car.Combustible} | ${car[colMap.motor]} | ${car[colMap.trans]}</span></div>
-                        <div class="spec-table-row"><span class="spec-table-label">Espacio</span><span class="spec-table-value">Baúl: ${car[colMap.baul]}L | Plazas: ${car[colMap.plazas]}</span></div>
-                        <div class="spec-table-row"><span class="spec-table-label">Seguridad / ADAS</span><span class="spec-table-value ${!adas ? 'text-red-500' : ''}">${adas || 'Consultar ADAS con asesor'} | Cámaras: ${car[colMap.camara]}</span></div>
-                        <div class="spec-table-row"><span class="spec-table-label">Tecnología</span><span class="spec-table-value">${car[colMap.pantalla]} | ${car[colMap.conect]}</span></div>
-                        <div class="spec-table-row" style="border:none"><span class="spec-table-label">Garantía</span><span class="spec-table-value text-gray-400 font-medium">${car[colMap.garantia] || 'Consultar'}</span></div>
+                        <div class="spec-card-row highlight-price">
+                            <span class="spec-header-label">Precio Final Negociable</span>
+                            <span class="spec-data-value">${car[colMap.precio] || 'Consultar'}</span>
+                        </div>
+                        <div class="spec-card-row">
+                            <span class="spec-header-label">Mecánica & Transmisión</span>
+                            <span class="spec-data-value">${car.Combustible} | ${car[colMap.motor]} | ${car[colMap.trans]}</span>
+                        </div>
+                        <div class="spec-card-row">
+                            <span class="spec-header-label">Dimensiones & Espacio</span>
+                            <span class="spec-data-value">Largo: ${car[colMap.largo]}mm | Baúl: ${car[colMap.baul]}L | Plazas: ${car[colMap.plazas]}</span>
+                        </div>
+                        <div class="spec-card-row">
+                            <span class="spec-header-label">Seguridad Avanzada</span>
+                            <span class="spec-data-value ${!adas ? 'text-red-500' : ''}">${adas || 'Consultar ADAS con asesor'} | Cámaras: ${car[colMap.camara]}</span>
+                        </div>
+                        <div class="spec-card-row">
+                            <span class="spec-header-label">Infotenimiento</span>
+                            <span class="spec-data-value">${car[colMap.pantalla]} | ${car[colMap.conect]}</span>
+                        </div>
+                        <div class="spec-card-row" style="border:none; background:transparent;">
+                            <span class="spec-header-label">Garantía Oficial</span>
+                            <span class="spec-data-value text-slate-400 font-medium">${car[colMap.garantia] || 'Consultar'}</span>
+                        </div>
                     `;
 
-                    document.getElementById(`cta${n}`).href = `https://wa.me/595991244469?text=${encodeURIComponent('Hola Datacar, me interesa negociar el ' + m + ' ' + mo + ' ' + v)}`;
+                    document.getElementById(`cta${n}`).href = `https://wa.me/595991244469?text=${encodeURIComponent('Hola Datacar, me interesa el ' + m + ' ' + mo + ' ' + v)}`;
                     document.getElementById(`resultado${n}`).classList.remove('hidden');
                 }
             }
