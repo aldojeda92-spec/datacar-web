@@ -25,29 +25,23 @@
             body, p, a, input, textarea, select { font-family: 'Inter', sans-serif; }
             html { scroll-behavior: smooth; }
             
-            /* Ficha Técnica Estilizada */
+            /* Ficha Técnica Controlada */
             .spec-row { 
                 display: flex; 
                 gap: 12px;
                 padding: 10px 0; 
                 border-bottom: 1px solid #f3f4f6; 
-                align-items: flex-start;
+                align-items: center;
             }
-            .spec-icon-wrapper {
+            .spec-icon-box {
                 background: #f0f9ff;
-                padding: 6px;
+                width: 32px;
+                height: 32px;
                 border-radius: 8px;
-                color: #00BFFF;
-                flex-shrink: 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 32px;
-                height: 32px;
-            }
-            .spec-icon-wrapper svg {
-                width: 18px !important;
-                height: 18px !important;
+                flex-shrink: 0;
             }
             .spec-label { 
                 font-size: 0.6rem; 
@@ -55,7 +49,6 @@
                 letter-spacing: 0.05em; 
                 color: #9ca3af; 
                 font-weight: 800;
-                margin-bottom: 2px;
             }
             .spec-value { 
                 font-size: 0.85rem; 
@@ -96,7 +89,7 @@
                 <h1 class="text-4xl md:text-7xl font-[900] mb-6 leading-tight tracking-tighter uppercase">Encontramos y Negociamos tu Próximo Auto por Vos.</h1>
                 <p class="text-lg md:text-xl text-gray-300 max-w-3xl mb-10 mx-auto font-light leading-relaxed">Ya sea un 0km o un usado seguro. Nosotros hacemos el trabajo sucio.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#contacto" class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-5 px-12 rounded-xl text-lg uppercase shadow-xl transition hover:scale-105">Empezar mi Búsqueda</a>
+                    <a href="#contacto" class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-5 px-12 rounded-xl text-lg uppercase shadow-xl transition hover:scale-105">Activar mi Búsqueda</a>
                     <a href="#comparador" class="border-2 border-white/30 text-white font-[700] py-5 px-12 rounded-xl text-lg backdrop-blur-sm hover:bg-white/10 transition">Ver Comparador</a>
                 </div>
             </div>
@@ -120,7 +113,7 @@
         <section id="comparador" class="py-24 bg-[#F5F7FA] border-y border-gray-200">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-4 uppercase tracking-tighter">Comparativa Técnica Total</h2>
+                    <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-4 uppercase tracking-tighter">Veredicto Técnico</h2>
                     <p class="text-gray-500 text-lg">Enfrentamos los datos crudos para que tu decisión sea 100% racional.</p>
                 </div>
 
@@ -140,7 +133,7 @@
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Motor</label>
-                                <select id="filtroCombustible" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none focus:ring-2 focus:ring-[#00BFFF] transition">
+                                <select id="filtroCombustible" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
                                     <option value="Todos">Cualquier Motor</option>
                                     <option value="Tradicional">Combustión</option>
                                     <option value="Hibridos">Híbridos</option>
@@ -149,7 +142,7 @@
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Presupuesto</label>
-                                <select id="filtroPrecio" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none focus:ring-2 focus:ring-[#00BFFF] transition">
+                                <select id="filtroPrecio" class="w-full bg-gray-50 border border-gray-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
                                     <option value="Todos">Sin límite</option>
                                     <option value="15000">Hasta US$ 15.000</option>
                                     <option value="25000">Hasta US$ 25.000</option>
@@ -178,6 +171,7 @@
                                 <a id="cta1" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-10 font-black uppercase text-xs tracking-widest shadow-lg hover:bg-[#153454] transition">Negociar este Auto</a>
                             </div>
                         </div>
+
                         <div class="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 flex flex-col overflow-hidden">
                             <div class="bg-gray-50 p-8 border-b">
                                 <div class="space-y-4">
@@ -202,7 +196,7 @@
             <div class="max-w-xl mx-auto px-4">
                 <div class="bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl text-center">
                     <h3 class="text-2xl md:text-3xl font-black mb-2 text-[#0A1F33] uppercase">¿Lo buscamos por vos?</h3>
-                    <p class="text-gray-400 mb-8 font-light text-sm uppercase tracking-widest tracking-tighter">Un experto te contactará en minutos.</p>
+                    <p class="text-gray-400 mb-8 font-light text-sm uppercase tracking-widest">Un experto te contactará en minutos.</p>
                     <form id="lead-form" class="space-y-5 text-left">
                         <input type="text" name="nombre" required placeholder="Nombre Completo" class="w-full border-b-2 border-gray-100 p-4 outline-none focus:border-[#00BFFF] transition text-lg">
                         <input type="tel" name="whatsapp" required placeholder="WhatsApp" class="w-full border-b-2 border-gray-100 p-4 outline-none focus:border-[#00BFFF] transition text-lg">
@@ -223,7 +217,7 @@
         </footer>
 
         <a href="https://wa.me/595991244469" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-transform">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         </a>
 
         <script type="module" is:inline>
@@ -235,9 +229,8 @@
             let bdOriginal = [];
             let bdFiltrada = [];
             let colMap = {};
-            let arbolFiltros = {};
 
-            // 1. Formulario
+            // Formulario
             document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const btn = document.getElementById('submit-btn');
@@ -246,12 +239,11 @@
                     await fetch(SCRIPT_URL, { method: 'POST', body: new FormData(e.target) });
                     window.location.href = '/gracias';
                 } catch {
-                    alert("Error de conexión. Intentá por WhatsApp.");
+                    alert("Error. Intentá por WhatsApp.");
                     btn.disabled = false; btn.innerText = "ACTIVAR BÚSQUEDA";
                 }
             });
 
-            // 2. Motor de Comparación
             async function init() {
                 try {
                     const res = await fetch(URL_CSV, { cache: "no-store" });
@@ -261,21 +253,21 @@
                         complete: (results) => {
                             bdOriginal = results.data.filter(r => r.Marca && r.Marca.trim() !== "");
                             const fields = results.meta.fields;
-                            const find = (kws) => fields.find(f => kws.some(k => f.toLowerCase().includes(k.toLowerCase()))) || "";
+                            const f = (kws) => fields.find(f => kws.some(k => f.toLowerCase().includes(k.toLowerCase()))) || "";
                             
                             colMap = {
-                                cat: fields[26] || find(['carrocería']),
-                                precio: find(['precio']),
-                                motor: find(['motor (cilindrada']),
-                                trans: find(['transmisión']),
-                                largo: find(['largo (mm)']),
-                                baul: find(['baulera']),
-                                plazas: find(['plazas']),
-                                adas: find(['adas', 'seguridad']),
-                                camara: find(['cámara']),
-                                pantalla: find(['pantalla']),
-                                conect: find(['conectividad']),
-                                garantia: find(['garantía'])
+                                cat: fields[26] || f(['carrocería']),
+                                precio: f(['precio']),
+                                motor: f(['motor (cilindrada']),
+                                trans: f(['transmisión']),
+                                largo: f(['largo (mm)']),
+                                baul: f(['baulera']),
+                                plazas: f(['plazas']),
+                                adas: f(['adas', 'seguridad']),
+                                camara: f(['cámara']),
+                                pantalla: f(['pantalla']),
+                                conect: f(['conectividad']),
+                                garantia: f(['garantía'])
                             };
 
                             poblarCategorias();
@@ -285,7 +277,7 @@
                             document.getElementById('comparador-ui').classList.remove('hidden');
                         }
                     });
-                } catch(e) { console.error("Error en motor:", e); }
+                } catch(e) { console.error(e); }
             }
 
             function poblarCategorias() {
@@ -342,35 +334,37 @@
                     return pT && pP && pC;
                 });
 
-                arbolFiltros = {};
+                const arbol = {};
                 bdFiltrada.forEach(c => {
                     const m = c.Marca.trim(), mo = (c.Modelo||"").trim(), v = (c.Versión||"Única").trim();
-                    if(!arbolFiltros[m]) arbolFiltros[m] = {};
-                    if(mo && !arbolFiltros[m][mo]) arbolFiltros[m][mo] = [];
-                    if(mo && !arbolFiltros[m][mo].includes(v)) arbolFiltros[m][mo].push(v);
+                    if(!arbol[m]) arbol[m] = {};
+                    if(mo && !arbol[m][mo]) arbol[m][mo] = [];
+                    if(mo && !arbol[m][mo].includes(v)) arbol[m][mo].push(v);
                 });
 
                 [1, 2].forEach(n => {
                     const s = document.getElementById(`marca${n}`);
                     s.innerHTML = '<option value="">Marca</option>';
-                    Object.keys(arbolFiltros).sort().forEach(m => s.add(new Option(m, m)));
+                    Object.keys(arbol).sort().forEach(m => s.add(new Option(m, m)));
                     document.getElementById(`modelo${n}`).innerHTML = '<option value="">Modelo</option>';
                     document.getElementById(`modelo${n}`).disabled = true;
                     document.getElementById(`version${n}`).innerHTML = '<option value="">Versión</option>';
                     document.getElementById(`version${n}`).disabled = true;
                     document.getElementById(`resultado${n}`).classList.add('hidden');
                 });
+                document.getElementById('veredicto-box').classList.add('hidden');
             }
 
             function updateModelos(n) {
                 const m = document.getElementById(`marca${n}`).value;
                 const s = document.getElementById(`modelo${n}`);
                 s.innerHTML = '<option value="">Modelo</option>';
-                if(m && arbolFiltros[m]) {
-                    Object.keys(arbolFiltros[m]).sort().forEach(mo => s.add(new Option(mo, mo)));
+                if(m) {
+                    const filtered = bdFiltrada.filter(c => c.Marca.trim() === m);
+                    const mods = [...new Set(filtered.map(c => (c.Modelo||"").trim()))].sort();
+                    mods.forEach(mo => s.add(new Option(mo, mo)));
                     s.disabled = false;
                 } else s.disabled = true;
-                document.getElementById(`version${n}`).disabled = true;
             }
 
             function updateVersiones(n) {
@@ -378,8 +372,10 @@
                 const mo = document.getElementById(`modelo${n}`).value;
                 const s = document.getElementById(`version${n}`);
                 s.innerHTML = '<option value="">Versión</option>';
-                if(mo && arbolFiltros[m][mo]) {
-                    arbolFiltros[m][mo].sort().forEach(v => s.add(new Option(v, v)));
+                if(mo) {
+                    const filtered = bdFiltrada.filter(c => c.Marca.trim() === m && (c.Modelo||"").trim() === mo);
+                    const vers = [...new Set(filtered.map(c => (c.Versión || "Única").trim()))].sort();
+                    vers.forEach(v => s.add(new Option(v, v)));
                     s.disabled = false;
                 } else s.disabled = true;
             }
@@ -399,38 +395,37 @@
 
                     specs.innerHTML = `
                         <div class="spec-row">
-                            <div class="spec-icon-wrapper"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
-                            <div class="spec-content"><span class="spec-label">Precio Contado</span><span class="spec-value text-[#00BFFF] text-xl font-bold">${car[colMap.precio] || 'Consultar'}</span></div>
+                            <div class="spec-icon-box"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                            <div><div class="spec-label">Precio</div><div class="spec-value text-[#00BFFF] text-lg font-bold">${car[colMap.precio] || 'Consultar'}</div></div>
                         </div>
                         <div class="spec-row">
-                            <div class="spec-icon-wrapper"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
-                            <div class="spec-content"><span class="spec-label">Mecánica</span><span class="spec-value">${car.Combustible} | ${car[colMap.motor]} | ${car[colMap.trans]}</span></div>
+                            <div class="spec-icon-box"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                            <div><div class="spec-label">Mecánica</div><div class="spec-value">${car.Combustible} | ${car[colMap.motor]} | ${car[colMap.trans]}</div></div>
                         </div>
                         <div class="spec-row">
-                            <div class="spec-icon-wrapper"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg></div>
-                            <div class="spec-content"><span class="spec-label">Capacidades</span><span class="spec-value">Baúl: ${car[colMap.baul]}L | Plazas: ${car[colMap.plazas]}</span></div>
+                            <div class="spec-icon-box"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg></div>
+                            <div><div class="spec-label">Espacio</div><div class="spec-value">Baúl: ${car[colMap.baul]}L | Plazas: ${car[colMap.plazas]}</div></div>
                         </div>
                         <div class="spec-row">
-                            <div class="spec-icon-wrapper"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
-                            <div class="spec-content"><span class="spec-label">Seguridad / ADAS</span><span class="spec-value ${!adasVal ? 'text-red-500' : ''}">${adasVal || 'Consultar ADAS con asesor'} | Cámaras: ${car[colMap.camara]}</span></div>
+                            <div class="spec-icon-box"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+                            <div><div class="spec-label">Seguridad</div><div class="spec-value ${!adasVal ? 'text-red-500' : ''}">${adasVal || 'Consultar ADAS con asesor'} | Cámaras: ${car[colMap.camara]}</div></div>
                         </div>
                         <div class="spec-row">
-                            <div class="spec-icon-wrapper"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
-                            <div class="spec-content"><span class="spec-label">Tecnología</span><span class="spec-value">Pantalla: ${car[colMap.pantalla]} | ${car[colMap.conect]}</span></div>
+                            <div class="spec-icon-box"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
+                            <div><div class="spec-label">Tecnología</div><div class="spec-value">Pantalla: ${car[colMap.pantalla]} | ${car[colMap.conect]}</div></div>
                         </div>
                         <div class="spec-row border-none">
-                            <div class="spec-icon-wrapper"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
-                            <div class="spec-content"><span class="spec-label">Garantía</span><span class="spec-value text-gray-400 font-medium">${car[colMap.garantia] || 'Consultar'}</span></div>
+                            <div class="spec-icon-box"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg></div>
+                            <div><div class="spec-label">Garantía</div><div class="spec-value text-gray-400">${car[colMap.garantia] || 'Consultar'}</div></div>
                         </div>
                     `;
 
-                    const msg = encodeURIComponent(`Hola Datacar, me interesa negociar el ${m} ${mo} ${v}.`);
-                    document.getElementById(`cta${n}`).href = `https://wa.me/595991244469?text=${msg}`;
+                    document.getElementById(`cta${n}`).href = `https://wa.me/595991244469?text=${encodeURIComponent('Hola Datacar, me interesa negociar el ' + m + ' ' + mo + ' ' + v)}`;
                     document.getElementById(`resultado${n}`).classList.remove('hidden');
 
                     if(!document.getElementById('resultado1').classList.contains('hidden') && !document.getElementById('resultado2').classList.contains('hidden')) {
                         document.getElementById('veredicto-box').classList.remove('hidden');
-                        document.getElementById('veredicto-texto').innerText = "Comparativa profunda lista. Contactá a un experto para cerrar el trato.";
+                        document.getElementById('veredicto-texto').innerText = "Comparativa profunda lista. Contactá a un experto para cerrar el mejor trato.";
                     }
                 }
             }
