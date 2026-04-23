@@ -1,0 +1,231 @@
+---
+// Layout base (Asumo que tienes un layout global, si no, puedes envolver esto en <html><body>)
+// import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Aquí podríamos validar si el usuario tiene una sesión iniciada en un futuro
+---
+
+<main class="min-h-screen bg-[#F8F9FA] text-[#3A3A3C] font-inter">
+  
+  {/* HEADER CORPORATIVO (Wordmark Dual simulado con Tailwind) */}
+  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center">
+    <div class="flex items-baseline">
+      <span class="font-montserrat font-black text-white text-2xl tracking-tight">DATA</span>
+      <span class="font-montserrat font-light text-[#C0C0C0] text-2xl tracking-[1px]">CAR</span>
+    </div>
+    <div class="text-white text-sm font-medium">Autogestión de Inversión</div>
+  </header>
+
+  {/* STEPPER NAV */}
+  <nav class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between text-sm font-medium">
+    <div class="border-b-2 border-[#0A1F33] pb-1 text-[#0A1F33]">1. Tu Perfil</div>
+    <div class="text-gray-400">2. Selección de Candidatos</div>
+    <div class="text-gray-400">3. Veredicto y Ejecución</div>
+  </nav>
+
+  {/* CONTENEDOR PRINCIPAL */}
+  <section class="max-w-4xl mx-auto py-10 px-6">
+    <h1 class="font-montserrat font-black text-3xl text-[#0A1F33] mb-8">Paso 1: Define tu Inversión</h1>
+
+    <form id="dossierForm" class="space-y-8 bg-white p-8 rounded-sm border border-gray-100">
+      
+      {/* DATOS DE CONTACTO (Lead Capture) */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="nombre">Tu Nombre Completo *</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez" 
+                 class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] transition-colors" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium mb-1" for="telefono">Teléfono *</label>
+            <input type="tel" id="telefono" name="telefono" required placeholder="+595..." 
+                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] transition-colors" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1" for="email">Email (Opcional)</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" 
+                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] transition-colors" />
+          </div>
+        </div>
+      </div>
+
+      {/* PRESUPUESTO */}
+      <div class="pt-4 border-t border-gray-100">
+        <h3 class="text-lg font-bold mb-4">Rango de Inversión (USD)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-1" for="presupuesto_min">Mínimo</label>
+            <input type="number" id="presupuesto_min" name="presupuesto_min" min="5000" placeholder="15000" 
+                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] transition-colors" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1" for="presupuesto_max">Máximo</label>
+            <input type="number" id="presupuesto_max" name="presupuesto_max" placeholder="30000" 
+                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] transition-colors" />
+          </div>
+        </div>
+      </div>
+
+      {/* TIPO Y PRIORIDADES */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-100">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="tipo_vehiculo">Categoría de Vehículo</label>
+          <select id="tipo_vehiculo" name="tipo_vehiculo" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] cursor-pointer">
+            <option value="SUV">SUV</option>
+            <option value="Sedan">Sedán</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="Pickup">Pick-up</option>
+          </select>
+        </div>
+
+        <div>
+           <label class="block text-sm font-medium mb-1">Prioridades (Selecciona hasta 3)</label>
+           <p class="text-xs text-gray-500 mb-2">Haz clic para marcar lo que más valoras.</p>
+           <div id="prioridades_container" class="flex flex-wrap gap-2">
+             {['Seguridad', 'Tecnología', 'Espacio', 'Precio', 'Rendimiento'].map((p) => (
+               <button type="button" data-priority={p} class="priority-btn px-4 py-2 bg-gray-100 text-[#3A3A3C] border border-gray-200 text-sm hover:bg-gray-200 transition-colors">
+                 {p}
+               </button>
+             ))}
+           </div>
+           <input type="hidden" id="prioridades_seleccionadas" name="prioridades" value="" />
+        </div>
+      </div>
+
+      {/* USO, FAMILIA Y MARCAS */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="uso_principal">Uso Principal</label>
+          <select id="uso_principal" name="uso_principal" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF]">
+            <option value="Mixto">Mixto (Ciudad/Ruta)</option>
+            <option value="Ciudad">Solo Ciudad</option>
+            <option value="Ruta">Viajes / Ruta</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="composicion_familiar">Composición Familiar</label>
+          <select id="composicion_familiar" name="composicion_familiar" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF]">
+            <option value="Familia pequeña">Familia pequeña</option>
+            <option value="Uso personal">Uso personal</option>
+            <option value="Pareja">Pareja</option>
+            <option value="Familia grande">Familia grande</option>
+          </select>
+        </div>
+        <div class="flex items-center mt-6">
+          <label class="flex items-center cursor-pointer">
+            <input type="checkbox" id="marcas_tradicionales" name="marcas_tradicionales" class="hidden peer" />
+            <div class="w-6 h-6 border-2 border-gray-300 peer-checked:bg-[#00BFFF] peer-checked:border-[#00BFFF] flex justify-center items-center mr-3 transition-colors">
+              <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-[#3A3A3C]">Exclusivo marcas tradicionales</span>
+          </label>
+        </div>
+      </div>
+
+      {/* NOTAS ADICIONALES */}
+      <div class="pt-4 border-t border-gray-100">
+        <label class="block text-sm font-medium mb-1" for="notas">Notas / Exigencias Adicionales (Opcional)</label>
+        <textarea id="notas" name="notas" rows="3" placeholder="Ej: Prefiero colores oscuros, necesito cámara de reversa 360..." 
+                  class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] transition-colors resize-none"></textarea>
+      </div>
+
+      {/* CTA FINAL - DIGITAL CYAN */}
+      <div class="pt-6">
+        <button type="submit" id="btn_submit" class="bg-[#00BFFF] hover:bg-[#0099cc] text-white font-bold py-4 px-8 text-lg w-full md:w-auto transition-colors flex items-center justify-center gap-2">
+          <span>Procesar y ver 10 candidatos</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+      </div>
+
+    </form>
+  </section>
+<script>
+  // LÓGICA DEL CLIENTE (Islands Architecture de Astro)
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Manejo de las "Píldoras" de Prioridad
+    const priorityButtons = document.querySelectorAll('.priority-btn');
+    const inputPrioridades = document.getElementById('prioridades_seleccionadas');
+    let selectedPriorities = [];
+
+    priorityButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const value = e.target.getAttribute('data-priority');
+        
+        if (selectedPriorities.includes(value)) {
+          // Deseleccionar
+          selectedPriorities = selectedPriorities.filter(p => p !== value);
+          e.target.classList.remove('bg-[#00BFFF]', 'text-white', 'border-[#00BFFF]');
+          e.target.classList.add('bg-gray-100', 'text-[#3A3A3C]', 'border-gray-200');
+        } else {
+          // Seleccionar (Máximo 3)
+          if (selectedPriorities.length < 3) {
+            selectedPriorities.push(value);
+            e.target.classList.remove('bg-gray-100', 'text-[#3A3A3C]', 'border-gray-200');
+            e.target.classList.add('bg-[#00BFFF]', 'text-white', 'border-[#00BFFF]');
+          } else {
+            alert("Solo puedes seleccionar un máximo de 3 prioridades.");
+          }
+        }
+        // Actualizar el input oculto
+        inputPrioridades.value = selectedPriorities.join(',');
+      });
+    });
+
+    // 2. Manejo del Submit del Formulario (Empaquetar para la Base de Datos)
+    const form = document.getElementById('dossierForm');
+    const btnSubmit = document.getElementById('btn_submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Evitamos recargar la página
+      
+      // Cambiar estado del botón
+      const originalBtnText = btnSubmit.innerHTML;
+      btnSubmit.innerHTML = 'Procesando datos encriptados...';
+      btnSubmit.disabled = true;
+
+      // Recolectar toda la data
+      const formData = new FormData(form);
+      const dossierPayload = Object.fromEntries(formData.entries());
+      
+      // Castear booleanos y números para la BD
+      dossierPayload.marcas_tradicionales = formData.get('marcas_tradicionales') === 'on';
+      dossierPayload.presupuesto_min = Number(dossierPayload.presupuesto_min);
+      dossierPayload.presupuesto_max = Number(dossierPayload.presupuesto_max);
+      dossierPayload.prioridades = selectedPriorities; // Array limpio
+
+      console.log("🚀 Payload listo para enviar a PostgreSQL vía API:", dossierPayload);
+
+      try {
+        /*
+        // ESTA ES LA LLAMADA REAL QUE HAREMOS A TU BACKEND (NEXT.JS/NODE)
+        const response = await fetch('/api/dossier/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dossierPayload)
+        });
+
+        const data = await response.json();
+        // Redirigir al Paso 2 pasando el ID del dossier generado
+        window.location.href = `/dossier/candidatos?id=${data.dossier_id}`;
+        */
+
+        // Simulador de retraso para que veas el efecto de carga
+        setTimeout(() => {
+          alert(`Éxito. Datos listos para guardar:\n\n${JSON.stringify(dossierPayload, null, 2)}\n\n(En producción, esto te redirigirá al paso 2)`);
+          btnSubmit.innerHTML = originalBtnText;
+          btnSubmit.disabled = false;
+        }, 1500);
+
+      } catch (error) {
+        console.error("Error al procesar:", error);
+        alert("Hubo un error de conexión. Intente nuevamente.");
+        btnSubmit.innerHTML = originalBtnText;
+        btnSubmit.disabled = false;
+      }
+    });
+  });
+</script>
