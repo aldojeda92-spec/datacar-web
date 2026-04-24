@@ -1,0 +1,227 @@
+---
+// SIMULACIÓN DE BASE DE DATOS (Mock Data)
+// En producción, esto vendrá de un fetch a tu API basado en el perfil del Paso 1
+const candidatos = [
+  { id: 'c1', marca: 'Nissan', modelo: 'New Kicks', version: 'Sense', año: 2026, precioMin: 23990, precioMax: 27990, versiones: 3, match: 96, atributos: ['Dentro del presupuesto', 'ADAS Full incluido'] },
+  { id: 'c2', marca: 'Chevrolet', modelo: 'Tracker', version: 'LTZ', año: 2026, precioMin: 18500, precioMax: 25500, versiones: 6, match: 94, atributos: ['Dentro del presupuesto', 'ADAS Full incluido'] },
+  { id: 'c3', marca: 'Volkswagen', modelo: 'Nivus', version: 'HL', año: 2026, precioMin: 22500, precioMax: 27500, versiones: 3, match: 93, atributos: ['Dentro del presupuesto', 'Baúl 415L'] },
+  { id: 'c4', marca: 'Changan', modelo: 'CS55 PLUS', version: 'NEW LUXURY', año: 2026, precioMin: 22700, precioMax: 24490, versiones: 2, match: 92, atributos: ['Dentro del presupuesto', 'ADAS Full incluido'] },
+  { id: 'c5', marca: 'Volkswagen', modelo: 'T-Cross', version: 'CL', año: 2026, precioMin: 21500, precioMax: 26900, versiones: 4, match: 91, atributos: ['Dentro del presupuesto', 'Wi-Fi nativo'] },
+  { id: 'c6', marca: 'Honda', modelo: 'WR-V', version: 'EXL', año: 2026, precioMin: 26900, precioMax: 26900, versiones: 1, match: 91, atributos: ['Dentro del presupuesto', 'ADAS Full incluido'] },
+  { id: 'c7', marca: 'Hyundai', modelo: 'New Creta', version: 'Platinum', año: 2027, precioMin: 22500, precioMax: 26990, versiones: 2, match: 90, atributos: ['Dentro del presupuesto', 'ADAS Full incluido'] },
+  { id: 'c8', marca: 'Hyundai', modelo: 'KONA', version: 'GLS', año: 2026, precioMin: 29990, precioMax: 29990, versiones: 1, match: 90, atributos: ['Al límite del presupuesto', 'Híbrido'] },
+  { id: 'c9', marca: 'Soueast', modelo: 'S06', version: '1.5T GDI GL', año: 2026, precioMin: 24490, precioMax: 27490, versiones: 3, match: 90, atributos: ['Dentro del presupuesto', 'Espacio familiar'] },
+  { id: 'c10', marca: 'Toyota', modelo: 'YARIS CROSS', version: 'GAS', año: 2026, precioMin: 27150, precioMax: 30000, versiones: 2, match: 90, atributos: ['Dentro del presupuesto', 'Baúl 471L'] },
+];
+---
+
+<main class="min-h-screen bg-[#F8F9FA] text-[#3A3A3C] font-inter pb-24">
+  
+  {/* HEADER CORPORATIVO */}
+  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center">
+    <div class="flex items-baseline">
+      <span class="font-montserrat font-black text-white text-2xl tracking-tight">DATA</span>
+      <span class="font-montserrat font-light text-[#C0C0C0] text-2xl tracking-[1px]">CAR</span>
+    </div>
+    <div class="text-white text-sm font-medium hidden md:block">Autogestión de Inversión</div>
+  </header>
+
+  {/* STEPPER NAV */}
+  <nav class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between text-sm font-medium">
+    <div class="text-gray-400 cursor-pointer hover:text-[#0A1F33] transition-colors" onclick="history.back()">✓ 1. Tu Perfil</div>
+    <div class="border-b-2 border-[#0A1F33] pb-1 text-[#0A1F33]">2. Selección de Candidatos</div>
+    <div class="text-gray-400">3. Veredicto</div>
+  </nav>
+
+  {/* CONTENIDO PRINCIPAL */}
+  <section class="max-w-7xl mx-auto py-8 px-6">
+    
+    {/* Título y Resumen del Lead */}
+    <div class="mb-8">
+      <h1 class="font-montserrat font-black text-3xl text-[#0A1F33] mb-2">Paso 2: Selecciona 5 Candidatos</h1>
+      <p class="text-sm text-gray-500">
+        Inversor: <span class="font-bold text-[#3A3A3C]">Juan Pérez</span> • Presupuesto: <span class="font-bold text-[#3A3A3C]">$15,000 – $30,000</span>
+      </p>
+    </div>
+
+    {/* Barra de Instrucciones y Contador */}
+    <div class="flex flex-col md:flex-row justify-between items-center bg-white p-4 border border-gray-200 mb-6 sticky top-0 z-10">
+      <p class="text-sm font-medium mb-2 md:mb-0">Selecciona <strong class="text-[#0A1F33]">exactamente 5</strong> vehículos para tu análisis final.</p>
+      <div class="bg-[#0A1F33] text-white px-4 py-2 text-sm font-bold tracking-wide">
+        <span id="counter">0</span>/5 SELECCIONADOS
+      </div>
+    </div>
+
+    {/* GRID DE CANDIDATOS */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-10">
+      {candidatos.map((auto) => (
+        <div 
+          class="car-card cursor-pointer bg-white border-2 border-gray-200 hover:border-[#00BFFF] transition-all relative flex flex-col h-full"
+          data-id={auto.id}
+        >
+          {/* Checkmark oculto por defecto */}
+          <div class="check-icon absolute top-2 right-2 bg-[#00BFFF] text-white p-1 opacity-0 transition-opacity z-10">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+          </div>
+
+          {/* Imagen (Placeholder estructurado) */}
+          <div class="bg-gray-100 h-32 w-full flex items-center justify-center border-b border-gray-100">
+            <span class="text-xs text-gray-400 font-medium uppercase tracking-widest">Sin Imagen</span>
+          </div>
+          
+          <div class="p-4 flex flex-col flex-grow">
+            <h3 class="font-inter font-bold text-[#3A3A3C] leading-tight mb-1">{auto.marca} {auto.modelo}</h3>
+            <p class="text-xs text-gray-500 mb-3">{auto.version} ({auto.año})</p>
+            
+            <p class="text-[10px] text-gray-400 uppercase tracking-wide">Rango estimado</p>
+            <p class="font-bold text-sm text-[#0A1F33] mb-2">
+              ${auto.precioMin.toLocaleString()} - ${auto.precioMax.toLocaleString()}
+            </p>
+            
+            <span class="inline-block bg-gray-100 text-gray-600 text-[10px] px-2 py-1 mb-3 self-start">
+              {auto.versiones} versiones
+            </span>
+
+            {/* Etiqueta de Match (Usando colores estrictos del manual, sin verdes chillones ajenos) */}
+            <div class="bg-[#0A1F33] text-white text-xs font-bold px-2 py-1 inline-block self-start mb-3">
+              Match {auto.match}%
+            </div>
+
+            {/* Atributos */}
+            <ul class="text-[11px] text-[#00BFFF] font-medium space-y-1 mt-auto">
+              {auto.atributos.map(attr => (
+                <li>• {attr}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* SECCIÓN DE BÚSQUEDA MANUAL (ACORDEÓN) */}
+    <div class="bg-white border border-gray-200 p-6">
+      <details class="group">
+        <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+          <span class="text-[#3A3A3C]">¿No ves el auto que buscás? Buscar en el catálogo completo</span>
+          <span class="transition group-open:rotate-180">
+            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+        </summary>
+        <div class="text-neutral-600 mt-4 group-open:animate-fadeIn">
+          <div class="flex gap-2">
+            <input type="text" placeholder="Ej: Toyota Corolla Cross..." class="w-full p-3 bg-gray-50 border border-gray-200 rounded-none focus:outline-none focus:border-[#00BFFF] text-sm" />
+            <button type="button" class="bg-[#0A1F33] text-white px-6 py-3 text-sm font-medium hover:bg-gray-800 transition-colors">Buscar</button>
+          </div>
+          <p class="text-xs text-gray-400 mt-2">Esta funcionalidad se conectará a la base de datos en la próxima fase.</p>
+        </div>
+      </details>
+    </div>
+
+  </section>
+
+  {/* BARRA INFERIOR FIJA (ACTIONS) */}
+  <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <button onclick="history.back()" class="text-[#3A3A3C] font-medium text-sm hover:underline px-4 py-2 border border-transparent hover:border-gray-200 transition-all">
+        ← Volver
+      </button>
+      
+      {/* Botón deshabilitado por defecto. Solo se activa con 5 autos. */}
+      <button id="btn_analizar" disabled class="bg-gray-300 text-gray-500 font-bold py-3 px-8 text-sm md:text-base transition-all cursor-not-allowed flex items-center gap-2">
+        <span>Analizar estos <span id="btn_count">0</span> →</span>
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // LÓGICA DEL CLIENTE (Islands Architecture)
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.car-card');
+    const counterDisplay = document.getElementById('counter');
+    const btnCountDisplay = document.getElementById('btn_count');
+    const btnAnalizar = document.getElementById('btn_analizar');
+    
+    // Aquí almacenamos los IDs seleccionados localmente
+    let selectedVehicles = new Set();
+    const MAX_SELECTION = 5;
+
+    // Función para actualizar la Interfaz Visual
+    const updateUI = () => {
+      const count = selectedVehicles.size;
+      
+      // 1. Actualizar textos
+      counterDisplay.textContent = count;
+      btnCountDisplay.textContent = count;
+
+      // 2. Lógica del Botón Principal
+      if (count === MAX_SELECTION) {
+        btnAnalizar.disabled = false;
+        btnAnalizar.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+        btnAnalizar.classList.add('bg-[#00BFFF]', 'text-white', 'hover:bg-[#0099cc]', 'cursor-pointer');
+      } else {
+        btnAnalizar.disabled = true;
+        btnAnalizar.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+        btnAnalizar.classList.remove('bg-[#00BFFF]', 'text-white', 'hover:bg-[#0099cc]', 'cursor-pointer');
+      }
+    };
+
+    // Event Listeners para las tarjetas
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+
+        if (selectedVehicles.has(id)) {
+          // DESELECCIONAR
+          selectedVehicles.delete(id);
+          card.classList.remove('border-[#00BFFF]', 'bg-blue-50/30');
+          card.classList.add('border-gray-200');
+          card.querySelector('.check-icon').classList.add('opacity-0');
+        } else {
+          // SELECCIONAR (Solo si hay menos de 5)
+          if (selectedVehicles.size < MAX_SELECTION) {
+            selectedVehicles.add(id);
+            card.classList.remove('border-gray-200');
+            card.classList.add('border-[#00BFFF]', 'bg-blue-50/30');
+            card.querySelector('.check-icon').classList.remove('opacity-0');
+          } else {
+            // Feedback si intenta seleccionar más de 5
+            alert("Ya has seleccionado el máximo de 5 candidatos. Deselecciona uno si deseas cambiar.");
+            // Opcional: una vibración visual en el contador
+            counterDisplay.parentElement.classList.add('animate-pulse');
+            setTimeout(() => counterDisplay.parentElement.classList.remove('animate-pulse'), 500);
+          }
+        }
+        updateUI();
+      });
+    });
+
+    // Acción final: Envío a la Base de Datos
+    btnAnalizar.addEventListener('click', async () => {
+      if (selectedVehicles.size !== MAX_SELECTION) return; // Seguridad extra
+
+      const payload = {
+        lead_id: "id_obtenido_del_paso_1", // Esto lo conectaremos luego
+        candidatos_seleccionados: Array.from(selectedVehicles),
+        timestamp: new Date().toISOString()
+      };
+
+      console.log("🚀 Payload listo para guardar en PostgreSQL:", payload);
+      
+      // Cambiar estado visual del botón mientras "carga"
+      const originalText = btnAnalizar.innerHTML;
+      btnAnalizar.innerHTML = 'Generando Dossier...';
+      btnAnalizar.disabled = true;
+
+      // Simulamos la llamada a tu API / Base de datos
+      setTimeout(() => {
+        alert(`¡Base de Datos Actualizada!\n\nIDs seleccionados enviados: ${Array.from(selectedVehicles).join(', ')}\n\nRedirigiendo al Paso 3 (Veredicto)...`);
+        
+        // Aquí haríamos: window.location.href = '/dossier/veredicto';
+        btnAnalizar.innerHTML = originalText;
+        btnAnalizar.disabled = false;
+      }, 1500);
+    });
+  });
+</script>
