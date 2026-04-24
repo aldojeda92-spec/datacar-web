@@ -1,0 +1,318 @@
+---
+// src/pages/index.astro
+// Este archivo contiene los 3 Steps fusionados en una Single Page Application (SPA).
+
+const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DATACAR - Plataforma de Inversión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <style>
+    /* Clases utilitarias para la SPA */
+    .step-section { display: none; opacity: 0; transition: opacity 0.3s ease; }
+    .step-section.active { display: block; opacity: 1; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: white; }
+    }
+  </style>
+</head>
+<body class="bg-[#F0F2F5] text-[#3A3A3C] font-inter pb-32">
+
+  {/* HEADER GLOBAL */}
+  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center text-white no-print fixed top-0 w-full z-50">
+    <div class="font-montserrat font-black text-2xl tracking-tight">DATA<span class="font-light text-[#C0C0C0]">CAR</span></div>
+    <div id="header-status" class="text-sm font-medium">1. Parametrización</div>
+  </header>
+
+  <main class="max-w-5xl mx-auto mt-24 px-4">
+
+    {/* ============================================================== */}
+    {/* STEP 1: PERFIL DEL CLIENTE */}
+    {/* ============================================================== */}
+    <section id="step-1" class="step-section active">
+      <h1 class="font-montserrat font-black text-3xl text-[#0A1F33] mb-8">Paso 1: Define tu Inversión</h1>
+      
+      <form id="form-step-1" class="space-y-8 bg-white p-8 border border-gray-200 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-bold mb-2">Nombre Completo *</label>
+            <input type="text" id="in_nombre" required class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-bold mb-2">Teléfono *</label>
+              <input type="tel" required class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-bold mb-2">Email</label>
+              <input type="email" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-100">
+          <div>
+            <label class="block text-sm font-bold mb-2">Presupuesto Mínimo (USD)</label>
+            <input type="number" id="in_min" value="15000" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-bold mb-2">Presupuesto Máximo (USD)</label>
+            <input type="number" id="in_max" value="30000" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+          </div>
+        </div>
+
+        <button type="submit" id="btn_to_step2" class="bg-[#00BFFF] hover:bg-[#0099cc] text-white font-bold py-4 px-8 text-lg w-full transition-colors">
+          Procesar Perfil y Buscar Candidatos →
+        </button>
+      </form>
+    </section>
+
+    {/* ============================================================== */}
+    {/* STEP 2: SELECCIÓN DE CANDIDATOS */}
+    {/* ============================================================== */}
+    <section id="step-2" class="step-section">
+      <div class="mb-6 flex justify-between items-end">
+        <div>
+          <h1 class="font-montserrat font-black text-3xl text-[#0A1F33]">Paso 2: Selección (5 Opciones)</h1>
+          <p class="text-sm text-gray-500 mt-2">Inversor: <span id="s2_nombre" class="font-bold"></span> | Rango: $<span id="s2_min"></span> - $<span id="s2_max"></span></p>
+        </div>
+        <div class="bg-[#0A1F33] text-white px-4 py-2 font-bold"><span id="counter">0</span>/5 SELECCIONADOS</div>
+      </div>
+
+      <div id="grid-candidatos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-10"></div>
+
+      <div class="flex justify-between items-center bg-white p-4 border border-gray-200 shadow-sm sticky bottom-0">
+        <button type="button" onclick="goToStep(1)" class="text-gray-500 font-bold hover:text-[#0A1F33]">← Volver</button>
+        <button type="button" id="btn_to_step3" disabled class="bg-gray-300 text-gray-500 font-bold py-3 px-8 transition-colors">
+          Analizar con Agente IA →
+        </button>
+      </div>
+    </section>
+
+    {/* ============================================================== */}
+    {/* PANTALLA DE CARGA DEL AGENTE IA */}
+    {/* ============================================================== */}
+    <section id="step-loading" class="step-section">
+      <div class="flex flex-col items-center justify-center h-96">
+        <div class="w-16 h-16 border-4 border-[#00BFFF] border-t-transparent rounded-full animate-spin mb-6"></div>
+        <h2 class="font-montserrat font-black text-2xl text-[#0A1F33]">Agente IA DATACAR Procesando...</h2>
+        <p class="text-gray-500 mt-2">Analizando racional financiero, cruce de equipamiento y depreciación estimada.</p>
+      </div>
+    </section>
+
+    {/* ============================================================== */}
+    {/* STEP 3: DOSSIER (VEREDICTO) */}
+    {/* ============================================================== */}
+    <section id="step-3" class="step-section">
+      <div id="dossier-pdf-content" class="bg-white p-10 relative border-t-8 border-[#0A1F33]">
+        
+        <div class="flex justify-between items-start mb-10 border-b border-gray-100 pb-8">
+          <div>
+            <div class="font-montserrat font-black text-3xl text-[#0A1F33]">DATA<span class="font-light text-gray-400">CAR</span></div>
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Asesoría Automotriz Independiente</p>
+          </div>
+          <div class="text-right">
+            <div class="bg-gray-50 p-4 border border-gray-100 text-left">
+              <p class="text-[9px] text-gray-400 uppercase font-bold">Inversor</p>
+              <p id="s3_nombre" class="font-bold text-[#0A1F33] text-sm mb-2"></p>
+              <p class="text-[9px] text-gray-400 uppercase font-bold">Presupuesto</p>
+              <p class="font-bold text-[#0A1F33] text-sm">$<span id="s3_min"></span> - $<span id="s3_max"></span></p>
+            </div>
+          </div>
+        </div>
+
+        {/* Ganador Inyectado Dinámicamente */}
+        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Recomendación de la IA</h3>
+        <div id="ganador-container" class="border-2 border-[#0A1F33] p-6 mb-10 bg-white">
+          </div>
+
+        <div class="mt-12 pt-4 border-t border-gray-100 text-center text-[8px] text-gray-300 uppercase tracking-widest">
+          Dossier Confidencial - Generado por Agente IA DATACAR - {fechaActual}
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-between items-center bg-white p-4 shadow-xl no-print">
+        <button onclick="goToStep(2)" class="text-gray-400 text-xs font-bold hover:text-[#0A1F33] uppercase">← Editar Selección</button>
+        <div class="flex gap-3">
+          <button onclick="generatePDF()" class="border-2 border-[#0A1F33] text-[#0A1F33] font-bold py-3 px-8 text-xs hover:bg-gray-50 uppercase">Descargar PDF</button>
+          <button onclick="guardarEnBD()" class="bg-[#00BFFF] text-white font-bold py-3 px-10 text-xs hover:bg-[#0099cc] uppercase">Quiero avanzar con una opción</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script is:inline>
+    // ============================================================
+    // ESTADO GLOBAL DE LA APLICACIÓN (Cerebro del SPA)
+    // ============================================================
+    const AppState = {
+      lead: { nombre: '', min: '', max: '' },
+      candidatosPosibles: [
+        { id: 'c1', marca: 'Nissan', modelo: 'New Kicks', precio: 23990, match: 96 },
+        { id: 'c2', marca: 'Chevrolet', modelo: 'Tracker', precio: 21500, match: 94 },
+        { id: 'c3', marca: 'VW', modelo: 'Nivus', precio: 24500, match: 93 },
+        { id: 'c4', marca: 'Changan', modelo: 'CS55', precio: 22700, match: 90 },
+        { id: 'c5', marca: 'Honda', modelo: 'WR-V', precio: 26900, match: 91 },
+        { id: 'c6', marca: 'Hyundai', modelo: 'Creta', precio: 22500, match: 89 },
+      ],
+      seleccionados: new Set(),
+      telemetria: [] // Aquí guardamos los clicks
+    };
+
+    // ============================================================
+    // CONTROLADOR DE NAVEGACIÓN
+    // ============================================================
+    function goToStep(stepNum) {
+      document.querySelectorAll('.step-section').forEach(el => el.classList.remove('active'));
+      document.getElementById('header-status').innerText = `Paso ${stepNum}`;
+      
+      if(stepNum === 1) document.getElementById('step-1').classList.add('active');
+      
+      if(stepNum === 2) {
+        document.getElementById('s2_nombre').innerText = AppState.lead.nombre;
+        document.getElementById('s2_min').innerText = AppState.lead.min;
+        document.getElementById('s2_max').innerText = AppState.lead.max;
+        renderGrid();
+        document.getElementById('step-2').classList.add('active');
+      }
+
+      if(stepNum === 3) {
+        // Simulamos la llamada al Agente IA
+        document.getElementById('step-loading').classList.add('active');
+        document.getElementById('header-status').innerText = `Procesando IA...`;
+        
+        setTimeout(() => {
+          document.getElementById('step-loading').classList.remove('active');
+          renderDossier();
+          document.getElementById('step-3').classList.add('active');
+          document.getElementById('header-status').innerText = `3. Veredicto`;
+          
+          // Enviamos la telemetría acumulada silenciosamente
+          enviarTelemetria();
+        }, 2500); // 2.5 segundos de "pensamiento" de la IA
+      }
+    }
+
+    // ============================================================
+    // LÓGICA PASO 1 (Guardar datos y avanzar)
+    // ============================================================
+    document.getElementById('form-step-1').addEventListener('submit', (e) => {
+      e.preventDefault();
+      AppState.lead.nombre = document.getElementById('in_nombre').value;
+      AppState.lead.min = document.getElementById('in_min').value;
+      AppState.lead.max = document.getElementById('in_max').value;
+      
+      AppState.telemetria.push({ action: 'submit_step1', time: Date.now() });
+      goToStep(2);
+    });
+
+    // ============================================================
+    // LÓGICA PASO 2 (Renderizar grid y manejar selección)
+    // ============================================================
+    function renderGrid() {
+      const grid = document.getElementById('grid-candidatos');
+      grid.innerHTML = ''; // Limpiar
+      
+      AppState.candidatosPosibles.forEach(auto => {
+        const div = document.createElement('div');
+        const isSelected = AppState.seleccionados.has(auto.id);
+        
+        div.className = `border-2 p-4 cursor-pointer transition-all ${isSelected ? 'border-[#00BFFF] bg-blue-50' : 'border-gray-200 bg-white'}`;
+        div.innerHTML = `
+          <div class="h-16 bg-gray-100 mb-2"></div>
+          <h3 class="font-bold text-sm text-[#0A1F33]">${auto.marca} ${auto.modelo}</h3>
+          <p class="text-xs">$${auto.precio.toLocaleString()}</p>
+          <div class="mt-2 bg-[#00BFFF] text-white text-[10px] px-1 inline-block">Match ${auto.match}%</div>
+        `;
+        
+        div.onclick = () => {
+          // Registrar Click para Telemetría
+          AppState.telemetria.push({ action: 'toggle_car', carId: auto.id, time: Date.now() });
+
+          if(AppState.seleccionados.has(auto.id)) {
+            AppState.seleccionados.delete(auto.id);
+          } else if(AppState.seleccionados.size < 5) {
+            AppState.seleccionados.add(auto.id);
+          }
+          
+          document.getElementById('counter').innerText = AppState.seleccionados.size;
+          const btn = document.getElementById('btn_to_step3');
+          
+          if(AppState.seleccionados.size === 5) {
+            btn.disabled = false;
+            btn.className = "bg-[#00BFFF] text-white font-bold py-3 px-8 cursor-pointer hover:bg-[#0099cc]";
+          } else {
+            btn.disabled = true;
+            btn.className = "bg-gray-300 text-gray-500 font-bold py-3 px-8 cursor-not-allowed";
+          }
+          renderGrid(); // Re-dibujar para pintar bordes
+        };
+        grid.appendChild(div);
+      });
+    }
+
+    document.getElementById('btn_to_step3').addEventListener('click', () => {
+      AppState.telemetria.push({ action: 'submit_step2', time: Date.now() });
+      goToStep(3);
+    });
+
+    // ============================================================
+    // LÓGICA PASO 3 (Renderizar IA y Funciones Finales)
+    // ============================================================
+    function renderDossier() {
+      document.getElementById('s3_nombre').innerText = AppState.lead.nombre;
+      document.getElementById('s3_min').innerText = AppState.lead.min;
+      document.getElementById('s3_max').innerText = AppState.lead.max;
+
+      // Simulamos la respuesta del Agente IA tomando el primer auto seleccionado
+      const ganadorId = Array.from(AppState.seleccionados)[0];
+      const ganador = AppState.candidatosPosibles.find(a => a.id === ganadorId);
+
+      document.getElementById('ganador-container').innerHTML = `
+        <div class="flex flex-col md:flex-row gap-6">
+          <div class="w-1/3 bg-gray-50 flex items-center justify-center text-xs font-bold text-gray-300 border border-gray-100">VEHÍCULO</div>
+          <div class="w-2/3">
+            <h2 class="font-montserrat font-black text-2xl text-[#0A1F33] uppercase">${ganador.marca} ${ganador.modelo}</h2>
+            <p class="font-bold text-[#0A1F33] mb-4">$${ganador.precio.toLocaleString()}</p>
+            <p class="text-sm text-gray-600 italic border-l-4 border-[#00BFFF] pl-3 mb-4">
+              "Según el análisis algorítmico, este vehículo representa la mejor inversión de capital protegiendo el valor de reventa." - Agente IA DATACAR
+            </p>
+            <button onclick="registrarInteres('${ganador.marca} ${ganador.modelo}')" class="bg-[#00BFFF] text-white font-bold py-2 px-6 text-xs uppercase no-print hover:bg-[#0099cc]">Quiero Cotizar</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Funciones de utilidad finales
+    function enviarTelemetria() {
+      console.log("📡 Enviando Telemetría en background a la BD:", AppState.telemetria);
+      // fetch('/api/telemetria', { method: 'POST', body: JSON.stringify(AppState.telemetria) });
+    }
+
+    function registrarInteres(modelo) {
+      AppState.telemetria.push({ action: 'click_cotizar_ganador', car: modelo, time: Date.now() });
+      alert(`Has solicitado cotización para: ${modelo}. Esto se guardó en el estado.`);
+    }
+
+    function generatePDF() {
+      const element = document.getElementById('dossier-pdf-content');
+      html2pdf().set({ margin: 10, filename: 'Dossier.pdf' }).from(element).save();
+    }
+
+    function guardarEnBD() {
+      const payloadFinal = { lead: AppState.lead, seleccion: Array.from(AppState.seleccionados), tracking: AppState.telemetria };
+      console.log("💾 GUARDANDO EN POSTGRESQL (Transacción Final):", payloadFinal);
+      alert("Operación Exitosa. Los datos del lead, los autos elegidos y el historial de clics han sido enviados a tu base de datos y al vendedor.");
+    }
+  </script>
+</body>
+</html>
