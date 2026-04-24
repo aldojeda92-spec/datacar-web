@@ -1,274 +1,42 @@
----
-// src/pages/index.astro
-// SPA DEFINITIVA: Formulario Exhaustivo + Selección + Dossier PDF Fidelity
+-- TABLA 1: El Inventario de Autos (Los datos duros)
+CREATE TABLE vehiculos (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    marca VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    version VARCHAR(50),
+    categoria VARCHAR(30), -- Ej: SUV, Sedan
+    precio_usd NUMERIC(10, 2) NOT NULL,
+    motor VARCHAR(50),
+    transmision VARCHAR(30),
+    airbags INTEGER,
+    score_base INTEGER DEFAULT 50, -- Usado para el algoritmo inicial
+    activo BOOLEAN DEFAULT TRUE
+);
 
-const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
----
+-- TABLA 2: Los Leads (El Perfil que captura el Paso 1)
+CREATE TABLE leads (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    fecha_creacion TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    nombre_completo VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    email VARCHAR(100),
+    presupuesto_min NUMERIC(10, 2),
+    presupuesto_max NUMERIC(10, 2),
+    categoria_buscada VARCHAR(30),
+    prioridades JSONB, -- Ej: ["Seguridad", "Espacio"]
+    uso_principal VARCHAR(50),
+    composicion_familiar VARCHAR(50),
+    solo_tradicionales BOOLEAN
+);
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATACAR - Plataforma de Inversión</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  
-  <style>
-    .step-section { display: none; opacity: 0; transition: opacity 0.3s ease; }
-    .step-section.active { display: block; opacity: 1; }
-    .priority-btn.selected { background-color: #00BFFF; color: white; border-color: #00BFFF; }
-    @media print {
-      .no-print { display: none !important; }
-      body { background-color: white; }
-      #dossier-pdf-content { box-shadow: none; border: none; padding: 0; }
-    }
-  </style>
-</head>
-<body class="bg-[#F0F2F5] text-[#3A3A3C] font-inter pb-32">
-
-  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center text-white no-print fixed top-0 w-full z-50 shadow-md">
-    <div class="font-montserrat font-black text-2xl tracking-tight">DATA<span class="font-light text-[#C0C0C0]">CAR</span></div>
-    <div id="header-status" class="text-sm font-medium">1. Parametrización</div>
-  </header>
-
-  <main class="max-w-5xl mx-auto mt-24 px-4">
-
-    {/* ============================================================== */}
-    {/* STEP 1: PERFIL EXHAUSTIVO DEL CLIENTE */}
-    {/* ============================================================== */}
-    <section id="step-1" class="step-section active">
-      <h1 class="font-montserrat font-black text-3xl text-[#0A1F33] mb-8">Paso 1: Define tu Inversión</h1>
-      
-      <form id="form-step-1" class="space-y-8 bg-white p-8 border border-gray-200 shadow-sm">
-        
-        {/* Contacto */}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label class="block text-sm font-bold mb-2">Nombre Completo *</label>
-            <input type="text" id="in_nombre" required class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-bold mb-2">Teléfono *</label>
-              <input type="tel" required class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
-            </div>
-            <div>
-              <label class="block text-sm font-bold mb-2">Email</label>
-              <input type="email" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
-            </div>
-          </div>
-        </div>
-
-        {/* Presupuesto */}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
-          <div>
-            <label class="block text-sm font-bold mb-2">Presupuesto Mínimo (USD)</label>
-            <input type="number" id="in_min" value="15000" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
-          </div>
-          <div>
-            <label class="block text-sm font-bold mb-2">Presupuesto Máximo (USD)</label>
-            <input type="number" id="in_max" value="30000" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
-          </div>
-        </div>
-
-        {/* Tipo y Prioridades */}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
-          <div>
-            <label class="block text-sm font-bold mb-2">Categoría de Vehículo</label>
-            <select id="in_categoria" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none">
-              <option value="SUV">SUV</option>
-              <option value="Sedan">Sedán</option>
-              <option value="Hatchback">Hatchback</option>
-              <option value="Pickup">Pick-up</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-bold mb-1">Prioridades (Máx 3)</label>
-            <p class="text-xs text-gray-500 mb-2">Lo que más valoras en el auto.</p>
-            <div id="prioridades_container" class="flex flex-wrap gap-2">
-              {['Seguridad', 'Tecnología', 'Espacio', 'Precio', 'Rendimiento'].map((p) => (
-                <button type="button" data-priority={p} class="priority-btn px-4 py-2 bg-gray-100 text-[#3A3A3C] border border-gray-200 text-xs font-bold transition-colors">
-                  {p}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Uso y Familia */}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-gray-100">
-          <div>
-            <label class="block text-sm font-bold mb-2">Uso Principal</label>
-            <select id="in_uso" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none">
-              <option value="Mixto">Mixto (Ciudad/Ruta)</option>
-              <option value="Ciudad">Solo Ciudad</option>
-              <option value="Ruta">Viajes / Ruta</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-bold mb-2">Composición Familiar</label>
-            <select id="in_familia" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none">
-              <option value="Familia pequeña">Familia pequeña</option>
-              <option value="Uso personal">Uso personal</option>
-              <option value="Pareja">Pareja</option>
-              <option value="Familia grande">Familia grande</option>
-            </select>
-          </div>
-          <div class="flex items-center mt-8">
-            <label class="flex items-center cursor-pointer">
-              <input type="checkbox" id="in_marcas" class="hidden peer" />
-              <div class="w-5 h-5 border-2 border-gray-300 peer-checked:bg-[#00BFFF] peer-checked:border-[#00BFFF] flex justify-center items-center mr-2">
-                <svg class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-              </div>
-              <span class="text-sm font-bold">Solo marcas tradicionales</span>
-            </label>
-          </div>
-        </div>
-
-        <button type="submit" class="bg-[#00BFFF] hover:bg-[#0099cc] text-white font-bold py-4 px-8 text-lg w-full transition-colors uppercase">
-          Procesar Perfil y Ver 10 Candidatos →
-        </button>
-      </form>
-    </section>
-
-    {/* ============================================================== */}
-    {/* STEP 2: SELECCIÓN DE 5 CANDIDATOS */}
-    {/* ============================================================== */}
-    <section id="step-2" class="step-section">
-      <div class="mb-6 flex justify-between items-end">
-        <div>
-          <h1 class="font-montserrat font-black text-3xl text-[#0A1F33]">Paso 2: Selección (5 Opciones)</h1>
-          <p class="text-sm text-gray-500 mt-2">Inversor: <span id="s2_nombre" class="font-bold"></span> | Rango: $<span id="s2_min"></span> - $<span id="s2_max"></span></p>
-        </div>
-        <div class="bg-[#0A1F33] text-white px-4 py-2 font-bold text-sm"><span id="counter">0</span>/5 SELECCIONADOS</div>
-      </div>
-
-      <div id="grid-candidatos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-10"></div>
-
-      <div class="flex justify-between items-center bg-white p-4 border border-gray-200 shadow-sm sticky bottom-0">
-        <button type="button" onclick="goToStep(1)" class="text-gray-500 font-bold hover:text-[#0A1F33] uppercase text-sm">← Volver</button>
-        <button type="button" id="btn_to_step3" disabled class="bg-gray-300 text-gray-500 font-bold py-3 px-8 transition-colors uppercase text-sm">
-          Analizar con Agente IA →
-        </button>
-      </div>
-    </section>
-
-    {/* ============================================================== */}
-    {/* PANTALLA DE CARGA DEL AGENTE IA */}
-    {/* ============================================================== */}
-    <section id="step-loading" class="step-section">
-      <div class="flex flex-col items-center justify-center h-96">
-        <div class="w-16 h-16 border-4 border-[#0A1F33] border-t-[#00BFFF] rounded-full animate-spin mb-6"></div>
-        <h2 class="font-montserrat font-black text-2xl text-[#0A1F33]">Agente IA DATACAR Procesando...</h2>
-        <p class="text-gray-500 mt-2 text-center max-w-md">Cruzando tus parámetros de <span class="font-bold text-[#0A1F33]" id="load_params"></span> contra la base de datos técnica y de depreciación.</p>
-      </div>
-    </section>
-
-    {/* ============================================================== */}
-    {/* STEP 3: DOSSIER (PDF FIDELITY) */}
-    {/* ============================================================== */}
-    <section id="step-3" class="step-section">
-      <div id="dossier-pdf-content" class="bg-white p-10 relative shadow-xl mb-10">
-        </div>
-
-      {/* BARRA DE ACCIÓN INFERIOR */}
-      <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] z-50 no-print">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <button onclick="goToStep(2)" class="text-gray-400 text-xs font-bold hover:text-[#0A1F33] uppercase">← Editar Selección</button>
-          <div class="flex gap-3 w-full md:w-auto">
-            <button onclick="generatePDF()" class="flex-1 md:flex-none border-2 border-[#0A1F33] text-[#0A1F33] font-bold py-3 px-6 text-xs hover:bg-gray-50 uppercase">Descargar PDF</button>
-            <button onclick="guardarEnBD()" class="flex-1 md:flex-none bg-[#00BFFF] text-white font-bold py-3 px-10 text-xs hover:bg-[#0099cc] uppercase tracking-wide">Quiero avanzar con una opción</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <script is:inline>
-    // ============================================================
-    // ESTADO GLOBAL: El "Cerebro" de la plataforma
-    // ============================================================
-    const AppState = {
-      lead: { nombre: '', min: '', max: '', categoria: '', prioridades: [], uso: '', familia: '', tradicionales: false },
-      candidatosPosibles: [
-        { id: 'c1', marca: 'Nissan', modelo: 'New Kicks', version: 'Sense (2026)', precio: 23990, match: 96, motor: '1.6L 120hp', transmision: 'Automática', airbags: '6', racional: 'ADAS Full de serie — 2 de 4 rivales no lo incluyen. Marca Nissan con red de servicios establecida. Mejor relación precio-equipamiento.' },
-        { id: 'c2', marca: 'Chevrolet', modelo: 'Tracker', version: 'LTZ (2026)', precio: 21500, match: 94, motor: '1.2T 139hp', transmision: 'Automática', airbags: '6', racional: 'Opción alternativa sólida en motorización — no se descarta.' },
-        { id: 'c3', marca: 'VW', modelo: 'Nivus', version: 'HL', precio: 24500, match: 93, motor: '1.0 200 TSI 116hp', transmision: 'Automática', airbags: '6', racional: 'Tercera opción válida para el perfil, destaca en reventa.' },
-        { id: 'c4', marca: 'Changan', modelo: 'CS55 PLUS', version: 'Luxury', precio: 22700, match: 90, motor: '1.5T 185hp', transmision: 'Automática', airbags: '6', racional: 'Marca no consolidada en el mercado local frente a un perfil conservador.' },
-        { id: 'c5', marca: 'VW', modelo: 'T-Cross', version: 'CL', precio: 23500, match: 91, motor: '1.0 200 TSI 116hp', transmision: 'Automática', airbags: '6', racional: 'Espacio de carga inferior: 373L vs 470L del ganador.' },
-        { id: 'c6', marca: 'Honda', modelo: 'WR-V', version: 'EXL', precio: 26900, match: 89, motor: '1.5L 120hp', transmision: 'Automática', airbags: '6', racional: 'Precio excede el punto óptimo del segmento.' },
-      ],
-      seleccionados: new Set(),
-      telemetria: []
-    };
-
-    const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-
-    // Lógica de Prioridades (Paso 1)
-    document.querySelectorAll('.priority-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const val = e.target.getAttribute('data-priority');
-        if (AppState.lead.prioridades.includes(val)) {
-          AppState.lead.prioridades = AppState.lead.prioridades.filter(p => p !== val);
-          e.target.classList.remove('selected');
-        } else if (AppState.lead.prioridades.length < 3) {
-          AppState.lead.prioridades.push(val);
-          e.target.classList.add('selected');
-        }
-      });
-    });
-
-    // Controlador de Navegación
-    function goToStep(stepNum) {
-      document.querySelectorAll('.step-section').forEach(el => el.classList.remove('active'));
-      document.getElementById('header-status').innerText = `${stepNum}. ${['Parametrización', 'Selección', 'Veredicto'][stepNum-1]}`;
-      
-      if(stepNum === 1) document.getElementById('step-1').classList.add('active');
-      
-      if(stepNum === 2) {
-        document.getElementById('s2_nombre').innerText = AppState.lead.nombre;
-        document.getElementById('s2_min').innerText = Number(AppState.lead.min).toLocaleString();
-        document.getElementById('s2_max').innerText = Number(AppState.lead.max).toLocaleString();
-        renderGrid();
-        document.getElementById('step-2').classList.add('active');
-      }
-
-      if(stepNum === 3) {
-        document.getElementById('load_params').innerText = `${AppState.lead.categoria} + ${AppState.lead.prioridades.join(', ')}`;
-        document.getElementById('step-loading').classList.add('active');
-        
-        setTimeout(() => {
-          document.getElementById('step-loading').classList.remove('active');
-          renderDossierPDF(); 
-          document.getElementById('step-3').classList.add('active');
-        }, 2000);
-      }
-    }
-
-    // Submit Paso 1
-    document.getElementById('form-step-1').addEventListener('submit', (e) => {
-      e.preventDefault();
-      AppState.lead.nombre = document.getElementById('in_nombre').value;
-      AppState.lead.min = document.getElementById('in_min').value;
-      AppState.lead.max = document.getElementById('in_max').value;
-      AppState.lead.categoria = document.getElementById('in_categoria').value;
-      AppState.lead.uso = document.getElementById('in_uso').value;
-      AppState.lead.familia = document.getElementById('in_familia').value;
-      AppState.lead.tradicionales = document.getElementById('in_marcas').checked;
-      
-      AppState.telemetria.push({ action: 'submit_step1', data: AppState.lead, time: Date.now() });
-      goToStep(2);
-    });
-
-    // Render Paso 2
-    function renderGrid() {
-      const grid = document.getElementById('grid-candidatos');
-      grid.innerHTML = ''; 
-      AppState.candidatosPosibles.forEach(auto => {
-        const div = document.createElement('div');
-        const isSel = AppState.seleccionados.has(auto.id);
-        div.className = `border-2 p-4 cursor-pointer transition-all flex flex-col h-full ${isSel ? 'border-[#00BFFF] bg-blue-50/30' : 'border-gray-200 bg-white'}`;
-        div.innerHTML = `
-          <div class="h-24 bg-gray-100 flex items-center justify
+-- TABLA 3: El Dossier IA (La resultante de la IA y las selecciones)
+CREATE TABLE dossiers (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    lead_id UUID REFERENCES leads(id) ON DELETE CASCADE,
+    fecha_generacion TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    vehiculos_seleccionados JSONB, -- Array de IDs de los 5 autos que eligió
+    ganador_id UUID REFERENCES vehiculos(id),
+    racional_ia JSONB, -- El texto estructurado que devuelve Gemini/GPT
+    vehiculo_interes VARCHAR(100), -- Si hace click en "Quiero Cotizar"
+    estado_venta VARCHAR(30) DEFAULT 'Nuevo' -- 'Nuevo', 'Contactado', 'Cerrado'
+);
