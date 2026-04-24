@@ -1,6 +1,6 @@
 ---
 // src/pages/index.astro
-// Este archivo contiene los 3 Steps fusionados en una Single Page Application (SPA).
+// SPA: Motor de Telemetría + Renderizado Dinámico del Dossier Completo
 
 const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
@@ -15,19 +15,19 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   
   <style>
-    /* Clases utilitarias para la SPA */
     .step-section { display: none; opacity: 0; transition: opacity 0.3s ease; }
     .step-section.active { display: block; opacity: 1; }
     @media print {
       .no-print { display: none !important; }
       body { background-color: white; }
+      #dossier-pdf-content { box-shadow: none; border: none; padding: 0; }
     }
   </style>
 </head>
 <body class="bg-[#F0F2F5] text-[#3A3A3C] font-inter pb-32">
 
   {/* HEADER GLOBAL */}
-  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center text-white no-print fixed top-0 w-full z-50">
+  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center text-white no-print fixed top-0 w-full z-50 shadow-md">
     <div class="font-montserrat font-black text-2xl tracking-tight">DATA<span class="font-light text-[#C0C0C0]">CAR</span></div>
     <div id="header-status" class="text-sm font-medium">1. Parametrización</div>
   </header>
@@ -39,21 +39,20 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
     {/* ============================================================== */}
     <section id="step-1" class="step-section active">
       <h1 class="font-montserrat font-black text-3xl text-[#0A1F33] mb-8">Paso 1: Define tu Inversión</h1>
-      
       <form id="form-step-1" class="space-y-8 bg-white p-8 border border-gray-200 shadow-sm">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-bold mb-2">Nombre Completo *</label>
-            <input type="text" id="in_nombre" required class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+            <input type="text" id="in_nombre" required placeholder="Ej: Juan Pérez" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-bold mb-2">Teléfono *</label>
-              <input type="tel" required class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+              <input type="tel" required placeholder="+595..." class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
             </div>
             <div>
               <label class="block text-sm font-bold mb-2">Email</label>
-              <input type="email" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
+              <input type="email" placeholder="Opcional" class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#00BFFF] outline-none" />
             </div>
           </div>
         </div>
@@ -69,7 +68,7 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
           </div>
         </div>
 
-        <button type="submit" id="btn_to_step2" class="bg-[#00BFFF] hover:bg-[#0099cc] text-white font-bold py-4 px-8 text-lg w-full transition-colors">
+        <button type="submit" class="bg-[#00BFFF] hover:bg-[#0099cc] text-white font-bold py-4 px-8 text-lg w-full transition-colors uppercase tracking-wide">
           Procesar Perfil y Buscar Candidatos →
         </button>
       </form>
@@ -84,14 +83,14 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
           <h1 class="font-montserrat font-black text-3xl text-[#0A1F33]">Paso 2: Selección (5 Opciones)</h1>
           <p class="text-sm text-gray-500 mt-2">Inversor: <span id="s2_nombre" class="font-bold"></span> | Rango: $<span id="s2_min"></span> - $<span id="s2_max"></span></p>
         </div>
-        <div class="bg-[#0A1F33] text-white px-4 py-2 font-bold"><span id="counter">0</span>/5 SELECCIONADOS</div>
+        <div class="bg-[#0A1F33] text-white px-4 py-2 font-bold text-sm"><span id="counter">0</span>/5 SELECCIONADOS</div>
       </div>
 
-      <div id="grid-candidatos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-10"></div>
+      <div id="grid-candidatos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10"></div>
 
       <div class="flex justify-between items-center bg-white p-4 border border-gray-200 shadow-sm sticky bottom-0">
-        <button type="button" onclick="goToStep(1)" class="text-gray-500 font-bold hover:text-[#0A1F33]">← Volver</button>
-        <button type="button" id="btn_to_step3" disabled class="bg-gray-300 text-gray-500 font-bold py-3 px-8 transition-colors">
+        <button type="button" onclick="goToStep(1)" class="text-gray-500 font-bold hover:text-[#0A1F33] uppercase text-sm">← Volver</button>
+        <button type="button" id="btn_to_step3" disabled class="bg-gray-300 text-gray-500 font-bold py-3 px-8 transition-colors uppercase text-sm">
           Analizar con Agente IA →
         </button>
       </div>
@@ -102,48 +101,32 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
     {/* ============================================================== */}
     <section id="step-loading" class="step-section">
       <div class="flex flex-col items-center justify-center h-96">
-        <div class="w-16 h-16 border-4 border-[#00BFFF] border-t-transparent rounded-full animate-spin mb-6"></div>
-        <h2 class="font-montserrat font-black text-2xl text-[#0A1F33]">Agente IA DATACAR Procesando...</h2>
-        <p class="text-gray-500 mt-2">Analizando racional financiero, cruce de equipamiento y depreciación estimada.</p>
+        <div class="w-16 h-16 border-4 border-[#0A1F33] border-t-[#00BFFF] rounded-full animate-spin mb-6"></div>
+        <h2 class="font-montserrat font-black text-2xl text-[#0A1F33]">Motor IA DATACAR Procesando...</h2>
+        <p class="text-gray-500 mt-2">Cruzando atributos técnicos, matriz de precios y depreciación estimada.</p>
       </div>
     </section>
 
     {/* ============================================================== */}
-    {/* STEP 3: DOSSIER (VEREDICTO) */}
+    {/* STEP 3: DOSSIER (VEREDICTO COMPLETO) */}
     {/* ============================================================== */}
     <section id="step-3" class="step-section">
-      <div id="dossier-pdf-content" class="bg-white p-10 relative border-t-8 border-[#0A1F33]">
-        
-        <div class="flex justify-between items-start mb-10 border-b border-gray-100 pb-8">
-          <div>
-            <div class="font-montserrat font-black text-3xl text-[#0A1F33]">DATA<span class="font-light text-gray-400">CAR</span></div>
-            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Asesoría Automotriz Independiente</p>
-          </div>
-          <div class="text-right">
-            <div class="bg-gray-50 p-4 border border-gray-100 text-left">
-              <p class="text-[9px] text-gray-400 uppercase font-bold">Inversor</p>
-              <p id="s3_nombre" class="font-bold text-[#0A1F33] text-sm mb-2"></p>
-              <p class="text-[9px] text-gray-400 uppercase font-bold">Presupuesto</p>
-              <p class="font-bold text-[#0A1F33] text-sm">$<span id="s3_min"></span> - $<span id="s3_max"></span></p>
-            </div>
-          </div>
+      <div id="dossier-pdf-content" class="bg-white p-10 relative border-t-8 border-[#0A1F33] shadow-xl mb-10">
         </div>
 
-        {/* Ganador Inyectado Dinámicamente */}
-        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Recomendación de la IA</h3>
-        <div id="ganador-container" class="border-2 border-[#0A1F33] p-6 mb-10 bg-white">
+      {/* BARRA DE ACCIÓN INFERIOR */}
+      <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] z-50 no-print">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <button onclick="goToStep(2)" class="text-gray-400 text-xs font-bold hover:text-[#0A1F33] uppercase">← Editar Selección</button>
+          
+          <div class="flex gap-3 w-full md:w-auto">
+            <button onclick="generatePDF()" class="flex-1 md:flex-none border-2 border-[#0A1F33] text-[#0A1F33] font-bold py-3 px-6 text-xs hover:bg-gray-50 transition-colors uppercase">
+              Descargar PDF
+            </button>
+            <button onclick="guardarEnBD()" class="flex-1 md:flex-none bg-[#00BFFF] text-white font-bold py-3 px-10 text-xs hover:bg-[#0099cc] uppercase tracking-wide">
+              Quiero avanzar con una opción
+            </button>
           </div>
-
-        <div class="mt-12 pt-4 border-t border-gray-100 text-center text-[8px] text-gray-300 uppercase tracking-widest">
-          Dossier Confidencial - Generado por Agente IA DATACAR - {fechaActual}
-        </div>
-      </div>
-
-      <div class="mt-6 flex justify-between items-center bg-white p-4 shadow-xl no-print">
-        <button onclick="goToStep(2)" class="text-gray-400 text-xs font-bold hover:text-[#0A1F33] uppercase">← Editar Selección</button>
-        <div class="flex gap-3">
-          <button onclick="generatePDF()" class="border-2 border-[#0A1F33] text-[#0A1F33] font-bold py-3 px-8 text-xs hover:bg-gray-50 uppercase">Descargar PDF</button>
-          <button onclick="guardarEnBD()" class="bg-[#00BFFF] text-white font-bold py-3 px-10 text-xs hover:bg-[#0099cc] uppercase">Quiero avanzar con una opción</button>
         </div>
       </div>
     </section>
@@ -152,92 +135,90 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
 
   <script is:inline>
     // ============================================================
-    // ESTADO GLOBAL DE LA APLICACIÓN (Cerebro del SPA)
+    // BASE DE DATOS LOCAL AMPLIADA (Para la Tabla y Racionales)
     // ============================================================
     const AppState = {
       lead: { nombre: '', min: '', max: '' },
       candidatosPosibles: [
-        { id: 'c1', marca: 'Nissan', modelo: 'New Kicks', precio: 23990, match: 96 },
-        { id: 'c2', marca: 'Chevrolet', modelo: 'Tracker', precio: 21500, match: 94 },
-        { id: 'c3', marca: 'VW', modelo: 'Nivus', precio: 24500, match: 93 },
-        { id: 'c4', marca: 'Changan', modelo: 'CS55', precio: 22700, match: 90 },
-        { id: 'c5', marca: 'Honda', modelo: 'WR-V', precio: 26900, match: 91 },
-        { id: 'c6', marca: 'Hyundai', modelo: 'Creta', precio: 22500, match: 89 },
+        { id: 'c1', marca: 'Nissan', modelo: 'New Kicks', version: 'Sense', precio: 23990, match: 96, motor: '1.6L 120hp', transmision: 'Auto CVT', airbags: '6', racional: ['ADAS Full de serie, superior a rivales.', 'Respaldo postventa garantizado.'] },
+        { id: 'c2', marca: 'Chevrolet', modelo: 'Tracker', version: 'LTZ', precio: 21500, match: 94, motor: '1.2T 130hp', transmision: 'Auto 6 vel.', airbags: '6', racional: ['Motorización turbo eficiente.', 'Opción económica muy sólida.'] },
+        { id: 'c3', marca: 'VW', modelo: 'Nivus', version: 'HL', precio: 24500, match: 93, motor: '1.0T 116hp', transmision: 'Auto 6 vel.', airbags: '6', racional: ['Diseño superior y reventa.', 'Tecnología interior líder.'] },
+        { id: 'c4', marca: 'Changan', modelo: 'CS55 PLUS', version: 'Luxury', precio: 22700, match: 90, motor: '1.5T 185hp', transmision: 'Auto DCT', airbags: '6', racional: ['Exceso de potencia no priorizada.', 'Marca emergente.'] },
+        { id: 'c5', marca: 'VW', modelo: 'T-Cross', version: 'CL', precio: 23500, match: 91, motor: '1.0T 116hp', transmision: 'Auto 6 vel.', airbags: '6', racional: ['Espacio de baúl penaliza (373L).'] },
+        { id: 'c6', marca: 'Hyundai', modelo: 'Creta', version: 'GLS', precio: 26990, match: 89, motor: '1.5L 115hp', transmision: 'Auto IVT', airbags: '6', racional: ['Precio roza límite superior.'] },
       ],
       seleccionados: new Set(),
-      telemetria: [] // Aquí guardamos los clicks
+      telemetria: []
     };
 
+    const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
     // ============================================================
-    // CONTROLADOR DE NAVEGACIÓN
+    // CONTROLADOR DE ESTADO
     // ============================================================
     function goToStep(stepNum) {
       document.querySelectorAll('.step-section').forEach(el => el.classList.remove('active'));
-      document.getElementById('header-status').innerText = `Paso ${stepNum}`;
+      document.getElementById('header-status').innerText = `${stepNum}. ${['Parametrización', 'Selección', 'Veredicto'][stepNum-1]}`;
       
       if(stepNum === 1) document.getElementById('step-1').classList.add('active');
       
       if(stepNum === 2) {
         document.getElementById('s2_nombre').innerText = AppState.lead.nombre;
-        document.getElementById('s2_min').innerText = AppState.lead.min;
-        document.getElementById('s2_max').innerText = AppState.lead.max;
+        document.getElementById('s2_min').innerText = Number(AppState.lead.min).toLocaleString();
+        document.getElementById('s2_max').innerText = Number(AppState.lead.max).toLocaleString();
         renderGrid();
         document.getElementById('step-2').classList.add('active');
       }
 
       if(stepNum === 3) {
-        // Simulamos la llamada al Agente IA
         document.getElementById('step-loading').classList.add('active');
         document.getElementById('header-status').innerText = `Procesando IA...`;
         
         setTimeout(() => {
           document.getElementById('step-loading').classList.remove('active');
-          renderDossier();
+          renderDossierCompleto(); // Llama a la función robusta
           document.getElementById('step-3').classList.add('active');
           document.getElementById('header-status').innerText = `3. Veredicto`;
           
-          // Enviamos la telemetría acumulada silenciosamente
-          enviarTelemetria();
-        }, 2500); // 2.5 segundos de "pensamiento" de la IA
+          enviarTelemetria(); // Telemetría silenciosa
+        }, 2000);
       }
     }
 
-    // ============================================================
-    // LÓGICA PASO 1 (Guardar datos y avanzar)
-    // ============================================================
+    // EVENTOS PASO 1
     document.getElementById('form-step-1').addEventListener('submit', (e) => {
       e.preventDefault();
-      AppState.lead.nombre = document.getElementById('in_nombre').value;
+      AppState.lead.nombre = document.getElementById('in_nombre').value || 'Inversor';
       AppState.lead.min = document.getElementById('in_min').value;
       AppState.lead.max = document.getElementById('in_max').value;
-      
       AppState.telemetria.push({ action: 'submit_step1', time: Date.now() });
       goToStep(2);
     });
 
     // ============================================================
-    // LÓGICA PASO 2 (Renderizar grid y manejar selección)
+    // PASO 2: RENDERIZADO DEL GRID
     // ============================================================
     function renderGrid() {
       const grid = document.getElementById('grid-candidatos');
-      grid.innerHTML = ''; // Limpiar
+      grid.innerHTML = ''; 
       
       AppState.candidatosPosibles.forEach(auto => {
         const div = document.createElement('div');
-        const isSelected = AppState.seleccionados.has(auto.id);
+        const isSel = AppState.seleccionados.has(auto.id);
         
-        div.className = `border-2 p-4 cursor-pointer transition-all ${isSelected ? 'border-[#00BFFF] bg-blue-50' : 'border-gray-200 bg-white'}`;
+        div.className = `border-2 p-4 cursor-pointer transition-all flex flex-col h-full ${isSel ? 'border-[#00BFFF] bg-blue-50/30' : 'border-gray-200 bg-white hover:border-[#0A1F33]'}`;
         div.innerHTML = `
-          <div class="h-16 bg-gray-100 mb-2"></div>
-          <h3 class="font-bold text-sm text-[#0A1F33]">${auto.marca} ${auto.modelo}</h3>
-          <p class="text-xs">$${auto.precio.toLocaleString()}</p>
-          <div class="mt-2 bg-[#00BFFF] text-white text-[10px] px-1 inline-block">Match ${auto.match}%</div>
+          <div class="h-24 bg-gray-100 flex items-center justify-center text-[10px] text-gray-400 uppercase mb-3 border border-gray-200">Sin Imagen</div>
+          <h3 class="font-bold text-sm text-[#0A1F33] leading-tight mb-1">${auto.marca} ${auto.modelo}</h3>
+          <p class="text-[10px] text-gray-500 mb-2">${auto.version}</p>
+          <p class="font-bold text-[#0A1F33] text-xs mt-auto">$${auto.precio.toLocaleString()}</p>
+          <div class="mt-2 bg-[${isSel ? '#00BFFF' : '#0A1F33'}] text-white text-[10px] px-2 py-1 inline-block self-start font-bold">
+            Match ${auto.match}%
+          </div>
         `;
         
         div.onclick = () => {
-          // Registrar Click para Telemetría
           AppState.telemetria.push({ action: 'toggle_car', carId: auto.id, time: Date.now() });
-
           if(AppState.seleccionados.has(auto.id)) {
             AppState.seleccionados.delete(auto.id);
           } else if(AppState.seleccionados.size < 5) {
@@ -246,15 +227,14 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
           
           document.getElementById('counter').innerText = AppState.seleccionados.size;
           const btn = document.getElementById('btn_to_step3');
-          
           if(AppState.seleccionados.size === 5) {
             btn.disabled = false;
-            btn.className = "bg-[#00BFFF] text-white font-bold py-3 px-8 cursor-pointer hover:bg-[#0099cc]";
+            btn.className = "bg-[#00BFFF] text-white font-bold py-3 px-8 cursor-pointer hover:bg-[#0099cc] uppercase text-sm transition-all";
           } else {
             btn.disabled = true;
-            btn.className = "bg-gray-300 text-gray-500 font-bold py-3 px-8 cursor-not-allowed";
+            btn.className = "bg-gray-300 text-gray-500 font-bold py-3 px-8 cursor-not-allowed uppercase text-sm";
           }
-          renderGrid(); // Re-dibujar para pintar bordes
+          renderGrid();
         };
         grid.appendChild(div);
       });
@@ -266,52 +246,152 @@ const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', mon
     });
 
     // ============================================================
-    // LÓGICA PASO 3 (Renderizar IA y Funciones Finales)
+    // PASO 3: RENDERIZADO DEL DOSSIER COMPLETO (PDF Fidelity)
     // ============================================================
-    function renderDossier() {
-      document.getElementById('s3_nombre').innerText = AppState.lead.nombre;
-      document.getElementById('s3_min').innerText = AppState.lead.min;
-      document.getElementById('s3_max').innerText = AppState.lead.max;
+    function renderDossierCompleto() {
+      // 1. Obtener los 5 objetos de autos seleccionados
+      const autosElegidos = Array.from(AppState.seleccionados).map(id => 
+        AppState.candidatosPosibles.find(c => c.id === id)
+      );
+      
+      // 2. Ordenar por % de Match (Simulando la decisión de la IA)
+      autosElegidos.sort((a, b) => b.match - a.match);
 
-      // Simulamos la respuesta del Agente IA tomando el primer auto seleccionado
-      const ganadorId = Array.from(AppState.seleccionados)[0];
-      const ganador = AppState.candidatosPosibles.find(a => a.id === ganadorId);
+      const ganador = autosElegidos[0];
+      const podio = [autosElegidos[1], autosElegidos[2]];
+      const descartados = [autosElegidos[3], autosElegidos[4]];
 
-      document.getElementById('ganador-container').innerHTML = `
-        <div class="flex flex-col md:flex-row gap-6">
-          <div class="w-1/3 bg-gray-50 flex items-center justify-center text-xs font-bold text-gray-300 border border-gray-100">VEHÍCULO</div>
-          <div class="w-2/3">
-            <h2 class="font-montserrat font-black text-2xl text-[#0A1F33] uppercase">${ganador.marca} ${ganador.modelo}</h2>
-            <p class="font-bold text-[#0A1F33] mb-4">$${ganador.precio.toLocaleString()}</p>
-            <p class="text-sm text-gray-600 italic border-l-4 border-[#00BFFF] pl-3 mb-4">
-              "Según el análisis algorítmico, este vehículo representa la mejor inversión de capital protegiendo el valor de reventa." - Agente IA DATACAR
-            </p>
-            <button onclick="registrarInteres('${ganador.marca} ${ganador.modelo}')" class="bg-[#00BFFF] text-white font-bold py-2 px-6 text-xs uppercase no-print hover:bg-[#0099cc]">Quiero Cotizar</button>
+      const container = document.getElementById('dossier-pdf-content');
+      
+      let html = `
+        <div class="flex justify-between items-start mb-8 border-b-2 border-[#0A1F33] pb-6">
+          <div>
+            <div class="font-montserrat font-black text-3xl text-[#0A1F33] tracking-tight">DATA<span class="font-light text-[#C0C0C0]">CAR</span></div>
+            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Asesoría Automotriz Independiente</div>
+          </div>
+          <div class="text-right w-1/2">
+            <h1 class="font-montserrat font-black text-[#0A1F33] text-lg uppercase leading-none">Dossier de Inversión</h1>
+            <h2 class="font-montserrat font-medium text-gray-500 text-[10px] uppercase mb-3">Análisis Comparativo de Mercado</h2>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-[10px] text-left bg-gray-50 p-3 border border-gray-200">
+              <div class="text-gray-500 uppercase font-bold">Inversor</div>
+              <div class="font-bold text-[#0A1F33]">${AppState.lead.nombre}</div>
+              <div class="text-gray-500 uppercase font-bold">Presupuesto</div>
+              <div class="font-bold text-[#0A1F33]">$${Number(AppState.lead.min).toLocaleString()} - $${Number(AppState.lead.max).toLocaleString()}</div>
+              <div class="text-gray-500 uppercase font-bold">Fecha</div>
+              <div class="font-bold text-[#0A1F33]">${fechaActual}</div>
+            </div>
           </div>
         </div>
+
+        <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Recomendación DATACAR</h3>
+        <div class="border-2 border-[#0A1F33] p-6 mb-8 flex flex-col md:flex-row gap-6 relative bg-white">
+          <div class="absolute -top-3 left-4 bg-[#0A1F33] text-white text-[10px] font-bold px-3 py-1 uppercase flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#00BFFF]"></span> Top Pick
+          </div>
+          <div class="w-full md:w-1/3 bg-gray-100 flex items-center justify-center border border-gray-200 text-gray-400 text-xs uppercase h-32 md:h-auto">
+            Visualización
+          </div>
+          <div class="w-full md:w-2/3">
+            <h2 class="font-montserrat font-black text-2xl text-[#0A1F33] leading-none mb-1 uppercase">${ganador.marca} ${ganador.modelo}</h2>
+            <p class="text-xs text-gray-500 mb-4">${ganador.version} • <span class="font-bold text-[#0A1F33]">$${ganador.precio.toLocaleString()}</span></p>
+            <ul class="space-y-2 text-xs text-[#3A3A3C] mb-4">
+              ${ganador.racional.map(r => `<li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold mt-0.5">✓</span><span>${r}</span></li>`).join('')}
+              <li class="flex items-start gap-2"><span class="text-[#00BFFF] font-bold mt-0.5">✓</span><span>Mejor balance del grupo con un ${ganador.match}% de Match técnico.</span></li>
+            </ul>
+            <button onclick="registrarInteres('${ganador.marca} ${ganador.modelo}')" class="bg-[#00BFFF] text-white font-bold py-2 px-6 text-[10px] uppercase tracking-wide hover:bg-[#0099cc] transition-colors no-print">
+              Quiero cotizar este auto
+            </button>
+          </div>
+        </div>
+
+        <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-200 pb-2">El Barrido: Alternativas del Podio</h3>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          ${podio.map((auto, i) => `
+            <div class="border border-gray-200 bg-gray-50 p-4 flex flex-col">
+              <div class="text-[9px] font-bold uppercase mb-2 text-gray-500">Alternativa #${i+2}</div>
+              <h4 class="font-bold text-[#0A1F33] text-sm leading-tight">${auto.marca} ${auto.modelo}</h4>
+              <p class="text-[10px] text-gray-500 mb-2">${auto.version} • $${auto.precio.toLocaleString()}</p>
+              <p class="text-[10px] text-gray-600 italic border-l-2 border-gray-300 pl-2 mb-3 mt-auto">"${auto.racional[0]}"</p>
+              <button onclick="registrarInteres('${auto.marca} ${auto.modelo}')" class="border border-[#0A1F33] text-[#0A1F33] text-[9px] font-bold py-1 px-3 uppercase self-start hover:bg-[#0A1F33] hover:text-white transition-colors no-print">Cotizar</button>
+            </div>
+          `).join('')}
+        </div>
+
+        <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-200 pb-2">Evaluados - No alcanzaron el podio</h3>
+        <div class="space-y-2 mb-8">
+          ${descartados.map(auto => `
+            <div class="flex gap-2 items-center text-[10px]">
+              <div class="w-1/3 font-bold text-[#3A3A3C]">${auto.marca} ${auto.modelo}</div>
+              <div class="w-2/3 text-gray-500 bg-gray-50 px-2 py-1 border-l border-gray-200">${auto.racional[0] || 'Penalización algorítmica por especificaciones.'}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-200 pb-2">Matriz de Atributos</h3>
+        <div class="overflow-hidden border border-gray-200">
+          <table class="w-full text-left text-[9px] border-collapse">
+            <thead>
+              <tr class="bg-[#0A1F33] text-white uppercase">
+                <th class="p-2 font-bold w-1/6">Atributo</th>
+                ${autosElegidos.map((a, i) => `<th class="p-2 font-bold ${i===0 ? 'bg-[#00BFFF]' : 'border-l border-gray-600'}">${a.marca} <br/>${a.modelo}</th>`).join('')}
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b border-gray-100">
+                <td class="p-2 font-bold text-[#3A3A3C]">Precio</td>
+                ${autosElegidos.map((a, i) => `<td class="p-2 ${i===0 ? 'text-[#00BFFF] font-bold bg-blue-50/20' : 'text-gray-600'}">$${a.precio.toLocaleString()}</td>`).join('')}
+              </tr>
+              <tr class="bg-gray-50 border-b border-gray-100">
+                <td class="p-2 font-bold text-[#3A3A3C]">Motor/HP</td>
+                ${autosElegidos.map((a, i) => `<td class="p-2 ${i===0 ? 'text-[#00BFFF] font-bold bg-blue-50/20' : 'text-gray-600'}">${a.motor}</td>`).join('')}
+              </tr>
+              <tr class="bg-white border-b border-gray-100">
+                <td class="p-2 font-bold text-[#3A3A3C]">Transmisión</td>
+                ${autosElegidos.map((a, i) => `<td class="p-2 ${i===0 ? 'text-[#00BFFF] font-bold bg-blue-50/20' : 'text-gray-600'}">${a.transmision}</td>`).join('')}
+              </tr>
+              <tr class="bg-gray-50 border-b border-gray-100">
+                <td class="p-2 font-bold text-[#3A3A3C]">Airbags</td>
+                ${autosElegidos.map((a, i) => `<td class="p-2 ${i===0 ? 'text-[#00BFFF] font-bold bg-blue-50/20' : 'text-gray-600'}">${a.airbags}</td>`).join('')}
+              </tr>
+            </tbody>
+          </table>
+        </div>
       `;
+
+      container.innerHTML = html;
     }
 
-    // Funciones de utilidad finales
+    // ============================================================
+    // FUNCIONES FINALES Y TELEMETRÍA
+    // ============================================================
     function enviarTelemetria() {
-      console.log("📡 Enviando Telemetría en background a la BD:", AppState.telemetria);
-      // fetch('/api/telemetria', { method: 'POST', body: JSON.stringify(AppState.telemetria) });
+      console.log("📡 [TELEMETRÍA BACKGROUND] Enviando paquete de interacciones:", AppState.telemetria);
     }
 
     function registrarInteres(modelo) {
-      AppState.telemetria.push({ action: 'click_cotizar_ganador', car: modelo, time: Date.now() });
-      alert(`Has solicitado cotización para: ${modelo}. Esto se guardó en el estado.`);
+      AppState.telemetria.push({ action: 'click_cta_cotizar', car: modelo, time: Date.now() });
+      alert(`Has solicitado cotización para: ${modelo}.\n\nTu vendedor recibirá una alerta inmediata con esta preferencia.`);
     }
 
     function generatePDF() {
       const element = document.getElementById('dossier-pdf-content');
-      html2pdf().set({ margin: 10, filename: 'Dossier.pdf' }).from(element).save();
+      html2pdf().set({ 
+        margin: 10, 
+        filename: 'Dossier_DATACAR.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      }).from(element).save();
     }
 
     function guardarEnBD() {
-      const payloadFinal = { lead: AppState.lead, seleccion: Array.from(AppState.seleccionados), tracking: AppState.telemetria };
-      console.log("💾 GUARDANDO EN POSTGRESQL (Transacción Final):", payloadFinal);
-      alert("Operación Exitosa. Los datos del lead, los autos elegidos y el historial de clics han sido enviados a tu base de datos y al vendedor.");
+      const payloadFinal = { 
+        lead: AppState.lead, 
+        candidatos_finales: Array.from(AppState.seleccionados), 
+        historial_telemetria: AppState.telemetria 
+      };
+      console.log("💾 [POSTGRESQL] Guardando estado final del Lead:", payloadFinal);
+      alert("✅ Operación Exitosa.\n\nTodos los datos (Perfil, Autos elegidos, Historial de clicks y opciones descartadas) se han guardado en la base de datos.");
     }
   </script>
 </body>
