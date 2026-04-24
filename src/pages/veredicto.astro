@@ -1,29 +1,38 @@
 ---
 // src/pages/veredicto.astro
 
-// Recuperamos los datos del cliente que vienen viajando por la URL
-const nombreUsuario = Astro.url.searchParams.get('nombre') || "Inversor";
-const pMin = Astro.url.searchParams.get('min') || "15000";
-const pMax = Astro.url.searchParams.get('max') || "30000";
+// Datos simulados recibidos de la URL (Paso 1)
+const nombreUsuario = Astro.url.searchParams.get('nombre') || "Juan Pérez";
+const pMin = Astro.url.searchParams.get('min') || "15,000";
+const pMax = Astro.url.searchParams.get('max') || "30,000";
 
-// SIMULACIÓN DEL MOTOR DE VEREDICTO (Backend)
-// En producción, tu API evaluará los 5 IDs seleccionados y devolverá este objeto ordenado.
+// Fecha actual para el Dossier
+const fechaActual = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Datos del Veredicto (Basado estrictamente en tu PDF)
 const veredicto = {
   ganador: {
     marca: "Nissan", modelo: "New Kicks", version: "Sense (2026)", precio: 23990,
     racional: [
-      "ADAS Full de serie — 2 de 4 rivales no lo incluyen.",
-      "Marca con red de servicios establecida en Paraguay — respaldo postventa garantizado.",
-      "Mejor relación precio-equipamiento del grupo seleccionado."
+      "ADAS Full de serie — 2 de 4 rivales no lo incluyen: asistencia de frenado, control de carril y crucero adaptativo.",
+      "Marca Nissan con red de servicios establecida en Paraguay — respaldo postventa garantizado y repuestos disponibles.",
+      "Mejor relación precio-equipamiento del grupo: $23,990 USD con las prestaciones más completas para el perfil."
     ]
   },
   podio: [
-    { posicion: 2, marca: "Chevrolet", modelo: "Tracker", version: "LTZ (2026)", precio: 21500, racional: "Opción alternativa sólida en motorización — no se descarta." },
-    { posicion: 3, marca: "Volkswagen", modelo: "Nivus", version: "HL", precio: 24500, racional: "Tercera opción válida, destaca en reventa y diseño." }
+    { posicion: 1, marca: "Nissan", modelo: "New Kicks", version: "Sense (2026)", precio: 23990, etiqueta: "RECOMENDACIÓN" },
+    { posicion: 2, marca: "Chevrolet", modelo: "Tracker", version: "LTZ (2026)", precio: 21500, etiqueta: "Alternativa #2" },
+    { posicion: 3, marca: "Volkswagen", modelo: "Nivus", version: "HL", precio: 24500, etiqueta: "Alternativa #3" }
   ],
   descartados: [
-    { marca: "Hyundai", modelo: "New Creta", precio: 26990, razon: "Excede el punto óptimo de presupuesto frente al ganador ofreciendo equipamiento similar." },
-    { marca: "Changan", modelo: "CS55 PLUS", precio: 24490, razon: "Excelente tecnología, pero penaliza en el filtro de 'Marcas Tradicionales' si el cliente busca máxima liquidez de reventa." }
+    { marca: "Changan", modelo: "CS55 PLUS", razon: "Marca no consolidada en el mercado local frente a un perfil conservador..." },
+    { marca: "Volkswagen", modelo: "T-Cross", razon: "Espacio de carga inferior: 373L vs 470L del ganador." }
+  ],
+  tabla: [
+    { atributo: "Precio", nissan: "$23,990", chevrolet: "$21,500", vw_nivus: "$24,500", changan: "$22,700", vw_tcross: "$23,500" },
+    { atributo: "Motor/HP", nissan: "1.6L 120hp", chevrolet: "1.2T 130hp", vw_nivus: "1.0 200 TSI 116hp", changan: "1.5T 185hp", vw_tcross: "1.0 200 TSI 116hp" },
+    { atributo: "Transmisión", nissan: "Automática", chevrolet: "Automática", vw_nivus: "Automática", changan: "Automática", vw_tcross: "Automática" },
+    { atributo: "Airbags", nissan: "6 airbags", chevrolet: "6 airbags", vw_nivus: "6 airbags", changan: "6 airbags", vw_tcross: "6 airbags" }
   ]
 };
 ---
@@ -33,174 +42,197 @@ const veredicto = {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATACAR - Veredicto de Inversión</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>DATACAR - Dossier de Inversión</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
-<body class="bg-[#F8F9FA] text-[#3A3A3C] font-inter pb-32">
+<body class="bg-[#F0F2F5] text-[#3A3A3C] font-inter pb-32">
 
-  {/* HEADER CORPORATIVO */}
-  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center text-white">
+  {/* NAVEGACIÓN SUPERIOR */}
+  <header class="bg-[#0A1F33] py-4 px-8 flex justify-between items-center text-white no-print">
     <div class="font-montserrat font-black text-2xl tracking-tight">DATA<span class="font-light text-[#C0C0C0] tracking-[1px]">CAR</span></div>
-    <div class="text-sm font-medium hidden md:block">Autogestión de Inversión</div>
+    <div class="text-sm font-medium">Paso 3: Veredicto</div>
   </header>
 
-  {/* STEPPER NAV */}
-  <nav class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between text-sm font-medium">
-    <div class="text-gray-400">✓ 1. Tu Perfil</div>
-    <div class="text-gray-400">✓ 2. Selección</div>
-    <div class="border-b-2 border-[#0A1F33] pb-1 text-[#0A1F33]">3. Veredicto y Ejecución</div>
-  </nav>
-
-  <main class="max-w-5xl mx-auto py-10 px-6">
-    <div class="mb-8">
-      <h1 class="font-montserrat font-black text-3xl text-[#0A1F33] mb-2">Paso 3: Veredicto Analítico</h1>
-      <p class="text-sm text-gray-500">
-        Inversor: <span class="font-bold text-[#3A3A3C]">{nombreUsuario}</span> • Presupuesto: <span class="font-bold text-[#3A3A3C]">${pMin} – ${pMax}</span>
-      </p>
-    </div>
-
-    {/* SECCIÓN 1: EL GANADOR (Reemplazamos el amarillo por Authority Blue y Digital Cyan) */}
-    <section class="bg-white border-2 border-[#0A1F33] p-6 mb-8 relative">
-      <div class="absolute -top-4 left-6 bg-[#0A1F33] text-white px-4 py-1 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-        <svg class="w-4 h-4 text-[#00BFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        Recomendación DATACAR | Lugar #1
-      </div>
+  {/* CONTENEDOR DEL DOSSIER (Simula una hoja A4) */}
+  <main class="max-w-4xl mx-auto mt-8">
+    
+    <div id="dossier-pdf-content" class="bg-white shadow-lg p-10 relative">
       
-      <div class="flex flex-col md:flex-row gap-8 mt-4">
-        <div class="w-full md:w-1/3 bg-gray-100 h-48 flex items-center justify-center text-xs text-gray-400 uppercase tracking-widest border border-gray-200">
-          Sin Imagen
+      {/* ENCABEZADO DEL DOSSIER (Como en el PDF) */}
+      <div class="border-b-2 border-[#0A1F33] pb-6 mb-8 flex justify-between items-start">
+        <div>
+          <div class="font-montserrat font-black text-3xl text-[#0A1F33] tracking-tight mb-1">DATA<span class="font-light text-[#C0C0C0]">CAR</span></div>
+          <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Asesoría Automotriz Independiente</div>
         </div>
-        <div class="w-full md:w-2/3 flex flex-col">
-          <h2 class="font-montserrat font-black text-2xl text-[#0A1F33]">{veredicto.ganador.marca} {veredicto.ganador.modelo}</h2>
-          <p class="text-sm text-gray-500 mb-4">{veredicto.ganador.version} • <span class="font-bold text-[#3A3A3C]">${veredicto.ganador.precio.toLocaleString()}</span></p>
+        <div class="text-right">
+          <h1 class="font-montserrat font-black text-[#0A1F33] text-xl uppercase">Dossier de Inversión</h1>
+          <h2 class="font-montserrat font-medium text-gray-500 text-sm uppercase mb-4">Análisis Comparativo de Mercado</h2>
           
-          <ul class="space-y-3 mb-6 flex-grow text-sm">
-            {veredicto.ganador.racional.map(razon => (
+          <div class="grid grid-cols-2 gap-x-8 gap-y-1 text-xs text-left bg-gray-50 p-3 border border-gray-200">
+            <div class="text-gray-500 uppercase text-[10px]">Cliente</div>
+            <div class="font-bold text-[#0A1F33]">{nombreUsuario}</div>
+            
+            <div class="text-gray-500 uppercase text-[10px]">Categoría</div>
+            <div class="font-bold text-[#0A1F33]">SUV Seguridad</div>
+            
+            <div class="text-gray-500 uppercase text-[10px]">Presupuesto</div>
+            <div class="font-bold text-[#0A1F33]">${pMin} - ${pMax}</div>
+            
+            <div class="text-gray-500 uppercase text-[10px]">Fecha</div>
+            <div class="font-bold text-[#0A1F33]">{fechaActual}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* BLOQUE GANADOR */}
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Recomendación DATACAR</h3>
+      <div class="border-2 border-[#0A1F33] p-6 mb-8 flex gap-6 relative bg-white">
+        <div class="absolute -top-3 left-4 bg-[#0A1F33] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#00BFFF]"></span> Top Pick
+        </div>
+        
+        <div class="w-1/3 bg-gray-100 flex items-center justify-center border border-gray-200 text-gray-400 text-xs uppercase">
+          [Imagen]
+        </div>
+        
+        <div class="w-2/3">
+          <h2 class="font-montserrat font-black text-2xl text-[#0A1F33] leading-none mb-1">{veredicto.ganador.marca} {veredicto.ganador.modelo}</h2>
+          <p class="text-sm text-gray-500 mb-4">{veredicto.ganador.version}</p>
+          
+          <ul class="space-y-3 text-xs text-[#3A3A3C]">
+            {veredicto.ganador.racional.map(item => (
               <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-[#00BFFF] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                <span>{razon}</span>
+                <span class="text-[#00BFFF] font-bold mt-0.5">✓</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
-
-          {/* CTA PRINCIPAL DE CONVERSIÓN */}
-          <button class="bg-[#00BFFF] hover:bg-[#0099cc] text-white font-bold py-3 px-8 text-sm transition-colors self-start flex items-center gap-2">
-            Quiero cotizar este auto
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </button>
         </div>
       </div>
-    </section>
 
-    {/* SECCIÓN 2: ALTERNATIVAS DEL PODIO */}
-    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Alternativas del Podio</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      {veredicto.podio.map(auto => (
-        <div class="bg-white border border-gray-200 p-5 flex flex-col h-full">
-          <div class="text-xs font-bold text-gray-400 mb-3 uppercase">Lugar #{auto.posicion}</div>
-          <div class="flex gap-4 mb-4">
-            <div class="w-20 h-14 bg-gray-100 flex-shrink-0 border border-gray-200"></div>
-            <div>
-              <h4 class="font-bold text-[#0A1F33] leading-tight">{auto.marca} {auto.modelo}</h4>
-              <p class="text-xs text-gray-500">{auto.version} • ${auto.precio.toLocaleString()}</p>
+      {/* BARRIDO DE MERCADO / PODIO */}
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-200 pb-2">El Barrido de Mercado: El Podio</h3>
+      <div class="grid grid-cols-3 gap-4 mb-8">
+        {veredicto.podio.map(auto => (
+          <div class="border border-gray-200 bg-gray-50 p-4 flex flex-col">
+            <div class={`text-[10px] font-bold uppercase mb-3 ${auto.posicion === 1 ? 'text-[#00BFFF]' : 'text-gray-500'}`}>
+              {auto.etiqueta}
             </div>
-          </div>
-          <div class="mt-auto bg-gray-50 p-3 text-xs border-l-2 border-[#0A1F33] text-[#3A3A3C]">
-            {auto.racional}
-          </div>
-        </div>
-      ))}
-    </div>
-
-    {/* SECCIÓN 3: NO ALCANZARON EL PODIO (Acordeón) */}
-    <details class="group bg-white border border-gray-200 mb-8 cursor-pointer">
-      <summary class="flex justify-between items-center p-4 font-medium text-sm list-none">
-        <span class="text-[#3A3A3C]">No alcanzaron el podio ({veredicto.descartados.length})</span>
-        <span class="transition group-open:rotate-180 text-gray-400">▼</span>
-      </summary>
-      <div class="p-4 border-t border-gray-100 bg-gray-50 space-y-4">
-        {veredicto.descartados.map(auto => (
-          <div class="flex flex-col md:flex-row justify-between md:items-center pb-4 border-b border-gray-200 last:border-0 last:pb-0 gap-2">
-            <div class="font-bold text-sm text-[#3A3A3C]">{auto.marca} {auto.modelo} <span class="font-normal text-gray-500 ml-2">${auto.precio.toLocaleString()}</span></div>
-            <div class="text-xs text-gray-600 md:w-2/3 bg-white p-2 border border-gray-200">{auto.razon}</div>
+            <h4 class="font-bold text-[#0A1F33] text-sm leading-tight">{auto.marca}<br/>{auto.modelo}</h4>
+            <p class="text-[10px] text-gray-500 mb-2">{auto.version}</p>
+            <p class="font-bold text-[#0A1F33] text-sm mt-auto">${auto.precio.toLocaleString()}</p>
           </div>
         ))}
       </div>
-    </details>
 
-    {/* SECCIÓN 4: CONCLUSIÓN Y PUNTO CIEGO */}
-    <div class="space-y-4 mb-10">
-      <div class="bg-white border border-gray-200 p-5 border-l-4 border-l-[#0A1F33]">
-        <h4 class="font-bold text-sm text-[#0A1F33] mb-2">⚠️ Punto Ciego DATACAR</h4>
-        <p class="text-sm text-[#3A3A3C]">Ninguna desventaja crítica detectada para este perfil. La elección del ganador es sólida y bien fundamentada.</p>
+      {/* DESCARTADOS */}
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-200 pb-2">Evaluados - No alcanzaron el podio</h3>
+      <div class="space-y-3 mb-8">
+        {veredicto.descartados.map(auto => (
+          <div class="flex flex-col md:flex-row gap-2 md:items-center text-xs">
+            <div class="w-1/3 font-bold text-[#3A3A3C]">{auto.marca} {auto.modelo}</div>
+            <div class="w-2/3 text-gray-500 bg-gray-50 px-3 py-2 border-l-2 border-gray-300">{auto.razon}</div>
+          </div>
+        ))}
       </div>
-      <div class="bg-white border border-gray-200 p-5">
-        <h4 class="font-bold text-sm text-[#0A1F33] mb-2">Conclusión DATACAR</h4>
-        <p class="text-sm text-[#3A3A3C] leading-relaxed">
-          El <strong>{veredicto.ganador.marca} {veredicto.ganador.modelo}</strong> logra el mejor balance para el presupuesto ingresado. {veredicto.podio[0].marca} {veredicto.podio[0].modelo} es la alternativa más sólida y no debe descartarse. DATACAR recomienda iniciar el proceso de cotización con el ganador.
-        </p>
+
+      {/* TABLA COMPARATIVA */}
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-[#0A1F33] text-white">
+              <th class="p-3 font-bold uppercase tracking-wider w-1/6">Atributo</th>
+              <th class="p-3 font-bold uppercase border-l border-gray-600 bg-[#00BFFF]">Nissan Kicks</th>
+              <th class="p-3 font-bold uppercase border-l border-gray-600">Chevy Tracker</th>
+              <th class="p-3 font-bold uppercase border-l border-gray-600">VW Nivus</th>
+              <th class="p-3 font-bold uppercase border-l border-gray-600">Changan CS55</th>
+              <th class="p-3 font-bold uppercase border-l border-gray-600">VW T-Cross</th>
+            </tr>
+          </thead>
+          <tbody>
+            {veredicto.tabla.map((fila, index) => (
+              <tr class={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                <td class="p-3 border-b border-gray-200 font-bold text-[#3A3A3C]">{fila.atributo}</td>
+                <td class="p-3 border-b border-gray-200 font-bold text-[#00BFFF] border-x border-gray-200 bg-blue-50/30">{fila.nissan}</td>
+                <td class="p-3 border-b border-gray-200 text-gray-600 border-r border-gray-200">{fila.chevrolet}</td>
+                <td class="p-3 border-b border-gray-200 text-gray-600 border-r border-gray-200">{fila.vw_nivus}</td>
+                <td class="p-3 border-b border-gray-200 text-gray-600 border-r border-gray-200">{fila.changan}</td>
+                <td class="p-3 border-b border-gray-200 text-gray-600">{fila.vw_tcross}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* FOOTER DEL PDF */}
+      <div class="mt-8 pt-4 border-t border-gray-200 text-center text-[9px] text-gray-400 uppercase tracking-widest">
+        Documento confidencial - DATACAR Paraguay - datacarpy.com
       </div>
     </div>
   </main>
 
-  {/* BARRA INFERIOR DE ACCIONES (Fija) */}
-  <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-50">
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+  {/* BARRA DE ACCIÓN FLOTANTE (NO SE IMPRIME EN EL PDF) */}
+  <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] z-50 no-print">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
       <button onclick="history.back()" class="text-[#3A3A3C] font-medium text-sm hover:underline w-full md:w-auto text-left">
-        ← Volver a Selección
+        ← Volver
       </button>
       
-      <div class="flex gap-3 w-full md:w-auto">
-        <button class="flex-1 md:flex-none bg-white border border-[#0A1F33] text-[#0A1F33] font-bold py-3 px-6 text-sm hover:bg-gray-50 transition-colors">
-          Generar PDF
+      <div class="flex w-full md:w-auto gap-3">
+        {/* BOTÓN GENERAR PDF */}
+        <button id="btn_pdf" class="flex-1 bg-white border-2 border-[#0A1F33] text-[#0A1F33] font-bold py-3 px-6 text-sm hover:bg-gray-50 transition-colors flex justify-center items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          Descargar PDF
         </button>
-        <button id="btn_guardar" class="flex-1 md:flex-none bg-[#0A1F33] hover:bg-gray-800 text-white font-bold py-3 px-8 text-sm transition-colors flex justify-center items-center gap-2">
-          Guardar Dossier en Base de Datos
+        
+        {/* BOTÓN CTA MODIFICADO */}
+        <button id="btn_avanzar" class="flex-1 bg-[#00BFFF] hover:bg-[#0099cc] text-white font-bold py-3 px-8 text-sm transition-colors flex justify-center items-center gap-2">
+          Quiero avanzar con una opción
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </button>
       </div>
     </div>
   </div>
 
+  <style>
+    /* Ocultar elementos UI durante la impresión/generación de PDF */
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: white; }
+      #dossier-pdf-content { box-shadow: none; padding: 0; }
+    }
+  </style>
+
   <script>
-    // Lógica para enviar TODO al Backend / Base de Datos
-    document.getElementById('btn_guardar').addEventListener('click', async (e) => {
-      const btn = e.target;
+    // Lógica para Generar PDF usando html2pdf
+    document.getElementById('btn_pdf').addEventListener('click', () => {
+      const btn = document.getElementById('btn_pdf');
       const originalText = btn.innerHTML;
+      btn.innerHTML = 'Generando...';
       
-      btn.innerHTML = 'Guardando en PostgreSQL...';
-      btn.disabled = true;
-      btn.classList.add('opacity-75');
-
-      // 1. Recolectar datos de la URL (Paso 1)
-      const urlParams = new URLSearchParams(window.location.search);
-      const leadData = {
-        nombre: urlParams.get('nombre') || 'Desconocido',
-        presupuesto_min: urlParams.get('min'),
-        presupuesto_max: urlParams.get('max')
+      const element = document.getElementById('dossier-pdf-content');
+      
+      // Opciones de configuración para máxima calidad
+      const opt = {
+        margin:       [10, 10, 10, 10], // top, left, bottom, right
+        filename:     'Dossier_Inversion_DATACAR.pdf',
+        image:        { type: 'jpeg', quality: 1.0 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      // 2. Empaquetar con el Veredicto
-      // En producción, este payload se envía a tu API route (ej: /api/leads/save)
-      const payloadFinal = {
-        cliente: leadData,
-        fecha_generacion: new Date().toISOString(),
-        resultado_algoritmo: {
-          ganador: "Nissan New Kicks", // Extraer dinámicamente en prod
-          podio: ["Chevrolet Tracker", "Volkswagen Nivus"]
-        }
-      };
-
-      console.log("🚀 PAYLOAD LISTO PARA VENTAS:", payloadFinal);
-
-      // Simulador de latencia de red
-      setTimeout(() => {
-        alert("✅ DOSSIER GUARDADO EXITOSAMENTE.\n\nEl equipo de ventas ya tiene acceso a este perfil en la base de datos.");
+      // Ejecutar la librería
+      html2pdf().set(opt).from(element).save().then(() => {
         btn.innerHTML = originalText;
-        btn.disabled = false;
-        btn.classList.remove('opacity-75');
-      }, 2000);
+      });
+    });
+
+    // Lógica del CTA Principal
+    document.getElementById('btn_avanzar').addEventListener('click', () => {
+      // Aquí abriríamos un modal o enviaríamos el dato final a PostgreSQL
+      alert("¡Excelente decisión!\n\nEste evento guardará el registro final en la base de datos y notificará a tu asesor asignado para iniciar la gestión.");
     });
   </script>
 </body>
