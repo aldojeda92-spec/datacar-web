@@ -78,7 +78,7 @@
 				<div class="hidden md:flex space-x-8 items-center text-white">
 					<a href="/servicios" class="hover:text-[#00BFFF] transition text-xs font-bold uppercase tracking-widest">Servicios</a>
                     <a href="/catalogo" class="hover:text-[#00BFFF] transition text-xs font-bold uppercase tracking-widest">Catálogo</a>
-                    <a href="#comparador" class="hover:text-[#00BFFF] transition text-xs font-bold uppercase tracking-widest">Comparador</a>
+                  <a href="https://miauto.datacarpy.com" class="hover:text-[#00BFFF] transition text-xs font-bold uppercase tracking-widest text-[#00BFFF]">App Inteligente</a>
                     <a href="/nosotros" class="hover:text-[#00BFFF] transition text-xs font-bold uppercase tracking-widest">Nosotros</a>
                     <a href="#contacto" class="border-2 border-[#00BFFF] text-[#00BFFF] px-6 py-2 rounded-full text-[10px] font-black hover:bg-[#00BFFF] hover:text-[#0A1F33] transition uppercase">Activar Búsqueda</a>
 				</div>
@@ -100,7 +100,7 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="#contacto" class="bg-[#00BFFF] text-[#0A1F33] font-[900] py-4 px-10 rounded-xl text-base md:text-lg uppercase shadow-xl transition hover:scale-105">Empezar Búsqueda</a>
-                    <a href="#comparador" class="border-2 border-white/30 text-white font-[700] py-4 px-10 rounded-xl text-base md:text-lg backdrop-blur-sm hover:bg-white/10 transition">Ver Comparador</a>
+             <a href="https://miauto.datacarpy.com" class="border-2 border-[#00BFFF]/50 text-white font-[700] py-4 px-10 rounded-xl text-base md:text-lg backdrop-blur-sm hover:bg-[#00BFFF]/20 transition">Probar IA Datacar</a>
                 </div>
             </div>
 		</section>
@@ -185,80 +185,16 @@
             </div>
         </section>
 
-        <section id="comparador" class="py-24 bg-slate-100 border-y border-slate-200">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-[900] text-[#0A1F33] mb-4 uppercase tracking-tighter italic">Veredicto Técnico</h2>
-                    <p class="text-slate-500 text-lg">Decida con información real antes de realizar su inversión.</p>
-                </div>
-
-                <div id="loader" class="text-center py-20">
-                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-[#00BFFF]"></div>
-                    <p class="mt-4 text-[#0A1F33] font-bold uppercase tracking-widest text-xs">Accediendo a la base de datos maestra...</p>
-                </div>
-
-                <div id="comparador-ui" class="hidden">
-                    <div class="bg-white rounded-[2rem] p-8 border border-slate-200 shadow-sm mb-12">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
-                            <div>
-                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Categoría</label>
-                                <select id="filtroTipo" class="w-full bg-slate-50 border border-slate-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none"></select>
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Motorización</label>
-                                <select id="filtroCombustible" class="w-full bg-slate-50 border border-slate-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
-                                    <option value="Todos">Cualquier Motor</option>
-                                    <option value="Tradicional">Combustión</option>
-                                    <option value="Hibridos">Híbridos</option>
-                                    <option value="Electrico">Eléctricos</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-widest">Presupuesto</label>
-                                <select id="filtroPrecio" class="w-full bg-slate-50 border border-slate-200 text-[#0A1F33] text-sm rounded-xl p-4 font-bold outline-none">
-                                    <option value="Todos">Sin límite</option>
-                                    <option value="25000">Hasta US$ 25.000</option>
-                                    <option value="50000">Hasta US$ 50.000</option>
-                                    <option value="80000">Hasta US$ 80.000</option>
-                                </select>
-                            </div>
-                            <button id="btnLimpiar" class="text-[#00BFFF] font-bold underline text-sm pb-4">Reiniciar filtros</button>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden flex flex-col">
-                            <div class="bg-slate-50 p-8 border-b">
-                                <div class="space-y-4">
-                                    <select id="marca1" class="w-full border p-4 rounded-xl font-bold bg-white outline-none"><option value="">Marca</option></select>
-                                    <select id="modelo1" disabled class="w-full border p-4 rounded-xl bg-white outline-none"><option value="">Modelo</option></select>
-                                    <select id="version1" disabled class="w-full border p-4 rounded-xl bg-white outline-none"><option value="">Versión</option></select>
-                                </div>
-                            </div>
-                            <div id="resultado1" class="hidden p-8 flex-grow">
-                                <div class="h-48 w-full flex items-center justify-center mb-10"><img id="img1" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" /></div>
-                                <h4 id="nombre1" class="text-2xl font-black text-slate-900 mb-8 leading-tight"></h4>
-                                <div id="specs1" class="ficha-container"></div>
-                                <a id="cta1" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-10 font-black uppercase text-xs tracking-widest shadow-lg">Negociar este Auto</a>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden flex flex-col">
-                            <div class="bg-slate-50 p-8 border-b">
-                                <div class="space-y-4">
-                                    <select id="marca2" class="w-full border p-4 rounded-xl font-bold bg-white outline-none"><option value="">Marca</option></select>
-                                    <select id="modelo2" disabled class="w-full border p-4 rounded-xl bg-white outline-none"><option value="">Modelo</option></select>
-                                    <select id="version2" disabled class="w-full border p-4 rounded-xl bg-white outline-none"><option value="">Versión</option></select>
-                                </div>
-                            </div>
-                            <div id="resultado2" class="hidden p-8 flex-grow">
-                                <div class="h-48 w-full flex items-center justify-center mb-10"><img id="img2" src="" class="max-h-full max-w-full object-contain mix-blend-multiply" /></div>
-                                <h4 id="nombre2" class="text-2xl font-black text-slate-900 mb-8 leading-tight"></h4>
-                                <div id="specs2" class="ficha-container"></div>
-                                <a id="cta2" href="#" target="_blank" class="block w-full bg-[#0A1F33] text-white text-center py-5 rounded-2xl mt-10 font-black uppercase text-xs tracking-widest shadow-lg">Negociar este Auto</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+       <section id="comparador" class="py-32 bg-slate-100 border-y border-slate-200 text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <span class="bg-[#0A1F33] text-[#00BFFF] font-black tracking-widest uppercase text-[10px] px-4 py-2 rounded-full mb-6 inline-block shadow-md">NUEVA PLATAFORMA 2026</span>
+                <h2 class="text-4xl md:text-6xl font-[900] text-[#0A1F33] mb-6 uppercase tracking-tighter leading-none">Comparador <br/><span class="text-[#00BFFF]">Inteligente</span> con IA</h2>
+                <p class="text-slate-500 text-lg md:text-xl mb-10 font-light leading-relaxed">
+                    Evolucionamos. Hemos migrado nuestro antiguo comparador manual a un <strong>sistema avanzado con Inteligencia Artificial</strong>. Contanos qué buscás, cuál es tu presupuesto y el motor analizará todo el mercado de Paraguay en milisegundos para darte el veredicto técnico exacto.
+                </p>
+                <a href="https://miauto.datacarpy.com" class="inline-block bg-[#0A1F33] text-white font-[900] py-5 px-12 rounded-2xl uppercase tracking-widest shadow-xl hover:bg-[#00BFFF] hover:text-[#0A1F33] transition-all text-lg hover:-translate-y-1">
+                    Abrir App Datacar →
+                </a>
             </div>
         </section>
 
@@ -364,214 +300,24 @@
             <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         </a>
 
-        <script type="module" is:inline>
-            import Papa from 'https://cdn.jsdelivr.net/npm/papaparse@5.4.1/+esm';
-
-            const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgA9AGiaH-RdEQrO2mOSjNDe7_zPoBMZyp-Yzmc0IKkTo9CluAzhWRJ9JXT-4XgNAAgiF-Uzzsea5m/pub?output=csv";
+      <script is:inline>
+            // Script para manejar únicamente el Formulario de Contacto (Lead Form)
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTBqtK9wDzl10vc226zFwn4f-v-DVjKCfo9JVj3XCcepIcw41NQHchLrbDK6mz1zWgWg/exec';
-
-            let bdOriginal = [];
-            let bdFiltrada = [];
-            let colMap = {};
 
             document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const btn = document.getElementById('submit-btn');
-                btn.disabled = true; btn.innerText = "ACTIVANDO...";
+                btn.disabled = true; 
+                btn.innerText = "ACTIVANDO...";
                 try {
                     await fetch(SCRIPT_URL, { method: 'POST', body: new FormData(e.target) });
                     window.location.href = '/gracias';
                 } catch {
                     alert("Error de conexión. Intentá por WhatsApp.");
-                    btn.disabled = false; btn.innerText = "Activar mi Búsqueda";
+                    btn.disabled = false; 
+                    btn.innerText = "Activar mi Búsqueda";
                 }
             });
-
-            function find(keys, keywords) {
-                return keys.find(k => keywords.some(kw => k.toLowerCase().includes(kw.toLowerCase()))) || "";
-            }
-
-            async function init() {
-                try {
-                    const res = await fetch(URL_CSV, { cache: "no-store" });
-                    const text = await res.text();
-                    Papa.parse(text, {
-                        header: true, skipEmptyLines: true, transformHeader: h => h.trim(),
-                        complete: (results) => {
-                            bdOriginal = results.data.filter(r => r.Marca && r.Marca.trim() !== "");
-                            const fields = results.meta.fields;
-                            
-                            colMap = {
-                                cat: fields[26],
-                                precio: find(fields, ['precio']),
-                                motor: find(fields, ['motor (cilindrada']),
-                                trans: find(fields, ['transmisión']),
-                                largo: find(fields, ['largo (mm)']),
-                                baul: find(fields, ['baulera']),
-                                plazas: find(fields, ['plazas']),
-                                adas: find(fields, ['adas', 'seguridad', 'asistencia']),
-                                camara: find(fields, ['cámara']),
-                                pantalla: find(fields, ['pantalla']),
-                                conect: find(fields, ['conectividad']),
-                                garantia: find(fields, ['garantía'])
-                            };
-
-                            poblarCategorias();
-                            asignarEventos();
-                            aplicarFiltros();
-                            document.getElementById('loader').classList.add('hidden');
-                            document.getElementById('comparador-ui').classList.remove('hidden');
-                        }
-                    });
-                } catch(e) { console.error("Falla de carga:", e); }
-            }
-
-            function poblarCategorias() {
-                const tipos = [...new Set(bdOriginal.map(c => c[colMap.cat]?.trim()).filter(Boolean))].sort();
-                const select = document.getElementById('filtroTipo');
-                const grupos = { 'SUV': [], 'Pick-up': [], 'Sedán': [], 'Hatchback': [], 'Otros': [] };
-                tipos.forEach(t => {
-                    const tl = t.toLowerCase();
-                    if(tl.includes('suv')) grupos.SUV.push(t);
-                    else if(tl.includes('pick')) grupos['Pick-up'].push(t);
-                    else if(tl.includes('sed')) grupos.Sedán.push(t);
-                    else if(tl.includes('hatch')) grupos.Hatchback.push(t);
-                    else grupos.Otros.push(t);
-                });
-                select.innerHTML = '<option value="Todos">Todas las categorías</option>';
-                for(const [g, items] of Object.entries(grupos)) {
-                    if(items.length) {
-                        const og = document.createElement('optgroup'); og.label = g;
-                        items.forEach(i => og.appendChild(new Option(i, i)));
-                        select.appendChild(og);
-                    }
-                }
-            }
-
-            function asignarEventos() {
-                ['filtroTipo', 'filtroCombustible', 'filtroPrecio'].forEach(id => {
-                    document.getElementById(id).addEventListener('change', aplicarFiltros);
-                });
-                document.getElementById('btnLimpiar').onclick = () => {
-                    document.getElementById('filtroTipo').value = 'Todos';
-                    document.getElementById('filtroCombustible').value = 'Todos';
-                    document.getElementById('filtroPrecio').value = 'Todos';
-                    aplicarFiltros();
-                };
-                [1, 2].forEach(col => {
-                    document.getElementById(`marca${col}`).onchange = () => updateModelos(col);
-                    document.getElementById(`modelo${col}`).onchange = () => updateVersiones(col);
-                    document.getElementById(`version${col}`).onchange = () => mostrarAuto(col);
-                });
-            }
-
-            function aplicarFiltros() {
-                const fT = document.getElementById('filtroTipo').value;
-                const fC = document.getElementById('filtroCombustible').value;
-                const fP = document.getElementById('filtroPrecio').value;
-
-                bdFiltrada = bdOriginal.filter(c => {
-                    const pT = fT === 'Todos' || c[colMap.cat]?.trim() === fT;
-                    const vP = parseInt(c[colMap.precio]?.replace(/\D/g, '')) || 0;
-                    const pP = fP === 'Todos' || vP <= parseInt(fP);
-                    const vL = (c.Combustible || "").toLowerCase();
-                    const cat = vL.includes('hibrid') || vL.includes('hev') ? 'Hibridos' : (vL.includes('elect') || vL.includes('ev') ? 'Electrico' : 'Tradicional');
-                    const pC = fC === 'Todos' || cat === fC;
-                    return pT && pP && pC;
-                });
-
-                const arbol = {};
-                bdFiltrada.forEach(c => {
-                    const m = c.Marca.trim(), mo = (c.Modelo||"").trim(), v = (c.Versión||"Única").trim();
-                    if(!arbol[m]) arbol[m] = {};
-                    if(mo && !arbol[m][mo]) arbol[m][mo] = [];
-                    if(mo && !arbol[m][mo].includes(v)) arbol[m][mo].push(v);
-                });
-
-                [1, 2].forEach(n => {
-                    const s = document.getElementById(`marca${n}`);
-                    s.innerHTML = '<option value="">Marca</option>';
-                    Object.keys(arbol).sort().forEach(m => s.add(new Option(m, m)));
-                    document.getElementById(`modelo${n}`).innerHTML = '<option value="">Modelo</option>';
-                    document.getElementById(`modelo${n}`).disabled = true;
-                    document.getElementById(`version${n}`).innerHTML = '<option value="">Versión</option>';
-                    document.getElementById(`version${n}`).disabled = true;
-                    document.getElementById(`resultado${n}`).classList.add('hidden');
-                });
-            }
-
-            function updateModelos(n) {
-                const m = document.getElementById(`marca${n}`).value;
-                const s = document.getElementById(`modelo${n}`);
-                s.innerHTML = '<option value="">Modelo</option>';
-                if(m) {
-                    const filtered = bdFiltrada.filter(c => c.Marca.trim() === m);
-                    const mods = [...new Set(filtered.map(c => (c.Modelo||"").trim()))].sort();
-                    mods.forEach(mo => s.add(new Option(mo, mo)));
-                    s.disabled = false;
-                } else s.disabled = true;
-            }
-
-            function updateVersiones(n) {
-                const m = document.getElementById(`marca${n}`).value;
-                const mo = document.getElementById(`modelo${n}`).value;
-                const s = document.getElementById(`version${n}`);
-                s.innerHTML = '<option value="">Versión</option>';
-                if(mo) {
-                    const filtered = bdFiltrada.filter(c => c.Marca.trim() === m && (c.Modelo||"").trim() === mo);
-                    const vers = [...new Set(filtered.map(c => (c.Versión || "Única").trim()))].sort();
-                    vers.forEach(v => s.add(new Option(v, v)));
-                    s.disabled = false;
-                } else s.disabled = true;
-            }
-
-            function generarFichaHTML(car) {
-                const adas = car[colMap.adas]?.trim();
-                return `
-                    <div class="ficha-row ficha-precio">
-                        <span class="ficha-label">Precio Final Negociado</span>
-                        <span class="ficha-value">${car[colMap.precio] || 'Consultar'}</span>
-                    </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Mecánica & Transmisión</span>
-                        <span class="ficha-value">${car.Combustible} | ${car[colMap.motor] || '-'} | ${car[colMap.trans] || '-'}</span>
-                    </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Dimensiones & Espacio</span>
-                        <span class="ficha-value">Largo: ${car[colMap.largo] || '-'}mm | Baúl: ${car[colMap.baul] || '-'}L | Plazas: ${car[colMap.plazas] || '-'}</span>
-                    </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Seguridad Avanzada</span>
-                        <span class="ficha-value ${!adas ? 'text-red-500 font-bold' : ''}">${adas || 'Consultar ADAS con asesor'} | Cámaras: ${car[colMap.camara] || '-'}</span>
-                    </div>
-                    <div class="ficha-row">
-                        <span class="ficha-label">Tecnología</span>
-                        <span class="ficha-value">Pantalla: ${car[colMap.pantalla] || '-'} | Conectividad: ${car[colMap.conect] || '-'}</span>
-                    </div>
-                    <div class="ficha-row" style="border:none; background:transparent; padding-left:0;">
-                        <span class="ficha-label">Garantía Oficial</span>
-                        <span class="ficha-value text-slate-400 font-medium">${car[colMap.garantia] || 'Consultar'}</span>
-                    </div>
-                `;
-            }
-
-            function mostrarAuto(n) {
-                const m = document.getElementById(`marca${n}`).value;
-                const mo = document.getElementById(`modelo${n}`).value;
-                const v = document.getElementById(`version${n}`).value;
-                const car = bdFiltrada.find(c => c.Marca.trim() === m && (c.Modelo||"").trim() === mo && (c.Versión || "Única").trim() === v);
-                
-                if(car) {
-                    const specsContainer = document.getElementById(`specs${n}`);
-                    document.getElementById(`nombre${n}`).innerText = `${m} ${mo} ${v !== 'Única' ? v : ''}`;
-                    document.getElementById(`img${n}`).src = car['URL de Imagen'] || '';
-                    specsContainer.innerHTML = generarFichaHTML(car);
-                    document.getElementById(`cta${n}`).href = `https://wa.me/595991244469?text=${encodeURIComponent('Hola Datacar, me interesa negociar el ' + m + ' ' + mo + ' ' + v)}`;
-                    document.getElementById(`resultado${n}`).classList.remove('hidden');
-                }
-            }
-
-            init();
-        </script>
-	</body>
+        </script>	
+</body>
 </html>
