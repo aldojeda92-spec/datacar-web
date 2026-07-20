@@ -319,6 +319,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script is:inline>
     // Script para manejar únicamente el Formulario de Contacto (Lead Form)
+    // ⚠️ ATENCIÓN: Reemplazá el valor de SCRIPT_URL por la NUEVA URL del Webhook que generamos
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTBqtK9wDzl10vc226zFwn4f-v-DVjKCfo9JVj3XCcepIcw41NQHchLrbDK6mz1zWgWg/exec';
 
     document.getElementById('lead-form')?.addEventListener('submit', async (e) => {
@@ -327,7 +328,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         btn.disabled = true; 
         btn.innerText = "ACTIVANDO...";
         try {
-            await fetch(SCRIPT_URL, { method: 'POST', body: new FormData(e.target) });
+            await fetch(SCRIPT_URL, { 
+                method: 'POST', 
+                body: new FormData(e.target),
+                mode: 'no-cors'
+            });
             window.location.href = '/gracias';
         } catch {
             alert("Error de conexión. Intentá por WhatsApp.");
